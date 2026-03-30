@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SEAVEN</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--black:#1A1A1A;--gray:#8E8E93;--light:#F2F2F7;--border:#E5E5EA;--grad:linear-gradient(135deg,#C9A84C,#7EC8A4,#4FC4CF,#4A90D9);}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+body{background:#D4D4DB;display:flex;flex-direction:column;align-items:center;padding:20px 16px 40px;font-family:'Manrope',-apple-system,sans-serif;gap:14px;}
+.phone{width:375px;height:812px;background:white;border-radius:52px;box-shadow:0 32px 80px rgba(0,0,0,0.18),0 0 0 1px rgba(0,0,0,0.06);overflow:hidden;position:relative;}
+/* Tout ce qui est enfant direct de .phone et pas une vue/module reste invisible */
+.phone>*:not(.page):not(.screen):not(.module):not(.prof-module){display:none!important;}
+
+/* vues */
+.page,.screen{position:absolute;inset:0;display:none;flex-direction:column;background:white;overflow:hidden;}
+.page.on,.screen.on{display:flex;}
+/* modules — slide depuis droite, DANS .phone, z-index élevé */
+.module{position:absolute;inset:0;display:flex;flex-direction:column;background:white;overflow:hidden;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:60;}
+.module.on{transform:translateX(0);pointer-events:all;}
