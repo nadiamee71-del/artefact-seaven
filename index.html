@@ -29,6 +29,7 @@
 --black:#1A1A1A;--gray:#8E8E93;--light:#F2F2F7;--border:#E5E5EA;
 --grad:linear-gradient(135deg,#C9A84C,#7EC8A4,#4FC4CF,#4A90D9);
 --bg:#FFFFFF;--text:#1A1A1A;--btn-bg:#1A1A1A;--btn-fg:#FFFFFF;
+--red:#FF3B30;--orange:#FF9500;--green:#34C759;--blue:#007AFF;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
 html,body{width:100%;height:100%;overflow:hidden;overscroll-behavior:none;}
@@ -194,6 +195,7 @@ body.dark-mode{
 .app-icon{width:60px;height:60px;border-radius:15px;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 1px 6px rgba(0,0,0,.08);position:relative;transition:transform .12s;}
 .app-badge{position:absolute;top:-4px;right:-4px;background:#FF3B30;color:white;font-size:9px;font-weight:800;min-width:16px;height:16px;border-radius:8px;padding:0 4px;display:flex;align-items:center;justify-content:center;border:2px solid white;}
 .app-name{font-size:11px;font-weight:600;color:var(--black);text-align:center;line-height:1.2;max-width:66px;}
+.app-slot-empty{visibility:hidden;pointer-events:none;}
 .page-dots{display:flex;justify-content:center;gap:6px;padding:5px 0 3px;flex-shrink:0;}
 .pdot{width:6px;height:6px;border-radius:50%;background:var(--border);transition:all .2s;}
 .pdot.on{width:18px;border-radius:3px;background:var(--black);}
@@ -250,6 +252,35 @@ body.dark-mode{
 .mod-tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0;}
 .mod-tab{flex:1;padding:11px 0;text-align:center;font-size:13px;font-weight:700;color:var(--gray);cursor:pointer;border-bottom:2px solid transparent;}
 .mod-tab.on{color:var(--black);border-bottom:2px solid var(--black);}
+/* ══ BLACKLIST ══ */
+#mod-blacklist{display:flex;flex-direction:column;min-height:0;}
+#mod-blacklist .navbar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px 6px;flex-shrink:0;}
+#mod-blacklist .nav-back{font-size:24px;color:var(--black);cursor:pointer;width:28px;line-height:1;}
+#mod-blacklist .nav-title{font-size:16px;font-weight:800;color:var(--black);}
+#mod-blacklist .nav-add{width:32px;height:32px;border-radius:50%;background:var(--btn-bg);color:var(--btn-fg);display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;font-weight:300;}
+#mod-blacklist .search-bar{display:flex;align-items:center;gap:8px;background:var(--light);border-radius:12px;padding:9px 12px;margin:4px 16px 10px;flex-shrink:0;}
+#mod-blacklist .search-bar input{flex:1;border:none;outline:none;background:transparent;font-size:14px;font-family:'Manrope',sans-serif;color:var(--black);}
+#mod-blacklist .search-bar input::placeholder{color:var(--gray);}
+#mod-blacklist .filters{display:flex;gap:6px;padding:0 16px 10px;flex-shrink:0;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+#mod-blacklist .filters::-webkit-scrollbar{display:none;}
+#mod-blacklist .fpill{padding:6px 14px;border-radius:20px;border:1.5px solid var(--border);font-size:12px;font-weight:700;color:var(--gray);cursor:pointer;white-space:nowrap;flex-shrink:0;transition:all .15s;}
+#mod-blacklist .fpill.on{background:var(--btn-bg);color:var(--btn-fg);border-color:var(--btn-bg);}
+#mod-blacklist .stats-row{display:flex;gap:8px;padding:0 16px 12px;flex-shrink:0;}
+#mod-blacklist .stat-box{flex:1;background:var(--light);border-radius:12px;padding:10px 12px;text-align:center;}
+#mod-blacklist .stat-n{font-size:20px;font-weight:900;color:var(--black);}
+#mod-blacklist .stat-l{font-size:10px;font-weight:600;color:var(--gray);margin-top:2px;}
+#mod-blacklist .stat-box.red .stat-n{color:var(--red);}
+#mod-blacklist .stat-box.orange .stat-n{color:var(--orange);}
+#mod-blacklist .stat-box.green .stat-n{color:var(--green);}
+#mod-blacklist .bl-list{padding:0 0 16px;}
+#mod-blacklist .bl-row{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--border);}
+#mod-blacklist .bl-av{width:44px;height:44px;border-radius:12px;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:var(--black);flex-shrink:0;}
+#mod-blacklist .bl-info{flex:1;min-width:0;}
+#mod-blacklist .bl-name{font-size:14px;font-weight:800;color:var(--black);}
+#mod-blacklist .bl-handle{font-size:12px;font-weight:600;color:var(--gray);}
+#mod-blacklist .bl-meta{font-size:11px;color:var(--gray);margin-top:2px;}
+#mod-blacklist .bl-unbtn{padding:8px 12px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);font-size:12px;font-weight:700;color:var(--black);cursor:pointer;font-family:'Manrope',sans-serif;flex-shrink:0;}
+#mod-blacklist .bl-unbtn:active{opacity:.85;}
 .mod-filters{display:flex;gap:7px;padding:10px 16px;overflow-x:auto;flex-shrink:0;}
 .mod-filters::-webkit-scrollbar{display:none;}
 .fchip{padding:6px 14px;border-radius:18px;border:1.5px solid var(--border);font-size:12px;font-weight:700;color:var(--gray);background:white;cursor:pointer;white-space:nowrap;flex-shrink:0;}
@@ -718,7 +749,25 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="app-item" onclick="openModule('mod-formation')"><div class="app-icon">🎓</div><div class="app-name">Formations</div></div>
 <div class="app-item"><div class="app-icon">⭐</div><div class="app-name">Carte fidélité</div></div>
 <div class="app-item"><div class="app-icon">⚙️</div><div class="app-name">Réglages</div></div>
-</div></div></div><div class="page-dots" id="c-dots"><div class="pdot on"></div></div></div>
+</div>
+<div class="grid-page">
+<div class="app-item" onclick="openModule('mod-blacklist')"><div class="app-icon" style="background:#FFF0F0;">🚫</div><div class="app-name">Blacklist</div></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+</div></div></div><div class="page-dots" id="c-dots"><div class="pdot on"></div><div class="pdot"></div></div></div>
 <div class="search-zone">
 <div class="s-icon" id="c-s-icon" onclick="deploySearch('cl')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div>
 <div class="s-bar-acc" id="c-s-bar" onclick="openSearchPage('cl')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg><div class="s-bar-text">Rechercher…</div><div class="s-bar-x" onclick="collapseSearch(event,'cl')">✕</div></div>
@@ -788,7 +837,25 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="app-item" onclick="openModule('mod-formation')"><div class="app-icon">🎓</div><div class="app-name">Formations</div></div>
 <div class="app-item"><div class="app-icon" style="background:#F0FFF4;">📊</div><div class="app-name">Finances</div></div>
 <div class="app-item"><div class="app-icon">⚙️</div><div class="app-name">Réglages</div></div>
-</div></div></div><div class="page-dots" id="p-dots"><div class="pdot on"></div></div></div>
+</div>
+<div class="grid-page">
+<div class="app-item" onclick="openModule('mod-blacklist')"><div class="app-icon" style="background:#FFF0F0;">🚫</div><div class="app-name">Blacklist</div></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+</div></div></div><div class="page-dots" id="p-dots"><div class="pdot on"></div><div class="pdot"></div></div></div>
 <div class="search-zone">
 <div class="s-icon" id="p-s-icon" onclick="deploySearch('pro')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div>
 <div class="s-bar-acc" id="p-s-bar" onclick="openSearchPage('pro')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg><div class="s-bar-text">Rechercher…</div><div class="s-bar-x" onclick="collapseSearch(event,'pro')">✕</div></div>
@@ -1039,6 +1106,48 @@ MODULES PROFIL
 <div class="mod-scroll">
 <div id="mf-algo"><div id="feed-grid" class="feed-3"><div class="feed-card fc1">💅<div class="overlay"><div class="f-name">Bloom Nails</div><div class="f-meta">Ongles</div></div></div><div class="feed-card fc2">✨<div class="overlay"><div class="f-name">Nina Cils</div><div class="f-meta">Cils</div></div></div><div class="feed-card fc3">💇<div class="overlay"><div class="f-name">Karima Hair</div><div class="f-meta">Coiffure</div></div></div><div class="feed-card fc4">🌿<div class="overlay"><div class="f-name">Leila</div><div class="f-meta">Bien-être</div></div></div><div class="feed-card fc5">💅<div class="overlay"><div class="f-name">Bloom Nails</div><div class="f-meta">Ongles</div></div></div><div class="feed-card fc6">✨<div class="overlay"><div class="f-name">Nina Cils</div><div class="f-meta">Cils</div></div></div><div class="feed-card fc1">🦷</div><div class="feed-card fc2">💅</div><div class="feed-card fc3">✨</div></div></div>
 <div id="mf-suivis" style="display:none"><div class="feed-3"><div class="feed-card fc2">💅</div><div class="feed-card fc4">🌿</div><div class="feed-card fc5">💇</div><div class="feed-card fc1">✨</div><div class="feed-card fc3">💅</div><div class="feed-card fc6">🦷</div></div></div>
+</div>
+</div>
+
+<!-- BLACKLIST -->
+
+<div class="module" id="mod-blacklist">
+<div class="sbar"><span>9:41</span><span>WiFi 🔋</span></div>
+<div class="navbar">
+<div class="nav-back" onclick="closeModule('mod-blacklist')">‹</div>
+<div class="nav-title">Blacklist</div>
+<div class="nav-add" onclick="alert('Ajouter à la blacklist…')">+</div>
+</div>
+<div class="search-bar"><input type="search" placeholder="Rechercher un profil…" autocomplete="off"/></div>
+<div class="filters" id="bl-filters">
+<div class="fpill on" onclick="togBlFpill(this)">Tout</div>
+<div class="fpill" onclick="togBlFpill(this)">Clientes</div>
+<div class="fpill" onclick="togBlFpill(this)">Pros</div>
+<div class="fpill" onclick="togBlFpill(this)">Instituts</div>
+</div>
+<div class="stats-row">
+<div class="stat-box red"><div class="stat-n">3</div><div class="stat-l">Bloqués</div></div>
+<div class="stat-box orange"><div class="stat-n">1</div><div class="stat-l">En attente</div></div>
+<div class="stat-box green"><div class="stat-n">12</div><div class="stat-l">Levés (30 j)</div></div>
+</div>
+<div class="mod-scroll">
+<div class="bl-list">
+<div class="bl-row">
+<div class="bl-av">M</div>
+<div class="bl-info"><div class="bl-name">Marine B. <span class="bl-handle">@marine.b</span></div><div class="bl-meta">No-show répété · 12 mars 2026</div></div>
+<button type="button" class="bl-unbtn">Lever</button>
+</div>
+<div class="bl-row">
+<div class="bl-av">K</div>
+<div class="bl-info"><div class="bl-name">Karima Hair <span class="bl-handle">@karima</span></div><div class="bl-meta">Litige médiation · 2 mars 2026</div></div>
+<button type="button" class="bl-unbtn">Lever</button>
+</div>
+<div class="bl-row">
+<div class="bl-av">A</div>
+<div class="bl-info"><div class="bl-name">Institut Zen <span class="bl-handle">@institut.zen</span></div><div class="bl-meta">Demande utilisateur · 28 févr. 2026</div></div>
+<button type="button" class="bl-unbtn">Lever</button>
+</div>
+</div>
 </div>
 </div>
 
@@ -1324,6 +1433,7 @@ const target=document.getElementById(contentId);
 if(target)target.style.display='block';
 }
 function togChip(el){el.classList.toggle('on');}
+function togBlFpill(el){document.querySelectorAll('#bl-filters .fpill').forEach(p=>p.classList.remove('on'));el.classList.add('on');}
 function setFeedView(n,btn){btn.closest('.view-toggle').querySelectorAll('.vbtn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');const g=document.getElementById('feed-grid');if(g)g.className='feed-'+n;}
 
 // ── FLOWS CLIENT ──
