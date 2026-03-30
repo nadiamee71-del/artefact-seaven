@@ -9,7 +9,7 @@
 <style>
 :root{--black:#1A1A1A;--gray:#8E8E93;--light:#F2F2F7;--border:#E5E5EA;--grad:linear-gradient(135deg,#C9A84C,#7EC8A4,#4FC4CF,#4A90D9);}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
-body{background:white;display:flex;flex-direction:column;align-items:center;padding:0;font-family:'Manrope',-apple-system,sans-serif;gap:0;min-height:100vh;min-height:100dvh;}
+body{background:#f7f7fa;display:flex;flex-direction:column;align-items:center;padding:0;font-family:'Manrope',-apple-system,sans-serif;gap:0;min-height:100vh;min-height:100dvh;color:#1A1A1A;}
 .phone{width:100vw;height:100vh;height:100svh;height:100dvh;background:white;border-radius:0;box-shadow:none;overflow:hidden;position:relative;}
 /* Tout ce qui est enfant direct de .phone et pas une vue/module reste invisible */
 .phone>*:not(.page):not(.screen):not(.module):not(.prof-module){display:none!important;}
@@ -33,10 +33,13 @@ body{background:white;display:flex;flex-direction:column;align-items:center;padd
 .seaven-text{text-align:center;opacity:0;animation:pFade .7s ease .75s both;}
 .seaven-name{font-size:30px;font-weight:900;color:var(--black);letter-spacing:-1px;}
 .seaven-tag{font-size:11px;color:var(--gray);font-weight:600;margin-top:4px;}
+.splash-progress{width:132px;height:4px;background:#ececf2;border-radius:4px;margin:14px auto 0;overflow:hidden;opacity:0;animation:pFade .45s ease .95s both;}
+.splash-progress > span{display:block;height:100%;width:0;background:linear-gradient(90deg,#4A90D9,#4FC4CF,#7EC8A4);border-radius:4px;animation:loadBar 2.1s ease .95s both;}
 @keyframes logoIn{from{opacity:0;transform:translateY(10px) scale(.92);}to{opacity:1;transform:translateY(0) scale(1);}}
 @keyframes ringSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
 @keyframes glowPulse{0%,100%{opacity:.55;transform:scale(.95);}50%{opacity:1;transform:scale(1.03);}}
 @keyframes pFade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+@keyframes loadBar{from{width:0;}to{width:100%;}}
 .splash-bottom{padding:0 28px;width:100%;padding-bottom:max(0px,env(safe-area-inset-bottom));}
 .splash-main-btn{width:100%;padding:16px;border-radius:14px;background:var(–black);color:white;font-size:16px;font-weight:800;border:none;cursor:pointer;font-family:'Manrope',sans-serif;margin-bottom:14px;}
 .splash-links{display:flex;justify-content:center;gap:6px;font-size:14px;color:var(–gray);font-weight:600;}
@@ -629,7 +632,7 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="splash-logo-ring"><div class="splash-logo-core"><div class="splash-logo-mark">S</div></div></div>
 </div>
 </div>
-<div class="seaven-text"><div class="seaven-name">SEAVEN</div><div class="seaven-tag">One App. One Place. All in One.</div></div>
+<div class="seaven-text"><div class="seaven-name">SEAVEN</div><div class="seaven-tag">One App. One Place. All in One.</div><div class="splash-progress"><span></span></div></div>
 </div></div>
 <div class="splash-bottom"><button class="splash-main-btn" onclick="goPage('choose')">Créer un compte</button><div class="splash-links">Déjà un compte ? <span onclick="goPage('choose')">Se connecter</span></div></div>
 </div>
