@@ -711,3 +711,35 @@ body{background:#D4D4DB;display:flex;flex-direction:column;align-items:center;pa
 <div class="flow" id="flow-vente"><div class="enc-page on" id="vente-s1"><div class="flow-bar-w"><div class="flow-close-w" onclick="closeFlow('flow-vente')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><div class="flow-title-w">Vente produit</div><div style="width:32px;"></div></div><div class="enc-scroll" style="padding-top:14px;"><div class="sec-lbl" style="margin-top:0;">Cliente</div><div class="cliente-picker" id="vente-cliente-picker" onclick="openClienteSheet('vente')"><div class="cp-av-empty"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#AAA" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div style="flex:1;"><div style="font-size:14px;font-weight:600;color:var(--gray);">Ajouter une cliente</div></div><div class="cp-arrow">›</div></div><div class="sec-lbl">Produit</div><div class="produit-card sel" onclick="selProduit(this)"><div class="produit-ic">💅</div><div class="produit-name">Top coat gel brillant</div><div class="produit-price">18€</div></div><div class="produit-card" onclick="selProduit(this)"><div class="produit-ic">🧴</div><div class="produit-name">Huile cuticules Rose</div><div class="produit-price">12€</div></div><div class="sec-lbl">Quantité</div><div class="qte-row"><button class="qte-btn" onclick="changeQte(-1)">−</button><div class="qte-val" id="qte-val">1</div><button class="qte-btn" onclick="changeQte(1)">+</button></div><div class="total-line"><div class="total-lbl">Total</div><div class="total-amt">18€</div></div><div class="sec-lbl">Paiement</div><div class="pay-grid"><div class="pay-card on" onclick="selPay(this)"><div class="pay-ic">💳</div><div class="pay-nm">Carte</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">📲</div><div class="pay-nm">Wero</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">💵</div><div class="pay-nm">Espèces</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">🅿️</div><div class="pay-nm">PayPal</div></div></div></div><div class="enc-bottom"><button class="enc-btn" onclick="openFlow('flow-confirm')">Encaisser 18€ →</button></div></div><div class="cs-backdrop" id="vente-cs-bd" onclick="closeClienteSheet('vente')"></div><div class="cliente-sheet" id="vente-cs"><div class="cs-handle"></div><div class="cs-title">Choisir une cliente</div><div class="cs-option" onclick="selectCliente('vente','Mes clientes','')"><div class="cs-ic">👤</div><div><div class="cs-name">Mes clientes</div></div></div></div></div>
 <div class="flow" id="flow-confirm"><div class="flow-bar-w"><div style="width:32px;"></div><div class="flow-title-w"></div><div style="width:32px;"></div></div><div class="conf-body"><div class="chk">✓</div><div style="font-size:24px;font-weight:900;color:var(--black);">Publié !</div><div style="font-size:13px;color:var(--gray);text-align:center;">Ta publication est visible sur ton profil.</div><div class="conf-card"><div class="cf-row"><span class="cf-k">Type</span><span class="cf-v">Publication</span></div><div class="cf-row"><span class="cf-k">Visibilité</span><span class="cf-v">Tout le monde</span></div><div class="cf-row"><span class="cf-k">Date</span><span class="cf-v">30 mars 2026</span></div></div><button onclick="closeAllFlows()" style="padding:14px 32px;border-radius:14px;background:var(--black);color:white;font-size:15px;font-weight:800;border:none;cursor:pointer;font-family:'Manrope',sans-serif;width:100%;">Retour à l'accueil</button></div></div>
 </div><!-- /screen-client -->
+
+<!-- ══ ACCUEIL PRO ══ -->
+
+<div class="screen" id="screen-pro">
+<div class="sbar"><span>9:41</span><span>WiFi 🔋</span></div>
+<div class="fan-backdrop" id="fan-bd-pro" onclick="closeFan('pro')"></div>
+<div class="stories-wrap"><div class="stories-row">
+<div class="story-item"><div class="story-ring-wrap"><div class="story-ring" style="background:linear-gradient(135deg,#C9A84C,#4A90D9);"><div class="story-vous">N</div></div><div class="story-add-btn">+</div></div><div class="story-name">Vous <span class="pro-badge">PRO</span></div></div>
+<div class="story-item"><div class="story-ring"><div class="story-inner">💅</div></div><div class="story-name">Mon salon</div></div>
+<div class="story-item"><div class="story-ring"><div class="story-inner">🌸</div></div><div class="story-name">Promo</div></div>
+<div class="story-item"><div class="story-ring empty"><div class="story-inner">🐾</div></div><div class="story-name">Maya</div></div>
+</div></div>
+<div class="divider"></div>
+<div class="grid-area"><div class="grid-slider"><div class="grid-track" id="p-track">
+<div class="grid-page">
+<div class="app-item"><div class="app-icon" style="background:#EEF2FF;">📅</div><div class="app-name">Planning</div></div>
+<div class="app-item"><div class="app-icon">⏳</div><div class="app-name">Stories</div></div>
+<div class="app-item" onclick="openModule('mod-promos')"><div class="app-icon">🏷️</div><div class="app-name">Promotions</div></div>
+<div class="app-item" onclick="openModule('mod-urgence')"><div class="app-icon" style="background:#FFF0F0;">⚡</div><div class="app-name">Urgences</div></div>
+<div class="app-item" onclick="openModule('mod-marketplace')"><div class="app-icon">🛍️</div><div class="app-name">Marketplace</div></div>
+<div class="app-item" onclick="openModule('mod-notifs')"><div class="app-icon"><span style="font-size:26px;">🔔</span><span class="app-badge">5</span></div><div class="app-name">Notifications</div></div>
+<div class="app-item" onclick="openModule('mod-panier')"><div class="app-icon">🧺</div><div class="app-name">Panier</div></div>
+<div class="app-item" onclick="openModule('mod-feed')"><div class="app-icon">📸</div><div class="app-name">Feed</div></div>
+<div class="app-item" onclick="openModule('mod-concours')"><div class="app-icon">✨</div><div class="app-name">Concours</div></div>
+<div class="app-item" onclick="openModule('mod-modele')"><div class="app-icon">👗</div><div class="app-name">Models</div></div>
+<div class="app-item" onclick="openModule('mod-domicile')"><div class="app-icon">🏠</div><div class="app-name">À domicile</div></div>
+<div class="app-item" onclick="openModule('mod-evenements')"><div class="app-icon">🎉</div><div class="app-name">Événements</div></div>
+<div class="app-item"><div class="app-icon">🪞</div><div class="app-name">Avant-Après</div></div>
+<div class="app-item" onclick="openModule('mod-formation')"><div class="app-icon">🎓</div><div class="app-name">Formations</div></div>
+<div class="app-item"><div class="app-icon" style="background:#F0FFF4;">📊</div><div class="app-name">Finances</div></div>
+<div class="app-item"><div class="app-icon">⚙️</div><div class="app-name">Réglages</div></div>
+</div>
