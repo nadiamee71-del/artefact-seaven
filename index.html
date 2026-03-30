@@ -112,3 +112,29 @@ body{background:#D4D4DB;display:flex;flex-direction:column;align-items:center;pa
 .statut-cards{display:flex;flex-direction:column;gap:8px;}
 .statut-card{border:2px solid var(–border);border-radius:14px;cursor:pointer;overflow:hidden;}
 .statut-card.sel{border-color:var(–black);}
+.statut-card-top{display:flex;align-items:center;gap:12px;padding:14px;}
+.sc-dot{width:20px;height:20px;border-radius:50%;border:2px solid var(–border);flex-shrink:0;}
+.statut-card.sel .sc-dot{border-color:var(–black);background:var(–black);box-shadow:inset 0 0 0 3px white;}
+.sc-ic{font-size:22px;flex-shrink:0;}
+.sc-title{font-size:14px;font-weight:800;color:var(–black);}
+.sc-sub{font-size:11px;color:var(–gray);margin-top:1px;}
+.statut-expand{display:none;padding:0 14px 14px;}
+.statut-expand.on{display:block;}
+.config-title{font-size:13px;font-weight:800;color:var(–black);margin-bottom:8px;}
+.days-row{display:flex;gap:6px;flex-wrap:wrap;}
+.day-btn{width:40px;height:40px;border-radius:10px;border:1.5px solid var(–border);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(–gray);cursor:pointer;}
+.day-btn.on{background:var(–black);color:white;border-color:var(–black);}
+.abo-slider-wrap{margin:16px 0 20px;}
+.abo-labels{display:flex;justify-content:space-between;margin-bottom:8px;}
+.abo-lbl{font-size:10px;font-weight:700;color:var(–gray);text-align:center;cursor:pointer;flex:1;}
+.abo-lbl.on{color:var(–black);}
+.abo-track{height:6px;background:var(–light);border-radius:3px;position:relative;cursor:pointer;}
+.abo-fill{height:100%;background:var(–black);border-radius:3px;transition:width .3s;}
+.abo-thumb{position:absolute;top:50%;width:20px;height:20px;border-radius:50%;background:var(–black);border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,.25);transform:translate(-50%,-50%);transition:left .3s;}
+.plan-box{background:var(–light);border-radius:18px;padding:20px;}
+.plan-level{font-size:13px;font-weight:700;color:var(–gray);}
+.plan-price-big{font-size:36px;font-weight:900;color:var(–black);}
+.plan-period{font-size:13px;color:var(–gray);font-weight:600;}
+.plan-features{display:flex;flex-direction:column;gap:6px;margin-top:14px;}
+.plan-feat{font-size:13px;color:var(–black);font-weight:600;}
+.trial-pill{display:inline-flex;align-items:center;gap:6px;background:#F0FFF4;border:1px solid #C8F0D8;border-radius:20px;padding:6px 14px;font-size:12px;font-weight:700;color:#2A8A50;margin-bottom:14px;}
