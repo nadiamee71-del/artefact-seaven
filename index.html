@@ -441,6 +441,107 @@ body.dark-mode{
 .notif-text strong{font-weight:700;}
 .notif-time{font-size:11px;color:#AAA;margin-top:3px;}
 
+/* ══ MESSAGES / CONVERSATION ══ */
+.msg-search{display:flex;align-items:center;gap:8px;background:var(--light);border-radius:12px;padding:10px 14px;margin:8px 16px 4px;}
+.msg-search input{flex:1;background:none;border:none;outline:none;font-size:14px;font-family:'Manrope',sans-serif;color:var(--black);}
+.msg-row{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid var(--border);cursor:pointer;}
+.msg-row.unread{background:#FAFAFA;}
+.msg-av{width:48px;height:48px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;flex-shrink:0;color:var(--black);position:relative;}
+.msg-dot{position:absolute;bottom:1px;right:1px;width:12px;height:12px;border-radius:50%;background:var(--black);border:2px solid var(--bg);}
+.msg-mid{flex:1;min-width:0;}
+.msg-line1{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:2px;}
+.msg-name{font-size:15px;font-weight:700;color:var(--black);}
+.msg-snippet{font-size:13px;color:var(--gray);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.msg-snippet.bot{font-style:italic;color:#AAA;}
+.msg-when{font-size:11px;color:var(--gray);flex-shrink:0;}
+.msg-unread{width:18px;height:18px;border-radius:50%;background:var(--black);color:white;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.conv-head{display:flex;align-items:center;gap:12px;padding:10px 16px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.conv-back{font-size:22px;color:var(--black);cursor:pointer;}
+.conv-hav{width:38px;height:38px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;}
+.conv-hname{font-size:15px;font-weight:800;color:var(--black);}
+.conv-hmeta{font-size:11px;color:var(--gray);}
+.conv-actions{display:flex;gap:12px;margin-left:auto;font-size:20px;}
+.conv-body{flex:1;overflow-y:auto;padding:12px 16px;display:flex;flex-direction:column;gap:10px;}
+.conv-body::-webkit-scrollbar{display:none;}
+.bubble-wrap{max-width:75%;}
+.bubble-wrap.me{align-self:flex-end;}
+.bubble-wrap.them{align-self:flex-start;}
+.bubble{padding:10px 14px;border-radius:18px;font-size:14px;line-height:1.5;}
+.bubble-wrap.me .bubble{background:var(--black);color:white;border-bottom-right-radius:4px;}
+.bubble-wrap.them .bubble{background:var(--light);color:var(--black);border-bottom-left-radius:4px;}
+.bubble-time{font-size:10px;color:#AAA;margin-top:3px;text-align:right;}
+.bubble-wrap.them .bubble-time{text-align:left;}
+.pre-row{padding:6px 14px 0;display:flex;gap:7px;overflow-x:auto;flex-shrink:0;}
+.pre-row::-webkit-scrollbar{display:none;}
+.pre-chip{padding:6px 12px;border-radius:16px;border:1.5px solid var(--border);font-size:12px;font-weight:600;color:var(--gray);background:white;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.conv-input-row{display:flex;gap:8px;padding:10px 16px 14px;border-top:1px solid var(--border);align-items:flex-end;flex-shrink:0;}
+.conv-input{flex:1;border:1.5px solid var(--border);border-radius:22px;padding:10px 14px;font-size:14px;font-family:'Manrope',sans-serif;outline:none;resize:none;max-height:80px;}
+.conv-send{width:40px;height:40px;border-radius:50%;background:var(--black);border:none;color:white;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+/* ══ CARTE ══ */
+.map-wrap{flex:1;position:relative;background:#E8EEE0;overflow:hidden;}
+.map-bg{width:100%;height:100%;background:linear-gradient(135deg,#E8EEE0 0%,#D8E8D0 50%,#E0E8D8 100%);position:relative;}
+.road{position:absolute;background:#FFFFFF;opacity:.6;}
+.road.h{height:6px;left:0;right:0;}
+.road.v{width:6px;top:0;bottom:0;}
+.map-marker{position:absolute;width:40px;height:40px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:white;cursor:pointer;transform:translate(-50%,-50%);box-shadow:0 2px 8px rgba(0,0,0,.3);border:2px solid white;}
+.map-search-top{position:absolute;top:12px;left:16px;right:16px;background:white;border-radius:14px;padding:11px 14px;display:flex;align-items:center;gap:8px;box-shadow:0 2px 12px rgba(0,0,0,.12);z-index:10;}
+.map-search-top input{flex:1;border:none;outline:none;font-size:14px;font-family:'Manrope',sans-serif;}
+.map-filter-btn{position:absolute;top:72px;left:16px;background:white;border-radius:20px;padding:7px 14px;font-size:12px;font-weight:700;color:var(--black);box-shadow:0 2px 8px rgba(0,0,0,.1);cursor:pointer;display:flex;align-items:center;gap:5px;}
+.map-count{position:absolute;top:72px;left:50%;transform:translateX(-50%);background:white;border-radius:20px;padding:7px 14px;font-size:12px;font-weight:700;color:var(--black);box-shadow:0 2px 8px rgba(0,0,0,.1);white-space:nowrap;}
+.map-locate{position:absolute;bottom:16px;right:16px;width:40px;height:40px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 2px 8px rgba(0,0,0,.15);cursor:pointer;}
+.map-sheet{position:absolute;bottom:0;left:0;right:0;background:var(--bg);border-radius:20px 20px 0 0;padding:16px;box-shadow:0 -4px 20px rgba(0,0,0,.1);transform:translateY(100%);transition:transform .3s;z-index:20;}
+.map-sheet.open{transform:translateY(0);}
+.sheet-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 14px;}
+.sheet-top{display:flex;gap:12px;align-items:center;margin-bottom:14px;}
+.sheet-avatar{width:52px;height:52px;border-radius:14px;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.sheet-name{font-size:16px;font-weight:800;color:var(--black);}
+.sheet-meta{font-size:12px;color:var(--gray);margin-top:2px;}
+.sheet-stars{font-size:12px;color:#F5A623;margin-top:3px;}
+.sheet-btns{display:flex;gap:8px;}
+.sheet-btn{flex:1;padding:11px;border-radius:12px;border:1.5px solid var(--border);background:white;font-size:13px;font-weight:700;color:var(--black);cursor:pointer;text-align:center;font-family:'Manrope',sans-serif;}
+.sheet-btn.dark{background:var(--black);color:white;border-color:var(--black);}
+
+/* ══ RÉVEIL ══ */
+.reveil-scroll{flex:1;overflow-y:auto;padding:0 20px 20px;}
+.reveil-scroll::-webkit-scrollbar{display:none;}
+.rv-toggle-row{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:#F8F8F8;border-radius:16px;margin:10px 0 16px;}
+.rv-toggle-label{font-size:15px;font-weight:700;color:var(--black);}
+.rv-toggle-sub{font-size:12px;color:var(--gray);margin-top:2px;}
+.rv-switch{width:50px;height:28px;border-radius:14px;background:var(--black);position:relative;cursor:pointer;flex-shrink:0;}
+.rv-switch.off{background:var(--border);}
+.rv-knob{position:absolute;top:3px;right:3px;width:22px;height:22px;border-radius:50%;background:white;transition:all .2s;box-shadow:0 1px 4px rgba(0,0,0,.2);}
+.rv-switch.off .rv-knob{right:auto;left:3px;}
+.rv-card{background:#F8F8F8;border-radius:16px;padding:14px 16px;margin-bottom:16px;}
+.rv-date{font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.rv-info{display:flex;align-items:center;gap:10px;}
+.rv-time{font-size:28px;font-weight:800;color:var(--black);}
+.rv-detail{font-size:13px;color:var(--gray);line-height:1.5;}
+.rv-section{margin-bottom:18px;}
+.rv-label{font-size:13px;font-weight:700;color:var(--black);margin-bottom:10px;}
+.rv-pills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:8px;}
+.rv-pill{padding:7px 14px;border-radius:18px;border:1.5px solid var(--border);font-size:13px;font-weight:600;cursor:pointer;background:white;color:var(--black);}
+.rv-pill.on{background:var(--black);color:white;border-color:var(--black);}
+.rv-custom{display:flex;gap:8px;align-items:center;margin-top:6px;}
+.rv-input{flex:1;border:1.5px solid var(--border);border-radius:12px;padding:10px 13px;font-size:14px;font-family:'Manrope',sans-serif;outline:none;}
+.rv-sub{font-size:13px;color:var(--gray);}
+.rv-dests{display:flex;flex-direction:column;gap:8px;margin-bottom:8px;}
+.rv-dest{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1.5px solid var(--border);border-radius:12px;cursor:pointer;}
+.rv-dest.on{border-color:var(--black);background:#FAFAFA;}
+.rv-dot{width:18px;height:18px;border-radius:50%;border:1.5px solid #DDD;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.rv-dot.on{border-color:var(--black);background:var(--black);}
+.rv-dot.on::after{content:'';width:7px;height:7px;border-radius:50%;background:white;}
+.rv-name{font-size:14px;font-weight:600;color:var(--black);flex:1;}
+.rv-dsub{font-size:11px;color:var(--gray);margin-top:1px;}
+.rv-dist{font-size:12px;color:#AAA;flex-shrink:0;}
+.rv-recap{background:#F8F8F8;border-radius:16px;padding:16px;margin-top:4px;}
+.rv-rtitle{font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;}
+.rv-rrow{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid #EEE;}
+.rv-rrow:last-child{border-bottom:none;}
+.rv-rdot{width:8px;height:8px;border-radius:50%;background:var(--black);flex-shrink:0;}
+.rv-rkey{font-size:13px;color:var(--gray);flex:1;}
+.rv-rval{font-size:13px;font-weight:800;color:var(--black);}
+
 /* ══ À DOMICILE ══ */
 .dom-card{margin:8px 16px;border:1.5px solid var(--border);border-radius:16px;overflow:hidden;}
 .dom-top{display:flex;gap:12px;padding:14px;align-items:center;}
@@ -1276,6 +1377,11 @@ MODULES PROFIL
 <div class="row-text"><div class="row-label">Notifications</div><div class="row-sub">Gérer vos alertes</div></div>
 <div class="chev">›</div>
 </div>
+<div class="row" onclick="closeModule('mod-reglages');openModule('mod-reveil');">
+<div class="icon ic-dark">⏰</div>
+<div class="row-text"><div class="row-label">Reveil intelligent</div><div class="row-sub">Calcul automatique avant le 1er RDV</div></div>
+<div class="chev">›</div>
+</div>
 <div class="row">
 <div class="icon ic-blue">♿</div>
 <div class="row-text"><div class="row-label">Accessibilité</div><div class="row-sub">Taille texte, contraste, sous-titres</div></div>
@@ -1343,6 +1449,11 @@ MODULES PROFIL
 <div class="row">
 <div class="icon ic-red">🔔</div>
 <div class="row-text"><div class="row-label">Notifications</div><div class="row-sub">Gérer vos alertes</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row" onclick="closeModule('mod-reglages');openModule('mod-reveil');">
+<div class="icon ic-dark">⏰</div>
+<div class="row-text"><div class="row-label">Reveil intelligent</div><div class="row-sub">Calcul automatique avant le 1er RDV</div></div>
 <div class="chev">›</div>
 </div>
 <div class="row">
@@ -1697,6 +1808,78 @@ MODULES PROFIL
 </div>
 </div>
 
+<!-- MESSAGES (liste + conversation) -->
+
+<div class="module" id="mod-messages">
+<div id="msg-list-view">
+<div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-messages')">‹</div><div class="mod-title">Messages</div><div class="mod-action">✏️</div></div>
+<div class="msg-search"><span style="font-size:16px;color:#AAA;">🔍</span><input placeholder="Rechercher dans les messages..."/></div>
+<div class="mod-tabs"><div class="mod-tab on" onclick="msgTab(this,'msg-clients')">Clients</div><div class="mod-tab" onclick="msgTab(this,'msg-pros')">Prestataires</div></div>
+<div class="mod-scroll">
+<div id="msg-clients">
+<div class="msg-row unread" onclick="openConversation('Soraya Lehtinaf','Cliente · En ligne','S','Merci beaucoup, a mardi !')"><div class="msg-av">S<div class="msg-dot"></div></div><div class="msg-mid"><div class="msg-line1"><span class="msg-name">Soraya Lehtinaf</span><span class="msg-when">9:35</span></div><div class="msg-snippet">Merci beaucoup, a mardi !</div></div><div class="msg-unread">2</div></div>
+<div class="msg-row" onclick="openConversation('Naomie Wamir','Cliente','N','Repondu par l assistant')"><div class="msg-av">N</div><div class="msg-mid"><div class="msg-line1"><span class="msg-name">Naomie Wamir</span><span class="msg-when">Hier</span></div><div class="msg-snippet bot">🤖 Repondu par l'assistant</div></div></div>
+<div class="msg-row unread" onclick="openConversation('Ylan Alves Dias','Cliente','Y','Vous avez une place ce week-end ?')"><div class="msg-av">Y</div><div class="msg-mid"><div class="msg-line1"><span class="msg-name">Ylan Alves Dias</span><span class="msg-when">Hier</span></div><div class="msg-snippet">Est-ce que vous avez de la place ce week-end ?</div></div><div class="msg-unread">1</div></div>
+<div class="msg-row" onclick="openConversation('Marine Dupont','Cliente','M','Super merci !')"><div class="msg-av">M</div><div class="msg-mid"><div class="msg-line1"><span class="msg-name">Marine Dupont</span><span class="msg-when">Lun.</span></div><div class="msg-snippet">Super merci !</div></div></div>
+</div>
+<div id="msg-pros" style="display:none;">
+<div class="msg-row unread" onclick="openConversation('Nina Cils','Prestataire','N','Tu as encore de la colle ultra-flex ?')"><div class="msg-av">N</div><div class="msg-mid"><div class="msg-line1"><span class="msg-name">Nina Cils</span><span class="msg-when">10:12</span></div><div class="msg-snippet">Tu as encore de la colle ultra-flex ?</div></div><div class="msg-unread">1</div></div>
+<div class="msg-row" onclick="openConversation('Karima Hair','Prestataire','K','On se voit a l institut demain ?')"><div class="msg-av">K</div><div class="msg-mid"><div class="msg-line1"><span class="msg-name">Karima Hair</span><span class="msg-when">Hier</span></div><div class="msg-snippet">On se voit a l'institut demain ?</div></div></div>
+</div>
+</div>
+</div>
+<div id="msg-conv-view" style="display:none;flex:1;flex-direction:column;">
+<div class="conv-head"><div class="conv-back" onclick="closeConversation()">‹</div><div class="conv-hav" id="conv-ic">S</div><div style="flex:1;"><div class="conv-hname" id="conv-name">Soraya Lehtinaf</div><div class="conv-hmeta" id="conv-meta">Cliente · En ligne</div></div><div class="conv-actions"><span>📞</span><span>⋯</span></div></div>
+<div class="conv-body">
+<div class="bubble-wrap them"><div class="bubble">Bonjour ! Est-ce que vous avez de la place samedi pour un remplissage ?</div><div class="bubble-time">14:20</div></div>
+<div class="bubble-wrap me"><div class="bubble">Bonjour ! Oui, j'ai un creneau disponible samedi a 14h00. Ca vous convient ?</div><div class="bubble-time">14:22</div></div>
+<div class="bubble-wrap them"><div class="bubble">Parfait oui ! Je prends 😊</div><div class="bubble-time">14:23</div></div>
+<div class="bubble-wrap me"><div class="bubble">Je vous envoie le lien de reservation tout de suite 👍</div><div class="bubble-time">14:24</div></div>
+<div class="bubble-wrap them"><div class="bubble" id="conv-last-msg">Merci beaucoup, a mardi !</div><div class="bubble-time">14:30</div></div>
+</div>
+<div class="pre-row"><div class="pre-chip">Bonjour 👋</div><div class="pre-chip">RDV confirme ✓</div><div class="pre-chip">Lien reservation →</div><div class="pre-chip">A bientot 😊</div><div class="pre-chip">Acompte requis</div></div>
+<div class="conv-input-row"><textarea class="conv-input" placeholder="Message..." rows="1"></textarea><button class="conv-send">↑</button></div>
+</div>
+</div>
+
+<!-- CARTE -->
+
+<div class="module" id="mod-carte">
+<div class="map-wrap">
+<div class="map-bg">
+<div class="road h" style="top:30%"></div><div class="road h" style="top:55%"></div><div class="road h" style="top:75%"></div>
+<div class="road v" style="left:25%"></div><div class="road v" style="left:55%"></div><div class="road v" style="left:78%"></div>
+<div class="map-marker" style="top:35%;left:30%;" onclick="openMapSheet('Bloom Nails','Prothesiste ongulaire','💅','4,8 ★ · 57 avis · 1,2 km')">S</div>
+<div class="map-marker" style="top:45%;left:58%;" onclick="openMapSheet('Nina Cils','Specialiste cils','👁️','4,9 ★ · 34 avis · 2,4 km')">N</div>
+<div class="map-marker" style="top:65%;left:40%;" onclick="openMapSheet('Karima Hair','Coiffeuse','💇','4,7 ★ · 89 avis · 3,1 km')">K</div>
+<div class="map-marker" style="top:28%;left:70%;" onclick="openMapSheet('Leila Massage','Masseuse','🌿','5,0 ★ · 21 avis · 4,0 km')">L</div>
+</div>
+<div class="map-search-top"><span style="font-size:16px;color:#AAA;">🔍</span><input placeholder="Rechercher des prestataires..."/></div>
+<div class="map-filter-btn">📍 Distance</div>
+<div class="map-count">12 prestataires · Toutes distances</div>
+<div class="map-locate">🎯</div>
+<div class="map-sheet" id="map-sheet">
+<div class="sheet-handle"></div>
+<div class="sheet-top"><div class="sheet-avatar" id="map-ic">💅</div><div style="flex:1;"><div class="sheet-name" id="map-name">Bloom Nails</div><div class="sheet-meta" id="map-meta">Prothesiste ongulaire</div><div class="sheet-stars" id="map-stars">4,8 ★ · 57 avis · 1,2 km</div></div><span style="font-size:20px;cursor:pointer;" onclick="closeMapSheet()">✕</span></div>
+<div class="sheet-btns"><button class="sheet-btn">Profil</button><button class="sheet-btn">Itineraire</button><button class="sheet-btn dark">Reserver</button></div>
+</div>
+</div>
+</div>
+
+<!-- REVEIL INTELLIGENT -->
+
+<div class="module" id="mod-reveil">
+<div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-reveil')">‹</div><div class="mod-title">Reveil intelligent</div></div>
+<div class="reveil-scroll">
+<div class="rv-toggle-row"><div><div class="rv-toggle-label">⏰ Reveil automatique</div><div class="rv-toggle-sub">Calcule selon votre planning</div></div><div class="rv-switch" id="rv-main-toggle" onclick="toggleReveil()"><div class="rv-knob"></div></div></div>
+<div class="rv-card"><div class="rv-date">Demain · Mercredi 26 mars</div><div class="rv-info"><div class="rv-time">09:00</div><div><div class="rv-detail" style="font-weight:700;color:var(--black);">Premier rendez-vous</div><div class="rv-detail">Soraya L. · Remplissage gel · 1h10</div><div class="rv-detail">Institut Lumiere · 27 av. Jean Medecin</div></div></div></div>
+<div class="rv-section"><div class="rv-label">Temps de preparation</div><div class="rv-pills"><div class="rv-pill rv-prep" onclick="setRvPill(this,'.rv-prep')">15 min</div><div class="rv-pill rv-prep" onclick="setRvPill(this,'.rv-prep')">30 min</div><div class="rv-pill rv-prep" onclick="setRvPill(this,'.rv-prep')">45 min</div><div class="rv-pill rv-prep on" onclick="setRvPill(this,'.rv-prep')">1h</div><div class="rv-pill rv-prep" onclick="setRvPill(this,'.rv-prep')">1h30</div><div class="rv-pill rv-prep" onclick="setRvPill(this,'.rv-prep')">2h</div></div></div>
+<div class="rv-section"><div class="rv-label">Destination</div><div class="rv-dests"><div class="rv-dest" onclick="setRvDest(this)"><div class="rv-dot"></div><div style="flex:1;"><div class="rv-name">Domicile</div><div class="rv-dsub">12 rue de la Paix, Nice</div></div><div class="rv-dist">—</div></div><div class="rv-dest on" onclick="setRvDest(this)"><div class="rv-dot on"></div><div style="flex:1;"><div class="rv-name">Institut Lumiere</div><div class="rv-dsub">27 av. Jean Medecin, Nice</div></div><div class="rv-dist">2,4 km</div></div></div></div>
+<div class="rv-section"><div class="rv-label">Temps d'installation avant le 1er RDV</div><div class="rv-pills"><div class="rv-pill rv-inst" onclick="setRvPill(this,'.rv-inst')">5 min</div><div class="rv-pill rv-inst" onclick="setRvPill(this,'.rv-inst')">10 min</div><div class="rv-pill rv-inst" onclick="setRvPill(this,'.rv-inst')">15 min</div><div class="rv-pill rv-inst on" onclick="setRvPill(this,'.rv-inst')">20 min</div><div class="rv-pill rv-inst" onclick="setRvPill(this,'.rv-inst')">25 min</div><div class="rv-pill rv-inst" onclick="setRvPill(this,'.rv-inst')">30 min</div></div></div>
+<div class="rv-recap"><div class="rv-rtitle">Recapitulatif · Demain</div><div class="rv-rrow"><div class="rv-rdot"></div><div class="rv-rkey">Reveil</div><div class="rv-rval" id="rv-reveil">07:25</div></div><div class="rv-rrow"><div class="rv-rdot"></div><div class="rv-rkey">Partir</div><div class="rv-rval" id="rv-partir">08:25</div></div><div class="rv-rrow"><div class="rv-rdot"></div><div class="rv-rkey">Trajet estime</div><div class="rv-rval" id="rv-trajet">15 min</div></div><div class="rv-rrow"><div class="rv-rdot"></div><div class="rv-rkey">Arrivee</div><div class="rv-rval" id="rv-arrivee">08:40</div></div><div class="rv-rrow"><div class="rv-rdot"></div><div class="rv-rkey">Installation</div><div class="rv-rval" id="rv-install">20 min</div></div><div class="rv-rrow"><div class="rv-rdot"></div><div class="rv-rkey">1er RDV</div><div class="rv-rval">09:00</div></div></div>
+</div>
+</div>
+
 <!-- NOTIFICATIONS -->
 
 <div class="module" id="mod-notifs">
@@ -1947,14 +2130,14 @@ function dockMap(role){
   closeFan('cl');closeFan('pro');
   closeAllModules();
   try{closeSearchPage(role==='cl'?'cl':'pro');}catch(e){}
-  openModule('mod-feed');
+  openModule('mod-carte');
   dockSetTab(role==='cl'?'app-dock-client':'app-dock-pro',1);
 }
 function dockMsgs(role){
   closeFan('cl');closeFan('pro');
   closeAllModules();
   try{closeSearchPage(role==='cl'?'cl':'pro');}catch(e){}
-  openModule('mod-notifs');
+  openModule('mod-messages');
   dockSetTab(role==='cl'?'app-dock-client':'app-dock-pro',2);
 }
 function dockProfile(role){
@@ -1974,6 +2157,98 @@ function syncAppDock(){
   if(d2)d2.classList.toggle('visible',!!pr?.classList.contains('on'));
 }
 syncAppDock();
+
+function msgTab(el,id){
+  const tabs=el.closest('.mod-tabs');
+  if(tabs)tabs.querySelectorAll('.mod-tab').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
+  const c=document.getElementById('msg-clients');
+  const p=document.getElementById('msg-pros');
+  if(c)c.style.display='none';
+  if(p)p.style.display='none';
+  const target=document.getElementById(id);
+  if(target)target.style.display='block';
+}
+function openConversation(name,meta,ic,last){
+  const list=document.getElementById('msg-list-view');
+  const conv=document.getElementById('msg-conv-view');
+  if(list)list.style.display='none';
+  if(conv)conv.style.display='flex';
+  const n=document.getElementById('conv-name');
+  const m=document.getElementById('conv-meta');
+  const i=document.getElementById('conv-ic');
+  const l=document.getElementById('conv-last-msg');
+  if(n)n.textContent=name||'Conversation';
+  if(m)m.textContent=meta||'En ligne';
+  if(i)i.textContent=ic||'S';
+  if(l&&last)l.textContent=last;
+}
+function closeConversation(){
+  const list=document.getElementById('msg-list-view');
+  const conv=document.getElementById('msg-conv-view');
+  if(conv)conv.style.display='none';
+  if(list)list.style.display='block';
+}
+function openMapSheet(name,meta,ic,stars){
+  const n=document.getElementById('map-name');
+  const m=document.getElementById('map-meta');
+  const i=document.getElementById('map-ic');
+  const s=document.getElementById('map-stars');
+  const sh=document.getElementById('map-sheet');
+  if(n)n.textContent=name;
+  if(m)m.textContent=meta;
+  if(i)i.textContent=ic;
+  if(s)s.textContent=stars;
+  if(sh)sh.classList.add('open');
+}
+function closeMapSheet(){
+  const sh=document.getElementById('map-sheet');
+  if(sh)sh.classList.remove('open');
+}
+function toggleReveil(){
+  const t=document.getElementById('rv-main-toggle');
+  if(t)t.classList.toggle('off');
+}
+function setRvPill(el,selector){
+  document.querySelectorAll(selector).forEach(p=>p.classList.remove('on'));
+  el.classList.add('on');
+  updateReveilRecap();
+}
+function setRvDest(el){
+  document.querySelectorAll('.rv-dest').forEach(d=>{
+    d.classList.remove('on');
+    const dot=d.querySelector('.rv-dot');
+    if(dot)dot.classList.remove('on');
+  });
+  el.classList.add('on');
+  const dot=el.querySelector('.rv-dot');
+  if(dot)dot.classList.add('on');
+  updateReveilRecap();
+}
+function updateReveilRecap(){
+  const prepPill=document.querySelector('.rv-prep.on');
+  const instPill=document.querySelector('.rv-inst.on');
+  const prepMap={'15 min':15,'30 min':30,'45 min':45,'1h':60,'1h30':90,'2h':120};
+  const instMap={'5 min':5,'10 min':10,'15 min':15,'20 min':20,'25 min':25,'30 min':30};
+  const prep=prepMap[prepPill?.textContent||'1h']||60;
+  const inst=instMap[instPill?.textContent||'20 min']||20;
+  const trajet=15;
+  const rdv=9*60;
+  const arrivee=rdv-inst;
+  const partir=arrivee-trajet;
+  const reveil=partir-prep;
+  const fmt=(m)=>{const x=((m%1440)+1440)%1440;const h=Math.floor(x/60);const mn=x%60;return `${h}:${mn<10?'0':''}${mn}`;};
+  const r1=document.getElementById('rv-reveil');
+  const r2=document.getElementById('rv-partir');
+  const r3=document.getElementById('rv-trajet');
+  const r4=document.getElementById('rv-arrivee');
+  const r5=document.getElementById('rv-install');
+  if(r1)r1.textContent=fmt(reveil);
+  if(r2)r2.textContent=fmt(partir);
+  if(r3)r3.textContent=`${trajet} min`;
+  if(r4)r4.textContent=fmt(arrivee);
+  if(r5)r5.textContent=`${inst} min`;
+}
 
 // ── SEARCH ──
 function deploySearch(m){const p=m==='cl'?'c':'p';document.getElementById(p+'-s-icon').classList.add('hidden');document.getElementById(p+'-s-bar').classList.add('on');}
@@ -2007,6 +2282,9 @@ if(id==='mod-reglages'){
   regSetMode(proOn?'pro':'client');
 }
 if(id==='mod-profil-client-int')cliIntSetTab('pub');
+if(id==='mod-messages')closeConversation();
+if(id==='mod-carte')closeMapSheet();
+if(id==='mod-reveil')updateReveilRecap();
 if(id==='mod-blacklist')blResetBlacklistView();
 if(!mod._swipeInit){
 mod._swipeInit=true;
