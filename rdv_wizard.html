@@ -1,0 +1,233 @@
+<div class="flow" id="flow-rdv">
+<div class="enc-page on" id="rdv-wiz-shell">
+<div class="rdv-wiz">
+<!-- p1 -->
+<div class="rdv-page active" id="rdv-p1">
+<div class="rdv-wiz-status"><span>9:41</span><span>WiFi 🔋</span></div>
+<div class="rdv-wiz-nav">
+<button type="button" class="rdv-wiz-back" onclick="closeFlow('flow-rdv')">‹</button>
+<div class="rdv-wiz-nav-mid">
+<div class="rdv-wiz-title">Bloom Nails</div>
+<div class="rdv-wiz-sub">Réserver une prestation</div>
+</div>
+<button type="button" class="rdv-wiz-close" onclick="closeFlow('flow-rdv')">✕</button>
+</div>
+<div class="rdv-wiz-progress" id="rdv-prog-p1"></div>
+<div class="rdv-wiz-scroll">
+<div id="rdv-domicile-banner" class="rdv-banner" style="display:none;"></div>
+<div class="rdv-sec-title">Quelle catégorie ?</div>
+<div class="rdv-sec-sub">Choisissez le type de prestation</div>
+<div class="rdv-cat-list">
+<div class="rdv-cat-card sel" onclick="rdvSelCat(this,'Ongles')"><div class="rdv-cat-ic">💅</div><div class="rdv-cat-name">Ongles</div><div class="rdv-cat-chev">›</div></div>
+<div class="rdv-cat-card" onclick="rdvSelCat(this,'Cils')"><div class="rdv-cat-ic">👁️</div><div class="rdv-cat-name">Cils</div><div class="rdv-cat-chev">›</div></div>
+<div class="rdv-cat-card" onclick="rdvSelCat(this,'Blanchiment dentaire')"><div class="rdv-cat-ic">🦷</div><div class="rdv-cat-name">Blanchiment dentaire</div><div class="rdv-cat-chev">›</div></div>
+</div>
+<div class="rdv-divider"></div>
+<div class="rdv-sec-title">Avec qui ?</div>
+<div style="height:8px;"></div>
+<div class="rdv-person-item" onclick="rdvSelP(this,0)"><div class="rdv-p-av">S</div><div style="flex:1"><div class="rdv-p-name">Sassa</div><div class="rdv-p-meta">Prothésiste ongulaire · Blanchiment dentaire</div></div><div class="rdv-p-sel on" id="rdv-ps0">✓</div></div>
+<div class="rdv-person-item" onclick="rdvSelP(this,1)"><div class="rdv-p-av">N</div><div style="flex:1"><div class="rdv-p-name">Nina</div><div class="rdv-p-meta">Prothésiste ongulaire · Spécialiste cils</div></div><div class="rdv-p-sel" id="rdv-ps1"></div></div>
+<div class="rdv-person-item" onclick="rdvSelP(this,2)"><div class="rdv-p-av" style="font-size:18px;">✦</div><div style="flex:1"><div class="rdv-p-name">N'importe qui</div><div class="rdv-p-meta">Premier disponible</div></div><div class="rdv-p-sel" id="rdv-ps2"></div></div>
+</div>
+<div class="rdv-wiz-bottom">
+<div class="rdv-bottom-row">
+<div class="rdv-price-info"><div class="rdv-price-label">Catégorie sélectionnée</div><div class="rdv-price-val" id="rdv-cat-pick">Ongles</div></div>
+<button type="button" class="rdv-btn-arrow" onclick="rdvGoTo('rdv-p2')">→</button>
+</div>
+</div>
+</div>
+<!-- p2 -->
+<div class="rdv-page" id="rdv-p2">
+<div class="rdv-wiz-status"><span>9:41</span><span>WiFi 🔋</span></div>
+<div class="rdv-wiz-nav">
+<button type="button" class="rdv-wiz-back" onclick="rdvGoTo('rdv-p1')">‹</button>
+<div class="rdv-wiz-nav-mid"><div class="rdv-wiz-title">Bloom Nails</div><div class="rdv-wiz-sub">Vos préférences</div></div>
+<button type="button" class="rdv-wiz-close" onclick="closeFlow('flow-rdv')">✕</button>
+</div>
+<div class="rdv-wiz-progress" id="rdv-prog-p2"></div>
+<div class="rdv-wiz-scroll" style="padding-top:12px;">
+<div class="rdv-form-group"><label class="rdv-form-label">Dépose ou remplissage ?</label>
+<div class="rdv-radio-group" id="rdv-depose-group">
+<div class="rdv-radio-item" onclick="rdvSelDepose(this,'depose')"><div class="rdv-rdot"></div><span class="rdv-radio-txt">Dépose</span></div>
+<div class="rdv-radio-item sel" onclick="rdvSelDepose(this,'remplissage')"><div class="rdv-rdot on"></div><span class="rdv-radio-txt">Remplissage</span></div>
+<div class="rdv-radio-item" onclick="rdvSelDepose(this,'aucun')"><div class="rdv-rdot"></div><span class="rdv-radio-txt">Aucun des deux</span></div>
+</div></div>
+<div class="rdv-form-group hidden" id="rdv-group-manucure"><label class="rdv-form-label">Manucure en plus ?</label>
+<div class="rdv-yn-row"><button type="button" class="rdv-yn-btn" onclick="rdvTogYN(this)">Oui — cuticules + renfort</button><button type="button" class="rdv-yn-btn sel" onclick="rdvTogYN(this)">Non</button></div></div>
+<div class="rdv-form-group" id="rdv-group-methode"><label class="rdv-form-label">Méthode</label>
+<div class="rdv-select-field" onclick="rdvTogSelect(this)" id="rdv-sf-methode"><span class="rdv-select-val" id="rdv-sv-methode">Gel X</span><span class="rdv-select-arrow" id="rdv-sa-methode">▾</span></div>
+<div class="rdv-select-dropdown" id="rdv-sd-methode">
+<div class="rdv-select-opt chosen" onclick="rdvChooseOpt(this,'methode','Gel X')">Gel X</div>
+<div class="rdv-select-opt" onclick="rdvChooseOpt(this,'methode','Pose complète')">Pose complète</div>
+<div class="rdv-select-opt" onclick="rdvChooseOpt(this,'methode','Gainage')">Gainage</div>
+<div class="rdv-select-opt" onclick="rdvChooseOpt(this,'methode','POPIT')">POPIT</div>
+<div class="rdv-select-opt" onclick="rdvChooseOpt(this,'methode','Chablon')">Chablon</div>
+<div class="rdv-select-opt" onclick="rdvChooseOpt(this,'methode','Acrygel')">Acrygel</div>
+<div class="rdv-select-opt" onclick="rdvChooseOpt(this,'methode','Pédicure')">Pédicure</div>
+</div></div>
+<div class="rdv-form-group" id="rdv-group-longueur"><label class="rdv-form-label">Longueur souhaitée</label>
+<div class="rdv-pills"><button type="button" class="rdv-pill" onclick="rdvTogPill(this)">XS</button><button type="button" class="rdv-pill" onclick="rdvTogPill(this)">S</button><button type="button" class="rdv-pill sel" onclick="rdvTogPill(this)">M</button><button type="button" class="rdv-pill" onclick="rdvTogPill(this)">L</button><button type="button" class="rdv-pill" onclick="rdvTogPill(this)">XL</button><button type="button" class="rdv-pill" onclick="rdvTogPill(this)">XXL</button></div></div>
+<div class="rdv-form-group" id="rdv-group-forme"><label class="rdv-form-label">Forme</label>
+<div class="rdv-pills"><button type="button" class="rdv-pill sel" onclick="rdvTogPill(this)">Amande</button><button type="button" class="rdv-pill" onclick="rdvTogPill(this)">Carré</button><button type="button" class="rdv-pill" onclick="rdvTogPill(this)">Ballerine</button><button type="button" class="rdv-pill" onclick="rdvTogPill(this)">Stiletto</button><button type="button" class="rdv-pill" onclick="rdvTogPill(this)">Carré arrondi</button></div></div>
+<div class="rdv-form-group hidden" id="rdv-group-recon"><label class="rdv-form-label">Reconstruction ?</label>
+<div class="rdv-yn-row" style="margin-bottom:8px;"><button type="button" class="rdv-yn-btn" onclick="rdvTogYNRecon(this,'oui')">Oui</button><button type="button" class="rdv-yn-btn sel" onclick="rdvTogYNRecon(this,'non')">Non</button></div>
+<div class="rdv-pills hidden" id="rdv-recon-opts"><button type="button" class="rdv-pill" onclick="rdvTogPill(this)">1 pouce</button><button type="button" class="rdv-pill" onclick="rdvTogPill(this)">2 pouces</button><button type="button" class="rdv-pill" onclick="rdvTogPill(this)">Tous les orteils</button></div></div>
+<div class="rdv-form-group" id="rdv-group-finition"><label class="rdv-form-label">Finition</label>
+<div class="rdv-radio-group">
+<div class="rdv-radio-item sel" onclick="rdvSelFinition(this,'nude')"><div class="rdv-rdot on"></div><span class="rdv-radio-txt">Nude / naturel</span></div>
+<div class="rdv-radio-item" onclick="rdvSelFinition(this,'couleur')"><div class="rdv-rdot"></div><span class="rdv-radio-txt">Full couleur (semi-permanent)</span></div>
+<div class="rdv-radio-item" onclick="rdvSelFinition(this,'french')"><div class="rdv-rdot"></div><span class="rdv-radio-txt">French</span></div>
+<div class="rdv-radio-item" onclick="rdvSelFinition(this,'babyboomer')"><div class="rdv-rdot"></div><span class="rdv-radio-txt">Baby boomer</span></div>
+<div class="rdv-radio-item" onclick="rdvSelFinition(this,'nailart')"><div class="rdv-rdot"></div><span class="rdv-radio-txt">Nail art</span></div>
+</div></div>
+<div class="rdv-form-group hidden" id="rdv-group-nailart"><div class="rdv-import-box">📎 Importer une photo d'inspiration</div></div>
+</div>
+<div class="rdv-wiz-bottom">
+<div class="rdv-bottom-row">
+<div class="rdv-price-info"><div class="rdv-price-label">Total estimé</div><div class="rdv-price-val">65€</div><div class="rdv-price-dur">1h10</div></div>
+<button type="button" class="rdv-btn-arrow" onclick="rdvGoTo('rdv-p3')">→</button>
+</div>
+</div>
+</div>
+<!-- p3 -->
+<div class="rdv-page" id="rdv-p3">
+<div class="rdv-wiz-status"><span>9:41</span><span>WiFi 🔋</span></div>
+<div class="rdv-wiz-nav">
+<button type="button" class="rdv-wiz-back" onclick="rdvGoTo('rdv-p2')">‹</button>
+<div class="rdv-wiz-nav-mid"><div class="rdv-wiz-title">Bloom Nails</div><div class="rdv-wiz-sub">Choisir un créneau</div></div>
+<button type="button" class="rdv-wiz-close" onclick="closeFlow('flow-rdv')">✕</button>
+</div>
+<div class="rdv-wiz-progress" id="rdv-prog-p3"></div>
+<div class="rdv-wiz-scroll" style="padding-top:12px;">
+<div style="font-size:13px;font-weight:700;color:var(--gray);margin-bottom:10px;">Mars 2026</div>
+<div class="rdv-week-row">
+<div class="rdv-day-cell off"><div class="rdv-d-name">lun</div><div class="rdv-d-num">24</div></div>
+<div class="rdv-day-cell sel" onclick="rdvSelDay(this)"><div class="rdv-d-name">mar</div><div class="rdv-d-num">25</div></div>
+<div class="rdv-day-cell" onclick="rdvSelDay(this)"><div class="rdv-d-name">mer</div><div class="rdv-d-num">26</div></div>
+<div class="rdv-day-cell" onclick="rdvSelDay(this)"><div class="rdv-d-name">jeu</div><div class="rdv-d-num">27</div></div>
+<div class="rdv-day-cell" onclick="rdvSelDay(this)"><div class="rdv-d-name">ven</div><div class="rdv-d-num">28</div></div>
+<div class="rdv-day-cell" onclick="rdvSelDay(this)"><div class="rdv-d-name">sam</div><div class="rdv-d-num">29</div></div>
+<div class="rdv-day-cell off"><div class="rdv-d-name">dim</div><div class="rdv-d-num">30</div></div>
+</div>
+<div class="rdv-slots">
+<div class="rdv-slot taken"><div class="rdv-slot-t">09:00</div><div class="rdv-slot-e">10:10</div></div>
+<div class="rdv-slot taken"><div class="rdv-slot-t">10:30</div><div class="rdv-slot-e">11:40</div></div>
+<div class="rdv-slot" onclick="rdvSelSlot(this)"><div class="rdv-slot-t">12:00</div><div class="rdv-slot-e">13:10</div></div>
+<div class="rdv-slot sel" onclick="rdvSelSlot(this)"><div class="rdv-slot-t">14:00</div><div class="rdv-slot-e">15:10</div></div>
+<div class="rdv-slot" onclick="rdvSelSlot(this)"><div class="rdv-slot-t">15:30</div><div class="rdv-slot-e">16:40</div></div>
+<div class="rdv-slot" onclick="rdvSelSlot(this)"><div class="rdv-slot-t">17:00</div><div class="rdv-slot-e">18:10</div></div>
+<div class="rdv-slot" onclick="rdvSelSlot(this)"><div class="rdv-slot-t">18:30</div><div class="rdv-slot-e">19:40</div></div>
+<div class="rdv-slot taken"><div class="rdv-slot-t">20:00</div><div class="rdv-slot-e">21:10</div></div>
+</div>
+</div>
+<div class="rdv-wiz-bottom">
+<div class="rdv-bottom-row">
+<div class="rdv-price-info"><div class="rdv-price-label">Créneau sélectionné</div><div class="rdv-price-val" id="rdv-slot-recap">14:00 → 15:10</div><div class="rdv-price-dur" id="rdv-slot-date">Mar. 25 mars</div></div>
+<button type="button" class="rdv-btn-arrow" onclick="rdvGoTo('rdv-p4')">→</button>
+</div>
+</div>
+</div>
+<!-- p4 -->
+<div class="rdv-page" id="rdv-p4">
+<div class="rdv-wiz-status"><span>9:41</span><span>WiFi 🔋</span></div>
+<div class="rdv-wiz-nav">
+<button type="button" class="rdv-wiz-back" onclick="rdvGoTo('rdv-p3')">‹</button>
+<div class="rdv-wiz-nav-mid"><div class="rdv-wiz-title">Bloom Nails</div><div class="rdv-wiz-sub">Récapitulatif</div></div>
+<button type="button" class="rdv-wiz-close" onclick="closeFlow('flow-rdv')">✕</button>
+</div>
+<div class="rdv-wiz-progress" id="rdv-prog-p4"></div>
+<div class="rdv-wiz-scroll" style="padding-top:12px;">
+<div class="rdv-recap-card">
+<div class="rdv-r-row"><span class="rdv-r-k">Prestataire</span><span class="rdv-r-v">Sassa · Bloom Nails</span></div>
+<div class="rdv-r-row"><span class="rdv-r-k">Adresse</span><span class="rdv-r-v">27 av. Jean Médecin, Nice</span></div>
+<div class="rdv-r-row"><span class="rdv-r-k">Prestation</span><span class="rdv-r-v">Ongles · Remplissage</span></div>
+<div class="rdv-r-row"><span class="rdv-r-k">Méthode</span><span class="rdv-r-v">Gel X · Amande · M</span></div>
+<div class="rdv-r-row"><span class="rdv-r-k">Finition</span><span class="rdv-r-v">French</span></div>
+<div class="rdv-r-row"><span class="rdv-r-k">Date &amp; heure</span><span class="rdv-r-v">Mar. 25 mars · 14:00</span></div>
+<div class="rdv-r-row"><span class="rdv-r-k">Durée</span><span class="rdv-r-v">1h10</span></div>
+</div>
+<div class="rdv-total-row"><span style="font-size:15px;font-weight:700;">Total</span><span style="font-size:20px;font-weight:800;">65€</span></div>
+<div style="height:12px;"></div>
+<div style="font-size:13px;font-weight:700;margin-bottom:9px;">Code promo</div>
+<div class="rdv-promo-row"><input class="rdv-promo-in" placeholder="Entrez votre code…"/><button type="button" class="rdv-promo-ok">Appliquer</button></div>
+<div class="rdv-acompte-box">
+<div class="rdv-ac-title">Acompte requis</div>
+<div class="rdv-ac-row"><span class="rdv-ac-k">En ligne (30%)</span><span class="rdv-ac-v">19,50€</span></div>
+<div class="rdv-ac-row"><span class="rdv-ac-k">Sur place</span><span class="rdv-ac-v">45,50€</span></div>
+<div class="rdv-ac-row"><span class="rdv-ac-k" style="font-weight:700;">Total</span><span class="rdv-ac-v">65€</span></div>
+</div>
+</div>
+<div class="rdv-wiz-bottom"><button type="button" class="rdv-btn-main" onclick="rdvGoTo('rdv-p5')">Continuer</button></div>
+</div>
+<!-- p5 -->
+<div class="rdv-page" id="rdv-p5">
+<div class="rdv-wiz-status"><span>9:41</span><span>WiFi 🔋</span></div>
+<div class="rdv-wiz-nav">
+<button type="button" class="rdv-wiz-back" onclick="rdvGoTo('rdv-p4')">‹</button>
+<div class="rdv-wiz-nav-mid"><div class="rdv-wiz-title">Bloom Nails</div><div class="rdv-wiz-sub">Conditions à accepter</div></div>
+<button type="button" class="rdv-wiz-close" onclick="closeFlow('flow-rdv')">✕</button>
+</div>
+<div class="rdv-wiz-progress" id="rdv-prog-p5"></div>
+<div class="rdv-wiz-scroll" style="padding-top:10px;">
+<div class="rdv-sec-title">À lire et accepter</div>
+<div class="rdv-sec-sub">Cochez chaque condition pour continuer.</div>
+<div class="rdv-cond-item" onclick="rdvTogCond(this)"><div class="rdv-cond-box"></div><div class="rdv-cond-txt">J'annule au moins 72h avant mon rendez-vous, sinon l'acompte est conservé.</div></div>
+<div class="rdv-cond-item" onclick="rdvTogCond(this)"><div class="rdv-cond-box"></div><div class="rdv-cond-txt">Je viens seul(e), sans accompagnateur ni enfant.</div></div>
+<div class="rdv-cond-item" onclick="rdvTogCond(this)"><div class="rdv-cond-box"></div><div class="rdv-cond-txt">Tout retard de plus de 15 min entraîne l'annulation automatique.</div></div>
+<div class="rdv-cond-item" onclick="rdvTogCond(this)"><div class="rdv-cond-box"></div><div class="rdv-cond-txt">L'acompte de 19,50€ doit être réglé en ligne pour confirmer.</div></div>
+<div class="rdv-cond-item" onclick="rdvTogCond(this)"><div class="rdv-cond-box"></div><div class="rdv-cond-txt">Je certifie avoir lu et accepté toutes les conditions ci-dessus.</div></div>
+</div>
+<div class="rdv-wiz-bottom"><button type="button" class="rdv-btn-main" id="rdv-btn-cond" disabled onclick="rdvGoTo('rdv-p6')">J'accepte tout et je continue</button></div>
+</div>
+<!-- p6 -->
+<div class="rdv-page" id="rdv-p6">
+<div class="rdv-wiz-status"><span>9:41</span><span>WiFi 🔋</span></div>
+<div class="rdv-wiz-nav">
+<button type="button" class="rdv-wiz-back" onclick="rdvGoTo('rdv-p5')">‹</button>
+<div class="rdv-wiz-nav-mid"><div class="rdv-wiz-title">Bloom Nails</div><div class="rdv-wiz-sub">Paiement de l'acompte</div></div>
+<button type="button" class="rdv-wiz-close" onclick="closeFlow('flow-rdv')">✕</button>
+</div>
+<div class="rdv-wiz-progress" id="rdv-prog-p6"></div>
+<div class="rdv-wiz-scroll" style="padding-top:12px;">
+<div style="font-size:13px;color:var(--gray);margin-bottom:4px;">Acompte à régler maintenant</div>
+<div style="font-size:34px;font-weight:800;color:var(--black);margin-bottom:20px;">19,50€</div>
+<div style="font-size:13px;font-weight:700;margin-bottom:12px;">Mode de paiement</div>
+<div class="rdv-wiz-pay-grid">
+<div class="rdv-wiz-pay-card sel" onclick="rdvPaySel(this)"><div class="rdv-wiz-pay-ic">💳</div><div class="rdv-wiz-pay-nm">Carte bancaire</div></div>
+<div class="rdv-wiz-pay-card" onclick="rdvPaySel(this)"><div class="rdv-wiz-pay-ic">🅿️</div><div class="rdv-wiz-pay-nm">PayPal</div></div>
+<div class="rdv-wiz-pay-card" onclick="rdvPaySel(this)"><div class="rdv-wiz-pay-ic">📲</div><div class="rdv-wiz-pay-nm">Wero</div></div>
+<div class="rdv-wiz-pay-card" onclick="rdvPaySel(this)"><div class="rdv-wiz-pay-ic">🍎</div><div class="rdv-wiz-pay-nm">Apple Pay</div></div>
+</div>
+<div class="rdv-acompte-box">
+<div class="rdv-ac-row"><span class="rdv-ac-k">Acompte</span><span class="rdv-ac-v">19,50€</span></div>
+<div class="rdv-ac-row"><span class="rdv-ac-k">Reste sur place</span><span class="rdv-ac-v">45,50€</span></div>
+<div class="rdv-ac-row"><span class="rdv-ac-k" style="font-weight:700;">Total prestation</span><span class="rdv-ac-v">65€</span></div>
+</div>
+</div>
+<div class="rdv-wiz-bottom"><button type="button" class="rdv-btn-main" onclick="rdvGoTo('rdv-p7')">Payer 19,50€ et confirmer</button></div>
+</div>
+<!-- p7 -->
+<div class="rdv-page" id="rdv-p7">
+<div class="rdv-wiz-status"><span>9:41</span><span>WiFi 🔋</span></div>
+<div class="rdv-wiz-confirm">
+<div class="rdv-check-circle">✓</div>
+<div style="font-size:22px;font-weight:800;color:var(--black);">Réservation confirmée !</div>
+<div style="font-size:13px;color:var(--gray);line-height:1.6;">Votre rendez-vous est enregistré.<br/>Un rappel vous sera envoyé la veille.</div>
+<div class="rdv-confirm-card">
+<div class="rdv-cf-row"><span class="rdv-cf-k">Prestataire</span><span class="rdv-cf-v">Sassa · Bloom Nails</span></div>
+<div class="rdv-cf-row"><span class="rdv-cf-k">Adresse</span><span class="rdv-cf-v">27 av. Jean Médecin</span></div>
+<div class="rdv-cf-row"><span class="rdv-cf-k">Date &amp; heure</span><span class="rdv-cf-v">Mar. 25 mars · 14:00</span></div>
+<div class="rdv-cf-row"><span class="rdv-cf-k">Durée</span><span class="rdv-cf-v">1h10</span></div>
+<div class="rdv-cf-row"><span class="rdv-cf-k">Acompte payé</span><span class="rdv-cf-v">19,50€ ✓</span></div>
+</div>
+</div>
+<div class="rdv-confirm-btns">
+<button type="button" class="rdv-conf-btn dark" onclick="closeAllFlows()">Voir mon RDV</button>
+<button type="button" class="rdv-conf-btn" onclick="closeAllFlows();openModule('mod-profil-pro')">Profil prestataire</button>
+</div>
+<div class="rdv-wiz-bottom" style="border-top:none;padding-top:8px;">
+<button type="button" class="rdv-btn-ghost" onclick="closeAllFlows()">Fermer</button>
+</div>
+</div>
+</div>
+</div>
