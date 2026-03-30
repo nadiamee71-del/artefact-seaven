@@ -30,6 +30,7 @@
 --grad:linear-gradient(135deg,#C9A84C,#7EC8A4,#4FC4CF,#4A90D9);
 --bg:#FFFFFF;--text:#1A1A1A;--btn-bg:#1A1A1A;--btn-fg:#FFFFFF;
 --red:#FF3B30;--orange:#FF9500;--green:#34C759;--blue:#007AFF;
+--pink:#E8638C;--purple:#A87DC8;--mid:#8E8E93;--set-page:#E8E8EE;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
 html,body{width:100%;height:100%;overflow:hidden;overscroll-behavior:none;}
@@ -578,6 +579,8 @@ body.dark-mode{
 .pbtn{flex:1;padding:8px 0;border-radius:10px;font-size:13px;font-weight:700;border:1.5px solid #DCDCE0;background:white;color:var(--black);cursor:pointer;text-align:center;transition:all .15s;}
 .pbtn.sub-on{background:var(--black);color:white;border-color:var(--black);}
 .pbtn:active{background:var(--light);}
+.pbtn-tab.on{background:var(--black);color:white;border-color:var(--black);}
+body.dark-mode .pbtn-tab.on{background:var(--btn-bg);color:var(--btn-fg);border-color:var(--btn-bg);}
 .prof-inst-link{padding:0 20px 12px;font-size:12px;color:var(--gray);}
 .prof-inst-link span{color:var(--black);font-weight:700;cursor:pointer;text-decoration:underline;}
 .shortcuts{padding:0 20px 16px;display:flex;gap:14px;overflow-x:auto;}
@@ -607,6 +610,46 @@ body.dark-mode{
 .avis-stars{font-size:11px;color:#F5A623;}
 .avis-date{font-size:10px;color:var(--gray);}
 .avis-text{font-size:12px;color:#555;line-height:1.5;}
+/* ══ RÉGLAGES PARAMÈTRES ══ */
+#mod-reglages{background:var(--set-page)!important;}
+body.dark-mode #mod-reglages{background:var(--bg)!important;}
+#mod-reglages .reg-settings{flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden;}
+#mod-reglages .status{display:flex;justify-content:space-between;align-items:center;padding:max(10px,env(safe-area-inset-top)) 28px 0 28px;font-size:12px;font-weight:700;color:var(--black);background:transparent;flex-shrink:0;}
+#mod-reglages .reg-back-h{padding:0 20px 4px;background:transparent;flex-shrink:0;}
+#mod-reglages .reg-back-h .reg-back{font-size:28px;line-height:1;color:var(--black);cursor:pointer;font-weight:600;}
+#mod-reglages .header{padding:4px 20px 8px;background:transparent;flex-shrink:0;}
+#mod-reglages .header h1{font-size:32px;font-weight:800;color:var(--black);letter-spacing:-.8px;}
+#mod-reglages .mode-toggle{display:flex;gap:8px;padding:0 20px 12px;background:transparent;flex-shrink:0;}
+#mod-reglages .mode-btn{flex:1;padding:8px;border-radius:10px;font-size:13px;font-weight:700;border:none;cursor:pointer;transition:all .2s;font-family:'Manrope',sans-serif;}
+#mod-reglages .mode-btn.active{background:var(--btn-bg);color:var(--btn-fg);}
+#mod-reglages .mode-btn.inactive{background:var(--border);color:var(--gray);}
+#mod-reglages .reg-scroll{flex:1;overflow-y:auto;padding-bottom:max(20px,env(safe-area-inset-bottom));-webkit-overflow-scrolling:touch;}
+#mod-reglages .reg-scroll::-webkit-scrollbar{display:none;}
+#mod-reglages .profile-card{margin:0 16px 24px;background:var(--bg);border-radius:16px;padding:16px;display:flex;align-items:center;gap:14px;cursor:pointer;border:1px solid var(--border);}
+#mod-reglages .profile-card .avatar{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--purple));display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:white;flex-shrink:0;}
+#mod-reglages .profile-info{flex:1;}
+#mod-reglages .profile-name{font-size:17px;font-weight:800;color:var(--black);}
+#mod-reglages .profile-sub{font-size:12px;color:var(--gray);margin-top:2px;}
+#mod-reglages .section{margin:0 16px 10px;}
+#mod-reglages .section-block{background:var(--bg);border-radius:16px;overflow:hidden;border:1px solid var(--border);}
+#mod-reglages .row{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid var(--border);cursor:pointer;}
+#mod-reglages .row:last-child{border-bottom:none;}
+#mod-reglages .row:active{background:var(--light);}
+#mod-reglages .icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+#mod-reglages .row-text{flex:1;min-width:0;}
+#mod-reglages .row-label{font-size:15px;font-weight:600;color:var(--black);}
+#mod-reglages .row-sub{font-size:11px;color:var(--gray);margin-top:1px;}
+#mod-reglages .chev{color:#C7C7CC;font-size:16px;font-weight:600;}
+#mod-reglages .reg-badge{background:#FF3B30;color:white;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;margin-right:4px;}
+#mod-reglages .disconnect{margin:0 16px 10px;background:var(--bg);border-radius:16px;overflow:hidden;border:1px solid var(--border);}
+#mod-reglages .disconnect .row{justify-content:center;}
+#mod-reglages .disconnect .row-label{color:#FF3B30;text-align:center;font-weight:700;}
+#mod-reglages .ic-purple{background:#F5EDFF;}#mod-reglages .ic-pink{background:#FFF0F4;}#mod-reglages .ic-blue{background:#EDF5FF;}
+#mod-reglages .ic-orange{background:#FFF3E0;}#mod-reglages .ic-green{background:#F0FAF4;}#mod-reglages .ic-red{background:#FFF0F0;}
+#mod-reglages .ic-teal{background:#F0FAFA;}#mod-reglages .ic-grey{background:#EBEBF0;}#mod-reglages .ic-yellow{background:#FFFBE0;}#mod-reglages .ic-dark{background:#F0F0F5;}
+#mod-reglages .pro-only{display:none;}
+#mod-reglages .pro-only.show{display:block;}
+#mod-reglages .client-only.hide{display:none;}
 /* ══ FLOWS ══ */
 .flow{position:absolute;inset:0;z-index:100;display:none;flex-direction:column;background:white;}
 .flow.on{display:flex;}
@@ -833,7 +876,7 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="app-item"><div class="app-icon">🪞</div><div class="app-name">Avant-Après</div></div>
 <div class="app-item" onclick="openModule('mod-formation')"><div class="app-icon">🎓</div><div class="app-name">Formations</div></div>
 <div class="app-item"><div class="app-icon">⭐</div><div class="app-name">Carte fidélité</div></div>
-<div class="app-item"><div class="app-icon">⚙️</div><div class="app-name">Réglages</div></div>
+<div class="app-item" onclick="openModule('mod-reglages')"><div class="app-icon">⚙️</div><div class="app-name">Réglages</div></div>
 </div>
 <div class="grid-page">
 <div class="app-item" onclick="openModule('mod-blacklist')"><div class="app-icon" style="background:#FFF0F0;">🚫</div><div class="app-name">Blacklist</div></div>
@@ -921,7 +964,7 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="app-item"><div class="app-icon">🪞</div><div class="app-name">Avant-Après</div></div>
 <div class="app-item" onclick="openModule('mod-formation')"><div class="app-icon">🎓</div><div class="app-name">Formations</div></div>
 <div class="app-item"><div class="app-icon" style="background:#F0FFF4;">📊</div><div class="app-name">Finances</div></div>
-<div class="app-item"><div class="app-icon">⚙️</div><div class="app-name">Réglages</div></div>
+<div class="app-item" onclick="openModule('mod-reglages')"><div class="app-icon">⚙️</div><div class="app-name">Réglages</div></div>
 </div>
 <div class="grid-page">
 <div class="app-item" onclick="openModule('mod-blacklist')"><div class="app-icon" style="background:#FFF0F0;">🚫</div><div class="app-name">Blacklist</div></div>
@@ -988,7 +1031,7 @@ MODULES PROFIL
 
 <div class="prof-module" id="mod-profil-pro">
 <div class="sbar"><span>9:41</span><span>WiFi 🔋</span></div>
-<div class="pnav"><div class="pnav-back" onclick="closeModule('mod-profil-pro')">‹ Retour</div><div class="nav-actions" style="display:flex;gap:14px;"><span class="pnav-icon" onclick="alert('Mail')">✉️</span><span class="pnav-icon" onclick="alert('Like')">🤍</span><span class="pnav-icon">⋯</span></div></div>
+<div class="pnav"><div class="pnav-back" onclick="closeModule('mod-profil-pro')">‹ Retour</div><div class="nav-actions" style="display:flex;gap:14px;"><span class="pnav-icon">⋯</span></div></div>
 <div class="mod-scroll">
 <div class="prof-hdr">
 <div class="prof-left">
@@ -1040,7 +1083,7 @@ MODULES PROFIL
 </div>
 <div class="shortcuts">
 <div class="shortcut" onclick="openModule('mod-planning')"><div class="shortcut-ring"><div class="shortcut-icon">📅</div></div><div class="shortcut-label">Planning</div></div>
-<div class="shortcut" onclick="alert('Fichier clientes →')"><div class="shortcut-ring"><div class="shortcut-icon">👥</div></div><div class="shortcut-label">Fichier clientes</div></div>
+<div class="shortcut" onclick="alert('Fichiers clients →')"><div class="shortcut-ring"><div class="shortcut-icon">👥</div></div><div class="shortcut-label">Fichiers clients</div></div>
 <div class="shortcut" onclick="alert('Statistiques →')"><div class="shortcut-ring"><div class="shortcut-icon">📊</div></div><div class="shortcut-label">Statistiques</div></div>
 </div>
 <div class="p-tabs">
@@ -1088,11 +1131,12 @@ MODULES PROFIL
 <div class="avatar-wrap"><div class="p-story-ring"><div class="p-avatar-inner"><div class="p-avatar-letter">S</div></div></div></div>
 </div>
 <div class="prof-btns">
-<button class="pbtn" onclick="alert('Mes suivis →')">Mes suivis</button>
-<button class="pbtn" onclick="alert('Mes likes →')">Mes likes</button>
+<button type="button" class="pbtn pbtn-tab on" id="btn-cli-pub" onclick="cliIntSetTab('pub')">Publications</button>
+<button type="button" class="pbtn pbtn-tab" id="btn-cli-like" onclick="cliIntSetTab('like')">J'aime</button>
 </div>
 <div style="height:1px;background:#F0F0F0;"></div>
-<div class="p-grid" style="margin-top:2px;"><div class="p-gi">🌸</div><div class="p-gi">✨</div><div class="p-gi">💅</div><div class="p-gi">💎</div><div class="p-gi">🌸</div><div class="p-gi">✨</div><div class="p-gi">💅</div><div class="p-gi">💎</div><div class="p-gi">🌸</div></div>
+<div id="pgrid-cli-int-pub" class="p-grid" style="margin-top:2px;"><div class="p-gi">🌸</div><div class="p-gi">✨</div><div class="p-gi">💅</div><div class="p-gi">💎</div><div class="p-gi">🌸</div><div class="p-gi">✨</div><div class="p-gi">💅</div><div class="p-gi">💎</div><div class="p-gi">🌸</div></div>
+<div id="pgrid-cli-int-like" class="p-grid" style="margin-top:2px;display:none;"><div class="p-gi">💇</div><div class="p-gi">🌿</div><div class="p-gi">💅</div><div class="p-gi">✨</div><div class="p-gi">🦷</div><div class="p-gi">🌸</div><div class="p-gi">💎</div><div class="p-gi">✨</div><div class="p-gi">💅</div></div>
 </div>
 </div>
 
@@ -1159,24 +1203,156 @@ MODULES PROFIL
 </div>
 </div>
 
-<!-- RÉGLAGES (placeholder) -->
+<!-- RÉGLAGES -->
 
 <div class="prof-module" id="mod-reglages">
-<div class="sbar"><span>9:41</span><span>WiFi 🔋</span></div>
-<div class="pnav"><div class="pnav-back" onclick="closeModule('mod-reglages')">‹ Réglages</div></div>
-<div class="mod-scroll" style="padding:16px;">
-<div style="font-size:17px;font-weight:800;color:var(--black);margin-bottom:16px;">Réglages</div>
-<div style="display:flex;flex-direction:column;gap:0;">
-<div style="padding:14px 0;border-bottom:1px solid var(--light);font-size:14px;font-weight:700;color:var(--black);cursor:pointer;">👤 Informations personnelles</div>
-<div style="padding:14px 0;border-bottom:1px solid var(--light);font-size:14px;font-weight:700;color:var(--black);cursor:pointer;">🔔 Notifications</div>
-<div style="padding:14px 0;border-bottom:1px solid var(--light);font-size:14px;font-weight:700;color:var(--black);cursor:pointer;">🔒 Confidentialité</div>
-<div style="padding:14px 0;border-bottom:1px solid var(--light);font-size:14px;font-weight:700;color:var(--black);cursor:pointer;">💳 Abonnement & paiement</div>
-<div style="padding:12px 0;border-bottom:1px solid var(--light);display:flex;align-items:center;justify-content:space-between;">
-  <div style="font-size:14px;font-weight:700;color:var(--black);">🎨 Mode nuit</div>
-  <div class="toggle-flow" id="theme-toggle" onclick="toggleTheme(this)"></div>
+<div class="reg-settings">
+<div class="status">
+<span>9:41</span>
+<div style="display:flex;gap:5px;align-items:center;">
+<span style="font-size:10px;">●●●●</span>
+<span style="font-size:10px;">WiFi</span>
+<span>🔋</span>
 </div>
-<div style="padding:14px 0;border-bottom:1px solid var(--light);font-size:14px;font-weight:700;color:var(--black);cursor:pointer;">💬 Aide & support</div>
-<div style="padding:14px 0;font-size:14px;font-weight:700;color:#FF3B30;cursor:pointer;">🚪 Se déconnecter</div>
+</div>
+<div class="reg-back-h"><span class="reg-back" onclick="closeModule('mod-reglages')">‹</span></div>
+<div class="header"><h1>Paramètres</h1></div>
+<div class="mode-toggle">
+<button type="button" class="mode-btn mode-client active" onclick="regSetMode('client')">👤 Client</button>
+<button type="button" class="mode-btn mode-pro inactive" onclick="regSetMode('pro')">💼 Prestataire</button>
+</div>
+<div class="reg-scroll">
+<div class="profile-card" onclick="closeModule('mod-reglages');openProfilFromReg();">
+<div class="avatar"><span class="reg-peek-client">S</span><span class="reg-peek-pro" style="display:none;">B</span></div>
+<div class="profile-info">
+<div class="reg-peek-client"><div class="profile-name">Sarah Bouteben</div><div class="profile-sub">Photo, nom, bio, handle</div></div>
+<div class="reg-peek-pro" style="display:none;"><div class="profile-name">Bloom Nails</div><div class="profile-sub">Métier, vitrine, bio</div></div>
+</div>
+<div class="chev">›</div>
+</div>
+<div class="client-only" id="reg-c">
+<div class="section">
+<div class="section-block">
+<div class="row" onclick="event.stopPropagation();closeModule('mod-reglages');openModule('mod-profil-client-int');">
+<div class="icon ic-purple">👤</div>
+<div class="row-text"><div class="row-label">Mon profil</div><div class="row-sub">Préférences, formulaire, favoris</div></div>
+<div class="chev">›</div>
+</div>
+</div>
+</div>
+<div class="section">
+<div class="section-block">
+<div class="row" style="cursor:default;">
+<div class="icon ic-grey">🌙</div>
+<div class="row-text"><div class="row-label">Mode nuit</div><div class="row-sub">Clair ou sombre</div></div>
+<div class="toggle-flow" id="theme-toggle-reg" onclick="event.stopPropagation();toggleTheme(this);"></div>
+</div>
+<div class="row">
+<div class="icon ic-grey">🌙</div>
+<div class="row-text"><div class="row-label">Général</div><div class="row-sub">Thème, langue, paiement, sécurité</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row">
+<div class="icon ic-teal">🛡️</div>
+<div class="row-text"><div class="row-label">Confidentialité</div><div class="row-sub">Commentaires, visibilité, bloqués</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row">
+<div class="icon ic-red">🔔</div>
+<div class="row-text"><div class="row-label">Notifications</div><div class="row-sub">Gérer vos alertes</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row">
+<div class="icon ic-blue">♿</div>
+<div class="row-text"><div class="row-label">Accessibilité</div><div class="row-sub">Taille texte, contraste, sous-titres</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row">
+<div class="icon ic-yellow">💡</div>
+<div class="row-text"><div class="row-label">Aide & assistance</div><div class="row-sub">Astuces, guide, signaler un problème</div></div>
+<span class="reg-badge">Nouveau</span>
+<div class="chev">›</div>
+</div>
+</div>
+</div>
+<div class="disconnect">
+<div class="row"><div class="row-label">Déconnexion</div></div>
+</div>
+</div>
+<div class="pro-only" id="reg-p">
+<div class="section">
+<div class="section-block">
+<div class="row" onclick="closeModule('mod-reglages');openModule('mod-profil-pro-int');">
+<div class="icon ic-purple">✂️</div>
+<div class="row-text"><div class="row-label">Mon activité</div><div class="row-sub">Métier, équipe, horaires, conditions</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row">
+<div class="icon ic-pink">💅</div>
+<div class="row-text"><div class="row-label">Mes services</div><div class="row-sub">Prestations & tarifs</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row">
+<div class="icon ic-green">💳</div>
+<div class="row-text"><div class="row-label">Paiement</div><div class="row-sub">Moyens acceptés, acompte, facturation</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row">
+<div class="icon ic-orange">👥</div>
+<div class="row-text"><div class="row-label">Fichier client</div><div class="row-sub">Import, export, formulaire client</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row">
+<div class="icon ic-blue">💬</div>
+<div class="row-text"><div class="row-label">Messages</div><div class="row-sub">Préenregistrés, automatiques, chatbot</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row">
+<div class="icon ic-yellow">📣</div>
+<div class="row-text"><div class="row-label">Marketing</div><div class="row-sub">Relances, campagnes, promos, codes</div></div>
+<div class="chev">›</div>
+</div>
+</div>
+</div>
+<div class="section">
+<div class="section-block">
+<div class="row" style="cursor:default;">
+<div class="icon ic-grey">🌙</div>
+<div class="row-text"><div class="row-label">Mode nuit</div><div class="row-sub">Clair ou sombre</div></div>
+<div class="toggle-flow" id="theme-toggle-reg-pro" onclick="event.stopPropagation();toggleTheme(this);"></div>
+</div>
+<div class="row">
+<div class="icon ic-grey">🌙</div>
+<div class="row-text"><div class="row-label">Général</div><div class="row-sub">Thème, langue, sécurité, abonnement</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row">
+<div class="icon ic-red">🔔</div>
+<div class="row-text"><div class="row-label">Notifications</div><div class="row-sub">Gérer vos alertes</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row">
+<div class="icon ic-teal">🛡️</div>
+<div class="row-text"><div class="row-label">Confidentialité</div><div class="row-sub">Visibilité, bloqués, données</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row">
+<div class="icon ic-blue">♿</div>
+<div class="row-text"><div class="row-label">Accessibilité</div><div class="row-sub">Taille texte, contraste, sous-titres</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row">
+<div class="icon ic-yellow">💡</div>
+<div class="row-text"><div class="row-label">Aide & assistance</div><div class="row-sub">Astuces, guide, signaler un problème</div></div>
+<span class="reg-badge">3</span>
+<div class="chev">›</div>
+</div>
+</div>
+</div>
+<div class="disconnect">
+<div class="row"><div class="row-label">Déconnexion</div></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1189,7 +1365,7 @@ MODULES PROFIL
 <div class="view-toggle"><button class="vbtn" onclick="setFeedView(1,this)">▬</button><button class="vbtn" onclick="setFeedView(2,this)">⊞</button><button class="vbtn on" onclick="setFeedView(3,this)">⊟</button></div>
 <div class="mod-filters"><div class="fchip on" onclick="togChip(this)">Tout</div><div class="fchip" onclick="togChip(this)">Ongles</div><div class="fchip" onclick="togChip(this)">Cils</div><div class="fchip" onclick="togChip(this)">Coiffure</div></div>
 <div class="mod-scroll">
-<div id="mf-algo"><div id="feed-grid" class="feed-3"><div class="feed-card fc1">💅<div class="overlay"><div class="f-name">Bloom Nails</div><div class="f-meta">Ongles</div></div></div><div class="feed-card fc2">✨<div class="overlay"><div class="f-name">Nina Cils</div><div class="f-meta">Cils</div></div></div><div class="feed-card fc3">💇<div class="overlay"><div class="f-name">Karima Hair</div><div class="f-meta">Coiffure</div></div></div><div class="feed-card fc4">🌿<div class="overlay"><div class="f-name">Leila</div><div class="f-meta">Bien-être</div></div></div><div class="feed-card fc5">💅<div class="overlay"><div class="f-name">Bloom Nails</div><div class="f-meta">Ongles</div></div></div><div class="feed-card fc6">✨<div class="overlay"><div class="f-name">Nina Cils</div><div class="f-meta">Cils</div></div></div><div class="feed-card fc1">🦷</div><div class="feed-card fc2">💅</div><div class="feed-card fc3">✨</div></div></div>
+<div id="mf-algo"><div id="feed-grid" class="feed-3"><div class="feed-card fc1" onclick="closeModule('mod-feed');openModule('mod-profil-pro')">💅<div class="overlay"><div class="f-name">Bloom Nails</div><div class="f-meta">Ongles</div></div></div><div class="feed-card fc2" onclick="closeModule('mod-feed');openModule('mod-profil-pro')">✨<div class="overlay"><div class="f-name">Nina Cils</div><div class="f-meta">Cils</div></div></div><div class="feed-card fc3" onclick="closeModule('mod-feed');openModule('mod-profil-pro')">💇<div class="overlay"><div class="f-name">Karima Hair</div><div class="f-meta">Coiffure</div></div></div><div class="feed-card fc4" onclick="closeModule('mod-feed');openModule('mod-profil-pro')">🌿<div class="overlay"><div class="f-name">Leila</div><div class="f-meta">Bien-être</div></div></div><div class="feed-card fc5" onclick="closeModule('mod-feed');openModule('mod-profil-pro')">💅<div class="overlay"><div class="f-name">Bloom Nails</div><div class="f-meta">Ongles</div></div></div><div class="feed-card fc6" onclick="closeModule('mod-feed');openModule('mod-profil-pro')">✨<div class="overlay"><div class="f-name">Nina Cils</div><div class="f-meta">Cils</div></div></div><div class="feed-card fc1" onclick="closeModule('mod-feed');openModule('mod-profil-client-ext')">🦷</div><div class="feed-card fc2" onclick="closeModule('mod-feed');openModule('mod-profil-client-ext')">💅</div><div class="feed-card fc3" onclick="closeModule('mod-feed');openModule('mod-profil-client-ext')">✨</div></div></div>
 <div id="mf-suivis" style="display:none"><div class="feed-3"><div class="feed-card fc2">💅</div><div class="feed-card fc4">🌿</div><div class="feed-card fc5">💇</div><div class="feed-card fc1">✨</div><div class="feed-card fc3">💅</div><div class="feed-card fc6">🦷</div></div></div>
 </div>
 </div>
@@ -1648,16 +1824,53 @@ MODULES PROFIL
 function applyTheme(mode){
   const dark=mode==='dark';
   document.body.classList.toggle('dark-mode',dark);
-  const t=document.getElementById('theme-toggle');
-  if(t)t.classList.toggle('on',dark);
+  document.querySelectorAll('#theme-toggle,#theme-toggle-reg,#theme-toggle-reg-pro').forEach(t=>{if(t)t.classList.toggle('on',dark);});
 }
 function toggleTheme(el){
   const dark=!document.body.classList.contains('dark-mode');
   applyTheme(dark?'dark':'light');
   localStorage.setItem('seaven-theme',dark?'dark':'light');
-  if(el)el.classList.toggle('on',dark);
 }
 applyTheme(localStorage.getItem('seaven-theme')||'light');
+
+function regSetMode(m){
+  const mod=document.getElementById('mod-reglages');
+  if(!mod)return;
+  const cb=mod.querySelector('.mode-client');
+  const pb=mod.querySelector('.mode-pro');
+  const c=mod.querySelector('#reg-c');
+  const p=mod.querySelector('#reg-p');
+  if(!cb||!pb||!c||!p)return;
+  if(m==='client'){
+    cb.className='mode-btn mode-client active';
+    pb.className='mode-btn mode-pro inactive';
+    c.className='client-only';
+    p.className='pro-only';
+  }else{
+    cb.className='mode-btn mode-client inactive';
+    pb.className='mode-btn mode-pro active';
+    c.className='client-only hide';
+    p.className='pro-only show';
+  }
+  mod.querySelectorAll('.reg-peek-client').forEach(el=>{el.style.display=m==='client'?'':'none';});
+  mod.querySelectorAll('.reg-peek-pro').forEach(el=>{el.style.display=m==='pro'?'':'none';});
+}
+function openProfilFromReg(){
+  const openPro=document.getElementById('reg-p')?.classList.contains('show');
+  openModule(openPro?'mod-profil-pro-int':'mod-profil-client-int');
+}
+function cliIntSetTab(which){
+  const pub=document.getElementById('pgrid-cli-int-pub');
+  const like=document.getElementById('pgrid-cli-int-like');
+  const bpub=document.getElementById('btn-cli-pub');
+  const blike=document.getElementById('btn-cli-like');
+  if(!pub||!like)return;
+  const showPub=which==='pub';
+  pub.style.display=showPub?'grid':'none';
+  like.style.display=showPub?'none':'grid';
+  if(bpub){bpub.classList.toggle('on',showPub);}
+  if(blike){blike.classList.toggle('on',!showPub);}
+}
 
 // ── ONBOARDING ──
 let userChoice=null;
@@ -1727,6 +1940,11 @@ closeFan('cl');closeFan('pro');
 const mod=document.getElementById(id);
 if(!mod){console.warn('Module introuvable:',id);return;}
 mod.classList.add('on');
+if(id==='mod-reglages'){
+  const proOn=document.getElementById('screen-pro')?.classList.contains('on');
+  regSetMode(proOn?'pro':'client');
+}
+if(id==='mod-profil-client-int')cliIntSetTab('pub');
 if(id==='mod-blacklist')blResetBlacklistView();
 if(!mod._swipeInit){
 mod._swipeInit=true;
