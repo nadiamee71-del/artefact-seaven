@@ -1259,3 +1259,40 @@ if(target)target.style.display='block';
 }
 function togChip(el){el.classList.toggle('on');}
 function setFeedView(n,btn){btn.closest('.view-toggle').querySelectorAll('.vbtn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');const g=document.getElementById('feed-grid');if(g)g.className='feed-'+n;}
+
+// ── FLOWS CLIENT ──
+function openFlow(id){closeFan('cl');document.getElementById(id).classList.add('on');}
+function closeFlow(id){document.getElementById(id).classList.remove('on');document.querySelectorAll(`#${id} .enc-page`).forEach((p,i)=>p.classList.toggle('on',i===0));closeClienteSheet('rdv');closeClienteSheet('vente');}
+function closeAllFlows(){document.querySelectorAll('#screen-client .flow').forEach(f=>{f.classList.remove('on');f.querySelectorAll('.enc-page').forEach((p,i)=>p.classList.toggle('on',i===0));});closeClienteSheet('rdv');closeClienteSheet('vente');}
+
+// ── FLOWS PRO ──
+function openFlowPro(id){closeFan('pro');document.getElementById(id).classList.add('on');}
+function closeFlowPro(id){document.getElementById(id).classList.remove('on');document.querySelectorAll(`#${id} .enc-page`).forEach((p,i)=>p.classList.toggle('on',i===0));closeClienteSheet('prdv');closeClienteSheet('pvente');}
+function closeAllFlowsPro(){document.querySelectorAll('#screen-pro .flow').forEach(f=>{f.classList.remove('on');f.querySelectorAll('.enc-page').forEach((p,i)=>p.classList.toggle('on',i===0));});closeClienteSheet('prdv');closeClienteSheet('pvente');}
+function encGo(from,to){document.getElementById(from).classList.remove('on');document.getElementById(to).classList.add('on');}
+
+// ── HELPERS ──
+function setPhTool(tool,btn){document.querySelectorAll('#ph-s2 .edit-tool').forEach(t=>t.classList.remove('on'));btn.classList.add('on');document.getElementById('ph-filters').style.display=tool==='filters'?'flex':'none';document.getElementById('ph-adjust').classList.toggle('on',tool==='adjust');document.getElementById('ph-tags').classList.toggle('on',tool==='tags');}
+function selAAFmt(el){el.closest('.aa-formats').querySelectorAll('.aa-fmt').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');}
+function selSource(el){el.closest('.source-bar').querySelectorAll('.source-btn').forEach(b=>b.classList.remove('on'));el.classList.add('on');}
+function selType(el){el.closest('.type-bar').querySelectorAll('.type-btn').forEach(b=>b.classList.remove('on'));el.classList.add('on');}
+function selPay(el){el.closest('.pay-grid').querySelectorAll('.pay-card').forEach(c=>c.classList.remove('on'));el.classList.add('on');}
+function selProduit(el){el.closest('.enc-scroll').querySelectorAll('.produit-card').forEach(c=>c.classList.remove('sel'));el.classList.add('sel');}
+function selFmt(el){el.closest('div').querySelectorAll('.ef-btn').forEach(b=>b.classList.remove('on'));el.classList.add('on');}
+let qte=1;
+function changeQte(d){qte=Math.max(1,qte+d);['qte-val','pqte-val'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=qte;});}
+function togCart(el){el.classList.toggle('on');el.innerHTML=el.classList.contains('on')?'✓':'';}
+function chC(btn,d){const w=btn.closest('.cart-qty');const v=w.querySelector('.cq-val');let n=parseInt(v.textContent)+d;if(n<1)n=1;v.textContent=n;}
+function selAll(){document.querySelectorAll('.cart-check').forEach(c=>{c.classList.add('on');c.innerHTML='✓';});}
+function openClienteSheet(ctx){document.getElementById(ctx+'-cs')?.classList.add('on');document.getElementById(ctx+'-cs-bd')?.classList.add('on');}
+function closeClienteSheet(ctx){document.getElementById(ctx+'-cs')?.classList.remove('on');document.getElementById(ctx+'-cs-bd')?.classList.remove('on');}
+function selectCliente(ctx,name,sub){
+const picker=document.getElementById(ctx+'-cliente-picker');if(!picker)return;
+picker.classList.add('filled');
+picker.innerHTML=`<div class="cp-av">${name[0]}</div><div style="flex:1;"><div class="cp-name">${name}</div>${sub?`<div class="cp-sub">${sub}</div>`:''}</div><div class="cp-arrow" onclick="openClienteSheet('${ctx}')">›</div>`;
+closeClienteSheet(ctx);
+}
+</script>
+
+</body>
+</html>
