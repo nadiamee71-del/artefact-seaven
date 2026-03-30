@@ -272,15 +272,60 @@ body.dark-mode{
 #mod-blacklist .stat-box.red .stat-n{color:var(--red);}
 #mod-blacklist .stat-box.orange .stat-n{color:var(--orange);}
 #mod-blacklist .stat-box.green .stat-n{color:var(--green);}
-#mod-blacklist .bl-list{padding:0 0 16px;}
-#mod-blacklist .bl-row{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--border);}
-#mod-blacklist .bl-av{width:44px;height:44px;border-radius:12px;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:var(--black);flex-shrink:0;}
-#mod-blacklist .bl-info{flex:1;min-width:0;}
-#mod-blacklist .bl-name{font-size:14px;font-weight:800;color:var(--black);}
-#mod-blacklist .bl-handle{font-size:12px;font-weight:600;color:var(--gray);}
-#mod-blacklist .bl-meta{font-size:11px;color:var(--gray);margin-top:2px;}
-#mod-blacklist .bl-unbtn{padding:8px 12px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);font-size:12px;font-weight:700;color:var(--black);cursor:pointer;font-family:'Manrope',sans-serif;flex-shrink:0;}
-#mod-blacklist .bl-unbtn:active{opacity:.85;}
+#mod-blacklist .scroll{flex:1;overflow-y:auto;padding:0 16px 20px;}
+#mod-blacklist .scroll::-webkit-scrollbar{display:none;}
+#mod-blacklist .client-card{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--light);cursor:pointer;}
+#mod-blacklist .client-card:last-child{border-bottom:none;}
+#mod-blacklist .client-avatar{width:44px;height:44px;border-radius:50%;background:var(--light);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:var(--gray);position:relative;}
+#mod-blacklist .client-avatar.red{background:#FFF0EE;color:var(--red);}
+#mod-blacklist .client-avatar.orange{background:#FFF8EE;color:var(--orange);}
+#mod-blacklist .bl-dot{position:absolute;bottom:-1px;right:-1px;width:14px;height:14px;border-radius:50%;border:2px solid white;display:flex;align-items:center;justify-content:center;font-size:7px;}
+#mod-blacklist .bl-dot.en-cours{background:var(--red);}
+#mod-blacklist .bl-dot.terminee{background:var(--green);}
+#mod-blacklist .bl-dot.mediation{background:var(--orange);}
+#mod-blacklist .client-info{flex:1;min-width:0;}
+#mod-blacklist .client-name{font-size:14px;font-weight:700;color:var(--black);}
+#mod-blacklist .client-motif{font-size:11px;color:var(--gray);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;}
+#mod-blacklist .client-meta{font-size:10px;color:var(--gray);margin-top:2px;}
+#mod-blacklist .client-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0;}
+#mod-blacklist .status-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:8px;white-space:nowrap;}
+#mod-blacklist .sb-cours{background:#FFF0EE;color:var(--red);}
+#mod-blacklist .sb-mediation{background:#FFF8EE;color:var(--orange);}
+#mod-blacklist .sb-terminee{background:#F0FFF4;color:var(--green);}
+#mod-blacklist .sb-avertissement{background:#F0F4FF;color:var(--blue);}
+#mod-blacklist .client-dur{font-size:10px;color:var(--gray);font-weight:600;}
+#mod-blacklist .global-count{font-size:10px;font-weight:700;color:var(--gray);display:flex;align-items:center;gap:3px;padding:0 16px 10px;}
+#mod-blacklist .global-count span{color:var(--red);}
+/* ── FICHE CLIENT ── */
+#mod-blacklist .fiche-scroll{flex:1;overflow-y:auto;padding:0 16px 24px;}
+#mod-blacklist .fiche-scroll::-webkit-scrollbar{display:none;}
+#mod-blacklist .fiche-header{display:flex;flex-direction:column;align-items:center;padding:16px 0 14px;gap:8px;}
+#mod-blacklist .fiche-avatar{width:72px;height:72px;border-radius:50%;background:#FFF0EE;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;color:var(--red);position:relative;}
+#mod-blacklist .fiche-avatar-ring{position:absolute;inset:-3px;border-radius:50%;border:2px solid var(--red);opacity:.3;}
+#mod-blacklist .fiche-name{font-size:18px;font-weight:800;color:var(--black);}
+#mod-blacklist .fiche-handle{font-size:12px;color:var(--gray);}
+#mod-blacklist .fiche-status{padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;}
+#mod-blacklist .section-title{font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;margin:14px 0 8px;}
+#mod-blacklist .info-box{background:var(--light);border-radius:14px;padding:12px 14px;margin-bottom:4px;}
+#mod-blacklist .info-row{display:flex;justify-content:space-between;align-items:flex-start;padding:6px 0;border-bottom:1px solid var(--border);}
+#mod-blacklist .info-row:last-child{border-bottom:none;}
+#mod-blacklist .info-k{font-size:12px;color:var(--gray);font-weight:600;}
+#mod-blacklist .info-v{font-size:12px;font-weight:700;color:var(--black);text-align:right;max-width:200px;}
+#mod-blacklist .motif-box{background:#FFF8F8;border:1.5px solid #FFE0DE;border-radius:14px;padding:12px 14px;margin-bottom:4px;}
+#mod-blacklist .motif-label{font-size:10px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;}
+#mod-blacklist .motif-text{font-size:13px;color:var(--black);line-height:1.5;font-weight:500;}
+#mod-blacklist .other-bl{background:var(--light);border-radius:14px;padding:12px 14px;}
+#mod-blacklist .other-bl-item{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);}
+#mod-blacklist .other-bl-item:last-child{border-bottom:none;}
+#mod-blacklist .other-av{width:30px;height:30px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--gray);flex-shrink:0;}
+#mod-blacklist .other-name{font-size:12px;font-weight:700;color:var(--black);flex:1;}
+#mod-blacklist .other-date{font-size:10px;color:var(--gray);}
+#mod-blacklist .other-anon{font-size:12px;color:var(--gray);font-style:italic;}
+#mod-blacklist .sav-box{border:1.5px solid var(--border);border-radius:14px;padding:12px 14px;margin-bottom:4px;}
+#mod-blacklist .sav-header{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+#mod-blacklist .sav-ic{width:28px;height:28px;border-radius:8px;background:var(--black);color:white;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;}
+#mod-blacklist .sav-title{font-size:13px;font-weight:800;color:var(--black);}
+#mod-blacklist .sav-sub{font-size:10px;color:var(--gray);}
 .mod-filters{display:flex;gap:7px;padding:10px 16px;overflow-x:auto;flex-shrink:0;}
 .mod-filters::-webkit-scrollbar{display:none;}
 .fchip{padding:6px 14px;border-radius:18px;border:1.5px solid var(--border);font-size:12px;font-weight:700;color:var(--gray);background:white;cursor:pointer;white-space:nowrap;flex-shrink:0;}
@@ -1130,23 +1175,43 @@ MODULES PROFIL
 <div class="stat-box orange"><div class="stat-n">1</div><div class="stat-l">En attente</div></div>
 <div class="stat-box green"><div class="stat-n">12</div><div class="stat-l">Levés (30 j)</div></div>
 </div>
-<div class="mod-scroll">
-<div class="bl-list">
-<div class="bl-row">
-<div class="bl-av">M</div>
-<div class="bl-info"><div class="bl-name">Marine B. <span class="bl-handle">@marine.b</span></div><div class="bl-meta">No-show répété · 12 mars 2026</div></div>
-<button type="button" class="bl-unbtn">Lever</button>
+<div class="global-count">Signalements globaux : <span>18</span></div>
+<div class="scroll">
+<div class="client-card">
+<div class="client-avatar red">M<div class="bl-dot en-cours"></div></div>
+<div class="client-info">
+<div class="client-name">Marine B.</div>
+<div class="client-motif">No-show répété et refus de paiement après prestation.</div>
+<div class="client-meta">@marine.b · 12 mars 2026</div>
 </div>
-<div class="bl-row">
-<div class="bl-av">K</div>
-<div class="bl-info"><div class="bl-name">Karima Hair <span class="bl-handle">@karima</span></div><div class="bl-meta">Litige médiation · 2 mars 2026</div></div>
-<button type="button" class="bl-unbtn">Lever</button>
+<div class="client-right"><div class="status-badge sb-cours">En cours</div><div class="client-dur">J+18</div></div>
 </div>
-<div class="bl-row">
-<div class="bl-av">A</div>
-<div class="bl-info"><div class="bl-name">Institut Zen <span class="bl-handle">@institut.zen</span></div><div class="bl-meta">Demande utilisateur · 28 févr. 2026</div></div>
-<button type="button" class="bl-unbtn">Lever</button>
+<div class="client-card">
+<div class="client-avatar orange">K<div class="bl-dot mediation"></div></div>
+<div class="client-info">
+<div class="client-name">Karima Hair</div>
+<div class="client-motif">Litige sur acompte, dossier transmis en médiation.</div>
+<div class="client-meta">@karima · 2 mars 2026</div>
 </div>
+<div class="client-right"><div class="status-badge sb-mediation">Médiation</div><div class="client-dur">J+28</div></div>
+</div>
+<div class="client-card">
+<div class="client-avatar">A<div class="bl-dot terminee"></div></div>
+<div class="client-info">
+<div class="client-name">Institut Zen</div>
+<div class="client-motif">Avertissement envoyé, blacklist levée après accord.</div>
+<div class="client-meta">@institut.zen · 28 févr. 2026</div>
+</div>
+<div class="client-right"><div class="status-badge sb-terminee">Terminée</div><div class="client-dur">Levée</div></div>
+</div>
+<div class="client-card">
+<div class="client-avatar">S</div>
+<div class="client-info">
+<div class="client-name">Soraya L.</div>
+<div class="client-motif">Retards répétés et annulations à moins de 2h.</div>
+<div class="client-meta">@soraya.l · 26 févr. 2026</div>
+</div>
+<div class="client-right"><div class="status-badge sb-avertissement">Avertissement</div><div class="client-dur">Suivi</div></div>
 </div>
 </div>
 </div>
