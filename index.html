@@ -914,6 +914,8 @@ body.dark-mode #mod-reglages{background:var(--bg)!important;}
 /* ══ FLOWS ══ */
 .flow{position:absolute;top:0;left:0;right:0;bottom:var(--dock-h);z-index:100;display:none;flex-direction:column;background:white;}
 .flow.on{display:flex;}
+/* Un flux ne doit jamais rester « ouvert » si son écran (client ou pro) est masqué — évite état incohérent (ex. RDV client ouvert en mode pro). */
+#screen-client:not(.on) .flow.on,#screen-pro:not(.on) .flow.on{display:none!important;}
 .flow-bar-w{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px;flex-shrink:0;border-bottom:1px solid var(--border);}
 .flow-close-w{width:32px;height:32px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;cursor:pointer;}
 .flow-close-w svg{width:14px;height:14px;}
@@ -2820,12 +2822,13 @@ function finishOnboarding(type){
     const scrPr=document.getElementById('screen-pro');
     if(scrCl){scrCl.classList.remove('on');scrCl.classList.toggle('on',role==='client');}
     if(scrPr){scrPr.classList.remove('on');scrPr.classList.toggle('on',role==='pro');}
-    try{syncAppDock();}catch(e){}
+    try{syncAppDock();syncFlowsToActiveScreen();}catch(e){}
     requestAnimationFrame(()=>{
       const cl=document.getElementById('screen-client');
       const pr=document.getElementById('screen-pro');
       if(role==='client'&&cl&&!cl.classList.contains('on'))cl.classList.add('on');
       if(role==='pro'&&pr&&!pr.classList.contains('on'))pr.classList.add('on');
+      try{syncFlowsToActiveScreen();}catch(e){}
     });
   }
 }
@@ -2920,6 +2923,14 @@ function syncAppDock(){
   if(d1)d1.classList.toggle('visible',!!cl?.classList?.contains('on'));
   if(d2)d2.classList.toggle('visible',!!pr?.classList?.contains('on'));
 }
+function syncFlowsToActiveScreen(){
+  const cl=document.getElementById('screen-client');
+  const pr=document.getElementById('screen-pro');
+  const clOn=!!cl?.classList?.contains('on');
+  const prOn=!!pr?.classList?.contains('on');
+  if(prOn&&!clOn)try{closeAllFlows();}catch(e){}
+  else if(clOn&&!prOn)try{closeAllFlowsPro();}catch(e){}
+}
 function ensureVisibleBoot(){
   const phone=document.querySelector('.phone');
   if(!phone||phone.querySelector('.page.on,.screen.on'))return;
@@ -2929,6 +2940,7 @@ function ensureVisibleBoot(){
   splash.classList.add('on');
 }
 syncAppDock();
+syncFlowsToActiveScreen();
 ensureVisibleBoot();
 
 function msgTab(el,id){
@@ -3520,12 +3532,12 @@ planSetView('today',first);
 }
 
 // ── FLOWS CLIENT ──
-function openFlow(id){closeFan('cl');const f=document.getElementById(id);if(!f)return;f.classList.add('on');if(id==='flow-rdv'){rdvApplyContext();rdvResetWizard();}}
+function openFlow(id){closeFan('cl');if(!document.getElementById('screen-client')?.classList?.contains('on')){try{closeAllFlows();}catch(e){}return;}const f=document.getElementById(id);if(!f)return;f.classList.add('on');if(id==='flow-rdv'){rdvApplyContext();rdvResetWizard();}}
 function closeFlow(id){const f=document.getElementById(id);if(!f)return;f.classList.remove('on');document.querySelectorAll(`#${id} .enc-page`).forEach((p,i)=>p.classList.toggle('on',i===0));closeClienteSheet('rdv');closeClienteSheet('vente');if(id==='flow-rdv') rdvResetWizard();}
 function closeAllFlows(){document.querySelectorAll('#screen-client .flow').forEach(f=>{f.classList.remove('on');f.querySelectorAll('.enc-page').forEach((p,i)=>p.classList.toggle('on',i===0));if(f.id==='flow-rdv') rdvResetWizard();});closeClienteSheet('rdv');closeClienteSheet('vente');}
 
 // ── FLOWS PRO ──
-function openFlowPro(id){closeFan('pro');const f=document.getElementById(id);if(!f)return;f.classList.add('on');if(id==='flow-pro-rdv') prdvApplyContext();}
+function openFlowPro(id){closeFan('pro');if(!document.getElementById('screen-pro')?.classList?.contains('on')){try{closeAllFlowsPro();}catch(e){}return;}const f=document.getElementById(id);if(!f)return;f.classList.add('on');if(id==='flow-pro-rdv') prdvApplyContext();}
 function closeFlowPro(id){const f=document.getElementById(id);if(!f)return;f.classList.remove('on');document.querySelectorAll(`#${id} .enc-page`).forEach((p,i)=>p.classList.toggle('on',i===0));closeClienteSheet('prdv');closeClienteSheet('pvente');}
 function closeAllFlowsPro(){document.querySelectorAll('#screen-pro .flow').forEach(f=>{f.classList.remove('on');f.querySelectorAll('.enc-page').forEach((p,i)=>p.classList.toggle('on',i===0));});closeClienteSheet('prdv');closeClienteSheet('pvente');}
 function encGo(from,to){const a=document.getElementById(from),b=document.getElementById(to);if(a)a.classList.remove('on');if(b)b.classList.add('on');}
