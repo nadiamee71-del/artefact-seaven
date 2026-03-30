@@ -298,3 +298,45 @@ body{background:#D4D4DB;display:flex;flex-direction:column;align-items:center;pa
 .dom-bottom{display:flex;gap:8px;padding:0 14px 14px;}
 .dom-btn{flex:1;padding:10px;border-radius:11px;border:1.5px solid var(–border);font-size:13px;font-weight:700;color:var(–black);cursor:pointer;text-align:center;background:white;font-family:'Manrope',sans-serif;}
 .dom-btn.dark{background:var(–black);color:white;border-color:var(–black);}
+
+/* ══ PANIER ══ */
+.cart-item{display:flex;gap:12px;padding:14px 16px;border-bottom:1px solid #F5F5F5;align-items:center;}
+.cart-check{width:22px;height:22px;border-radius:6px;border:1.5px solid #DDD;flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:12px;}
+.cart-check.on{background:var(–black);border-color:var(–black);color:white;}
+.cart-img{width:52px;height:52px;border-radius:12px;background:var(–light);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.cart-name{font-size:14px;font-weight:700;color:var(–black);}
+.cart-seller{font-size:11px;color:var(–gray);margin-top:2px;}
+.cart-stock{font-size:11px;color:#AAA;margin-top:2px;}
+.cart-price{font-size:15px;font-weight:800;color:var(–black);margin-left:auto;flex-shrink:0;}
+.cart-qty{display:flex;align-items:center;gap:7px;margin-top:4px;}
+.cq-btn{width:24px;height:24px;border-radius:6px;border:1.5px solid var(–border);display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;}
+.cq-val{font-size:13px;font-weight:800;color:var(–black);min-width:16px;text-align:center;}
+.cart-bottom{padding:12px 16px;border-top:1px solid var(–border);flex-shrink:0;background:white;}
+.cart-total-row{display:flex;justify-content:space-between;margin-bottom:10px;}
+.ct-lbl{font-size:14px;font-weight:700;color:var(–black);}
+.ct-val{font-size:18px;font-weight:800;color:var(–black);}
+.btn-main{width:100%;padding:14px;border-radius:14px;background:var(–black);color:white;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'Manrope',sans-serif;}
+.cart-sel-row{display:flex;align-items:center;justify-content:space-between;padding:6px 16px 0;}
+.cart-sel-lbl{font-size:12px;font-weight:700;color:var(–gray);cursor:pointer;}
+
+/* ══ CONCOURS ══ */
+.concours-card{margin:8px 16px;border:1.5px solid var(–border);border-radius:16px;overflow:hidden;}
+.cc-top{padding:14px;}
+.cc-header{display:flex;gap:10px;align-items:center;margin-bottom:10px;}
+.cc-av{width:42px;height:42px;border-radius:12px;background:var(–light);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.cc-name{font-size:14px;font-weight:800;color:var(–black);}
+.cc-by{font-size:11px;color:var(–gray);margin-top:2px;}
+.cc-lot{background:#F8F8F8;border-radius:10px;padding:10px 12px;margin-bottom:8px;}
+.cc-lot-lbl{font-size:10px;font-weight:700;color:#AAA;text-transform:uppercase;margin-bottom:3px;}
+.cc-lot-val{font-size:13px;font-weight:700;color:var(–black);}
+.cc-rules{display:flex;flex-direction:column;gap:4px;margin-bottom:10px;}
+.cc-rule{display:flex;gap:7px;font-size:12px;color:#666;align-items:center;}
+.cc-rule-dot{width:4px;height:4px;border-radius:50%;background:#AAA;flex-shrink:0;}
+.cc-footer{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#F8F8F8;border-top:1px solid var(–border);}
+.cc-deadline{font-size:11px;color:var(–gray);}
+.cc-nb{font-size:11px;font-weight:700;color:var(–black);}
+.cc-btn{padding:8px 18px;border-radius:10px;background:var(–black);color:white;font-size:12px;font-weight:700;border:none;cursor:pointer;font-family:'Manrope',sans-serif;}
+.result-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:10px;font-size:12px;font-weight:700;margin-bottom:8px;}
+.rb-won{background:#F0FAF4;color:#3DA874;}
+.rb-lost{background:#F8F8F8;color:#AAA;}
+.rb-pending{background:#FFFBE0;color:#C8960A;}
