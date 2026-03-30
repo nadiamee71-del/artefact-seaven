@@ -1071,3 +1071,40 @@ MODULES PROFIL
 </div>
 <div class="cart-bottom"><div class="cart-total-row"><div class="ct-lbl">Total sélection</div><div class="ct-val">37,90€</div></div><button class="btn-main">Commander (2 articles) →</button></div>
 </div>
+
+<!-- CONCOURS -->
+
+<div class="module" id="mod-concours">
+<div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-concours')">‹</div><div class="mod-title">Concours</div></div>
+<div class="mod-tabs"><div class="mod-tab on" onclick="modTab(this,'mc-actifs')">En cours</div><div class="mod-tab" onclick="modTab(this,'mc-miens')">Mes participations</div></div>
+<div class="mod-scroll">
+<div id="mc-actifs">
+<div class="concours-card"><div class="cc-top"><div class="cc-header"><div class="cc-av">💅</div><div><div class="cc-name">Giveaway Saint-Valentin</div><div class="cc-by">par Bloom Nails · Sassa</div></div></div><div class="cc-lot"><div class="cc-lot-lbl">Lot à gagner</div><div class="cc-lot-val">🎁 Pose complète offerte + kit entretien (120€)</div></div><div class="cc-rules"><div class="cc-rule"><div class="cc-rule-dot"></div>S'abonner au profil SEAVEN</div><div class="cc-rule"><div class="cc-rule-dot"></div>Liker cette publication</div><div class="cc-rule"><div class="cc-rule-dot"></div>Identifier 2 amies en commentaire</div></div></div><div class="cc-footer"><div><div class="cc-deadline">Fin le 14 fév. 2026</div><div class="cc-nb">247 participants</div></div><button class="cc-btn">Participer</button></div></div>
+<div class="concours-card"><div class="cc-top"><div class="cc-header"><div class="cc-av">👁️</div><div><div class="cc-name">Win a Lash Set ✨</div><div class="cc-by">par Nina Cils</div></div></div><div class="cc-lot"><div class="cc-lot-lbl">Lot à gagner</div><div class="cc-lot-val">👁️ Volume russe offert (80€)</div></div><div class="cc-rules"><div class="cc-rule"><div class="cc-rule-dot"></div>S'abonner au profil</div><div class="cc-rule"><div class="cc-rule-dot"></div>Identifier 1 amie</div></div></div><div class="cc-footer"><div><div class="cc-deadline">Fin le 31 mars 2026</div><div class="cc-nb">89 participants</div></div><button class="cc-btn">Participer</button></div></div>
+</div>
+<div id="mc-miens" style="display:none">
+<div class="concours-card"><div class="cc-top"><div class="result-badge rb-pending">⏳ Résultat en attente</div><div class="cc-header"><div class="cc-av">💅</div><div><div class="cc-name">Giveaway Saint-Valentin</div><div class="cc-by">par Bloom Nails</div></div></div></div><div class="cc-footer"><div class="cc-nb">Participé le 10 fév. 2026</div></div></div>
+<div class="concours-card"><div class="cc-top"><div class="result-badge rb-won">🏆 Gagnante !</div><div class="cc-header"><div class="cc-av">🌿</div><div><div class="cc-name">Giveaway Nouvel An</div><div class="cc-by">par Leila Bien-être</div></div></div><div class="cc-lot"><div class="cc-lot-lbl">Lot gagné</div><div class="cc-lot-val">Massage relaxant 1h offert</div></div></div><div class="cc-footer"><div class="cc-nb">Participé le 1er janv. 2026</div><button class="cc-btn">Réserver →</button></div></div>
+</div>
+</div>
+</div>
+
+<!-- ÉVÉNEMENTS -->
+
+<div class="module" id="mod-evenements">
+<div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-evenements')">‹</div><div class="mod-title">Événements</div></div>
+<div class="mod-tabs"><div class="mod-tab on" onclick="modTab(this,'me-tous')">À venir</div><div class="mod-tab" onclick="modTab(this,'me-miens')">Mes événements</div></div>
+<div class="mod-filters"><div class="fchip on" onclick="togChip(this)">Tout</div><div class="fchip" onclick="togChip(this)">Nocturne</div><div class="fchip" onclick="togChip(this)">Marché</div><div class="fchip" onclick="togChip(this)">Gratuit</div></div>
+<div class="mod-scroll">
+<div id="me-tous">
+<div class="evt-card"><div class="evt-banner">🌙✨</div><div class="evt-body"><div class="evt-name">Nocturnes de l'Aïd 2026</div><div class="evt-by">Institut Lumière · Nice</div><div class="evt-info"><div class="evt-tag">28 & 29 mars</div><div class="evt-tag">18h → 02h</div><div class="evt-tag">Femmes uniquement</div><div class="evt-tag">Entrée gratuite</div></div><div class="evt-desc">Deux soirées exclusives avant l'Aïd. Ongles, cils, coiffure — tarifs nocturnes spéciaux.</div><div class="evt-presta"><div class="evt-av">S</div><div class="evt-av">N</div><div class="evt-av">K</div><div class="evt-av">L</div><div style="font-size:11px;color:#AAA;align-self:center;">+3</div></div><div class="evt-btns"><button class="evt-btn">En savoir plus</button><button class="evt-btn dark">S'inscrire →</button></div></div></div>
+<div class="evt-card"><div class="evt-banner">🎄🛍️</div><div class="evt-body"><div class="evt-name">Marché de Noël Beauté</div><div class="evt-by">Bloom Nails</div><div class="evt-info"><div class="evt-tag">20 déc. 2026</div><div class="evt-tag">10h → 20h</div><div class="evt-tag">5€ entrée</div></div><div class="evt-desc">10 prestataires, poses flash, vente produits, buffet offert.</div><div class="evt-btns"><button class="evt-btn">En savoir plus</button><button class="evt-btn dark">S'inscrire →</button></div></div></div>
+</div>
+<div id="me-miens" style="display:none">
+<div style="font-size:11px;font-weight:700;color:#AAA;text-transform:uppercase;padding:10px 16px 6px;">En attente</div>
+<div class="evt-card"><div class="evt-body"><div class="evt-status es-wait">⏳ En attente de confirmation</div><div class="evt-name">Nocturnes de l'Aïd 2026</div><div class="evt-by">28 & 29 mars · Institut Lumière</div></div></div>
+<div style="font-size:11px;font-weight:700;color:#AAA;text-transform:uppercase;padding:10px 16px 6px;">Confirmée</div>
+<div class="evt-card"><div class="evt-body"><div class="evt-status es-ok">✓ Inscription confirmée</div><div class="evt-name">Marché de Noël Beauté</div><div class="evt-by">20 déc. 2026 · Bloom Nails</div></div></div>
+</div>
+</div>
+</div>
