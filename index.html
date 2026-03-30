@@ -41,14 +41,19 @@ body.dark-mode{
 }
 .phone{width:100vw;height:100vh;height:100svh;height:100dvh;background:var(--bg);border-radius:0;box-shadow:none;overflow:hidden;position:relative;}
 /* Tout ce qui est enfant direct de .phone et pas une vue/module reste invisible */
-.phone>*:not(.page):not(.screen):not(.module):not(.prof-module){display:none!important;}
+.phone>*:not(.page):not(.screen):not(.module):not(.prof-module):not(.app-dock):not(.fan-backdrop){display:none!important;}
 
 /* vues */
 .page,.screen{position:absolute;inset:0;display:none;flex-direction:column;background:var(--bg);overflow:hidden;}
 .page.on,.screen.on{display:flex;}
-/* modules — slide depuis droite, DANS .phone, z-index élevé */
-.module{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--bg);overflow:hidden;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:60;}
+:root{--dock-h:calc(78px + env(safe-area-inset-bottom));}
+/* modules — slide depuis droite, laissent la place au dock (barre + fan) */
+.module{position:absolute;top:0;left:0;right:0;bottom:var(--dock-h);display:flex;flex-direction:column;background:var(--bg);overflow:hidden;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:60;}
 .module.on{transform:translateX(0);pointer-events:all;}
+.app-dock{position:absolute;left:0;right:0;bottom:0;z-index:80;display:none;flex-direction:column;background:var(--bg);border-top:1px solid var(--border);box-sizing:border-box;}
+.app-dock.visible{display:flex;}
+.app-dock .tabbar{border-top:none;}
+.phone>.fan-backdrop{position:absolute;left:0;right:0;top:0;bottom:var(--dock-h);z-index:70;}
 
 /* ══ ONBOARDING ══ */
 #splash{align-items:center;justify-content:space-between;padding:clamp(24px,6vh,60px) 0 calc(28px + env(safe-area-inset-bottom));}
@@ -189,7 +194,7 @@ body.dark-mode{
 .divider{height:1px;background:var(--border);flex-shrink:0;}
 .grid-area{height:551px;flex-shrink:0;display:flex;flex-direction:column;overflow:hidden;padding-top:4px;}
 .grid-slider{flex:1;overflow:hidden;}
-.grid-track{display:flex;height:100%;transition:transform .32s cubic-bezier(.4,0,.2,1);}
+.grid-track{display:flex;height:100%;transition:transform .32s cubic-bezier(.4,0,.2,1);touch-action:pan-x;}
 .grid-page{min-width:100vw;width:100vw;height:100%;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);padding:0;gap:0;overflow:hidden;}
 .app-item{width:93px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
 .app-item:active .app-icon{transform:scale(.88);}
@@ -209,6 +214,8 @@ body.dark-mode{
 .s-bar-x{font-size:16px;color:var(--gray);cursor:pointer;}
 .tabbar{display:flex;align-items:flex-end;border-top:1px solid var(--border);padding:8px 4px 22px;flex-shrink:0;background:white;position:relative;z-index:10;}
 .tb-item{flex:1;display:flex;flex-direction:column;align-items:center;cursor:pointer;padding:4px 0;}
+.tb-item:not(.on) .tb-icon svg{opacity:.45;}
+.tb-item.on .tb-icon svg{opacity:1;}
 .tb-icon svg{width:24px;height:24px;}
 .tb-plus-wrap{flex:1;display:flex;flex-direction:column;align-items:center;margin-bottom:2px;position:relative;}
 .tb-plus{width:52px;height:52px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;margin-top:-18px;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.25);position:relative;z-index:12;transition:transform .3s cubic-bezier(.4,0,.2,1);}
@@ -227,7 +234,7 @@ body.dark-mode{
 .fan-backdrop{position:absolute;inset:0;z-index:9;background:rgba(0,0,0,.3);display:none;cursor:pointer;backdrop-filter:blur(2px);}
 .fan-backdrop.on{display:block;}
 .pro-badge{display:inline-flex;align-items:center;background:var(--black);color:white;font-size:9px;font-weight:800;padding:2px 7px;border-radius:5px;letter-spacing:.5px;vertical-align:middle;margin-left:4px;}
-.search-page-acc{position:absolute;top:0;left:0;right:0;bottom:0;background:white;z-index:200;display:none;flex-direction:column;padding:52px 18px 0;}
+.search-page-acc{position:absolute;top:0;left:0;right:0;bottom:var(--dock-h);background:white;z-index:200;display:none;flex-direction:column;padding:52px 18px 0;}
 .search-page-acc.on{display:flex;}
 .sp-top{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
 .sp-bar{flex:1;display:flex;align-items:center;gap:8px;background:var(--light);border-radius:12px;padding:10px 12px;}
@@ -556,7 +563,7 @@ body.dark-mode{
 .fs-places{font-size:11px;color:#AAA;margin-top:2px;}
 
 /* ══ PROFILS ══ */
-.prof-module{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--bg);overflow:hidden;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:65;}
+.prof-module{position:absolute;top:0;left:0;right:0;bottom:var(--dock-h);display:flex;flex-direction:column;background:var(--bg);overflow:hidden;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:65;}
 .prof-module.on{transform:translateX(0);pointer-events:all;}
 .pnav{display:flex;align-items:center;justify-content:space-between;padding:10px 20px 6px;flex-shrink:0;}
 .pnav-back{font-size:15px;color:var(--black);font-weight:600;cursor:pointer;display:flex;align-items:center;gap:4px;}
@@ -651,7 +658,7 @@ body.dark-mode #mod-reglages{background:var(--bg)!important;}
 #mod-reglages .pro-only.show{display:block;}
 #mod-reglages .client-only.hide{display:none;}
 /* ══ FLOWS ══ */
-.flow{position:absolute;inset:0;z-index:100;display:none;flex-direction:column;background:white;}
+.flow{position:absolute;top:0;left:0;right:0;bottom:var(--dock-h);z-index:100;display:none;flex-direction:column;background:white;}
 .flow.on{display:flex;}
 .flow-bar-w{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px;flex-shrink:0;border-bottom:1px solid var(--border);}
 .flow-close-w{width:32px;height:32px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;cursor:pointer;}
@@ -850,7 +857,6 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 
 <div class="screen" id="screen-client">
 <div class="sbar"><span>9:41</span><span>WiFi 🔋</span></div>
-<div class="fan-backdrop" id="fan-bd-cl" onclick="closeFan('cl')"></div>
 <div class="stories-wrap"><div class="stories-row">
 <div class="story-item"><div class="story-ring-wrap"><div class="story-ring" style="background:linear-gradient(135deg,#C9A84C,#4A90D9);"><div class="story-vous">V</div></div><div class="story-add-btn">+</div></div><div class="story-name">Vous</div></div>
 <div class="story-item"><div class="story-ring"><div class="story-inner">🦋</div></div><div class="story-name">Sarah</div></div>
@@ -900,22 +906,6 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="s-icon" id="c-s-icon" onclick="deploySearch('cl')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div>
 <div class="s-bar-acc" id="c-s-bar" onclick="openSearchPage('cl')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg><div class="s-bar-text">Rechercher…</div><div class="s-bar-x" onclick="collapseSearch(event,'cl')">✕</div></div>
 </div>
-<div class="tabbar">
-<div class="tb-item on"><div class="tb-icon"><svg viewBox="0 0 24 24" fill="#1A1A1A"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></div></div>
-<div class="tb-item"><div class="tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="10" r="3"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg></div></div>
-<div class="tb-plus-wrap">
-<div class="tb-plus" id="tb-plus-cl" onclick="toggleFan('cl')"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-<div class="fan-container" id="fan-cl">
-<div class="fan-item" data-pos="photo" onclick="openFlow('flow-photo')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><span>Photo</span></div>
-<div class="fan-item" data-pos="video" onclick="openFlow('flow-video')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg><span>Vidéo</span></div>
-<div class="fan-item" data-pos="aa" onclick="openFlow('flow-aa')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="9" height="18" rx="2"/><rect x="13" y="3" width="9" height="18" rx="2"/></svg><span>Av./Ap.</span></div>
-<div class="fan-item" data-pos="resa" onclick="openFlow('flow-rdv')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>RDV</span></div>
-<div class="fan-item" data-pos="vente" onclick="openFlow('flow-vente')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span>Vente</span></div>
-</div>
-</div>
-<div class="tb-item"><div class="tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div></div>
-<div class="tb-item" onclick="openModule('mod-profil-client-int')"><div class="tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div></div>
-</div>
 <div class="search-page-acc" id="cl-search-page">
 <div class="sp-top"><div class="sp-bar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg><input class="sp-input" id="cl-sp-input" placeholder="Rechercher…"/></div><div class="sp-cancel" onclick="closeSearchPage('cl')">Annuler</div></div>
 <div style="overflow-y:auto;flex:1;"><div class="sp-section"><div class="sp-label">Récentes</div><div class="sp-item"><div class="sp-ic">🔍</div><div style="flex:1;"><div class="sp-name">Bloom Nails</div><div class="sp-meta">Salon · Nice</div></div><div class="sp-arr">↗</div></div><div class="sp-item"><div class="sp-ic">🔍</div><div style="flex:1;"><div class="sp-name">Nina Cils</div><div class="sp-meta">Prestataire · 2,4 km</div></div><div class="sp-arr">↗</div></div></div></div>
@@ -939,7 +929,6 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 
 <div class="screen" id="screen-pro">
 <div class="sbar"><span>9:41</span><span>WiFi 🔋</span></div>
-<div class="fan-backdrop" id="fan-bd-pro" onclick="closeFan('pro')"></div>
 <div class="stories-wrap"><div class="stories-row">
 <div class="story-item"><div class="story-ring-wrap"><div class="story-ring" style="background:linear-gradient(135deg,#C9A84C,#4A90D9);"><div class="story-vous">N</div></div><div class="story-add-btn">+</div></div><div class="story-name">Vous <span class="pro-badge">PRO</span></div></div>
 <div class="story-item"><div class="story-ring"><div class="story-inner">💅</div></div><div class="story-name">Mon salon</div></div>
@@ -988,22 +977,6 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="s-icon" id="p-s-icon" onclick="deploySearch('pro')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div>
 <div class="s-bar-acc" id="p-s-bar" onclick="openSearchPage('pro')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg><div class="s-bar-text">Rechercher…</div><div class="s-bar-x" onclick="collapseSearch(event,'pro')">✕</div></div>
 </div>
-<div class="tabbar">
-<div class="tb-item on"><div class="tb-icon"><svg viewBox="0 0 24 24" fill="#1A1A1A"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></div></div>
-<div class="tb-item"><div class="tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="10" r="3"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg></div></div>
-<div class="tb-plus-wrap">
-<div class="tb-plus" id="tb-plus-pro" onclick="toggleFan('pro')"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
-<div class="fan-container" id="fan-pro">
-<div class="fan-item" data-pos="photo" onclick="openFlowPro('flow-pro-photo')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><span>Photo</span></div>
-<div class="fan-item" data-pos="video" onclick="openFlowPro('flow-pro-video')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg><span>Vidéo</span></div>
-<div class="fan-item" data-pos="aa" onclick="openFlowPro('flow-pro-aa')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="9" height="18" rx="2"/><rect x="13" y="3" width="9" height="18" rx="2"/></svg><span>Av./Ap.</span></div>
-<div class="fan-item" data-pos="resa" onclick="openFlowPro('flow-pro-rdv')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>RDV</span></div>
-<div class="fan-item" data-pos="vente" onclick="openFlowPro('flow-pro-vente')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span>Vente</span></div>
-</div>
-</div>
-<div class="tb-item"><div class="tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div></div>
-<div class="tb-item" onclick="openModule('mod-profil-pro-int')"><div class="tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div></div>
-</div>
 <div class="search-page-acc" id="pro-search-page">
 <div class="sp-top"><div class="sp-bar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg><input class="sp-input" id="pro-sp-input" placeholder="Rechercher…"/></div><div class="sp-cancel" onclick="closeSearchPage('pro')">Annuler</div></div>
 <div style="overflow-y:auto;flex:1;"><div class="sp-section"><div class="sp-label">Récentes</div><div class="sp-item"><div class="sp-ic">🔍</div><div style="flex:1;"><div class="sp-name">@sassa.nails</div><div class="sp-meta">Prestataire</div></div><div class="sp-arr">↗</div></div></div></div>
@@ -1017,6 +990,47 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="flow" id="flow-pro-vente"><div class="enc-page on" id="pvente-s1"><div class="flow-bar-w"><div class="flow-close-w" onclick="closeFlowPro('flow-pro-vente')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><div class="flow-title-w">Vente produit</div><div style="width:32px;"></div></div><div class="enc-scroll" style="padding-top:14px;"><div class="sec-lbl" style="margin-top:0;">Cliente</div><div class="cliente-picker" id="pvente-cliente-picker" onclick="openClienteSheet('pvente')"><div class="cp-av-empty"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#AAA" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div style="flex:1;"><div style="font-size:14px;font-weight:600;color:var(--gray);">Ajouter une cliente</div></div><div class="cp-arrow">›</div></div><div class="sec-lbl">Produit</div><div class="produit-card sel" onclick="selProduit(this)"><div class="produit-ic">💅</div><div class="produit-name">Top coat gel brillant</div><div class="produit-price">18€</div></div><div class="produit-card" onclick="selProduit(this)"><div class="produit-ic">🧴</div><div class="produit-name">Huile cuticules Rose</div><div class="produit-price">12€</div></div><div class="sec-lbl">Quantité</div><div class="qte-row"><button class="qte-btn" onclick="changeQte(-1)">−</button><div class="qte-val" id="pqte-val">1</div><button class="qte-btn" onclick="changeQte(1)">+</button></div><div class="total-line"><div class="total-lbl">Total</div><div class="total-amt">18€</div></div><div class="sec-lbl">Paiement</div><div class="pay-grid"><div class="pay-card on" onclick="selPay(this)"><div class="pay-ic">💳</div><div class="pay-nm">Carte</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">📲</div><div class="pay-nm">Wero</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">💵</div><div class="pay-nm">Espèces</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">🅿️</div><div class="pay-nm">PayPal</div></div></div></div><div class="enc-bottom"><button class="enc-btn" onclick="openFlowPro('flow-pro-confirm')">Encaisser 18€ →</button></div></div><div class="cs-backdrop" id="pvente-cs-bd" onclick="closeClienteSheet('pvente')"></div><div class="cliente-sheet" id="pvente-cs"><div class="cs-handle"></div><div class="cs-title">Choisir une cliente</div><div class="cs-option" onclick="selectCliente('pvente','Mes clientes','')"><div class="cs-ic">👤</div><div><div class="cs-name">Mes clientes</div></div></div></div></div>
 <div class="flow" id="flow-pro-confirm"><div class="flow-bar-w"><div style="width:32px;"></div><div class="flow-title-w"></div><div style="width:32px;"></div></div><div class="conf-body"><div class="chk">✓</div><div style="font-size:24px;font-weight:900;color:var(--black);">Publié !</div><div class="conf-card"><div class="cf-row"><span class="cf-k">Type</span><span class="cf-v">Publication</span></div><div class="cf-row"><span class="cf-k">Date</span><span class="cf-v">30 mars 2026</span></div></div><button onclick="closeAllFlowsPro()" style="padding:14px 32px;border-radius:14px;background:var(--black);color:white;font-size:15px;font-weight:800;border:none;cursor:pointer;font-family:'Manrope',sans-serif;width:100%;">Retour à l'accueil</button></div></div>
 </div><!-- /screen-pro -->
+
+<div class="fan-backdrop" id="fan-bd-cl" onclick="closeFan('cl')"></div>
+<div class="fan-backdrop" id="fan-bd-pro" onclick="closeFan('pro')"></div>
+
+<div class="app-dock" id="app-dock-client">
+<div class="tabbar">
+<div class="tb-item on" onclick="dockHome('cl')"><div class="tb-icon"><svg viewBox="0 0 24 24" fill="#1A1A1A"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></div></div>
+<div class="tb-item" onclick="dockMap('cl')"><div class="tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="10" r="3"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg></div></div>
+<div class="tb-plus-wrap">
+<div class="tb-plus" id="tb-plus-cl" onclick="toggleFan('cl')"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+<div class="fan-container" id="fan-cl">
+<div class="fan-item" data-pos="photo" onclick="openFlow('flow-photo')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><span>Photo</span></div>
+<div class="fan-item" data-pos="video" onclick="openFlow('flow-video')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg><span>Vidéo</span></div>
+<div class="fan-item" data-pos="aa" onclick="openFlow('flow-aa')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="9" height="18" rx="2"/><rect x="13" y="3" width="9" height="18" rx="2"/></svg><span>Av./Ap.</span></div>
+<div class="fan-item" data-pos="resa" onclick="openFlow('flow-rdv')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>RDV</span></div>
+<div class="fan-item" data-pos="vente" onclick="openFlow('flow-vente')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span>Vente</span></div>
+</div>
+</div>
+<div class="tb-item" onclick="dockMsgs('cl')"><div class="tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div></div>
+<div class="tb-item" onclick="dockProfile('cl')"><div class="tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div></div>
+</div>
+</div>
+
+<div class="app-dock" id="app-dock-pro">
+<div class="tabbar">
+<div class="tb-item on" onclick="dockHome('pro')"><div class="tb-icon"><svg viewBox="0 0 24 24" fill="#1A1A1A"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></div></div>
+<div class="tb-item" onclick="dockMap('pro')"><div class="tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="10" r="3"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg></div></div>
+<div class="tb-plus-wrap">
+<div class="tb-plus" id="tb-plus-pro" onclick="toggleFan('pro')"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+<div class="fan-container" id="fan-pro">
+<div class="fan-item" data-pos="photo" onclick="openFlowPro('flow-pro-photo')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><span>Photo</span></div>
+<div class="fan-item" data-pos="video" onclick="openFlowPro('flow-pro-video')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg><span>Vidéo</span></div>
+<div class="fan-item" data-pos="aa" onclick="openFlowPro('flow-pro-aa')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="9" height="18" rx="2"/><rect x="13" y="3" width="9" height="18" rx="2"/></svg><span>Av./Ap.</span></div>
+<div class="fan-item" data-pos="resa" onclick="openFlowPro('flow-pro-rdv')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>RDV</span></div>
+<div class="fan-item" data-pos="vente" onclick="openFlowPro('flow-pro-vente')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span>Vente</span></div>
+</div>
+</div>
+<div class="tb-item" onclick="dockMsgs('pro')"><div class="tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div></div>
+<div class="tb-item" onclick="dockProfile('pro')"><div class="tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div></div>
+</div>
+</div>
 
 <!-- ══════════════════════════════════
 MODULES — DIRECTEMENT DANS .phone
@@ -1877,7 +1891,7 @@ let userChoice=null;
 function goPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));document.getElementById(id).classList.add('on');}
 function selectChoice(t){userChoice=t;document.getElementById('cc-client').classList.toggle('sel',t==='client');document.getElementById('cc-pro').classList.toggle('sel',t==='pro');document.getElementById('choose-btn').disabled=false;}
 function goChoose(){if(!userChoice)return;goPage(userChoice==='client'?'cl-compte':'pro-compte');}
-function finishOnboarding(type){document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));document.getElementById('screen-client').classList.toggle('on',type==='client');document.getElementById('screen-pro').classList.toggle('on',type==='pro');}
+function finishOnboarding(type){document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));document.getElementById('screen-client').classList.toggle('on',type==='client');document.getElementById('screen-pro').classList.toggle('on',type==='pro');syncAppDock();}
 function togCl(el){el.classList.toggle('on');document.getElementById('cl-count').textContent=document.querySelectorAll('#cl-metier-wrap .metier-chip.on').length;}
 function selStatut(el){el.closest('.statut-cards').querySelectorAll('.statut-card').forEach(c=>{c.classList.remove('sel');c.querySelectorAll('.statut-expand').forEach(e=>e.classList.remove('on'));});el.classList.add('sel');const ex=el.querySelector('.statut-expand');if(ex)ex.classList.add('on');}
 function showUsernameHelper(v){document.getElementById('username-helper').classList.toggle('on',v.length>1);}
@@ -1902,16 +1916,64 @@ let cur=0,startX=0,dragging=false;
 function pageW(){return document.querySelector('.phone')?.clientWidth||window.innerWidth;}
 function applyWidths(){const w=pageW();track.style.width=`${pages.length*w}px`;pages.forEach(p=>{p.style.minWidth=w+'px';p.style.width=w+'px';});}
 function goTo(n){cur=Math.max(0,Math.min(pages.length-1,n));track.style.transform=`translateX(-${cur*pageW()}px)`;dots.forEach((d,i)=>d.classList.toggle('on',i===cur));}
+track._goTo=goTo;
 applyWidths();
 track.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;dragging=true;},{passive:true});
-track.addEventListener('touchend',e=>{if(!dragging)return;if(Math.abs(startX-e.changedTouches[0].clientX)>40)goTo(cur+(startX-e.changedTouches[0].clientX>0?1:-1));dragging=false;});
+track.addEventListener('touchend',e=>{if(!dragging)return;const dx=startX-e.changedTouches[0].clientX;if(Math.abs(dx)>32)goTo(cur+(dx>0?1:-1));dragging=false;});
 track.addEventListener('mousedown',e=>{startX=e.clientX;dragging=true;e.preventDefault();});
-window.addEventListener('mouseup',e=>{if(!dragging)return;if(Math.abs(startX-e.clientX)>40)goTo(cur+(startX-e.clientX>0?1:-1));dragging=false;});
+window.addEventListener('mouseup',e=>{if(!dragging)return;const dx=startX-e.clientX;if(Math.abs(dx)>32)goTo(cur+(dx>0?1:-1));dragging=false;});
 window.addEventListener('resize',()=>{applyWidths();goTo(cur);});
 goTo(0);
 }
 initSwipe('c-track','c-dots');
 initSwipe('p-track','p-dots');
+
+function closeAllModules(){document.querySelectorAll('.module.on,.prof-module.on').forEach(m=>m.classList.remove('on'));}
+function dockSetTab(dockId,idx){
+  const dock=document.getElementById(dockId);
+  if(!dock)return;
+  dock.querySelectorAll('.tabbar > .tb-item').forEach((t,i)=>t.classList.toggle('on',i===idx));
+}
+function dockHome(role){
+  const isCl=role==='cl';
+  closeFan('cl');closeFan('pro');
+  closeAllModules();
+  try{closeSearchPage(isCl?'cl':'pro');}catch(e){}
+  const tr=document.getElementById(isCl?'c-track':'p-track');
+  if(tr&&tr._goTo)tr._goTo(0);
+  dockSetTab(isCl?'app-dock-client':'app-dock-pro',0);
+}
+function dockMap(role){
+  closeFan('cl');closeFan('pro');
+  closeAllModules();
+  try{closeSearchPage(role==='cl'?'cl':'pro');}catch(e){}
+  openModule('mod-feed');
+  dockSetTab(role==='cl'?'app-dock-client':'app-dock-pro',1);
+}
+function dockMsgs(role){
+  closeFan('cl');closeFan('pro');
+  closeAllModules();
+  try{closeSearchPage(role==='cl'?'cl':'pro');}catch(e){}
+  openModule('mod-notifs');
+  dockSetTab(role==='cl'?'app-dock-client':'app-dock-pro',2);
+}
+function dockProfile(role){
+  closeFan('cl');closeFan('pro');
+  closeAllModules();
+  try{closeSearchPage(role==='cl'?'cl':'pro');}catch(e){}
+  if(role==='cl')openModule('mod-profil-client-int');
+  else openModule('mod-profil-pro-int');
+  dockSetTab(role==='cl'?'app-dock-client':'app-dock-pro',3);
+}
+function syncAppDock(){
+  const cl=document.getElementById('screen-client');
+  const pr=document.getElementById('screen-pro');
+  const d1=document.getElementById('app-dock-client');
+  const d2=document.getElementById('app-dock-pro');
+  if(d1)d1.classList.toggle('visible',!!cl?.classList.contains('on'));
+  if(d2)d2.classList.toggle('visible',!!pr?.classList.contains('on'));
+}
+syncAppDock();
 
 // ── SEARCH ──
 function deploySearch(m){const p=m==='cl'?'c':'p';document.getElementById(p+'-s-icon').classList.add('hidden');document.getElementById(p+'-s-bar').classList.add('on');}
