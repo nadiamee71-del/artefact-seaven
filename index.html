@@ -1537,6 +1537,7 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 </div>
 </div>
 </div>
+</div><!-- /flow-rdv -->
 <div class="flow" id="flow-vente"><div class="enc-page on" id="vente-s1"><div class="flow-bar-w"><div class="flow-close-w" onclick="closeFlow('flow-vente')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><div class="flow-title-w">Vente produit</div><div style="width:32px;"></div></div><div class="enc-scroll" style="padding-top:14px;"><div class="sec-lbl" style="margin-top:0;">Cliente</div><div class="cliente-picker" id="vente-cliente-picker" onclick="openClienteSheet('vente')"><div class="cp-av-empty"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#AAA" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div style="flex:1;"><div style="font-size:14px;font-weight:600;color:var(--gray);">Ajouter une cliente</div></div><div class="cp-arrow">›</div></div><div class="sec-lbl">Produit</div><div class="produit-card sel" onclick="selProduit(this)"><div class="produit-ic">💅</div><div class="produit-name">Top coat gel brillant</div><div class="produit-price">18€</div></div><div class="produit-card" onclick="selProduit(this)"><div class="produit-ic">🧴</div><div class="produit-name">Huile cuticules Rose</div><div class="produit-price">12€</div></div><div class="sec-lbl">Quantité</div><div class="qte-row"><button class="qte-btn" onclick="changeQte(-1)">−</button><div class="qte-val" id="qte-val">1</div><button class="qte-btn" onclick="changeQte(1)">+</button></div><div class="total-line"><div class="total-lbl">Total</div><div class="total-amt">18€</div></div><div class="sec-lbl">Paiement</div><div class="pay-grid"><div class="pay-card on" onclick="selPay(this)"><div class="pay-ic">💳</div><div class="pay-nm">Carte</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">📲</div><div class="pay-nm">Wero</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">💵</div><div class="pay-nm">Espèces</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">🅿️</div><div class="pay-nm">PayPal</div></div></div></div><div class="enc-bottom" style="display:flex;flex-direction:column;gap:10px;"><button type="button" class="enc-btn" onclick="openFlow('flow-confirm')">Encaisser 18€ →</button><button type="button" class="enc-btn" style="background:var(--light);color:var(--black);font-weight:800;" onclick="goReserve()">Réserver le stock (sans encaisser)</button></div></div><div class="cs-backdrop" id="vente-cs-bd" onclick="closeClienteSheet('vente')"></div><div class="cliente-sheet" id="vente-cs"><div class="cs-handle"></div><div class="cs-title">Choisir une cliente</div><div class="cs-option" onclick="selectCliente('vente','Mes clientes','')"><div class="cs-ic">👤</div><div><div class="cs-name">Mes clientes</div></div></div></div></div>
 <div class="flow" id="flow-confirm"><div class="flow-bar-w"><div style="width:32px;"></div><div class="flow-title-w"></div><div style="width:32px;"></div></div><div class="conf-body"><div class="chk">✓</div><div style="font-size:24px;font-weight:900;color:var(--black);">Publié !</div><div style="font-size:13px;color:var(--gray);text-align:center;">Ta publication est visible sur ton profil.</div><div class="conf-card"><div class="cf-row"><span class="cf-k">Type</span><span class="cf-v">Publication</span></div><div class="cf-row"><span class="cf-k">Visibilité</span><span class="cf-v">Tout le monde</span></div><div class="cf-row"><span class="cf-k">Date</span><span class="cf-v">30 mars 2026</span></div></div><button onclick="closeAllFlows()" style="padding:14px 32px;border-radius:14px;background:var(--black);color:white;font-size:15px;font-weight:800;border:none;cursor:pointer;font-family:'Manrope',sans-serif;width:100%;">Retour à l'accueil</button></div></div>
 </div><!-- /screen-client -->
@@ -2844,48 +2845,6 @@ function finishOnboarding(type){
 
   console.log('[SEAVEN] finishOnboarding END role='+role);
   document.title='SEAVEN — '+role;
-
-  // Diagnostic: inspect the actual DOM state as the browser sees it
-  setTimeout(function(){
-    var sp=document.getElementById('screen-pro');
-    if(!sp){console.log('[DIAG] screen-pro NOT FOUND');return;}
-    var cs=window.getComputedStyle(sp);
-    console.log('[DIAG] screen-pro computedStyle: display='+cs.display+' visibility='+cs.visibility+' opacity='+cs.opacity+' width='+cs.width+' height='+cs.height+' zIndex='+cs.zIndex+' transform='+cs.transform+' position='+cs.position);
-    console.log('[DIAG] screen-pro parentNode:',sp.parentNode?sp.parentNode.id||sp.parentNode.tagName:'null');
-    console.log('[DIAG] screen-pro classList:',sp.className);
-    var pp=sp.parentNode;
-    if(pp){
-      var pcs=window.getComputedStyle(pp);
-      console.log('[DIAG] parent computedStyle: display='+pcs.display+' visibility='+pcs.visibility+' opacity='+pcs.opacity+' width='+pcs.width+' height='+pcs.height+' overflow='+pcs.overflow);
-    }
-    // Check if screen-pro is nested inside screen-client (browser reparse)
-    var sc=document.getElementById('screen-client');
-    if(sc&&sc.contains(sp)){
-      console.log('[DIAG] !!! screen-pro is INSIDE screen-client in the DOM !!!');
-    } else {
-      console.log('[DIAG] screen-pro is NOT inside screen-client (good)');
-    }
-    // Check first child visibility
-    var fc=sp.firstElementChild;
-    if(fc){
-      var fcs=window.getComputedStyle(fc);
-      console.log('[DIAG] first child tag='+fc.tagName+' class='+fc.className+' display='+fcs.display+' height='+fcs.height+' visibility='+fcs.visibility);
-    }
-    // Check how many direct children are visible
-    var vis=0;
-    sp.querySelectorAll(':scope > *').forEach(function(ch){
-      var chs=window.getComputedStyle(ch);
-      if(chs.display!=='none')vis++;
-    });
-    console.log('[DIAG] screen-pro visible children: '+vis+'/'+sp.children.length);
-    // List all elements with z-index > 3 that are visible
-    document.querySelectorAll('.phone > *').forEach(function(el){
-      var es=window.getComputedStyle(el);
-      if(es.display!=='none'&&el.id!=='screen-pro'){
-        console.log('[DIAG] visible sibling: id='+el.id+' class='+el.className+' display='+es.display+' zIndex='+es.zIndex+' transform='+es.transform);
-      }
-    });
-  },500);
 }
 function togCl(el){el.classList.toggle('on');document.getElementById('cl-count').textContent=document.querySelectorAll('#cl-metier-wrap .metier-chip.on').length;}
 function selStatut(el){el.closest('.statut-cards').querySelectorAll('.statut-card').forEach(c=>{c.classList.remove('sel');c.querySelectorAll('.statut-expand').forEach(e=>e.classList.remove('on'));});el.classList.add('sel');const ex=el.querySelector('.statut-expand');if(ex)ex.classList.add('on');}
