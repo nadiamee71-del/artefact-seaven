@@ -2079,6 +2079,7 @@ MODULES PROFIL
 <!-- CARTE -->
 
 <div class="module" id="mod-carte">
+<div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-carte')">‹</div><div class="mod-title">Carte</div><div style="width:32px;"></div></div>
 <div class="map-wrap">
 <div class="map-bg">
 <div class="road h" style="top:30%"></div><div class="road h" style="top:55%"></div><div class="road h" style="top:75%"></div>
@@ -2095,7 +2096,7 @@ MODULES PROFIL
 <div class="map-sheet" id="map-sheet">
 <div class="sheet-handle"></div>
 <div class="sheet-top"><div class="sheet-avatar" id="map-ic">💅</div><div style="flex:1;"><div class="sheet-name" id="map-name">Bloom Nails</div><div class="sheet-meta" id="map-meta">Prothesiste ongulaire</div><div class="sheet-stars" id="map-stars">4,8 ★ · 57 avis · 1,2 km</div></div><span class="sheet-close" onclick="closeMapSheet()">✕</span></div>
-<div class="sheet-btns"><button type="button" class="sheet-btn" onclick="openMapProfile()">Profil</button><button type="button" class="sheet-btn">Itineraire</button><button type="button" class="sheet-btn dark">Reserver</button></div>
+<div class="sheet-btns"><button type="button" class="sheet-btn" onclick="openMapProfile()">Profil</button><button type="button" class="sheet-btn">Itinéraire</button><button type="button" class="sheet-btn dark" onclick="openMapReserve()">Réserver</button></div>
 </div>
 </div>
 </div>
@@ -2446,6 +2447,13 @@ function openMapProfile(){
   dockSetTab(cl?'app-dock-client':'app-dock-pro',3);
   if(cl) openModule('mod-profil-client-ext');
   else openModule('mod-profil-pro-int');
+}
+function openMapReserve(){
+  closeMapSheet();
+  closeModule('mod-carte');
+  const cl=document.getElementById('screen-client')?.classList.contains('on');
+  if(cl) openFlow('flow-rdv');
+  else openFlowPro('flow-pro-rdv');
 }
 function toggleReveil(){
   const t=document.getElementById('rv-main-toggle');
