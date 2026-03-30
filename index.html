@@ -1220,3 +1220,42 @@ function closeSearchPage(m){document.getElementById(m==='cl'?'cl-search-page':'p
 const fanState={cl:false,pro:false};
 function toggleFan(m){if(fanState[m]){closeFan(m);return;}fanState[m]=true;document.getElementById('fan-bd-'+m).classList.add('on');document.getElementById('tb-plus-'+m).classList.add('open');document.querySelectorAll(`#fan-${m} .fan-item`).forEach(i=>i.classList.add('on'));}
 function closeFan(m){fanState[m]=false;document.getElementById('fan-bd-'+m).classList.remove('on');document.getElementById('tb-plus-'+m).classList.remove('open');document.querySelectorAll(`#fan-${m} .fan-item`).forEach(i=>i.classList.remove('on'));}
+
+// ── MODULES ──
+// ── PROFILS ──
+function toggleSub(id){const btn=document.getElementById(id);btn.classList.toggle('sub-on');btn.textContent=btn.classList.contains('sub-on')?'Abonné ✓':'S\'abonner';}
+function pTab(el,contentId){
+el.closest('.p-tabs').querySelectorAll('.p-tab').forEach(t=>t.classList.remove('on'));
+el.classList.add('on');
+const parent=document.getElementById(contentId)?.parentElement;
+if(parent)parent.querySelectorAll(':scope > div[id]').forEach(d=>d.style.display='none');
+const target=document.getElementById(contentId);
+if(target)target.style.display='grid';
+}
+function openModule(id){
+closeFan('cl');closeFan('pro');
+const mod=document.getElementById(id);
+if(!mod){console.warn('Module introuvable:',id);return;}
+mod.classList.add('on');
+if(!mod._swipeInit){
+mod._swipeInit=true;
+let sx=0,sw=false;
+mod.addEventListener('touchstart',e=>{if(e.touches[0].clientX<30){sx=e.touches[0].clientX;sw=true;}},{passive:true});
+mod.addEventListener('touchend',e=>{if(!sw)return;if(e.changedTouches[0].clientX-sx>60)closeModule(id);sw=false;});
+}
+}
+function closeModule(id){const mod=document.getElementById(id);if(mod)mod.classList.remove('on');}
+function openSubModule(id){const m=document.getElementById(id);if(m)m.classList.add('on');}
+function closeSubModule(id){const m=document.getElementById(id);if(m)m.classList.remove('on');}
+
+// ── MODULE TABS ──
+function modTab(el,contentId){
+el.closest('.mod-tabs').querySelectorAll('.mod-tab').forEach(t=>t.classList.remove('on'));
+el.classList.add('on');
+const parent=document.getElementById(contentId)?.parentElement;
+if(parent)parent.querySelectorAll(':scope > div[id]').forEach(d=>d.style.display='none');
+const target=document.getElementById(contentId);
+if(target)target.style.display='block';
+}
+function togChip(el){el.classList.toggle('on');}
+function setFeedView(n,btn){btn.closest('.view-toggle').querySelectorAll('.vbtn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');const g=document.getElementById('feed-grid');if(g)g.className='feed-'+n;}
