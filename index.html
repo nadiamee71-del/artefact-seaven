@@ -2844,6 +2844,48 @@ function finishOnboarding(type){
 
   console.log('[SEAVEN] finishOnboarding END role='+role);
   document.title='SEAVEN — '+role;
+
+  // Diagnostic: inspect the actual DOM state as the browser sees it
+  setTimeout(function(){
+    var sp=document.getElementById('screen-pro');
+    if(!sp){console.log('[DIAG] screen-pro NOT FOUND');return;}
+    var cs=window.getComputedStyle(sp);
+    console.log('[DIAG] screen-pro computedStyle: display='+cs.display+' visibility='+cs.visibility+' opacity='+cs.opacity+' width='+cs.width+' height='+cs.height+' zIndex='+cs.zIndex+' transform='+cs.transform+' position='+cs.position);
+    console.log('[DIAG] screen-pro parentNode:',sp.parentNode?sp.parentNode.id||sp.parentNode.tagName:'null');
+    console.log('[DIAG] screen-pro classList:',sp.className);
+    var pp=sp.parentNode;
+    if(pp){
+      var pcs=window.getComputedStyle(pp);
+      console.log('[DIAG] parent computedStyle: display='+pcs.display+' visibility='+pcs.visibility+' opacity='+pcs.opacity+' width='+pcs.width+' height='+pcs.height+' overflow='+pcs.overflow);
+    }
+    // Check if screen-pro is nested inside screen-client (browser reparse)
+    var sc=document.getElementById('screen-client');
+    if(sc&&sc.contains(sp)){
+      console.log('[DIAG] !!! screen-pro is INSIDE screen-client in the DOM !!!');
+    } else {
+      console.log('[DIAG] screen-pro is NOT inside screen-client (good)');
+    }
+    // Check first child visibility
+    var fc=sp.firstElementChild;
+    if(fc){
+      var fcs=window.getComputedStyle(fc);
+      console.log('[DIAG] first child tag='+fc.tagName+' class='+fc.className+' display='+fcs.display+' height='+fcs.height+' visibility='+fcs.visibility);
+    }
+    // Check how many direct children are visible
+    var vis=0;
+    sp.querySelectorAll(':scope > *').forEach(function(ch){
+      var chs=window.getComputedStyle(ch);
+      if(chs.display!=='none')vis++;
+    });
+    console.log('[DIAG] screen-pro visible children: '+vis+'/'+sp.children.length);
+    // List all elements with z-index > 3 that are visible
+    document.querySelectorAll('.phone > *').forEach(function(el){
+      var es=window.getComputedStyle(el);
+      if(es.display!=='none'&&el.id!=='screen-pro'){
+        console.log('[DIAG] visible sibling: id='+el.id+' class='+el.className+' display='+es.display+' zIndex='+es.zIndex+' transform='+es.transform);
+      }
+    });
+  },500);
 }
 function togCl(el){el.classList.toggle('on');document.getElementById('cl-count').textContent=document.querySelectorAll('#cl-metier-wrap .metier-chip.on').length;}
 function selStatut(el){el.closest('.statut-cards').querySelectorAll('.statut-card').forEach(c=>{c.classList.remove('sel');c.querySelectorAll('.statut-expand').forEach(e=>e.classList.remove('on'));});el.classList.add('sel');const ex=el.querySelector('.statut-expand');if(ex)ex.classList.add('on');}
