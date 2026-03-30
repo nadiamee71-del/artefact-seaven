@@ -9,7 +9,7 @@
 <style>
 :root{--black:#1A1A1A;--gray:#8E8E93;--light:#F2F2F7;--border:#E5E5EA;--grad:linear-gradient(135deg,#C9A84C,#7EC8A4,#4FC4CF,#4A90D9);}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
-body{background:#D4D4DB;display:flex;flex-direction:column;align-items:center;padding:20px 16px 40px;font-family:'Manrope',-apple-system,sans-serif;gap:14px;}
+body{background:#D4D4DB;display:flex;flex-direction:column;align-items:center;padding:20px 16px 40px;font-family:'Manrope',-apple-system,sans-serif;gap:14px;min-height:100vh;min-height:100dvh;}
 .phone{width:375px;height:812px;background:white;border-radius:52px;box-shadow:0 32px 80px rgba(0,0,0,0.18),0 0 0 1px rgba(0,0,0,0.06);overflow:hidden;position:relative;}
 /* Tout ce qui est enfant direct de .phone et pas une vue/module reste invisible */
 .phone>*:not(.page):not(.screen):not(.module):not(.prof-module){display:none!important;}
@@ -22,7 +22,7 @@ body{background:#D4D4DB;display:flex;flex-direction:column;align-items:center;pa
 .module.on{transform:translateX(0);pointer-events:all;}
 
 /* ══ ONBOARDING ══ */
-#splash{align-items:center;justify-content:space-between;padding:60px 0 48px;}
+#splash{align-items:center;justify-content:space-between;padding:clamp(24px,6vh,60px) 0 calc(28px + env(safe-area-inset-bottom));}
 .splash-top{flex:1;display:flex;align-items:center;justify-content:center;}
 .splash-scene{position:relative;width:160px;height:160px;display:flex;align-items:center;justify-content:center;}
 .splash-logo-wrap{position:relative;width:132px;height:132px;animation:logoIn .7s cubic-bezier(.2,.9,.2,1) .15s both;}
@@ -37,7 +37,7 @@ body{background:#D4D4DB;display:flex;flex-direction:column;align-items:center;pa
 @keyframes ringSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
 @keyframes glowPulse{0%,100%{opacity:.55;transform:scale(.95);}50%{opacity:1;transform:scale(1.03);}}
 @keyframes pFade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-.splash-bottom{padding:0 28px;width:100%;}
+.splash-bottom{padding:0 28px;width:100%;padding-bottom:max(0px,env(safe-area-inset-bottom));}
 .splash-main-btn{width:100%;padding:16px;border-radius:14px;background:var(–black);color:white;font-size:16px;font-weight:800;border:none;cursor:pointer;font-family:'Manrope',sans-serif;margin-bottom:14px;}
 .splash-links{display:flex;justify-content:center;gap:6px;font-size:14px;color:var(–gray);font-weight:600;}
 .splash-links span{color:var(–black);font-weight:800;cursor:pointer;}
@@ -605,7 +605,8 @@ body{background:#D4D4DB;display:flex;flex-direction:column;align-items:center;pa
 /* ══ RESPONSIVE — plein écran sur mobile ══ */
 @media(max-width:500px){
 body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
-.phone{width:100%;height:100vh;height:100dvh;border-radius:0;box-shadow:none;}
+.phone{width:100%;height:100vh;height:100svh;height:100dvh;border-radius:0;box-shadow:none;}
+.page,.screen,.module,.prof-module{height:100%;min-height:100%;}
 .grid-area{height:auto;flex:1;}
 .grid-page{min-width:100vw!important;width:100vw!important;grid-template-columns:repeat(4,1fr);}
 .grid-track{width:auto!important;}
