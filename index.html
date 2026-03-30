@@ -1295,6 +1295,122 @@ label.adj-label{display:block;}
 .cf-k{font-size:12px;color:var(--gray);}
 .cf-v{font-size:12px;font-weight:700;color:var(--black);}
 
+/* ══ FLOW ENCAISSEMENT RDV ══ */
+#flow-pro-enc .enc-progress{display:flex;gap:5px;padding:0 16px 8px;flex-shrink:0;}
+#flow-pro-enc .enc-pd{flex:1;height:3px;border-radius:2px;background:var(--border);}
+#flow-pro-enc .enc-pd.on{background:var(--black);}
+#flow-pro-enc .statut-pill{display:flex;align-items:center;justify-content:space-between;margin:6px 16px 0;padding:10px 14px;border:1.5px solid var(--border);border-radius:12px;cursor:pointer;flex-shrink:0;}
+#flow-pro-enc .statut-left{display:flex;align-items:center;gap:8px;}
+#flow-pro-enc .statut-val{font-size:13px;font-weight:700;color:var(--black);}
+#flow-pro-enc .statut-online{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--gray);background:var(--light);padding:3px 9px;border-radius:8px;}
+#flow-pro-enc .statut-dot{width:5px;height:5px;border-radius:50%;background:var(--black);}
+#flow-pro-enc .statut-arr{font-size:12px;color:#AAA;transition:transform .2s;}
+#flow-pro-enc .statut-arr.up{transform:rotate(180deg);}
+#flow-pro-enc .chips-wrap{padding:6px 16px 0;display:none;flex-wrap:wrap;gap:6px;flex-shrink:0;}
+#flow-pro-enc .chips-wrap.open{display:flex;}
+#flow-pro-enc .schip{padding:6px 14px;border-radius:18px;border:1.5px solid var(--border);font-size:12px;font-weight:700;color:var(--gray);cursor:pointer;background:white;}
+#flow-pro-enc .schip.on{background:var(--black);color:white;border-color:var(--black);}
+#flow-pro-enc .schip.red{color:#FF3B30;}
+#flow-pro-enc .enc-cliente{margin:10px 0 0;}
+#flow-pro-enc .enc-cliente-top{display:flex;align-items:center;gap:10px;}
+#flow-pro-enc .enc-c-av{width:44px;height:44px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;color:var(--black);flex-shrink:0;}
+#flow-pro-enc .enc-c-name{font-size:15px;font-weight:800;color:var(--black);}
+#flow-pro-enc .enc-c-contact{font-size:12px;color:var(--gray);margin-top:2px;}
+#flow-pro-enc .enc-c-link{color:var(--black);font-weight:700;text-decoration:underline;cursor:pointer;}
+#flow-pro-enc .enc-c-btns{display:flex;gap:8px;margin-left:auto;flex-shrink:0;}
+#flow-pro-enc .enc-c-btn{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border);background:white;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;}
+#flow-pro-enc .comment-box{background:var(--light);border-radius:10px;padding:10px 12px;margin-top:8px;}
+#flow-pro-enc .comment-label{font-size:10px;font-weight:700;color:#AAA;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px;}
+#flow-pro-enc .comment-text{font-size:12px;color:#555;line-height:1.55;font-style:italic;}
+#flow-pro-enc .rappel-box{background:#FFFBE8;border:1.5px solid #F0E080;border-radius:10px;padding:10px 12px;margin-top:6px;display:flex;align-items:flex-start;gap:8px;}
+#flow-pro-enc .rappel-ic{font-size:14px;flex-shrink:0;margin-top:1px;}
+#flow-pro-enc .rappel-label{font-size:10px;font-weight:700;color:#C8960A;text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px;}
+#flow-pro-enc .rappel-text{font-size:12px;color:#555;line-height:1.5;}
+#flow-pro-enc .rappel-done{font-size:11px;font-weight:700;color:#C8960A;cursor:pointer;margin-top:4px;}
+#flow-pro-enc .enc-act-drawer{background:white;border-radius:12px;margin:6px 0 0;border:1.5px solid #F0F0F0;display:none;overflow:hidden;}
+#flow-pro-enc .enc-act-drawer.open{display:block;}
+#flow-pro-enc .act-item{display:flex;align-items:center;gap:10px;padding:11px 14px;border-bottom:1px solid #F5F5F5;cursor:pointer;}
+#flow-pro-enc .act-item:last-child{border-bottom:none;}
+#flow-pro-enc .act-item:active{background:var(--light);}
+#flow-pro-enc .act-ic{font-size:15px;width:24px;text-align:center;}
+#flow-pro-enc .act-lbl{font-size:13px;font-weight:600;color:var(--black);flex:1;}
+#flow-pro-enc .act-lbl.red{color:#FF3B30;}
+#flow-pro-enc .rdv-bar{display:flex;margin:10px 0 0;background:var(--light);border-radius:12px;overflow:hidden;}
+#flow-pro-enc .rdv-cell{flex:1;padding:9px 10px;border-right:1px solid #EEE;}
+#flow-pro-enc .rdv-cell:last-child{border-right:none;}
+#flow-pro-enc .rdv-k{font-size:9px;font-weight:700;color:#AAA;text-transform:uppercase;letter-spacing:.3px;margin-bottom:3px;}
+#flow-pro-enc .rdv-v{font-size:12px;font-weight:800;color:var(--black);}
+#flow-pro-enc .rdv-v2{font-size:10px;color:var(--gray);margin-top:1px;}
+#flow-pro-enc .enc-prest{margin:10px 0 0;}
+#flow-pro-enc .enc-prest-card{background:var(--light);border-radius:12px;padding:12px;margin-bottom:8px;cursor:pointer;position:relative;}
+#flow-pro-enc .enc-prest-card:active{opacity:.9;}
+#flow-pro-enc .prest-top{display:flex;align-items:center;gap:10px;}
+#flow-pro-enc .prest-bar{width:4px;height:38px;border-radius:2px;flex-shrink:0;}
+#flow-pro-enc .prest-name{font-size:14px;font-weight:800;color:var(--black);flex:1;}
+#flow-pro-enc .prest-sub{font-size:11px;color:var(--gray);margin-top:1px;}
+#flow-pro-enc .prest-price{font-size:14px;font-weight:800;color:var(--black);}
+#flow-pro-enc .prest-del{font-size:16px;color:#CCC;cursor:pointer;margin-left:8px;}
+#flow-pro-enc .prest-details{margin-top:8px;padding-top:8px;border-top:1px solid #EEE;display:flex;flex-direction:column;gap:4px;}
+#flow-pro-enc .prest-detail-item{display:flex;align-items:center;gap:6px;font-size:12px;color:#666;}
+#flow-pro-enc .pdet-dot{width:4px;height:4px;border-radius:50%;background:#AAA;flex-shrink:0;}
+#flow-pro-enc .pdet-file{font-style:italic;color:var(--gray);cursor:pointer;display:flex;align-items:center;gap:4px;}
+#flow-pro-enc .add-prest{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1.5px dashed #DDD;border-radius:12px;cursor:pointer;}
+#flow-pro-enc .add-ic{font-size:16px;color:#AAA;}
+#flow-pro-enc .add-lbl{font-size:13px;font-weight:600;color:var(--gray);}
+#flow-pro-enc .total-bar{margin:8px 0 0;padding:12px 14px;border:1.5px solid var(--border);border-radius:12px;display:flex;justify-content:space-between;align-items:center;}
+#flow-pro-enc .tb-left{font-size:13px;font-weight:700;color:var(--black);}
+#flow-pro-enc .tb-sub{font-size:11px;color:#AAA;margin-top:2px;}
+#flow-pro-enc .tb-val{font-size:22px;font-weight:800;color:var(--black);}
+#flow-pro-enc .note-btn{display:flex;align-items:center;gap:10px;padding:13px 14px;background:var(--light);border-radius:12px;cursor:pointer;margin-bottom:8px;}
+#flow-pro-enc .note-btn-lbl{font-size:14px;font-weight:700;color:var(--black);flex:1;}
+#flow-pro-enc .enc-textarea{width:100%;border:1.5px solid var(--border);border-radius:12px;padding:11px 13px;font-size:13px;font-family:'Manrope',sans-serif;outline:none;resize:none;color:var(--black);line-height:1.5;}
+#flow-pro-enc .enc-toggle-row{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid #F5F5F5;}
+#flow-pro-enc .enc-toggle-row:last-child{border-bottom:none;}
+#flow-pro-enc .tg-lbl{font-size:13px;font-weight:600;color:var(--black);}
+#flow-pro-enc .enc-tg{width:42px;height:24px;border-radius:12px;background:var(--border);position:relative;cursor:pointer;flex-shrink:0;}
+#flow-pro-enc .enc-tg.on{background:var(--black);}
+#flow-pro-enc .enc-tg-k{position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:white;transition:all .2s;box-shadow:0 1px 3px rgba(0,0,0,.15);}
+#flow-pro-enc .enc-tg.on .enc-tg-k{left:21px;}
+#flow-pro-enc .sub-field{display:none;padding:6px 0 4px;}
+#flow-pro-enc .sub-field.open{display:block;}
+#flow-pro-enc .rappel-add{margin:10px 0 0;}
+#flow-pro-enc .rappel-input-wrap{display:flex;gap:8px;}
+#flow-pro-enc .rappel-input{flex:1;border:1.5px solid var(--border);border-radius:12px;padding:11px 13px;font-size:13px;font-family:'Manrope',sans-serif;outline:none;}
+#flow-pro-enc .rappel-save{padding:11px 16px;border-radius:12px;background:var(--black);color:white;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Manrope',sans-serif;}
+#flow-pro-enc .stock-item{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #F5F5F5;}
+#flow-pro-enc .stock-item:last-child{border-bottom:none;}
+#flow-pro-enc .s-name{font-size:13px;font-weight:700;color:var(--black);}
+#flow-pro-enc .s-sub{font-size:11px;color:#AAA;margin-top:1px;}
+#flow-pro-enc .qty-wrap{display:flex;align-items:center;gap:8px;}
+#flow-pro-enc .qty-btn{width:28px;height:28px;border-radius:8px;border:1.5px solid var(--border);background:white;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;}
+#flow-pro-enc .qty-val{font-size:14px;font-weight:800;color:var(--black);min-width:18px;text-align:center;}
+#flow-pro-enc .add-stock{display:flex;align-items:center;gap:8px;padding:11px 0;cursor:pointer;}
+#flow-pro-enc .amount-hdr{padding:12px 0 4px;}
+#flow-pro-enc .amount-lbl{font-size:12px;color:var(--gray);}
+#flow-pro-enc .amount-val{font-size:34px;font-weight:800;color:var(--black);}
+#flow-pro-enc .tip-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:8px;}
+#flow-pro-enc .tip-card{border:1.5px solid var(--border);border-radius:12px;padding:12px 8px;text-align:center;cursor:pointer;}
+#flow-pro-enc .tip-card.on{border-color:var(--black);background:var(--light);}
+#flow-pro-enc .tip-pct{font-size:17px;font-weight:800;color:var(--black);}
+#flow-pro-enc .tip-amt{font-size:11px;color:var(--gray);margin-top:2px;}
+#flow-pro-enc .custom-tip{display:flex;gap:8px;margin-bottom:12px;}
+#flow-pro-enc .custom-tip input{flex:1;border:1.5px solid var(--border);border-radius:12px;padding:10px 13px;font-size:14px;font-family:'Manrope',sans-serif;outline:none;}
+#flow-pro-enc .unit-toggle{display:flex;border:1.5px solid var(--border);border-radius:12px;overflow:hidden;}
+#flow-pro-enc .ut-btn{flex:1;padding:10px 14px;font-size:13px;font-weight:700;color:var(--gray);cursor:pointer;background:white;border:none;font-family:'Manrope',sans-serif;}
+#flow-pro-enc .ut-btn.on{background:var(--black);color:white;}
+#flow-pro-enc .impaye{padding:12px;border:1.5px solid var(--border);border-radius:12px;text-align:center;font-size:13px;font-weight:700;color:var(--gray);cursor:pointer;}
+#flow-pro-enc .facture-section{margin-bottom:14px;}
+#flow-pro-enc .fact-title{font-size:11px;font-weight:700;color:#AAA;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px;}
+#flow-pro-enc .fact-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #F5F5F5;}
+#flow-pro-enc .fact-row:last-child{border-bottom:none;}
+#flow-pro-enc .fact-k{font-size:13px;color:#666;}
+#flow-pro-enc .fact-v{font-size:13px;font-weight:700;color:var(--black);}
+#flow-pro-enc .fact-total{display:flex;justify-content:space-between;padding:12px 0;border-top:2px solid var(--black);margin-top:4px;}
+#flow-pro-enc .fact-total-k{font-size:15px;font-weight:800;color:var(--black);}
+#flow-pro-enc .fact-total-v{font-size:18px;font-weight:800;color:var(--black);}
+#flow-pro-enc .enc-btn-outline{width:100%;padding:13px;border-radius:14px;background:white;border:1.5px solid var(--border);color:var(--black);font-size:14px;font-weight:700;cursor:pointer;font-family:'Manrope',sans-serif;margin-top:8px;}
+#flow-pro-enc .enc-btn-ghost{width:100%;padding:9px;background:none;border:none;color:var(--gray);font-size:13px;font-weight:600;cursor:pointer;margin-top:6px;font-family:'Manrope',sans-serif;}
+
 /* ══ RESPONSIVE — plein écran sur mobile ══ */
 @media(max-width:500px){
 body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
@@ -1716,6 +1832,176 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 
 <div class="flow" id="flow-pro-rdv"><div class="enc-page on" id="prdv-s1"><div class="flow-bar-w"><div class="flow-close-w" onclick="closeFlowPro('flow-pro-rdv')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><div class="flow-title-w">Créer un RDV</div><div style="width:32px;"></div></div><div class="enc-scroll" style="padding-top:14px;"><div id="prdv-domicile-banner" class="rdv-banner" style="display:none;"></div><div class="sec-lbl" style="margin-top:0;">Cliente</div><div class="cliente-picker" id="prdv-cliente-picker" onclick="openClienteSheet('prdv')"><div class="cp-av-empty"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#AAA" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div style="flex:1;"><div style="font-size:14px;font-weight:600;color:var(--gray);">Ajouter une cliente</div></div><div class="cp-arrow">›</div></div><div class="sec-lbl">Heure & date</div><div class="rdv-time-grid"><div class="rdv-field"><div class="rdv-field-label">Heure</div><div class="rdv-field-val placeholder">Choisir</div></div><div class="rdv-field"><div class="rdv-field-label">Date</div><div class="rdv-field-val placeholder">Choisir</div></div></div><div class="sec-lbl">Prestation(s)</div><div class="prest-card"><div class="pc-bar"></div><div style="flex:1;"><div class="pc-name">Remplissage gel</div></div><div class="pc-price">65€</div></div><div class="sec-lbl">Paiement</div><div class="pay-grid"><div class="pay-card on" onclick="selPay(this)"><div class="pay-ic">💳</div><div class="pay-nm">Carte</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">📲</div><div class="pay-nm">Wero</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">💵</div><div class="pay-nm">Espèces</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">🅿️</div><div class="pay-nm">PayPal</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">⏭️</div><div class="pay-nm">Sans paiement</div></div></div></div><div class="enc-bottom"><button class="enc-btn" onclick="openFlowPro('flow-pro-confirm')">Créer le RDV →</button></div></div><div class="cs-backdrop" id="prdv-cs-bd" onclick="closeClienteSheet('prdv')"></div><div class="cliente-sheet" id="prdv-cs"><div class="cs-handle"></div><div class="cs-title">Choisir une cliente</div><div class="cs-option" onclick="selectCliente('prdv','Mes clientes','')"><div class="cs-ic">👤</div><div><div class="cs-name">Mes clientes</div></div></div><div class="cs-recent-label">Récentes</div><div class="cs-recent-item" onclick="selectCliente('prdv','Soraya L.','15 mars')"><div class="cs-r-av">S</div><div style="flex:1;"><div class="cs-r-name">Soraya L.</div></div></div></div></div>
 <div class="flow" id="flow-pro-vente"><div class="enc-page on" id="pvente-s1"><div class="flow-bar-w"><div class="flow-close-w" onclick="closeFlowPro('flow-pro-vente')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><div class="flow-title-w">Vente produit</div><div style="width:32px;"></div></div><div class="enc-scroll" style="padding-top:14px;"><div class="sec-lbl" style="margin-top:0;">Cliente</div><div class="cliente-picker" id="pvente-cliente-picker" onclick="openClienteSheet('pvente')"><div class="cp-av-empty"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#AAA" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div style="flex:1;"><div style="font-size:14px;font-weight:600;color:var(--gray);">Ajouter une cliente</div></div><div class="cp-arrow">›</div></div><div class="sec-lbl">Produit</div><div class="produit-card sel" onclick="selProduit(this)"><div class="produit-ic">💅</div><div class="produit-name">Top coat gel brillant</div><div class="produit-price">18€</div></div><div class="produit-card" onclick="selProduit(this)"><div class="produit-ic">🧴</div><div class="produit-name">Huile cuticules Rose</div><div class="produit-price">12€</div></div><div class="sec-lbl">Quantité</div><div class="qte-row"><button class="qte-btn" onclick="changeQte(-1)">−</button><div class="qte-val" id="pqte-val">1</div><button class="qte-btn" onclick="changeQte(1)">+</button></div><div class="total-line"><div class="total-lbl">Total</div><div class="total-amt">18€</div></div><div class="sec-lbl">Paiement</div><div class="pay-grid"><div class="pay-card on" onclick="selPay(this)"><div class="pay-ic">💳</div><div class="pay-nm">Carte</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">📲</div><div class="pay-nm">Wero</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">💵</div><div class="pay-nm">Espèces</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">🅿️</div><div class="pay-nm">PayPal</div></div></div></div><div class="enc-bottom"><button class="enc-btn" onclick="openFlowPro('flow-pro-confirm')">Encaisser 18€ →</button></div></div><div class="cs-backdrop" id="pvente-cs-bd" onclick="closeClienteSheet('pvente')"></div><div class="cliente-sheet" id="pvente-cs"><div class="cs-handle"></div><div class="cs-title">Choisir une cliente</div><div class="cs-option" onclick="selectCliente('pvente','Mes clientes','')"><div class="cs-ic">👤</div><div><div class="cs-name">Mes clientes</div></div></div></div></div>
+<!-- ═══ FLOW ENCAISSEMENT RDV ═══ -->
+<div class="flow" id="flow-pro-enc">
+
+<!-- PAGE 1 — Rendez-vous -->
+<div class="enc-page on" id="penc-s1">
+<div class="flow-bar-w"><div class="flow-close-w" onclick="closeFlowPro('flow-pro-enc')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><div class="flow-title-w">Rendez-vous</div><div style="width:32px;"></div></div>
+<div class="enc-progress"><div class="enc-pd on"></div><div class="enc-pd"></div><div class="enc-pd"></div><div class="enc-pd"></div></div>
+
+<div class="statut-pill" onclick="encTogStatut()">
+<div class="statut-left"><div class="statut-val" id="enc-sv">Réservé</div><div class="statut-online"><div class="statut-dot"></div>En ligne</div></div>
+<div class="statut-arr" id="enc-sa">▾</div>
+</div>
+<div class="chips-wrap" id="enc-chips">
+<div class="schip on" onclick="encSelSt(this,'Réservé')">Réservé</div>
+<div class="schip" onclick="encSelSt(this,'Confirmé')">Confirmé</div>
+<div class="schip" onclick="encSelSt(this,'Acompte reçu')">Acompte reçu</div>
+<div class="schip" onclick="encSelSt(this,'Déjà réglé')">Déjà réglé</div>
+<div class="schip red" onclick="encSelSt(this,'RDV manqué')">RDV manqué</div>
+<div class="schip red" onclick="encSelSt(this,'Annulé')">Annuler</div>
+</div>
+
+<div class="enc-scroll" style="padding-top:0;">
+<div class="enc-cliente">
+<div class="enc-cliente-top">
+<div class="enc-c-av">S</div>
+<div style="flex:1;"><div class="enc-c-name">Soraya Lehtinaf</div><div class="enc-c-contact"><span class="enc-c-link">+33 7 59 84 02 67</span> · <span class="enc-c-link">soraya@gmail.com</span></div></div>
+<div class="enc-c-btns"><div class="enc-c-btn">💬</div><div class="enc-c-btn" onclick="encTogAct()">⋯</div></div>
+</div>
+<div class="comment-box"><div class="comment-label">Commentaire de réservation</div><div class="comment-text">"J'ai un ongle cassé à réparer, ongles assez fragiles en ce moment."</div></div>
+<div class="rappel-box"><div class="rappel-ic">📌</div><div><div class="rappel-label">Rappel · Noté au dernier RDV</div><div class="rappel-text">Lui rendre ses écouteurs · Elle voulait essayer le stiletto</div><div class="rappel-done" onclick="this.closest('.rappel-box').style.display='none'">✓ Marquer comme fait</div></div></div>
+</div>
+
+<div class="enc-act-drawer" id="enc-act-drawer">
+<div class="act-item"><div class="act-ic">👤</div><div class="act-lbl">Afficher la fiche cliente</div></div>
+<div class="act-item"><div class="act-ic">✏️</div><div class="act-lbl">Modifier les renseignements</div></div>
+<div class="act-item"><div class="act-ic">📅</div><div class="act-lbl">Reprogrammer</div></div>
+<div class="act-item"><div class="act-ic">🔁</div><div class="act-lbl">Rendre récurrent</div></div>
+<div class="act-item"><div class="act-ic">🚫</div><div class="act-lbl red">Blacklister la cliente</div></div>
+</div>
+
+<div class="rdv-bar">
+<div class="rdv-cell"><div class="rdv-k">Heure</div><div class="rdv-v">14:00</div><div class="rdv-v2">→ 15:10</div></div>
+<div class="rdv-cell"><div class="rdv-k">Durée</div><div class="rdv-v">1h10</div></div>
+<div class="rdv-cell"><div class="rdv-k">Avec</div><div class="rdv-v">Sassa</div></div>
+<div class="rdv-cell"><div class="rdv-k">Date</div><div class="rdv-v">25 mars</div></div>
+</div>
+
+<div class="enc-prest">
+<div class="sec-lbl" style="margin-top:10px;">Prestations</div>
+<div class="enc-prest-card">
+<div class="prest-top"><div class="prest-bar" style="background:#6BB8E8;height:42px;"></div><div style="flex:1;"><div class="prest-name">Remplissage gel</div><div class="prest-sub">1h10 · Sassa</div></div><div class="prest-price">65€</div><div class="prest-del">🗑</div></div>
+<div class="prest-details"><div class="prest-detail-item"><div class="pdet-dot"></div>Gel X · Pose américaine</div><div class="prest-detail-item"><div class="pdet-dot"></div>French classique</div><div class="prest-detail-item pdet-file"><div class="pdet-dot"></div><span>📎</span><em>Voir fichier importé</em></div></div>
+</div>
+<div class="add-prest"><div class="add-ic">＋</div><div class="add-lbl">Ajouter une prestation</div></div>
+</div>
+
+<div class="total-bar"><div><div class="tb-left">Reste à payer</div><div class="tb-sub">Acompte versé : 19,50€ · Total : 65€</div></div><div class="tb-val">45,50€</div></div>
+</div>
+<div class="enc-bottom"><button class="enc-btn" onclick="encGo('penc-s1','penc-s2')">Encaisser →</button></div>
+</div>
+
+<!-- PAGE 2 — Notes de séance -->
+<div class="enc-page" id="penc-s2">
+<div class="flow-bar-w"><div class="flow-close-w" onclick="encGo('penc-s2','penc-s1')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></div><div class="flow-title-w">Notes de séance</div><div class="flow-next-w" onclick="encGo('penc-s2','penc-s3')">Passer</div></div>
+<div class="enc-progress"><div class="enc-pd on"></div><div class="enc-pd on"></div><div class="enc-pd"></div><div class="enc-pd"></div></div>
+<div class="enc-scroll" style="padding-top:10px;">
+<div class="note-btn" onclick="encGo('penc-s2','penc-mat')"><span style="font-size:18px;">📦</span><div class="note-btn-lbl">Matériel utilisé</div><span style="font-size:16px;color:#AAA;">›</span></div>
+<div class="sec-lbl">Pendant la séance</div>
+<div class="enc-toggle-row"><div class="tg-lbl">Série / film regardé</div><div class="enc-tg" onclick="encTogTg(this,'enc-sf')"><div class="enc-tg-k"></div></div></div>
+<div class="sub-field" id="enc-sf"><textarea class="enc-textarea" rows="2" placeholder="Ex : Desperate Housewives · S3 E12…"></textarea></div>
+<div class="enc-toggle-row"><div class="tg-lbl">Musique écoutée</div><div class="enc-tg" onclick="encTogTg(this,'enc-mu')"><div class="enc-tg-k"></div></div></div>
+<div class="sub-field" id="enc-mu"><textarea class="enc-textarea" rows="2" placeholder="Ex : R&B · playlist détente…"></textarea></div>
+<div class="enc-toggle-row" style="border:none;"><div class="tg-lbl">Note libre sur la séance</div><div class="enc-tg" onclick="encTogTg(this,'enc-nl')"><div class="enc-tg-k"></div></div></div>
+<div class="sub-field" id="enc-nl"><textarea class="enc-textarea" rows="3" placeholder="Ce que vous voulez retenir…"></textarea></div>
+<div class="note-btn" style="margin-top:8px;" onclick="encGo('penc-s2','penc-fiche')"><span style="font-size:18px;">👤</span><div class="note-btn-lbl">Ajouter des détails à la fiche cliente</div><span style="font-size:16px;color:#AAA;">›</span></div>
+<div class="sec-lbl">Rappel pour le prochain RDV</div>
+<div class="rappel-add"><div class="rappel-input-wrap"><input class="rappel-input" placeholder="Ex : Lui rendre ses écouteurs…" /><button class="rappel-save">Enregistrer</button></div></div>
+</div>
+<div class="enc-bottom"><button class="enc-btn" onclick="encGo('penc-s2','penc-s3')">Continuer →</button></div>
+</div>
+
+<!-- PAGE MATÉRIEL -->
+<div class="enc-page" id="penc-mat">
+<div class="flow-bar-w"><div class="flow-close-w" onclick="encGo('penc-mat','penc-s2')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></div><div class="flow-title-w">Matériel utilisé</div><div class="flow-next-w" onclick="encGo('penc-mat','penc-s2')">OK</div></div>
+<div class="enc-scroll" style="padding-top:10px;">
+<div class="stock-item"><div style="flex:1;"><div class="s-name">Gel UV Crystal</div><div class="s-sub">Stock restant : 18 poses</div></div><div class="qty-wrap"><div class="qty-btn" onclick="encChQ(this,-1)">−</div><div class="qty-val">1</div><div class="qty-btn" onclick="encChQ(this,1)">＋</div></div></div>
+<div class="stock-item"><div style="flex:1;"><div class="s-name">Vernis French blanc</div><div class="s-sub">Stock restant : 12 poses</div></div><div class="qty-wrap"><div class="qty-btn" onclick="encChQ(this,-1)">−</div><div class="qty-val">1</div><div class="qty-btn" onclick="encChQ(this,1)">＋</div></div></div>
+<div class="stock-item"><div style="flex:1;"><div class="s-name">Top coat brillant</div><div class="s-sub">Stock restant : 22 poses</div></div><div class="qty-wrap"><div class="qty-btn" onclick="encChQ(this,-1)">−</div><div class="qty-val">1</div><div class="qty-btn" onclick="encChQ(this,1)">＋</div></div></div>
+<div class="stock-item"><div style="flex:1;"><div class="s-name">Capsules amande taille M</div><div class="s-sub">Stock restant : 8 boîtes</div></div><div class="qty-wrap"><div class="qty-btn" onclick="encChQ(this,-1)">−</div><div class="qty-val">0</div><div class="qty-btn" onclick="encChQ(this,1)">＋</div></div></div>
+<div class="add-stock"><div class="add-ic">＋</div><div class="add-lbl">Ajouter un matériel</div></div>
+</div>
+</div>
+
+<!-- PAGE FICHE CLIENTE -->
+<div class="enc-page" id="penc-fiche">
+<div class="flow-bar-w"><div class="flow-close-w" onclick="encGo('penc-fiche','penc-s2')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></div><div class="flow-title-w">Fiche cliente</div><div class="flow-next-w" onclick="encGo('penc-fiche','penc-s2')">Enregistrer</div></div>
+<div class="enc-scroll" style="padding-top:12px;">
+<div class="sec-lbl">Ce que la cliente a partagé</div>
+<textarea class="enc-textarea" rows="3" placeholder="Sujets de conversation, anecdotes, infos personnelles utiles…" style="margin-bottom:12px;"></textarea>
+<div class="sec-lbl">Préférences & habitudes</div>
+<textarea class="enc-textarea" rows="3" placeholder="Gel préféré, forme habituelle, allergies, sensibilités…" style="margin-bottom:12px;"></textarea>
+<div class="sec-lbl">Note perso sur cette cliente</div>
+<textarea class="enc-textarea" rows="3" placeholder="Observations, comportement, à garder en tête…"></textarea>
+</div>
+</div>
+
+<!-- PAGE 3 — Paiement -->
+<div class="enc-page" id="penc-s3">
+<div class="flow-bar-w"><div class="flow-close-w" onclick="encGo('penc-s3','penc-s2')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></div><div class="flow-title-w">Paiement</div><div style="width:32px;"></div></div>
+<div class="enc-progress"><div class="enc-pd on"></div><div class="enc-pd on"></div><div class="enc-pd on"></div><div class="enc-pd"></div></div>
+<div class="amount-hdr" style="padding:12px 16px 4px;"><div class="amount-lbl">Reste à payer</div><div class="amount-val">45,50€</div></div>
+<div class="enc-scroll" style="padding-top:10px;">
+<div class="sec-lbl">Pourboire (optionnel)</div>
+<div class="tip-grid">
+<div class="tip-card on" onclick="encSelTip(this)"><div class="tip-pct">Aucun</div></div>
+<div class="tip-card" onclick="encSelTip(this)"><div class="tip-pct">10%</div><div class="tip-amt">4,55€</div></div>
+<div class="tip-card" onclick="encSelTip(this)"><div class="tip-pct">15%</div><div class="tip-amt">6,83€</div></div>
+<div class="tip-card" onclick="encSelTip(this)"><div class="tip-pct">20%</div><div class="tip-amt">9,10€</div></div>
+</div>
+<div class="custom-tip"><input placeholder="Montant personnalisé" type="number" /><div class="unit-toggle"><button class="ut-btn on" onclick="encSelU(this)">€</button><button class="ut-btn" onclick="encSelU(this)">%</button></div></div>
+<div class="sec-lbl">Mode de paiement</div>
+<div class="pay-grid">
+<div class="pay-card on" onclick="selPay(this)"><div class="pay-ic">💵</div><div class="pay-nm">Espèces</div></div>
+<div class="pay-card" onclick="selPay(this)"><div class="pay-ic">💳</div><div class="pay-nm">Carte</div></div>
+<div class="pay-card" onclick="selPay(this)"><div class="pay-ic">📲</div><div class="pay-nm">Wero</div></div>
+<div class="pay-card" onclick="selPay(this)"><div class="pay-ic">🅿️</div><div class="pay-nm">PayPal</div></div>
+</div>
+<div class="impaye">Enregistrer comme impayé</div>
+</div>
+<div class="enc-bottom"><button class="enc-btn" onclick="encGo('penc-s3','penc-s4')">Valider le paiement →</button></div>
+</div>
+
+<!-- PAGE 4 — Confirmation -->
+<div class="enc-page" id="penc-s4">
+<div class="conf-body">
+<div class="chk">✓</div>
+<div style="font-size:22px;font-weight:800;color:var(--black);">Vente terminée</div>
+<div style="font-size:13px;color:var(--gray);line-height:1.6;">Séance enregistrée.<br>Stocks mis à jour automatiquement.</div>
+<div class="conf-card">
+<div class="cf-row"><span class="cf-k">Cliente</span><span class="cf-v">Soraya Lehtinaf</span></div>
+<div class="cf-row"><span class="cf-k">Prestation</span><span class="cf-v">Remplissage + French</span></div>
+<div class="cf-row"><span class="cf-k">Encaissé</span><span class="cf-v">45,50€ · Espèces</span></div>
+<div class="cf-row"><span class="cf-k">Acompte</span><span class="cf-v">19,50€ ✓</span></div>
+<div class="cf-row"><span class="cf-k">Total séance</span><span class="cf-v">65€</span></div>
+</div>
+</div>
+<div class="enc-bottom">
+<button class="enc-btn" onclick="encGo('penc-s4','penc-fact')">Voir la facture complète →</button>
+<button class="enc-btn-outline">Envoyer la facture à la cliente</button>
+<div style="display:flex;gap:8px;margin-top:6px;">
+<button class="enc-btn-ghost" style="flex:1;" onclick="closeFlowPro('flow-pro-enc')">Retour au planning</button>
+<button class="enc-btn-ghost" style="flex:1;">Fiche cliente</button>
+</div>
+</div>
+</div>
+
+<!-- PAGE FACTURE -->
+<div class="enc-page" id="penc-fact">
+<div class="flow-bar-w"><div class="flow-close-w" onclick="encGo('penc-fact','penc-s4')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></div><div class="flow-title-w">Facture · 25 mars 2026</div><div class="flow-next-w">PDF</div></div>
+<div class="enc-scroll" style="padding-top:12px;">
+<div class="facture-section"><div class="fact-title">Recettes</div><div class="fact-row"><span class="fact-k">Prestation encaissée</span><span class="fact-v">65,00€</span></div><div class="fact-row"><span class="fact-k">Dont acompte (versé avant)</span><span class="fact-v">19,50€</span></div><div class="fact-row"><span class="fact-k">Encaissé aujourd'hui</span><span class="fact-v">45,50€</span></div><div class="fact-row"><span class="fact-k">Mode de paiement</span><span class="fact-v">Espèces</span></div></div>
+<div class="facture-section"><div class="fact-title">Coûts directs</div><div class="fact-row"><span class="fact-k">Gel UV Crystal (1 pose)</span><span class="fact-v">−2,80€</span></div><div class="fact-row"><span class="fact-k">Vernis French blanc (1 pose)</span><span class="fact-v">−1,20€</span></div><div class="fact-row"><span class="fact-k">Top coat brillant (1 pose)</span><span class="fact-v">−0,90€</span></div><div class="fact-row"><span class="fact-k">Total matériel</span><span class="fact-v">−4,90€</span></div></div>
+<div class="facture-section"><div class="fact-title">Charges à provisionner</div><div class="fact-row"><span class="fact-k">URSSAF estimée (22%)</span><span class="fact-v">−14,30€</span></div><div class="fact-row"><span class="fact-k">Quote-part abonnement SEAVEN</span><span class="fact-v">−2,63€</span></div></div>
+<div class="facture-section"><div class="fact-total"><span class="fact-total-k">Revenu net estimé</span><span class="fact-total-v">43,17€</span></div></div>
+</div>
+<div class="enc-bottom"><button class="enc-btn">Exporter en PDF</button><button class="enc-btn-outline">Envoyer à la cliente</button></div>
+</div>
+
+</div><!-- /flow-pro-enc -->
+
 <div class="flow" id="flow-pro-confirm"><div class="flow-bar-w"><div style="width:32px;"></div><div class="flow-title-w"></div><div style="width:32px;"></div></div><div class="conf-body"><div class="chk">✓</div><div style="font-size:24px;font-weight:900;color:var(--black);">Publié !</div><div class="conf-card"><div class="cf-row"><span class="cf-k">Type</span><span class="cf-v">Publication</span></div><div class="cf-row"><span class="cf-k">Date</span><span class="cf-v">30 mars 2026</span></div></div><button onclick="closeAllFlowsPro()" style="padding:14px 32px;border-radius:14px;background:var(--black);color:white;font-size:15px;font-weight:800;border:none;cursor:pointer;font-family:'Manrope',sans-serif;width:100%;">Retour à l'accueil</button></div></div>
 </div><!-- /screen-pro -->
 
@@ -3951,12 +4237,12 @@ function setFeedView(n,btn){btn.closest('.view-toggle').querySelectorAll('.vbtn'
 // ── MODULE PLANNING ──
 const planModals={
 new:'<div class="plan-mo-title">Nouveau créneau</div><div class="plan-mo-sub">Que voulez-vous créer ?</div><div class="plan-mo-btns"><button class="plan-mbtn" onclick="planCloseModal()">🚫 Bloquer</button><button class="plan-mbtn dark" onclick="planCloseModal()">📅 Réservation →</button></div>',
-e1:'<div class="plan-mo-title">Soraya Lehtinaf</div><div class="plan-mo-sub">Réservée en ligne ●</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Remplissage gel</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">10:00 → 11:10</span></div><div class="plan-mo-row"><span class="plan-mk">Durée</span><span class="plan-mv">1h10</span></div><div class="plan-mo-row"><span class="plan-mk">Prestataire</span><span class="plan-mv">Sassa</span></div><div class="plan-mo-row"><span class="plan-mk">Acompte</span><span class="plan-mv">19,50€ ✓</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn">Modifier</button><button class="plan-mbtn dark">Encaisser →</button></div>',
-e2:'<div class="plan-mo-title">Marine Dupont</div><div class="plan-mo-sub">Créée manuellement</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Manucure simple</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">12:00 → 12:50</span></div><div class="plan-mo-row"><span class="plan-mk">Prestataire</span><span class="plan-mv">Sassa</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn">Modifier</button><button class="plan-mbtn dark">Encaisser →</button></div>',
-e3:'<div class="plan-mo-title">Anaïs Ferreira</div><div class="plan-mo-sub">Réservée en ligne ●</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Blanchiment dentaire</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">14:00 → 15:00</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn dark">Encaisser →</button></div>',
-e4:'<div class="plan-mo-title">Nina Wamir / Ylan A.</div><div class="plan-mo-sub">Réservée en ligne ●</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Forfait manucure + pédicure</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">16:00 → 17:30</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn dark">Encaisser →</button></div>',
-e5:'<div class="plan-mo-title">Karina B. — Urgence</div><div class="plan-mo-sub">Créneau d\'urgence · En ligne ●</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Manucure express</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">15:00 → 16:00</span></div><div class="plan-mo-btns"><button class="plan-mbtn dark">Encaisser →</button></div>',
-e6:'<div class="plan-mo-title">Corriga Sophie</div><div class="plan-mo-sub">Créée manuellement</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Dépose seule</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">09:00 → 10:00</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn dark">Encaisser →</button></div>',
+e1:'<div class="plan-mo-title">Soraya Lehtinaf</div><div class="plan-mo-sub">Réservée en ligne ●</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Remplissage gel</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">10:00 → 11:10</span></div><div class="plan-mo-row"><span class="plan-mk">Durée</span><span class="plan-mv">1h10</span></div><div class="plan-mo-row"><span class="plan-mk">Prestataire</span><span class="plan-mv">Sassa</span></div><div class="plan-mo-row"><span class="plan-mk">Acompte</span><span class="plan-mv">19,50€ ✓</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn">Modifier</button><button class="plan-mbtn dark" onclick="planCloseModal();openFlowPro(\'flow-pro-enc\')">Encaisser →</button></div>',
+e2:'<div class="plan-mo-title">Marine Dupont</div><div class="plan-mo-sub">Créée manuellement</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Manucure simple</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">12:00 → 12:50</span></div><div class="plan-mo-row"><span class="plan-mk">Prestataire</span><span class="plan-mv">Sassa</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn">Modifier</button><button class="plan-mbtn dark" onclick="planCloseModal();openFlowPro(\'flow-pro-enc\')">Encaisser →</button></div>',
+e3:'<div class="plan-mo-title">Anaïs Ferreira</div><div class="plan-mo-sub">Réservée en ligne ●</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Blanchiment dentaire</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">14:00 → 15:00</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn dark" onclick="planCloseModal();openFlowPro(\'flow-pro-enc\')">Encaisser →</button></div>',
+e4:'<div class="plan-mo-title">Nina Wamir / Ylan A.</div><div class="plan-mo-sub">Réservée en ligne ●</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Forfait manucure + pédicure</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">16:00 → 17:30</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn dark" onclick="planCloseModal();openFlowPro(\'flow-pro-enc\')">Encaisser →</button></div>',
+e5:'<div class="plan-mo-title">Karina B. — Urgence</div><div class="plan-mo-sub">Créneau d\'urgence · En ligne ●</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Manucure express</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">15:00 → 16:00</span></div><div class="plan-mo-btns"><button class="plan-mbtn dark" onclick="planCloseModal();openFlowPro(\'flow-pro-enc\')">Encaisser →</button></div>',
+e6:'<div class="plan-mo-title">Corriga Sophie</div><div class="plan-mo-sub">Créée manuellement</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Dépose seule</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">09:00 → 10:00</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn dark" onclick="planCloseModal();openFlowPro(\'flow-pro-enc\')">Encaisser →</button></div>',
 blocked:'<div class="plan-mo-title">Créneau bloqué</div><div class="plan-mo-sub">Indisponibilité manuelle</div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">18:30 → 19:30</span></div><div class="plan-mo-btns"><button class="plan-mbtn dark" onclick="planCloseModal()">Débloquer</button></div>'
 };
 function planSetView(v,el){
@@ -4065,6 +4351,15 @@ picker.classList.add('filled');
 picker.innerHTML=`<div class="cp-av">${name[0]}</div><div style="flex:1;"><div class="cp-name">${name}</div>${sub?`<div class="cp-sub">${sub}</div>`:''}</div><div class="cp-arrow" onclick="openClienteSheet('${ctx}')">›</div>`;
 closeClienteSheet(ctx);
 }
+
+// ── FLOW ENCAISSEMENT RDV ──
+function encTogStatut(){document.getElementById('enc-chips').classList.toggle('open');document.getElementById('enc-sa').classList.toggle('up');}
+function encSelSt(el,v){document.querySelectorAll('#flow-pro-enc .schip').forEach(c=>c.classList.remove('on'));el.classList.add('on');document.getElementById('enc-sv').textContent=v;encTogStatut();}
+function encTogAct(){document.getElementById('enc-act-drawer').classList.toggle('open');}
+function encTogTg(el,id){el.classList.toggle('on');document.getElementById(id).classList.toggle('open');}
+function encChQ(btn,d){const w=btn.closest('.qty-wrap');const v=w.querySelector('.qty-val');let n=parseInt(v.textContent)+d;if(n<0)n=0;v.textContent=n;}
+function encSelTip(el){el.closest('.tip-grid').querySelectorAll('.tip-card').forEach(c=>c.classList.remove('on'));el.classList.add('on');}
+function encSelU(el){el.closest('.unit-toggle').querySelectorAll('.ut-btn').forEach(b=>b.classList.remove('on'));el.classList.add('on');}
 </script>
 
 </body>
