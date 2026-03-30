@@ -9,8 +9,8 @@
 <style>
 :root{--black:#1A1A1A;--gray:#8E8E93;--light:#F2F2F7;--border:#E5E5EA;--grad:linear-gradient(135deg,#C9A84C,#7EC8A4,#4FC4CF,#4A90D9);}
 *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
-body{background:#D4D4DB;display:flex;flex-direction:column;align-items:center;padding:20px 16px 40px;font-family:'Manrope',-apple-system,sans-serif;gap:14px;min-height:100vh;min-height:100dvh;}
-.phone{width:375px;height:812px;background:white;border-radius:52px;box-shadow:0 32px 80px rgba(0,0,0,0.18),0 0 0 1px rgba(0,0,0,0.06);overflow:hidden;position:relative;}
+body{background:white;display:flex;flex-direction:column;align-items:center;padding:0;font-family:'Manrope',-apple-system,sans-serif;gap:0;min-height:100vh;min-height:100dvh;}
+.phone{width:100vw;height:100vh;height:100svh;height:100dvh;background:white;border-radius:0;box-shadow:none;overflow:hidden;position:relative;}
 /* Tout ce qui est enfant direct de .phone et pas une vue/module reste invisible */
 .phone>*:not(.page):not(.screen):not(.module):not(.prof-module){display:none!important;}
 
@@ -157,7 +157,7 @@ body{background:#D4D4DB;display:flex;flex-direction:column;align-items:center;pa
 .grid-area{height:551px;flex-shrink:0;display:flex;flex-direction:column;overflow:hidden;padding-top:4px;}
 .grid-slider{flex:1;overflow:hidden;}
 .grid-track{display:flex;height:100%;transition:transform .32s cubic-bezier(.4,0,.2,1);}
-.grid-page{min-width:375px;width:375px;height:100%;display:grid;grid-template-columns:93px 93px 93px 93px;grid-template-rows:repeat(4,1fr);padding:0;gap:0;overflow:hidden;}
+.grid-page{min-width:100vw;width:100vw;height:100%;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);padding:0;gap:0;overflow:hidden;}
 .app-item{width:93px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
 .app-item:active .app-icon{transform:scale(.88);}
 .app-icon{width:60px;height:60px;border-radius:15px;background:var(–light);display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 1px 6px rgba(0,0,0,.08);position:relative;transition:transform .12s;}
@@ -1213,13 +1213,15 @@ const track=document.getElementById(trackId);if(!track)return;
 const dots=document.getElementById(dotsId).querySelectorAll('.pdot');
 const pages=track.querySelectorAll('.grid-page');
 let cur=0,startX=0,dragging=false;
-function goTo(n){cur=Math.max(0,Math.min(pages.length-1,n));track.style.transform=`translateX(-${cur*(100/pages.length)}%)`;dots.forEach((d,i)=>d.classList.toggle('on',i===cur));}
-track.style.width=`${pages.length*375}px`;
-pages.forEach(p=>{p.style.minWidth='375px';p.style.width='375px';});
+function pageW(){return document.querySelector('.phone')?.clientWidth||window.innerWidth;}
+function applyWidths(){const w=pageW();track.style.width=`${pages.length*w}px`;pages.forEach(p=>{p.style.minWidth=w+'px';p.style.width=w+'px';});}
+function goTo(n){cur=Math.max(0,Math.min(pages.length-1,n));track.style.transform=`translateX(-${cur*pageW()}px)`;dots.forEach((d,i)=>d.classList.toggle('on',i===cur));}
+applyWidths();
 track.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;dragging=true;},{passive:true});
 track.addEventListener('touchend',e=>{if(!dragging)return;if(Math.abs(startX-e.changedTouches[0].clientX)>40)goTo(cur+(startX-e.changedTouches[0].clientX>0?1:-1));dragging=false;});
 track.addEventListener('mousedown',e=>{startX=e.clientX;dragging=true;e.preventDefault();});
 window.addEventListener('mouseup',e=>{if(!dragging)return;if(Math.abs(startX-e.clientX)>40)goTo(cur+(startX-e.clientX>0?1:-1));dragging=false;});
+window.addEventListener('resize',()=>{applyWidths();goTo(cur);});
 goTo(0);
 }
 initSwipe('c-track','c-dots');
