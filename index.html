@@ -1033,3 +1033,41 @@ MODULES PROFIL
 <div id="mm-mesprod" style="display:none"><button class="add-btn">＋ Ajouter un produit</button><div class="myprod-card"><div class="mp-img">🧴</div><div><div class="mp-name">Gel UV Crystal Top Coat</div><div class="mp-meta">3 vendus · En stock</div></div><div class="mp-price">18,90€</div></div><div class="myprod-card"><div class="mp-img">🌿</div><div><div class="mp-name">Huile cuticules bio</div><div class="mp-meta">7 vendus · En stock</div></div><div class="mp-price">7,90€</div></div></div>
 </div>
 </div>
+
+<!-- NOTIFICATIONS -->
+
+<div class="module" id="mod-notifs">
+<div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-notifs')">‹</div><div class="mod-title">Notifications</div><div class="mod-action">Tout lire</div></div>
+<div class="mod-tabs"><div class="mod-tab on" onclick="modTab(this,'mn-all')">Tout</div><div class="mod-tab" onclick="modTab(this,'mn-rdv')">RDV</div><div class="mod-tab" onclick="modTab(this,'mn-social')">Social</div></div>
+<div class="mod-scroll">
+<div id="mn-all">
+<div class="notif-item unread"><div class="notif-dot"></div><div class="notif-avatar">📅</div><div style="flex:1"><div class="notif-text"><strong>Nouvelle réservation</strong> — Soraya L. a réservé pour le mar. 25 mars à 14h00.</div><div class="notif-time">il y a 5 min</div></div></div>
+<div class="notif-item unread"><div class="notif-dot"></div><div class="notif-avatar">⭐</div><div style="flex:1"><div class="notif-text"><strong>Nouvel avis</strong> — Ylan A. vous a laissé un avis 5 étoiles.</div><div class="notif-time">il y a 1h</div></div></div>
+<div class="notif-item"><div class="notif-dot read"></div><div class="notif-avatar">💬</div><div style="flex:1"><div class="notif-text"><strong>Commentaire</strong> — Nina a commenté votre publication.</div><div class="notif-time">il y a 2h</div></div></div>
+<div class="notif-item unread"><div class="notif-dot"></div><div class="notif-avatar">⏰</div><div style="flex:1"><div class="notif-text"><strong>Rappel RDV</strong> — Votre rendez-vous chez Bloom Nails est demain à 14h00.</div><div class="notif-time">il y a 3h</div></div></div>
+<div class="notif-item"><div class="notif-dot read"></div><div class="notif-avatar">❌</div><div style="flex:1"><div class="notif-text"><strong>Annulation</strong> — Marine B. a annulé son RDV du 26 mars.</div><div class="notif-time">hier</div></div></div>
+<div class="notif-item"><div class="notif-dot read"></div><div class="notif-avatar">❤️</div><div style="flex:1"><div class="notif-text"><strong>Like</strong> — Soraya a aimé votre publication.</div><div class="notif-time">il y a 2 jours</div></div></div>
+</div>
+<div id="mn-rdv" style="display:none">
+<div class="notif-item unread"><div class="notif-dot"></div><div class="notif-avatar">📅</div><div style="flex:1"><div class="notif-text"><strong>Nouvelle réservation</strong> — Soraya L. mar. 25 mars 14h.</div><div class="notif-time">il y a 5 min</div></div></div>
+<div class="notif-item"><div class="notif-dot read"></div><div class="notif-avatar">❌</div><div style="flex:1"><div class="notif-text"><strong>Annulation</strong> — Marine B. a annulé son RDV du 26 mars.</div><div class="notif-time">hier</div></div></div>
+</div>
+<div id="mn-social" style="display:none">
+<div class="notif-item"><div class="notif-dot read"></div><div class="notif-avatar">💬</div><div style="flex:1"><div class="notif-text"><strong>Commentaire</strong> — Nina a commenté votre publication.</div><div class="notif-time">il y a 2h</div></div></div>
+<div class="notif-item"><div class="notif-dot read"></div><div class="notif-avatar">❤️</div><div style="flex:1"><div class="notif-text"><strong>Like</strong> — Soraya a aimé votre publication.</div><div class="notif-time">il y a 2 jours</div></div></div>
+</div>
+</div>
+</div>
+
+<!-- PANIER -->
+
+<div class="module" id="mod-panier">
+<div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-panier')">‹</div><div class="mod-title">Panier</div><div class="mod-action">Mes commandes</div></div>
+<div class="cart-sel-row"><div class="cart-sel-lbl" onclick="selAll()">Tout sélectionner</div><div style="font-size:12px;color:#AAA;">3 articles</div></div>
+<div class="mod-scroll">
+<div class="cart-item"><div class="cart-check on" onclick="togCart(this)">✓</div><div class="cart-img">🧴</div><div style="flex:1;"><div class="cart-name">Gel UV Crystal Top Coat</div><div class="cart-seller">Bloom Nails</div><div class="cart-stock">Il en reste 4</div><div class="cart-qty"><div class="cq-btn" onclick="chC(this,-1)">−</div><div class="cq-val">1</div><div class="cq-btn" onclick="chC(this,1)">＋</div></div></div><div class="cart-price">18,90€</div></div>
+<div class="cart-item"><div class="cart-check on" onclick="togCart(this)">✓</div><div class="cart-img">💎</div><div style="flex:1;"><div class="cart-name">Strass nail art × 200</div><div class="cart-seller">Karima</div><div class="cart-stock">En stock</div><div class="cart-qty"><div class="cq-btn" onclick="chC(this,-1)">−</div><div class="cq-val">2</div><div class="cq-btn" onclick="chC(this,1)">＋</div></div></div><div class="cart-price">19,00€</div></div>
+<div class="cart-item"><div class="cart-check" onclick="togCart(this)"></div><div class="cart-img">🌿</div><div style="flex:1;"><div class="cart-name">Huile cuticules bio</div><div class="cart-seller">Bloom Nails</div><div class="cart-stock">⚠️ Derniers en stock</div><div class="cart-qty"><div class="cq-btn" onclick="chC(this,-1)">−</div><div class="cq-val">1</div><div class="cq-btn" onclick="chC(this,1)">＋</div></div></div><div class="cart-price">7,90€</div></div>
+</div>
+<div class="cart-bottom"><div class="cart-total-row"><div class="ct-lbl">Total sélection</div><div class="ct-val">37,90€</div></div><button class="btn-main">Commander (2 articles) →</button></div>
+</div>
