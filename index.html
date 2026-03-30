@@ -260,6 +260,95 @@ body.dark-mode{
 .mod-tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0;}
 .mod-tab{flex:1;padding:11px 0;text-align:center;font-size:13px;font-weight:700;color:var(--gray);cursor:pointer;border-bottom:2px solid transparent;}
 .mod-tab.on{color:var(--black);border-bottom:2px solid var(--black);}
+/* ══ PLANNING (mod-planning) ══ */
+#mod-planning{display:flex;flex-direction:column;min-height:0;background:var(--bg);}
+#mod-planning .plan-mod-fill{flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden;position:relative;}
+#mod-planning .plan-top{padding:4px 16px 4px;flex-shrink:0;}
+#mod-planning .plan-top-row1{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+#mod-planning .plan-brand{font-size:18px;font-weight:900;color:var(--black);letter-spacing:-0.5px;}
+#mod-planning .date-pill{display:inline-flex;align-items:center;gap:5px;background:var(--light);border-radius:10px;padding:5px 12px;cursor:pointer;position:relative;}
+#mod-planning .date-pill-txt{font-size:13px;font-weight:700;color:var(--black);}
+#mod-planning .date-pill-arr{font-size:11px;color:var(--gray);transition:transform .2s;}
+#mod-planning .date-pill-arr.up{transform:rotate(180deg);}
+#mod-planning .nav-dropdown{position:absolute;top:100%;left:0;background:var(--bg);border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.14);z-index:30;overflow:hidden;min-width:200px;display:none;margin-top:4px;}
+#mod-planning .nav-dropdown.open{display:block;}
+#mod-planning .nav-opt{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid #F5F5F5;cursor:pointer;}
+#mod-planning .nav-opt:last-child{border-bottom:none;}
+#mod-planning .nav-opt:hover{background:#F8F8F8;}
+#mod-planning .nav-opt-label{font-size:14px;font-weight:700;color:var(--black);}
+#mod-planning .nav-opt-date{font-size:12px;color:var(--gray);}
+#mod-planning .nav-opt.active{background:#F8F8F8;}
+#mod-planning .view-sw{display:flex;gap:0;padding:0 16px 8px;flex-shrink:0;}
+#mod-planning .vsw{flex:1;padding:7px 0;text-align:center;font-size:12px;font-weight:700;color:var(--gray);border:1.5px solid var(--border);cursor:pointer;background:var(--bg);}
+#mod-planning .vsw:first-child{border-radius:10px 0 0 10px;}
+#mod-planning .vsw:last-child{border-radius:0 10px 10px 0;}
+#mod-planning .vsw+.vsw{border-left:none;}
+#mod-planning .vsw.on{background:var(--black);color:var(--btn-fg);border-color:var(--black);z-index:1;}
+#mod-planning .plan-grid-wrap{flex:1;overflow:auto;min-height:0;display:flex;flex-direction:column;}
+#mod-planning #plan-view-month{flex:1;min-height:0;display:none;flex-direction:column;}
+#mod-planning .plan-grid-wrap::-webkit-scrollbar{display:none;}
+#mod-planning .plan-grid{display:flex;min-height:100%;}
+#mod-planning .time-col{width:46px;flex-shrink:0;position:sticky;left:0;background:var(--bg);z-index:5;padding-top:36px;}
+#mod-planning .time-slot{height:60px;display:flex;align-items:flex-start;justify-content:flex-end;padding-right:6px;padding-top:3px;font-size:10px;font-weight:600;color:#BBB;position:relative;}
+#mod-planning .time-slot::after{content:'';position:absolute;right:0;top:0;left:0;height:1px;background:#F5F5F5;}
+#mod-planning .days-wrap{display:flex;flex:1;}
+#mod-planning .day-col{flex:1;min-width:0;border-left:1px solid #F8F8F8;position:relative;}
+#mod-planning .day-col.off{background:repeating-linear-gradient(45deg,#FAFAFA,#FAFAFA 4px,white 4px,white 8px);}
+#mod-planning .day-header{height:36px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:sticky;top:0;background:var(--bg);z-index:4;border-bottom:1px solid #F0F0F0;}
+#mod-planning .dh-n{font-size:9px;font-weight:700;color:#AAA;text-transform:uppercase;}
+#mod-planning .dh-d{font-size:14px;font-weight:800;color:var(--black);}
+#mod-planning .dh-d.today{width:26px;height:26px;border-radius:50%;background:var(--black);color:var(--btn-fg);display:flex;align-items:center;justify-content:center;font-size:13px;}
+#mod-planning .day-col.off .dh-n,#mod-planning .day-col.off .dh-d{color:#DDD;}
+#mod-planning .hour-row{height:60px;border-bottom:1px solid #F8F8F8;position:relative;cursor:pointer;}
+#mod-planning .hour-row:hover{background:#FAFAFA;}
+#mod-planning .hour-row::after{content:'';position:absolute;left:0;right:0;top:50%;height:1px;background:#FAFAFA;}
+#mod-planning .event{position:absolute;left:3px;right:3px;border-radius:10px;padding:4px 6px 4px 9px;cursor:pointer;overflow:hidden;z-index:2;border-left:3px solid rgba(0,0,0,.2);}
+#mod-planning .event:active{opacity:.8;}
+#mod-planning .event-name{font-size:10px;font-weight:800;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+#mod-planning .event-meta{font-size:9px;color:rgba(255,255,255,.75);margin-top:1px;white-space:nowrap;overflow:hidden;}
+#mod-planning .event-staff{font-size:9px;font-weight:700;color:rgba(255,255,255,.9);margin-top:1px;}
+#mod-planning .event-online{position:absolute;top:4px;right:5px;width:5px;height:5px;border-radius:50%;background:white;opacity:.85;}
+#mod-planning .c-rose{background:#E8638C;}#mod-planning .c-bleu{background:#6BB8E8;}#mod-planning .c-bleuf{background:#3A6EA8;}#mod-planning .c-vert{background:#3DA874;}#mod-planning .c-violet{background:#A87DC8;}#mod-planning .c-gris{background:#AAAABC;}#mod-planning .c-jaune{background:#C8960A;}
+#mod-planning .now-line{position:absolute;left:0;right:0;z-index:3;pointer-events:none;}
+#mod-planning .now-dot{width:8px;height:8px;border-radius:50%;background:#FF3B30;position:absolute;left:-1px;top:-4px;}
+#mod-planning .now-bar{height:2px;background:#FF3B30;margin-left:7px;}
+#mod-planning .month-grid{padding:8px 16px;}
+#mod-planning .month-days-hdr{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:4px;}
+#mod-planning .mdh{text-align:center;font-size:10px;font-weight:700;color:#AAA;padding:4px 0;}
+#mod-planning .month-cells{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
+#mod-planning .mcell{min-height:72px;padding:4px;border-radius:8px;cursor:pointer;}
+#mod-planning .mcell:hover{background:#F8F8F8;}
+#mod-planning .mcell.off{opacity:.3;}
+#mod-planning .mc-num{font-size:12px;font-weight:700;color:var(--black);width:22px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:50%;}
+#mod-planning .mc-num.today{background:var(--black);color:var(--btn-fg);}
+#mod-planning .mc-ev{height:14px;border-radius:4px;padding:0 3px;font-size:8px;font-weight:700;color:white;white-space:nowrap;overflow:hidden;display:flex;align-items:center;margin-top:2px;}
+#mod-planning .mc-more{font-size:9px;color:var(--gray);margin-top:2px;}
+#mod-planning .team-panel{position:absolute;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:40;display:none;flex-direction:column;}
+#mod-planning .team-panel.open{display:flex;}
+#mod-planning .team-panel-hdr{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid #F0F0F0;}
+#mod-planning .team-panel-title{font-size:18px;font-weight:800;color:var(--black);}
+#mod-planning .team-close{font-size:22px;cursor:pointer;color:var(--black);}
+#mod-planning .team-member{display:flex;align-items:center;gap:14px;padding:14px 20px;border-bottom:1px solid #F5F5F5;cursor:pointer;}
+#mod-planning .team-member:active{background:#F8F8F8;}
+#mod-planning .team-av{width:48px;height:48px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:var(--black);flex-shrink:0;}
+#mod-planning .team-name{font-size:15px;font-weight:800;color:var(--black);}
+#mod-planning .team-meta{font-size:12px;color:var(--gray);margin-top:2px;}
+#mod-planning .team-check{margin-left:auto;width:22px;height:22px;border-radius:50%;border:1.5px solid #DDD;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;}
+#mod-planning .team-check.on{background:var(--black);border-color:var(--black);color:var(--btn-fg);}
+#mod-planning .plan-mo-overlay{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.25);z-index:50;display:none;align-items:flex-end;}
+#mod-planning .plan-mo-overlay.open{display:flex;}
+#mod-planning .plan-mo-sheet{background:var(--bg);border-radius:20px 20px 0 0;padding:16px 20px max(20px,env(safe-area-inset-bottom));width:100%;}
+#mod-planning .plan-mo-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 14px;}
+#mod-planning .plan-mo-title{font-size:18px;font-weight:800;color:var(--black);margin-bottom:3px;}
+#mod-planning .plan-mo-sub{font-size:12px;color:var(--gray);margin-bottom:14px;}
+#mod-planning .plan-mo-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #F5F5F5;}
+#mod-planning .plan-mo-row:last-of-type{border-bottom:none;}
+#mod-planning .plan-mk{font-size:13px;color:var(--gray);}
+#mod-planning .plan-mv{font-size:13px;font-weight:700;color:var(--black);}
+#mod-planning .plan-mo-btns{display:flex;gap:8px;margin-top:14px;}
+#mod-planning .plan-mbtn{flex:1;padding:12px;border-radius:12px;border:1.5px solid var(--border);font-size:13px;font-weight:700;color:var(--black);cursor:pointer;background:var(--bg);font-family:'Manrope',sans-serif;}
+#mod-planning .plan-mbtn.dark{background:var(--black);color:var(--btn-fg);border-color:var(--black);}
+#mod-planning .plan-fab{position:absolute;right:14px;bottom:14px;width:52px;height:52px;border-radius:16px;background:var(--black);color:var(--btn-fg);border:none;font-size:22px;font-weight:300;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.2);z-index:15;font-family:'Manrope',sans-serif;display:flex;align-items:center;justify-content:center;}
 /* ══ BLACKLIST ══ */
 #mod-blacklist{display:flex;flex-direction:column;min-height:0;}
 #mod-blacklist .navbar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px 6px;flex-shrink:0;}
@@ -479,28 +568,30 @@ body.dark-mode{
 .conv-send{width:40px;height:40px;border-radius:50%;background:var(--black);border:none;color:white;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 
 /* ══ CARTE ══ */
-.map-wrap{flex:1;position:relative;background:#E8EEE0;overflow:hidden;}
+#mod-carte{display:flex;flex-direction:column;min-height:0;}
+.map-wrap{flex:1;position:relative;background:#E8EEE0;overflow:hidden;min-height:0;}
 .map-bg{width:100%;height:100%;background:linear-gradient(135deg,#E8EEE0 0%,#D8E8D0 50%,#E0E8D8 100%);position:relative;}
 .road{position:absolute;background:#FFFFFF;opacity:.6;}
 .road.h{height:6px;left:0;right:0;}
 .road.v{width:6px;top:0;bottom:0;}
-.map-marker{position:absolute;width:40px;height:40px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:white;cursor:pointer;transform:translate(-50%,-50%);box-shadow:0 2px 8px rgba(0,0,0,.3);border:2px solid white;}
+.map-marker{position:absolute;z-index:15;width:40px;height:40px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:white;cursor:pointer;transform:translate(-50%,-50%);box-shadow:0 2px 8px rgba(0,0,0,.3);border:2px solid white;}
 .map-search-top{position:absolute;top:12px;left:16px;right:16px;background:white;border-radius:14px;padding:11px 14px;display:flex;align-items:center;gap:8px;box-shadow:0 2px 12px rgba(0,0,0,.12);z-index:10;}
 .map-search-top input{flex:1;border:none;outline:none;font-size:14px;font-family:'Manrope',sans-serif;}
 .map-filter-btn{position:absolute;top:72px;left:16px;background:white;border-radius:20px;padding:7px 14px;font-size:12px;font-weight:700;color:var(--black);box-shadow:0 2px 8px rgba(0,0,0,.1);cursor:pointer;display:flex;align-items:center;gap:5px;}
 .map-count{position:absolute;top:72px;left:50%;transform:translateX(-50%);background:white;border-radius:20px;padding:7px 14px;font-size:12px;font-weight:700;color:var(--black);box-shadow:0 2px 8px rgba(0,0,0,.1);white-space:nowrap;}
 .map-locate{position:absolute;bottom:16px;right:16px;width:40px;height:40px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 2px 8px rgba(0,0,0,.15);cursor:pointer;}
-.map-sheet{position:absolute;bottom:0;left:0;right:0;background:var(--bg);border-radius:20px 20px 0 0;padding:16px;box-shadow:0 -4px 20px rgba(0,0,0,.1);transform:translateY(100%);transition:transform .3s;z-index:20;}
+.map-sheet{position:absolute;bottom:0;left:0;right:0;background:var(--bg);border-radius:20px 20px 0 0;padding:16px;box-shadow:0 -4px 20px rgba(0,0,0,.1);transform:translateY(100%);transition:transform .3s;z-index:50;padding-bottom:max(16px,env(safe-area-inset-bottom));color:var(--text);}
 .map-sheet.open{transform:translateY(0);}
 .sheet-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 14px;}
 .sheet-top{display:flex;gap:12px;align-items:center;margin-bottom:14px;}
 .sheet-avatar{width:52px;height:52px;border-radius:14px;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
-.sheet-name{font-size:16px;font-weight:800;color:var(--black);}
+.sheet-name{font-size:16px;font-weight:800;color:var(--text);}
 .sheet-meta{font-size:12px;color:var(--gray);margin-top:2px;}
 .sheet-stars{font-size:12px;color:#F5A623;margin-top:3px;}
+.sheet-close{font-size:20px;cursor:pointer;color:var(--text);line-height:1;}
 .sheet-btns{display:flex;gap:8px;}
-.sheet-btn{flex:1;padding:11px;border-radius:12px;border:1.5px solid var(--border);background:white;font-size:13px;font-weight:700;color:var(--black);cursor:pointer;text-align:center;font-family:'Manrope',sans-serif;}
-.sheet-btn.dark{background:var(--black);color:white;border-color:var(--black);}
+.sheet-btn{flex:1;padding:11px;border-radius:12px;border:1.5px solid var(--border);background:var(--bg);font-size:13px;font-weight:700;color:var(--text);cursor:pointer;text-align:center;font-family:'Manrope',sans-serif;}
+.sheet-btn.dark{background:var(--btn-bg);color:var(--btn-fg);border-color:var(--btn-bg);}
 
 /* ══ RÉVEIL ══ */
 .reveil-scroll{flex:1;overflow-y:auto;padding:0 20px 20px;}
@@ -1039,7 +1130,7 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="divider"></div>
 <div class="grid-area"><div class="grid-slider"><div class="grid-track" id="p-track">
 <div class="grid-page">
-<div class="app-item"><div class="app-icon" style="background:#EEF2FF;">📅</div><div class="app-name">Planning</div></div>
+<div class="app-item" onclick="openModule('mod-planning')"><div class="app-icon" style="background:#EEF2FF;">📅</div><div class="app-name">Planning</div></div>
 <div class="app-item"><div class="app-icon">⏳</div><div class="app-name">Stories</div></div>
 <div class="app-item" onclick="openModule('mod-promos')"><div class="app-icon">🏷️</div><div class="app-name">Promotions</div></div>
 <div class="app-item" onclick="openModule('mod-urgence')"><div class="app-icon" style="background:#FFF0F0;">⚡</div><div class="app-name">Urgences</div></div>
@@ -1767,6 +1858,149 @@ MODULES PROFIL
 </div>
 </div>
 
+<!-- MODULE PLANNING -->
+
+<div class="module" id="mod-planning">
+<div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-planning')">‹</div><div class="mod-title">Planning</div><div class="mod-action" onclick="planOpenTeam()">👥 Équipe</div></div>
+<div class="plan-mod-fill">
+<div class="plan-top">
+<div style="position:relative;display:inline-block;" id="plan-date-wrap">
+<div class="date-pill" onclick="planTogDropdown()">
+<span class="date-pill-txt" id="plan-date-txt">Mercredi 25 mars</span>
+<span class="date-pill-arr" id="plan-date-arr">▾</span>
+</div>
+<div class="nav-dropdown" id="plan-nav-dd">
+<div class="nav-opt active" onclick="planPickDate('Mercredi 25 mars',this)"><span class="nav-opt-label">Aujourd'hui</span><span class="nav-opt-date">25 mars</span></div>
+<div class="nav-opt" onclick="planPickDate('1 – 7 avril',this)"><span class="nav-opt-label">Dans 1 semaine</span><span class="nav-opt-date">1 avril</span></div>
+<div class="nav-opt" onclick="planPickDate('8 – 14 avril',this)"><span class="nav-opt-label">Dans 2 semaines</span><span class="nav-opt-date">8 avril</span></div>
+<div class="nav-opt" onclick="planPickDate('15 – 21 avril',this)"><span class="nav-opt-label">Dans 3 semaines</span><span class="nav-opt-date">15 avril</span></div>
+<div class="nav-opt" onclick="planPickDate('22 – 28 avril',this)"><span class="nav-opt-label">Dans 4 semaines</span><span class="nav-opt-date">22 avril</span></div>
+</div>
+</div>
+</div>
+<div class="view-sw">
+<div class="vsw on" onclick="planSetView('today',this)">Aujourd'hui</div>
+<div class="vsw" onclick="planSetView('3days',this)">3 jours</div>
+<div class="vsw" onclick="planSetView('week',this)">Semaine</div>
+<div class="vsw" onclick="planSetView('month',this)">Mois</div>
+</div>
+<div class="plan-grid-wrap" id="plan-grid-wrap">
+<div id="plan-view-today" class="plan-grid">
+<div class="time-col">
+<div class="time-slot">8h</div><div class="time-slot">9h</div><div class="time-slot">10h</div><div class="time-slot">11h</div><div class="time-slot">12h</div><div class="time-slot">13h</div><div class="time-slot">14h</div><div class="time-slot">15h</div><div class="time-slot">16h</div><div class="time-slot">17h</div><div class="time-slot">18h</div><div class="time-slot">19h</div><div class="time-slot">20h</div>
+</div>
+<div class="days-wrap">
+<div class="day-col" style="min-width:100%;">
+<div class="day-header"><div class="dh-n">mer.</div><div class="dh-d today">25</div></div>
+<div style="position:relative;">
+<div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div>
+<div class="event c-bleu" style="top:72px;height:80px;" onclick="planOpenModal('e1')"><div class="event-online"></div><div class="event-name">Soraya L.</div><div class="event-meta">Remplissage · 1h10</div><div class="event-staff">Sassa</div></div>
+<div class="event c-rose" style="top:192px;height:70px;" onclick="planOpenModal('e2')"><div class="event-name">Marine B.</div><div class="event-meta">Manucure · 50min</div><div class="event-staff">Sassa</div></div>
+<div class="event c-vert" style="top:312px;height:60px;" onclick="planOpenModal('e3')"><div class="event-online"></div><div class="event-name">Anaïs F.</div><div class="event-meta">Blanchiment · 1h</div><div class="event-staff">Sassa</div></div>
+<div class="event c-jaune" style="top:432px;height:90px;" onclick="planOpenModal('e4')"><div class="event-online"></div><div class="event-name">Nina W.</div><div class="event-meta">Forfait M+P · 1h30</div><div class="event-staff">Sassa</div></div>
+<div class="event c-gris" style="top:564px;height:60px;" onclick="planOpenModal('blocked')"><div class="event-name">Bloqué</div><div class="event-meta">Indisponible</div></div>
+<div class="now-line" style="top:392px;"><div class="now-dot"></div><div class="now-bar"></div></div>
+</div>
+</div>
+</div>
+</div>
+<div id="plan-view-3days" class="plan-grid" style="display:none;">
+<div class="time-col">
+<div class="time-slot">8h</div><div class="time-slot">9h</div><div class="time-slot">10h</div><div class="time-slot">11h</div><div class="time-slot">12h</div><div class="time-slot">13h</div><div class="time-slot">14h</div><div class="time-slot">15h</div><div class="time-slot">16h</div><div class="time-slot">17h</div>
+</div>
+<div class="days-wrap">
+<div class="day-col">
+<div class="day-header"><div class="dh-n">mer.</div><div class="dh-d today">25</div></div>
+<div style="position:relative;">
+<div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div>
+<div class="event c-bleu" style="top:72px;height:75px;" onclick="planOpenModal('e1')"><div class="event-online"></div><div class="event-name">Soraya L.</div><div class="event-meta">Remplissage</div><div class="event-staff">Sassa</div></div>
+<div class="event c-rose" style="top:192px;height:65px;" onclick="planOpenModal('e2')"><div class="event-name">Marine B.</div><div class="event-meta">Manucure</div><div class="event-staff">Sassa</div></div>
+<div class="event c-vert" style="top:312px;height:60px;" onclick="planOpenModal('e3')"><div class="event-online"></div><div class="event-name">Anaïs F.</div><div class="event-meta">Blanchiment</div><div class="event-staff">Sassa</div></div>
+<div class="now-line" style="top:370px;"><div class="now-dot"></div><div class="now-bar"></div></div>
+</div>
+</div>
+<div class="day-col">
+<div class="day-header"><div class="dh-n">jeu.</div><div class="dh-d">26</div></div>
+<div style="position:relative;">
+<div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div>
+<div class="event c-jaune" style="top:120px;height:85px;" onclick="planOpenModal('e4')"><div class="event-online"></div><div class="event-name">Ylan A.</div><div class="event-meta">Forfait M+P</div><div class="event-staff">Nina</div></div>
+<div class="event c-violet" style="top:312px;height:60px;" onclick="planOpenModal('e5')"><div class="event-online"></div><div class="event-name">Urgence</div><div class="event-meta">Karina B.</div><div class="event-staff">Sassa</div></div>
+</div>
+</div>
+<div class="day-col">
+<div class="day-header"><div class="dh-n">ven.</div><div class="dh-d">27</div></div>
+<div style="position:relative;">
+<div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div>
+<div class="event c-bleuf" style="top:60px;height:60px;" onclick="planOpenModal('e6')"><div class="event-name">Corriga S.</div><div class="event-meta">Dépose</div><div class="event-staff">Nina</div></div>
+<div class="event c-rose" style="top:240px;height:65px;" onclick="planOpenModal('e2')"><div class="event-online"></div><div class="event-name">Leila M.</div><div class="event-meta">Manucure</div><div class="event-staff">Sassa</div></div>
+<div class="event c-gris" style="top:420px;height:60px;"><div class="event-name">Bloqué</div></div>
+</div>
+</div>
+</div>
+</div>
+<div id="plan-view-week" class="plan-grid" style="display:none;">
+<div class="time-col">
+<div class="time-slot">8h</div><div class="time-slot">9h</div><div class="time-slot">10h</div><div class="time-slot">11h</div><div class="time-slot">12h</div><div class="time-slot">13h</div><div class="time-slot">14h</div><div class="time-slot">15h</div>
+</div>
+<div class="days-wrap">
+<div class="day-col off"><div class="day-header"><div class="dh-n">lun.</div><div class="dh-d">23</div></div><div style="position:relative;"><div class="hour-row"></div><div class="hour-row"></div><div class="hour-row"></div><div class="hour-row"></div><div class="hour-row"></div><div class="hour-row"></div><div class="hour-row"></div><div class="hour-row"></div></div></div>
+<div class="day-col off"><div class="day-header"><div class="dh-n">mar.</div><div class="dh-d">24</div></div><div style="position:relative;"><div class="hour-row"></div><div class="hour-row"></div><div class="hour-row"></div><div class="hour-row"></div><div class="hour-row"></div><div class="hour-row"></div><div class="hour-row"></div><div class="hour-row"></div></div></div>
+<div class="day-col"><div class="day-header"><div class="dh-n">mer.</div><div class="dh-d today">25</div></div><div style="position:relative;"><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="event c-bleu" style="top:72px;height:70px;" onclick="planOpenModal('e1')"><div class="event-online"></div><div class="event-name">Soraya</div><div class="event-staff">Sassa</div></div><div class="event c-rose" style="top:192px;height:60px;" onclick="planOpenModal('e2')"><div class="event-name">Marine</div><div class="event-staff">Sassa</div></div><div class="now-line" style="top:370px;"><div class="now-dot"></div><div class="now-bar"></div></div></div></div>
+<div class="day-col"><div class="day-header"><div class="dh-n">jeu.</div><div class="dh-d">26</div></div><div style="position:relative;"><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="event c-jaune" style="top:120px;height:75px;" onclick="planOpenModal('e4')"><div class="event-online"></div><div class="event-name">Ylan</div><div class="event-staff">Nina</div></div><div class="event c-violet" style="top:300px;height:55px;" onclick="planOpenModal('e5')"><div class="event-online"></div><div class="event-name">Urgence</div><div class="event-staff">Sassa</div></div></div></div>
+<div class="day-col"><div class="day-header"><div class="dh-n">ven.</div><div class="dh-d">27</div></div><div style="position:relative;"><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="event c-bleuf" style="top:60px;height:55px;" onclick="planOpenModal('e6')"><div class="event-name">Corriga</div><div class="event-staff">Nina</div></div><div class="event c-rose" style="top:240px;height:60px;" onclick="planOpenModal('e2')"><div class="event-online"></div><div class="event-name">Leila</div><div class="event-staff">Sassa</div></div></div></div>
+<div class="day-col"><div class="day-header"><div class="dh-n">sam.</div><div class="dh-d">28</div></div><div style="position:relative;"><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="hour-row" onclick="planOpenModal('new')"></div><div class="event c-bleu" style="top:60px;height:65px;" onclick="planOpenModal('e1')"><div class="event-online"></div><div class="event-name">July P.</div><div class="event-staff">Sassa</div></div><div class="event c-gris" style="top:240px;height:110px;"><div class="event-name">Bloqué</div></div></div></div>
+<div class="day-col off"><div class="day-header"><div class="dh-n">dim.</div><div class="dh-d">29</div></div><div style="position:relative;"><div class="hour-row"></div><div class="hour-row"></div><div class="hour-row"></div><div class="hour-row"></div><div class="hour-row"></div><div class="hour-row"></div><div class="hour-row"></div><div class="hour-row"></div></div></div>
+</div>
+</div>
+<div id="plan-view-month" style="display:none;overflow-y:auto;flex:1;min-height:0;">
+<div class="month-grid">
+<div class="month-days-hdr"><div class="mdh">L</div><div class="mdh">M</div><div class="mdh">M</div><div class="mdh">J</div><div class="mdh">V</div><div class="mdh">S</div><div class="mdh">D</div></div>
+<div class="month-cells">
+<div class="mcell off"><div class="mc-num">17</div></div><div class="mcell off"><div class="mc-num">18</div></div><div class="mcell off"><div class="mc-num">19</div></div><div class="mcell off"><div class="mc-num">20</div></div><div class="mcell off"><div class="mc-num">21</div></div><div class="mcell"><div class="mc-num">22</div><div class="mc-ev c-rose">Marine</div><div class="mc-ev c-bleu">Soraya</div></div><div class="mcell off"><div class="mc-num">23</div></div>
+<div class="mcell off"><div class="mc-num">24</div></div><div class="mcell"><div class="mc-num today">25</div><div class="mc-ev c-bleu">Soraya</div><div class="mc-ev c-rose">Marine</div><div class="mc-ev c-vert">Anaïs</div><div class="mc-more">+1</div></div><div class="mcell"><div class="mc-num">26</div><div class="mc-ev c-jaune">Ylan</div><div class="mc-ev c-violet">Urgence</div></div><div class="mcell"><div class="mc-num">27</div><div class="mc-ev c-bleuf">Corriga</div><div class="mc-ev c-rose">Leila</div></div><div class="mcell"><div class="mc-num">28</div><div class="mc-ev c-bleu">July</div><div class="mc-ev c-gris">Bloqué</div></div><div class="mcell off"><div class="mc-num">29</div></div>
+<div class="mcell off"><div class="mc-num">30</div></div><div class="mcell off"><div class="mc-num">31</div></div><div class="mcell"><div class="mc-num">1</div><div class="mc-ev c-rose">Nina W.</div></div><div class="mcell"><div class="mc-num">2</div></div><div class="mcell"><div class="mc-num">3</div><div class="mc-ev c-bleu">Soraya</div></div><div class="mcell"><div class="mc-num">4</div><div class="mc-ev c-jaune">Forfait</div></div><div class="mcell off"><div class="mc-num">5</div></div>
+<div class="mcell off"><div class="mc-num">6</div></div><div class="mcell off"><div class="mc-num">7</div></div><div class="mcell"><div class="mc-num">8</div></div><div class="mcell"><div class="mc-num">9</div><div class="mc-ev c-vert">Blanchim.</div></div><div class="mcell"><div class="mc-num">10</div><div class="mc-ev c-rose">Marine</div><div class="mc-ev c-bleuf">Dépose</div></div><div class="mcell"><div class="mc-num">11</div></div><div class="mcell off"><div class="mc-num">12</div></div>
+</div>
+</div>
+</div>
+</div>
+<button type="button" class="plan-fab" onclick="planOpenModal('new')" aria-label="Nouveau créneau">＋</button>
+<div class="team-panel" id="plan-team-panel">
+<div class="team-panel-hdr">
+<div class="team-panel-title">Mon équipe</div>
+<div class="team-close" onclick="planCloseTeam()">✕</div>
+</div>
+<div class="team-member" onclick="planTogMember(this,0)">
+<div class="team-av">S</div>
+<div><div class="team-name">Sassa</div><div class="team-meta">Prothésiste ongulaire · Blanchiment dentaire</div></div>
+<div class="team-check on" id="plan-tm0">✓</div>
+</div>
+<div class="team-member" onclick="planTogMember(this,1)">
+<div class="team-av">N</div>
+<div><div class="team-name">Nina</div><div class="team-meta">Spécialiste cils · Prothésiste ongulaire</div></div>
+<div class="team-check on" id="plan-tm1">✓</div>
+</div>
+<div class="team-member" onclick="planTogMember(this,2)">
+<div class="team-av">K</div>
+<div><div class="team-name">Karima</div><div class="team-meta">Coiffeuse · Coloriste</div></div>
+<div class="team-check on" id="plan-tm2">✓</div>
+</div>
+<div class="team-member" onclick="planTogMember(this,3)">
+<div class="team-av">L</div>
+<div><div class="team-name">Leila</div><div class="team-meta">Masseuse · Drainage lymphatique</div></div>
+<div class="team-check" id="plan-tm3"></div>
+</div>
+</div>
+<div class="plan-mo-overlay" id="plan-mo-overlay" onclick="planCloseModal(event)">
+<div class="plan-mo-sheet" onclick="event.stopPropagation()">
+<div class="plan-mo-handle"></div>
+<div id="plan-modal-content"></div>
+</div>
+</div>
+</div>
+</div>
+
+
 <!-- PROMOTIONS -->
 
 <div class="module" id="mod-promos">
@@ -1860,8 +2094,8 @@ MODULES PROFIL
 <div class="map-locate">🎯</div>
 <div class="map-sheet" id="map-sheet">
 <div class="sheet-handle"></div>
-<div class="sheet-top"><div class="sheet-avatar" id="map-ic">💅</div><div style="flex:1;"><div class="sheet-name" id="map-name">Bloom Nails</div><div class="sheet-meta" id="map-meta">Prothesiste ongulaire</div><div class="sheet-stars" id="map-stars">4,8 ★ · 57 avis · 1,2 km</div></div><span style="font-size:20px;cursor:pointer;" onclick="closeMapSheet()">✕</span></div>
-<div class="sheet-btns"><button class="sheet-btn">Profil</button><button class="sheet-btn">Itineraire</button><button class="sheet-btn dark">Reserver</button></div>
+<div class="sheet-top"><div class="sheet-avatar" id="map-ic">💅</div><div style="flex:1;"><div class="sheet-name" id="map-name">Bloom Nails</div><div class="sheet-meta" id="map-meta">Prothesiste ongulaire</div><div class="sheet-stars" id="map-stars">4,8 ★ · 57 avis · 1,2 km</div></div><span class="sheet-close" onclick="closeMapSheet()">✕</span></div>
+<div class="sheet-btns"><button type="button" class="sheet-btn" onclick="openMapProfile()">Profil</button><button type="button" class="sheet-btn">Itineraire</button><button type="button" class="sheet-btn dark">Reserver</button></div>
 </div>
 </div>
 </div>
@@ -2205,6 +2439,14 @@ function closeMapSheet(){
   const sh=document.getElementById('map-sheet');
   if(sh)sh.classList.remove('open');
 }
+function openMapProfile(){
+  closeMapSheet();
+  closeModule('mod-carte');
+  const cl=document.getElementById('screen-client')?.classList.contains('on');
+  dockSetTab(cl?'app-dock-client':'app-dock-pro',3);
+  if(cl) openModule('mod-profil-client-ext');
+  else openModule('mod-profil-pro-int');
+}
 function toggleReveil(){
   const t=document.getElementById('rv-main-toggle');
   if(t)t.classList.toggle('off');
@@ -2286,6 +2528,7 @@ if(id==='mod-messages')closeConversation();
 if(id==='mod-carte')closeMapSheet();
 if(id==='mod-reveil')updateReveilRecap();
 if(id==='mod-blacklist')blResetBlacklistView();
+if(id==='mod-planning')planResetModule();
 if(!mod._swipeInit){
 mod._swipeInit=true;
 let sx=0,sw=false;
@@ -2359,6 +2602,91 @@ function selBlMotif(el){const g=el.closest('.motif-options');if(!g)return;g.quer
 function selBlDuree(el){const g=el.closest('.duree-grid');if(!g)return;g.querySelectorAll('.duree-opt').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');}
 function toggleBlPartage(el){el.classList.toggle('on');}
 function setFeedView(n,btn){btn.closest('.view-toggle').querySelectorAll('.vbtn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');const g=document.getElementById('feed-grid');if(g)g.className='feed-'+n;}
+
+// ── MODULE PLANNING ──
+const planModals={
+new:'<div class="plan-mo-title">Nouveau créneau</div><div class="plan-mo-sub">Que voulez-vous créer ?</div><div class="plan-mo-btns"><button class="plan-mbtn" onclick="planCloseModal()">🚫 Bloquer</button><button class="plan-mbtn dark" onclick="planCloseModal()">📅 Réservation →</button></div>',
+e1:'<div class="plan-mo-title">Soraya Lehtinaf</div><div class="plan-mo-sub">Réservée en ligne ●</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Remplissage gel</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">10:00 → 11:10</span></div><div class="plan-mo-row"><span class="plan-mk">Durée</span><span class="plan-mv">1h10</span></div><div class="plan-mo-row"><span class="plan-mk">Prestataire</span><span class="plan-mv">Sassa</span></div><div class="plan-mo-row"><span class="plan-mk">Acompte</span><span class="plan-mv">19,50€ ✓</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn">Modifier</button><button class="plan-mbtn dark">Encaisser →</button></div>',
+e2:'<div class="plan-mo-title">Marine Dupont</div><div class="plan-mo-sub">Créée manuellement</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Manucure simple</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">12:00 → 12:50</span></div><div class="plan-mo-row"><span class="plan-mk">Prestataire</span><span class="plan-mv">Sassa</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn">Modifier</button><button class="plan-mbtn dark">Encaisser →</button></div>',
+e3:'<div class="plan-mo-title">Anaïs Ferreira</div><div class="plan-mo-sub">Réservée en ligne ●</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Blanchiment dentaire</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">14:00 → 15:00</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn dark">Encaisser →</button></div>',
+e4:'<div class="plan-mo-title">Nina Wamir / Ylan A.</div><div class="plan-mo-sub">Réservée en ligne ●</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Forfait manucure + pédicure</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">16:00 → 17:30</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn dark">Encaisser →</button></div>',
+e5:'<div class="plan-mo-title">Karina B. — Urgence</div><div class="plan-mo-sub">Créneau d\'urgence · En ligne ●</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Manucure express</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">15:00 → 16:00</span></div><div class="plan-mo-btns"><button class="plan-mbtn dark">Encaisser →</button></div>',
+e6:'<div class="plan-mo-title">Corriga Sophie</div><div class="plan-mo-sub">Créée manuellement</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Dépose seule</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">09:00 → 10:00</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn dark">Encaisser →</button></div>',
+blocked:'<div class="plan-mo-title">Créneau bloqué</div><div class="plan-mo-sub">Indisponibilité manuelle</div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">18:30 → 19:30</span></div><div class="plan-mo-btns"><button class="plan-mbtn dark" onclick="planCloseModal()">Débloquer</button></div>'
+};
+function planSetView(v,el){
+document.querySelectorAll('#mod-planning .vsw').forEach(b=>b.classList.remove('on'));
+if(el) el.classList.add('on');
+['today','3days','week','month'].forEach(id=>{
+const e=document.getElementById('plan-view-'+id);
+if(e) e.style.display='none';
+});
+const m=document.getElementById('plan-view-month');
+if(v==='month'&&m){
+m.style.display='flex';
+m.style.flexDirection='column';
+}else{
+const e=document.getElementById('plan-view-'+v);
+if(e) e.style.display='flex';
+}
+}
+function planTogDropdown(){
+const dd=document.getElementById('plan-nav-dd');
+const arr=document.getElementById('plan-date-arr');
+if(dd) dd.classList.toggle('open');
+if(arr) arr.classList.toggle('up');
+}
+function planPickDate(label,el){
+const t=document.getElementById('plan-date-txt');
+if(t) t.textContent=label;
+const dd=document.getElementById('plan-nav-dd');
+const arr=document.getElementById('plan-date-arr');
+if(dd) dd.classList.remove('open');
+if(arr) arr.classList.remove('up');
+document.querySelectorAll('#mod-planning .nav-opt').forEach(o=>o.classList.remove('active'));
+if(el) el.classList.add('active');
+}
+function planOpenTeam(){const p=document.getElementById('plan-team-panel');if(p)p.classList.add('open');}
+function planCloseTeam(){const p=document.getElementById('plan-team-panel');if(p)p.classList.remove('open');}
+function planTogMember(el,i){
+const c=document.getElementById('plan-tm'+i);
+if(!c)return;
+c.classList.toggle('on');
+c.innerHTML=c.classList.contains('on')?'✓':'';
+}
+function planOpenModal(type){
+const c=document.getElementById('plan-modal-content');
+const mo=document.getElementById('plan-mo-overlay');
+if(!c||!mo)return;
+c.innerHTML=planModals[type]||planModals.new;
+mo.classList.add('open');
+}
+function planCloseModal(e){
+const mo=document.getElementById('plan-mo-overlay');
+if(!mo)return;
+if(!e||e.target===mo) mo.classList.remove('open');
+}
+function planResetModule(){
+const dd=document.getElementById('plan-nav-dd');
+const arr=document.getElementById('plan-date-arr');
+if(dd) dd.classList.remove('open');
+if(arr) arr.classList.remove('up');
+const tp=document.getElementById('plan-team-panel');
+if(tp) tp.classList.remove('open');
+const mo=document.getElementById('plan-mo-overlay');
+if(mo) mo.classList.remove('open');
+const txt=document.getElementById('plan-date-txt');
+if(txt) txt.textContent='Mercredi 25 mars';
+document.querySelectorAll('#mod-planning .nav-opt').forEach(o=>o.classList.remove('active'));
+const n0=document.querySelector('#plan-nav-dd .nav-opt:first-child');
+if(n0) n0.classList.add('active');
+document.querySelectorAll('#mod-planning .vsw').forEach(b=>b.classList.remove('on'));
+const first=document.querySelector('#mod-planning .vsw');
+if(first){
+first.classList.add('on');
+planSetView('today',first);
+}
+}
 
 // ── FLOWS CLIENT ──
 function openFlow(id){closeFan('cl');document.getElementById(id).classList.add('on');}
