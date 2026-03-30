@@ -2803,34 +2803,47 @@ function selectChoice(t){
 }
 function goChoose(){if(!userChoice)return;goPage(userChoice==='client'?'cl-compte':'pro-compte');}
 function finishOnboarding(type){
-  const role=type==='client'?'client':'pro';
-  document.querySelectorAll('.phone > .page').forEach(p=>p.classList.remove('on'));
-  try{
-    try{closeSearchPage('cl');}catch(e){}
-    try{closeSearchPage('pro');}catch(e){}
-    try{closeAllFlows();}catch(e){}
-    try{closeAllFlowsPro();}catch(e){}
-    try{closeAllModules();}catch(e){}
-    try{closeFan('cl');closeFan('pro');}catch(e){}
-  }catch(e){
-    console.error('finishOnboarding',e);
-  }finally{
-    document.querySelectorAll('.search-page-acc').forEach(el=>el.classList.remove('on'));
-    ['c-s-icon','p-s-icon','c-s-bar','p-s-bar'].forEach(id=>{const n=document.getElementById(id);if(!n)return;if(id.endsWith('-icon'))n.classList.remove('hidden');else n.classList.remove('on');});
-    document.querySelectorAll('.flow.on').forEach(f=>f.classList.remove('on'));
-    const scrCl=document.getElementById('screen-client');
-    const scrPr=document.getElementById('screen-pro');
-    if(scrCl){scrCl.classList.remove('on');scrCl.classList.toggle('on',role==='client');}
-    if(scrPr){scrPr.classList.remove('on');scrPr.classList.toggle('on',role==='pro');}
-    try{syncAppDock();syncFlowsToActiveScreen();}catch(e){}
-    requestAnimationFrame(()=>{
-      const cl=document.getElementById('screen-client');
-      const pr=document.getElementById('screen-pro');
-      if(role==='client'&&cl&&!cl.classList.contains('on'))cl.classList.add('on');
-      if(role==='pro'&&pr&&!pr.classList.contains('on'))pr.classList.add('on');
-      try{syncFlowsToActiveScreen();}catch(e){}
-    });
-  }
+  var role=type==='client'?'client':'pro';
+  console.log('[SEAVEN] finishOnboarding START role='+role);
+
+  document.querySelectorAll('.phone > .page').forEach(function(p){p.classList.remove('on');});
+  console.log('[SEAVEN] pages cleared');
+
+  try{closeSearchPage('cl');}catch(e){console.warn('cSP cl',e);}
+  try{closeSearchPage('pro');}catch(e){console.warn('cSP pro',e);}
+  try{closeAllFlows();}catch(e){console.warn('cAF',e);}
+  try{closeAllFlowsPro();}catch(e){console.warn('cAFP',e);}
+  try{closeAllModules();}catch(e){console.warn('cAM',e);}
+  try{closeFan('cl');}catch(e){console.warn('cF cl',e);}
+  try{closeFan('pro');}catch(e){console.warn('cF pro',e);}
+  console.log('[SEAVEN] cleanup done');
+
+  document.querySelectorAll('.search-page-acc').forEach(function(el){el.classList.remove('on');});
+  document.querySelectorAll('.flow.on').forEach(function(f){f.classList.remove('on');});
+
+  var scrCl=document.getElementById('screen-client');
+  var scrPr=document.getElementById('screen-pro');
+  console.log('[SEAVEN] scrCl found:',!!scrCl,'scrPr found:',!!scrPr);
+
+  if(scrCl){scrCl.classList.remove('on');}
+  if(scrPr){scrPr.classList.remove('on');}
+
+  if(role==='client'&&scrCl){scrCl.classList.add('on');}
+  if(role==='pro'&&scrPr){scrPr.classList.add('on');}
+
+  console.log('[SEAVEN] after toggle — scrCl.on:',scrCl?scrCl.classList.contains('on'):'N/A',
+    'scrPr.on:',scrPr?scrPr.classList.contains('on'):'N/A');
+
+  try{syncAppDock();}catch(e){console.warn('sAD',e);}
+  try{syncFlowsToActiveScreen();}catch(e){console.warn('sFAS',e);}
+
+  var d1=document.getElementById('app-dock-client');
+  var d2=document.getElementById('app-dock-pro');
+  console.log('[SEAVEN] dock-client visible:',d1?d1.classList.contains('visible'):'N/A',
+    'dock-pro visible:',d2?d2.classList.contains('visible'):'N/A');
+
+  console.log('[SEAVEN] finishOnboarding END role='+role);
+  document.title='SEAVEN — '+role;
 }
 function togCl(el){el.classList.toggle('on');document.getElementById('cl-count').textContent=document.querySelectorAll('#cl-metier-wrap .metier-chip.on').length;}
 function selStatut(el){el.closest('.statut-cards').querySelectorAll('.statut-card').forEach(c=>{c.classList.remove('sel');c.querySelectorAll('.statut-expand').forEach(e=>e.classList.remove('on'));});el.classList.add('sel');const ex=el.querySelector('.statut-expand');if(ex)ex.classList.add('on');}
