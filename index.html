@@ -640,3 +640,36 @@ body{background:#D4D4DB;display:flex;flex-direction:column;align-items:center;pa
 <div class="page" id="pro-metier"><div class="ob-nav"><div class="ob-back" onclick="goPage('pro-salon')">‹</div><div class="ob-step">3/5</div></div><div class="ob-header"><div class="ob-title">Tes métiers</div></div><div class="ob-scroll"><div class="metier-wrap" style="margin-bottom:16px;"><div class="metier-chip on" onclick="this.classList.toggle('on')">💅 Ongles</div><div class="metier-chip" onclick="this.classList.toggle('on')">👁️ Cils</div><div class="metier-chip" onclick="this.classList.toggle('on')">💇 Coiffure</div><div class="metier-chip" onclick="this.classList.toggle('on')">💋 Maquillage</div><div class="metier-chip" onclick="this.classList.toggle('on')">🌿 Bien-être</div></div><div class="spe-block"><div class="spe-metier-title">💅 Ongles</div><div class="spe-chips"><div class="spe-chip on" onclick="this.classList.toggle('on')">Gel</div><div class="spe-chip on" onclick="this.classList.toggle('on')">Acrylique</div><div class="spe-chip" onclick="this.classList.toggle('on')">Nail art</div><div class="spe-chip on" onclick="this.classList.toggle('on')">Baby boomer</div></div></div></div><div class="ob-bottom"><button class="ob-btn" onclick="goPage('pro-config')">Continuer →</button><button class="ob-skip" onclick="goPage('pro-config')">Passer</button></div></div>
 <div class="page" id="pro-config"><div class="ob-nav"><div class="ob-back" onclick="goPage('pro-metier')">‹</div><div class="ob-step">4/5</div></div><div class="ob-header"><div class="ob-title">Configuration</div></div><div class="ob-scroll"><div style="margin-bottom:16px;"><div class="config-title">Jours</div><div class="days-row"><div class="day-btn" onclick="this.classList.toggle('on')">L</div><div class="day-btn on" onclick="this.classList.toggle('on')">M</div><div class="day-btn on" onclick="this.classList.toggle('on')">M</div><div class="day-btn on" onclick="this.classList.toggle('on')">J</div><div class="day-btn on" onclick="this.classList.toggle('on')">V</div><div class="day-btn on" onclick="this.classList.toggle('on')">S</div><div class="day-btn" onclick="this.classList.toggle('on')">D</div></div></div><div><div class="config-title">SIRET</div><input class="ob-input" placeholder="XXX XXX XXX XXXXX"/></div></div><div class="ob-bottom"><button class="ob-btn" onclick="goPage('pro-abo')">Continuer →</button><button class="ob-skip" onclick="goPage('pro-abo')">Passer</button></div></div>
 <div class="page" id="pro-abo"><div class="ob-nav"><div class="ob-back" onclick="goPage('pro-config')">‹</div><div class="ob-step">5/5</div></div><div class="ob-header"><div class="ob-title">Choisis ton plan</div></div><div class="ob-scroll"><div class="trial-pill">🎁 14 jours gratuits · Sans carte</div><div class="abo-slider-wrap"><div class="abo-labels"><div class="abo-lbl on" onclick="setAbo(0)">≤5</div><div class="abo-lbl" onclick="setAbo(1)">≤15</div><div class="abo-lbl" onclick="setAbo(2)">≤35</div><div class="abo-lbl" onclick="setAbo(3)">≤100</div><div class="abo-lbl" onclick="setAbo(4)">≤250</div><div class="abo-lbl" onclick="setAbo(5)">250+</div></div><div class="abo-track" id="abo-track" onclick="aboClick(event)"><div class="abo-fill" id="abo-fill" style="width:0%;"></div><div class="abo-thumb" id="abo-thumb" style="left:0%;"></div></div></div><div class="plan-box"><div class="plan-level" id="plan-level">Starter · jusqu'à 5 clientes</div><div class="plan-price-big" id="plan-price">9,99€<span class="plan-period">/mois</span></div><div class="plan-features" id="plan-feats"><div class="plan-feat">✓ Réservations illimitées</div><div class="plan-feat">✓ Planning & agenda</div><div class="plan-feat">✓ Encaissement intégré</div></div></div></div><div class="ob-bottom"><button class="ob-btn" onclick="finishOnboarding('pro')">Démarrer l'essai gratuit →</button><button class="ob-skip" onclick="finishOnboarding('pro')">Passer</button></div></div>
+
+<!-- ══ ACCUEIL CLIENT ══ -->
+
+<div class="screen" id="screen-client">
+<div class="sbar"><span>9:41</span><span>WiFi 🔋</span></div>
+<div class="fan-backdrop" id="fan-bd-cl" onclick="closeFan('cl')"></div>
+<div class="stories-wrap"><div class="stories-row">
+<div class="story-item"><div class="story-ring-wrap"><div class="story-ring" style="background:linear-gradient(135deg,#C9A84C,#4A90D9);"><div class="story-vous">V</div></div><div class="story-add-btn">+</div></div><div class="story-name">Vous</div></div>
+<div class="story-item"><div class="story-ring"><div class="story-inner">🦋</div></div><div class="story-name">Sarah</div></div>
+<div class="story-item"><div class="story-ring"><div class="story-inner">🪼</div></div><div class="story-name">Lina</div></div>
+<div class="story-item"><div class="story-ring"><div class="story-inner">🐾</div></div><div class="story-name">Maya</div></div>
+<div class="story-item"><div class="story-ring empty"><div class="story-inner">🌸</div></div><div class="story-name">Amina</div></div>
+</div></div>
+<div class="divider"></div>
+<div class="grid-area"><div class="grid-slider"><div class="grid-track" id="c-track">
+<div class="grid-page">
+<div class="app-item"><div class="app-icon">⏳</div><div class="app-name">Stories</div></div>
+<div class="app-item" onclick="openModule('mod-promos')"><div class="app-icon">🏷️</div><div class="app-name">Promotions</div></div>
+<div class="app-item" onclick="openModule('mod-urgence')"><div class="app-icon" style="background:#FFF0F0;">⚡</div><div class="app-name">Urgences</div></div>
+<div class="app-item" onclick="openModule('mod-marketplace')"><div class="app-icon">🛍️</div><div class="app-name">Marketplace</div></div>
+<div class="app-item" onclick="openModule('mod-notifs')"><div class="app-icon"><span style="font-size:26px;">🔔</span><span class="app-badge">3</span></div><div class="app-name">Notifications</div></div>
+<div class="app-item" onclick="openModule('mod-panier')"><div class="app-icon">🧺</div><div class="app-name">Panier</div></div>
+<div class="app-item" onclick="openModule('mod-feed')"><div class="app-icon">📸</div><div class="app-name">Feed</div></div>
+<div class="app-item" onclick="openModule('mod-concours')"><div class="app-icon">✨</div><div class="app-name">Concours</div></div>
+<div class="app-item" onclick="openModule('mod-modele')"><div class="app-icon">👗</div><div class="app-name">Models</div></div>
+<div class="app-item" onclick="openModule('mod-domicile')"><div class="app-icon">🏠</div><div class="app-name">À domicile</div></div>
+<div class="app-item" onclick="openModule('mod-concours')"><div class="app-icon">🎲</div><div class="app-name">Concours</div></div>
+<div class="app-item" onclick="openModule('mod-evenements')"><div class="app-icon">🎉</div><div class="app-name">Événements</div></div>
+<div class="app-item"><div class="app-icon">🪞</div><div class="app-name">Avant-Après</div></div>
+<div class="app-item" onclick="openModule('mod-formation')"><div class="app-icon">🎓</div><div class="app-name">Formations</div></div>
+<div class="app-item"><div class="app-icon">⭐</div><div class="app-name">Carte fidélité</div></div>
+<div class="app-item"><div class="app-icon">⚙️</div><div class="app-name">Réglages</div></div>
+</div>
