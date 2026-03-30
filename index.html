@@ -1171,3 +1171,52 @@ MODULES PROFIL
 </div><!-- /phone -->
 
 <script>
+// ── ONBOARDING ──
+let userChoice=null;
+function goPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));document.getElementById(id).classList.add('on');}
+function selectChoice(t){userChoice=t;document.getElementById('cc-client').classList.toggle('sel',t==='client');document.getElementById('cc-pro').classList.toggle('sel',t==='pro');document.getElementById('choose-btn').disabled=false;}
+function goChoose(){if(!userChoice)return;goPage(userChoice==='client'?'cl-compte':'pro-compte');}
+function finishOnboarding(type){document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));document.getElementById('screen-client').classList.toggle('on',type==='client');document.getElementById('screen-pro').classList.toggle('on',type==='pro');}
+function togCl(el){el.classList.toggle('on');document.getElementById('cl-count').textContent=document.querySelectorAll('#cl-metier-wrap .metier-chip.on').length;}
+function selStatut(el){el.closest('.statut-cards').querySelectorAll('.statut-card').forEach(c=>{c.classList.remove('sel');c.querySelectorAll('.statut-expand').forEach(e=>e.classList.remove('on'));});el.classList.add('sel');const ex=el.querySelector('.statut-expand');if(ex)ex.classList.add('on');}
+function showUsernameHelper(v){document.getElementById('username-helper').classList.toggle('on',v.length>1);}
+function selUsername(el,name){el.closest('.ia-suggestions').querySelectorAll('.ia-sug').forEach(s=>s.classList.remove('sel'));el.classList.add('sel');document.getElementById('pro-username').value=name;}
+const plans=[
+{level:"Starter · jusqu'à 5 clientes",price:"9,99€",feats:["Réservations illimitées","Planning & agenda","Encaissement intégré"]},
+{level:"Essentiel · jusqu'à 15 clientes",price:"19,99€",feats:["Tout Starter","Blacklist & médiation","Statistiques"]},
+{level:"Pro · jusqu'à 35 clientes",price:"59,99€",feats:["Tout Essentiel","Comptabilité avancée","Promotions"]},
+{level:"Business · jusqu'à 100 clientes",price:"149,49€",feats:["Tout Pro","Analytics complet","Support prioritaire"]},
+{level:"Studio · jusqu'à 250 clientes",price:"279€",feats:["Tout Business","Institut multi-profils","Gestion d'équipe"]},
+{level:"Enterprise · 250+ clientes",price:"329€",feats:["Tout Studio","Accompagnement dédié","Contrat sur mesure"]},
+];
+function setAbo(idx){const pct=idx===0?0:(idx/5)*100;document.getElementById('abo-fill').style.width=pct+'%';document.getElementById('abo-thumb').style.left=pct+'%';document.querySelectorAll('.abo-lbl').forEach((l,i)=>l.classList.toggle('on',i===idx));const p=plans[idx];document.getElementById('plan-level').textContent=p.level;document.getElementById('plan-price').innerHTML=p.price+'<span class="plan-period">/mois</span>';document.getElementById('plan-feats').innerHTML=p.feats.map(f=>`<div class="plan-feat">✓ ${f}</div>`).join('');}
+function aboClick(e){const t=document.getElementById('abo-track'),r=t.getBoundingClientRect();setAbo(Math.round(Math.max(0,Math.min(1,(e.clientX-r.left)/r.width))*5));}
+
+// ── GRIDS ──
+function initSwipe(trackId,dotsId){
+const track=document.getElementById(trackId);if(!track)return;
+const dots=document.getElementById(dotsId).querySelectorAll('.pdot');
+const pages=track.querySelectorAll('.grid-page');
+let cur=0,startX=0,dragging=false;
+function goTo(n){cur=Math.max(0,Math.min(pages.length-1,n));track.style.transform=`translateX(-${cur*(100/pages.length)}%)`;dots.forEach((d,i)=>d.classList.toggle('on',i===cur));}
+track.style.width=`${pages.length*375}px`;
+pages.forEach(p=>{p.style.minWidth='375px';p.style.width='375px';});
+track.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;dragging=true;},{passive:true});
+track.addEventListener('touchend',e=>{if(!dragging)return;if(Math.abs(startX-e.changedTouches[0].clientX)>40)goTo(cur+(startX-e.changedTouches[0].clientX>0?1:-1));dragging=false;});
+track.addEventListener('mousedown',e=>{startX=e.clientX;dragging=true;e.preventDefault();});
+window.addEventListener('mouseup',e=>{if(!dragging)return;if(Math.abs(startX-e.clientX)>40)goTo(cur+(startX-e.clientX>0?1:-1));dragging=false;});
+goTo(0);
+}
+initSwipe('c-track','c-dots');
+initSwipe('p-track','p-dots');
+
+// ── SEARCH ──
+function deploySearch(m){const p=m==='cl'?'c':'p';document.getElementById(p+'-s-icon').classList.add('hidden');document.getElementById(p+'-s-bar').classList.add('on');}
+function collapseSearch(e,m){e.stopPropagation();const p=m==='cl'?'c':'p';document.getElementById(p+'-s-icon').classList.remove('hidden');document.getElementById(p+'-s-bar').classList.remove('on');}
+function openSearchPage(m){document.getElementById(m==='cl'?'cl-search-page':'pro-search-page').classList.add('on');setTimeout(()=>document.getElementById(m==='cl'?'cl-sp-input':'pro-sp-input').focus(),100);}
+function closeSearchPage(m){document.getElementById(m==='cl'?'cl-search-page':'pro-search-page').classList.remove('on');collapseSearch({stopPropagation:()=>{}},m);}
+
+// ── FAN ──
+const fanState={cl:false,pro:false};
+function toggleFan(m){if(fanState[m]){closeFan(m);return;}fanState[m]=true;document.getElementById('fan-bd-'+m).classList.add('on');document.getElementById('tb-plus-'+m).classList.add('open');document.querySelectorAll(`#fan-${m} .fan-item`).forEach(i=>i.classList.add('on'));}
+function closeFan(m){fanState[m]=false;document.getElementById('fan-bd-'+m).classList.remove('on');document.getElementById('tb-plus-'+m).classList.remove('open');document.querySelectorAll(`#fan-${m} .fan-item`).forEach(i=>i.classList.remove('on'));}
