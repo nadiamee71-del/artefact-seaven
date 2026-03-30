@@ -1108,3 +1108,41 @@ MODULES PROFIL
 </div>
 </div>
 </div>
+
+<!-- À DOMICILE -->
+
+<div class="module" id="mod-domicile">
+<div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-domicile')">‹</div><div class="mod-title">À domicile</div></div>
+<div class="mod-filters"><div class="fchip on" onclick="togChip(this)">Tout</div><div class="fchip" onclick="togChip(this)">Ongles</div><div class="fchip" onclick="togChip(this)">Cils</div><div class="fchip" onclick="togChip(this)">Massage</div><div class="fchip" onclick="togChip(this)">Proche de moi</div></div>
+<div class="mod-scroll">
+<div class="dom-card"><div class="dom-top"><div class="dom-av">💅</div><div style="flex:1;"><div class="dom-name">Bloom Nails · Sassa</div><div class="dom-meta">Prothésiste ongulaire · Nice</div><div class="dom-stars">★ 4,8 · 57 avis · 2,4 km</div></div></div><div class="dom-tags"><div class="dom-tag">Ongles</div><div class="dom-tag price">+10€ déplacement</div><div class="dom-tag">Dès 5 km</div></div><div class="dom-bottom"><button class="dom-btn">Profil</button><button class="dom-btn dark">Réserver →</button></div></div>
+<div class="dom-card"><div class="dom-top"><div class="dom-av">👁️</div><div style="flex:1;"><div class="dom-name">Nina Cils</div><div class="dom-meta">Spécialiste cils · Nice</div><div class="dom-stars">★ 4,9 · 34 avis · 3,1 km</div></div></div><div class="dom-tags"><div class="dom-tag">Cils</div><div class="dom-tag price">Déplacement gratuit</div></div><div class="dom-bottom"><button class="dom-btn">Profil</button><button class="dom-btn dark">Réserver →</button></div></div>
+<div class="dom-card"><div class="dom-top"><div class="dom-av">🌿</div><div style="flex:1;"><div class="dom-name">Leila Bien-être</div><div class="dom-meta">Masseuse · Nice</div><div class="dom-stars">★ 5,0 · 21 avis · 4,0 km</div></div></div><div class="dom-tags"><div class="dom-tag">Massage</div><div class="dom-tag price">+15€ déplacement</div></div><div class="dom-bottom"><button class="dom-btn">Profil</button><button class="dom-btn dark">Réserver →</button></div></div>
+</div>
+</div>
+
+<!-- FORMATION -->
+
+<div class="module" id="mod-formation">
+<div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-formation')">‹</div><div class="mod-title">Formation</div></div>
+<div class="mod-tabs"><div class="mod-tab on" onclick="modTab(this,'mfo-formations')">Formations</div><div class="mod-tab" onclick="modTab(this,'mfo-ebooks')">Ebooks</div></div>
+<div class="mod-filters"><div class="fchip on" onclick="togChip(this)">Tout</div><div class="fchip" onclick="togChip(this)">Ongles</div><div class="fchip" onclick="togChip(this)">Cils</div><div class="fchip" onclick="togChip(this)">Débutant</div></div>
+<div class="mod-scroll">
+<div id="mfo-formations">
+<div class="card"><div class="card-body"><div class="card-top"><div class="card-av">💅</div><div style="flex:1;"><div class="card-name">Formation Gel X · Débutant</div><div class="card-by">par <span class="card-by-link" onclick="openSubModule('mod-formateur')">Bloom Nails · Sassa ↗</span></div></div><div class="niveau niv-debutant">Débutant</div></div><div class="programme"><div class="prog-item"><div class="prog-dot"></div>Préparation et soin des ongles naturels</div><div class="prog-item"><div class="prog-dot"></div>Application du gel X · Techniques de pose</div><div class="prog-item"><div class="prog-dot"></div>Formes : amande, carré, ballerine</div></div><div style="margin-bottom:10px;"><div class="places-bar"><div class="places-fill" style="width:70%;"></div></div><div class="places-lbl">7 places restantes sur 10</div></div><div class="card-btns"><button class="cbtn" onclick="openSubModule('mod-formateur')">Toutes ses formations</button><button class="cbtn dark">Réserver · 180€ →</button></div></div></div>
+<div class="card"><div class="card-body"><div class="card-top"><div class="card-av">👁️</div><div style="flex:1;"><div class="card-name">Volume russe · Intermédiaire</div><div class="card-by">par <span class="card-by-link">Nina Cils</span></div></div><div class="niveau niv-intermediaire">Intermédiaire</div></div><div class="programme"><div class="prog-item"><div class="prog-dot"></div>Mapping et techniques de volume</div><div class="prog-item"><div class="prog-dot"></div>Pose de bouquets 2D à 5D</div></div><div style="margin-bottom:10px;"><div class="places-bar"><div class="places-fill" style="width:90%;"></div></div><div class="places-lbl">1 place restante sur 8</div></div><div class="card-btns"><button class="cbtn dark">Réserver · 220€ →</button></div></div></div>
+</div>
+<div id="mfo-ebooks" style="display:none;">
+<div class="ebook-card"><div class="ebook-cover">📖</div><div class="ebook-body"><div class="ebook-title">Maîtriser le Gel X</div><div class="ebook-author">par Sassa · Bloom Nails</div><div class="ebook-desc">Techniques, astuces et erreurs à éviter pour une pose Gel X parfaite.</div><div class="ebook-footer"><div class="ebook-price">24,90€</div><div style="display:flex;gap:5px;"><button class="ef-btn on" onclick="selFmt(this)">PDF</button><button class="ef-btn" onclick="selFmt(this)">📦 Physique</button></div></div></div></div>
+<div class="ebook-card"><div class="ebook-cover">📗</div><div class="ebook-body"><div class="ebook-title">Extensions de cils · Guide complet</div><div class="ebook-author">par Nina Cils</div><div class="ebook-desc">Du classique au mega volume — mappings, colles, entretien client.</div><div class="ebook-footer"><div class="ebook-price">34,90€</div><div style="display:flex;gap:5px;"><button class="ef-btn on" onclick="selFmt(this)">PDF</button><button class="ef-btn" onclick="selFmt(this)">📦 Physique</button></div></div></div></div>
+</div>
+<!-- Sous-module formateur -->
+<div class="module" id="mod-formateur" style="z-index:70;">
+<div class="mod-hdr"><div class="mod-back" onclick="closeSubModule('mod-formateur')">‹</div><div class="mod-title">Bloom Nails · Sassa</div></div>
+<div class="mod-scroll" style="padding:8px 0;">
+<div class="form-session"><div class="fs-date">Avril 2026</div><div class="fs-item"><div><div class="fs-name">Formation Gel X · Débutant</div><div class="fs-meta">Sam. 5 avril · 10h → 18h · Nice</div></div><div class="fs-right"><div class="fs-price">180€</div><div class="fs-places">7 places</div></div></div><div class="fs-item"><div><div class="fs-name">Nail art · Intermédiaire</div><div class="fs-meta">Sam. 12 avril · 10h → 17h</div></div><div class="fs-right"><div class="fs-price">150€</div><div class="fs-places">4 places</div></div></div><div class="fs-item"><div><div class="fs-name">Formation Gel X · Avancé</div><div class="fs-meta">Sam. 19 avril · 9h → 18h</div></div><div class="fs-right"><div class="fs-price">220€</div><div class="fs-places">2 places</div></div></div></div>
+<div class="form-session"><div class="fs-date">Mai 2026</div><div class="fs-item"><div><div class="fs-name">Formation Gel X · Débutant</div><div class="fs-meta">Sam. 3 mai · 10h → 18h</div></div><div class="fs-right"><div class="fs-price">180€</div><div class="fs-places">10 places</div></div></div><div class="fs-item"><div><div class="fs-name">French & finitions</div><div class="fs-meta">Sam. 17 mai · 10h → 15h</div></div><div class="fs-right"><div class="fs-price">90€</div><div class="fs-places">6 places</div></div></div></div>
+</div>
+</div>
+</div>
+</div>
