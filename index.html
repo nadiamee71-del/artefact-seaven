@@ -327,6 +327,14 @@ body.dark-mode{
 #mod-blacklist .sav-title{font-size:13px;font-weight:800;color:var(--black);}
 #mod-blacklist .sav-sub{font-size:10px;color:var(--gray);}
 #mod-blacklist{position:relative;}
+#mod-blacklist .bl-pager{flex:1;position:relative;min-height:0;}
+#mod-blacklist .bl-pager>.screen{position:absolute;inset:0;display:none;flex-direction:column;background:var(--bg);overflow:hidden;}
+#mod-blacklist .bl-pager>.screen.on{display:flex;}
+#mod-blacklist #bl-page-liste .scroll,#mod-blacklist #bl-page-fiche .fiche-scroll{flex:1;min-height:0;}
+#mod-blacklist .search-bar svg{flex-shrink:0;}
+#mod-blacklist .client-card{display:flex;}
+#mod-blacklist .client-right .global-count{font-size:10px;font-weight:700;color:var(--gray);margin-top:4px;text-align:right;}
+#mod-blacklist .client-right .global-count span{color:var(--red);}
 #mod-blacklist .action-row{display:flex;gap:8px;margin-bottom:8px;}
 #mod-blacklist .btn-danger{flex:1;padding:13px;border-radius:13px;background:#FFF0EE;color:var(--red);font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Manrope',sans-serif;}
 #mod-blacklist .btn-neutral{flex:1;padding:13px;border-radius:13px;background:var(--light);color:var(--black);font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Manrope',sans-serif;}
@@ -1190,104 +1198,270 @@ MODULES PROFIL
 
 <div class="module" id="mod-blacklist">
 <div class="sbar"><span>9:41</span><span>WiFi 🔋</span></div>
+<div class="bl-pager">
+<div class="screen on" id="bl-page-liste">
 <div class="navbar">
 <div class="nav-back" onclick="closeModule('mod-blacklist')">‹</div>
 <div class="nav-title">Blacklist</div>
-<div class="nav-add" onclick="openBlModal('bl-modal-add')">+</div>
+<div class="nav-add" onclick="openBlModal('bl-modal-add')">＋</div>
 </div>
-<div class="search-bar"><input type="search" placeholder="Rechercher un profil…" autocomplete="off"/></div>
+<div class="search-bar">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+<input type="search" placeholder="Rechercher une cliente…" autocomplete="off" oninput="blFilterClients(this.value)"/>
+</div>
 <div class="filters" id="bl-filters">
-<div class="fpill on" onclick="togBlFpill(this)">Tout</div>
-<div class="fpill" onclick="togBlFpill(this)">Clientes</div>
-<div class="fpill" onclick="togBlFpill(this)">Pros</div>
-<div class="fpill" onclick="togBlFpill(this)">Instituts</div>
+<div class="fpill on" onclick="blSetFilter(this,'toutes')">Toutes</div>
+<div class="fpill" onclick="blSetFilter(this,'en-cours')">En cours</div>
+<div class="fpill" onclick="blSetFilter(this,'mediation')">Médiation</div>
+<div class="fpill" onclick="blSetFilter(this,'terminee')">Terminées</div>
 </div>
 <div class="stats-row">
-<div class="stat-box red"><div class="stat-n">3</div><div class="stat-l">Bloqués</div></div>
-<div class="stat-box orange"><div class="stat-n">1</div><div class="stat-l">En attente</div></div>
-<div class="stat-box green"><div class="stat-n">12</div><div class="stat-l">Levés (30 j)</div></div>
+<div class="stat-box red"><div class="stat-n">3</div><div class="stat-l">En cours</div></div>
+<div class="stat-box orange"><div class="stat-n">1</div><div class="stat-l">Médiation</div></div>
+<div class="stat-box green"><div class="stat-n">2</div><div class="stat-l">Terminées</div></div>
 </div>
-<div class="global-count">Signalements globaux : <span>18</span></div>
-<div class="scroll">
-<div class="client-card" onclick="openBlModal('bl-modal-cancel')">
-<div class="client-avatar red">M<div class="bl-dot en-cours"></div></div>
+<div class="scroll" id="bl-client-list">
+<div class="client-card" data-filter="en-cours" onclick="blGoFiche('karim')">
+<div class="client-avatar red">K<div class="bl-dot en-cours"></div></div>
 <div class="client-info">
-<div class="client-name">Marine B.</div>
-<div class="client-motif">No-show répété et refus de paiement après prestation.</div>
-<div class="client-meta">@marine.b · 12 mars 2026</div>
+<div class="client-name">Karima B.</div>
+<div class="client-motif">Partie sans payer · 65€</div>
+<div class="client-meta">Blacklistée le 14 jan. 2026</div>
 </div>
-<div class="client-right"><div class="status-badge sb-cours">En cours</div><div class="client-dur">J+18</div></div>
+<div class="client-right">
+<div class="status-badge sb-cours">En cours</div>
+<div class="client-dur">6 mois restants</div>
+<div class="global-count">⚠️ <span>2</span> ailleurs</div>
 </div>
-<div class="client-card">
-<div class="client-avatar orange">K<div class="bl-dot mediation"></div></div>
+</div>
+<div class="client-card" data-filter="mediation" onclick="blGoFiche('sofia')">
+<div class="client-avatar orange">S<div class="bl-dot mediation"></div></div>
 <div class="client-info">
-<div class="client-name">Karima Hair</div>
-<div class="client-motif">Litige sur acompte, dossier transmis en médiation.</div>
-<div class="client-meta">@karima · 2 mars 2026</div>
+<div class="client-name">Sofia M.</div>
+<div class="client-motif">No-show × 3 sans annuler</div>
+<div class="client-meta">Blacklistée le 3 fév. 2026</div>
 </div>
-<div class="client-right"><div class="status-badge sb-mediation">Médiation</div><div class="client-dur">J+28</div></div>
+<div class="client-right">
+<div class="status-badge sb-mediation">Médiation</div>
+<div class="client-dur">En attente SAV</div>
+<div class="global-count">⚠️ <span>1</span> ailleurs</div>
 </div>
-<div class="client-card">
-<div class="client-avatar">A<div class="bl-dot terminee"></div></div>
+</div>
+<div class="client-card" data-filter="en-cours" onclick="blGoFiche('nadia')">
+<div class="client-avatar red">N<div class="bl-dot en-cours"></div></div>
 <div class="client-info">
-<div class="client-name">Institut Zen</div>
-<div class="client-motif">Avertissement envoyé, blacklist levée après accord.</div>
-<div class="client-meta">@institut.zen · 28 févr. 2026</div>
+<div class="client-name">Nadia R.</div>
+<div class="client-motif">Retards répétés + agressivité</div>
+<div class="client-meta">Blacklistée le 20 fév. 2026</div>
 </div>
-<div class="client-right"><div class="status-badge sb-terminee">Terminée</div><div class="client-dur">Levée</div></div>
+<div class="client-right">
+<div class="status-badge sb-cours">En cours</div>
+<div class="client-dur">3 mois restants</div>
+<div class="global-count">—</div>
 </div>
-<div class="client-card">
-<div class="client-avatar">S</div>
+</div>
+<div class="client-card" data-filter="en-cours" onclick="blGoFiche('lena')">
+<div class="client-avatar red">L<div class="bl-dot en-cours"></div></div>
 <div class="client-info">
-<div class="client-name">Soraya L.</div>
-<div class="client-motif">Retards répétés et annulations à moins de 2h.</div>
-<div class="client-meta">@soraya.l · 26 févr. 2026</div>
+<div class="client-name">Léna T.</div>
+<div class="client-motif">Acompte non honoré</div>
+<div class="client-meta">Blacklistée le 1 mar. 2026</div>
 </div>
-<div class="client-right"><div class="status-badge sb-avertissement">Avertissement</div><div class="client-dur">Suivi</div></div>
+<div class="client-right">
+<div class="status-badge sb-avertissement">Avertissement</div>
+<div class="client-dur">1 mois</div>
+<div class="global-count">—</div>
 </div>
 </div>
-<div class="modal-overlay" id="bl-modal-cancel" onclick="blBackdropClose(event,'bl-modal-cancel')">
+<div class="client-card" data-filter="terminee" onclick="blGoFiche('amira')">
+<div class="client-avatar" style="background:#F0FFF4;color:#34C759;">A<div class="bl-dot terminee"></div></div>
+<div class="client-info">
+<div class="client-name">Amira D.</div>
+<div class="client-motif">Annulation dernière minute × 2</div>
+<div class="client-meta">Terminée le 15 jan. 2026</div>
+</div>
+<div class="client-right">
+<div class="status-badge sb-terminee">Terminée</div>
+<div class="client-dur">Levée</div>
+<div class="global-count">—</div>
+</div>
+</div>
+<div class="client-card" data-filter="terminee" onclick="blGoFiche('sara')">
+<div class="client-avatar" style="background:#F0FFF4;color:#34C759;">S<div class="bl-dot terminee"></div></div>
+<div class="client-info">
+<div class="client-name">Sara K.</div>
+<div class="client-motif">Comportement irrespectueux</div>
+<div class="client-meta">Terminée le 28 fév. 2026</div>
+</div>
+<div class="client-right">
+<div class="status-badge sb-terminee">Terminée</div>
+<div class="client-dur">Levée</div>
+<div class="global-count">—</div>
+</div>
+</div>
+</div>
+</div>
+<div class="screen" id="bl-page-fiche">
+<div class="navbar">
+<div class="nav-back" onclick="blGoBack()">‹</div>
+<div class="nav-title">Fiche cliente</div>
+<div style="width:28px;"></div>
+</div>
+<div class="fiche-scroll">
+<div class="fiche-header">
+<div class="fiche-avatar">K<div class="fiche-avatar-ring"></div></div>
+<div class="fiche-name">Karima B.</div>
+<div class="fiche-handle">@karima.b · membre depuis 2024</div>
+<div class="fiche-status sb-cours" style="padding:5px 14px;border-radius:20px;">🚫 Blacklistée — En cours</div>
+</div>
+<div class="section-title">Décision SEAVEN</div>
+<div class="sav-box">
+<div class="sav-header">
+<div class="sav-ic">⚖️</div>
+<div>
+<div class="sav-title">SAV SEAVEN</div>
+<div class="sav-sub">Traité le 18 jan. 2026</div>
+</div>
+</div>
+<div class="info-row" style="border-top:1px solid var(--border);padding-top:8px;">
+<div class="info-k">Décision</div>
+<div class="info-v" style="color:var(--red);">Blacklist confirmée</div>
+</div>
+<div class="info-row">
+<div class="info-k">Durée</div>
+<div class="info-v">6 mois</div>
+</div>
+<div class="info-row">
+<div class="info-k">Fin de blacklist</div>
+<div class="info-v">14 juil. 2026</div>
+</div>
+<div class="info-row">
+<div class="info-k">Visible autres pros</div>
+<div class="info-v">Alerte anonyme uniquement</div>
+</div>
+</div>
+<div class="section-title">Mon signalement</div>
+<div class="info-box">
+<div class="info-row">
+<div class="info-k">Date du signalement</div>
+<div class="info-v">14 jan. 2026</div>
+</div>
+<div class="info-row">
+<div class="info-k">Motif</div>
+<div class="info-v">Partie sans payer</div>
+</div>
+<div class="info-row">
+<div class="info-k">Montant impayé</div>
+<div class="info-v" style="color:var(--red);">65€</div>
+</div>
+</div>
+<div class="motif-box">
+<div class="motif-label">Mon commentaire (visible uniquement par moi)</div>
+<div class="motif-text">Cliente partie après la prestation sans régler. Contactée 3 fois par message, aucune réponse. RDV du 14/01 à 10h00.</div>
+</div>
+<div class="section-title">Historique plateforme</div>
+<div class="info-box">
+<div class="info-row">
+<div class="info-k">Signalements totaux</div>
+<div class="info-v" style="color:var(--red);">3 (dont le mien)</div>
+</div>
+<div class="info-row">
+<div class="info-k">Blacklists confirmées</div>
+<div class="info-v">2</div>
+</div>
+<div class="info-row">
+<div class="info-k">Statut plateforme</div>
+<div class="info-v">⚠️ Récidiviste</div>
+</div>
+</div>
+<div class="section-title">Signalée par d'autres prestataires</div>
+<div class="other-bl">
+<div class="other-bl-item">
+<div class="other-av">MB</div>
+<div style="flex:1;">
+<div class="other-name">Bloom Nails</div>
+<div class="other-date">Confirmée · oct. 2025 · 3 mois</div>
+</div>
+<div class="status-badge sb-terminee">Terminée</div>
+</div>
+<div class="other-bl-item">
+<div class="other-av" style="background:var(--light);">🔒</div>
+<div style="flex:1;">
+<div class="other-anon">Prestataire anonyme</div>
+<div class="other-date">Confirmée · jan. 2026 · 6 mois</div>
+</div>
+<div class="status-badge sb-cours">En cours</div>
+</div>
+</div>
+<div class="section-title">Actions</div>
+<div class="action-row">
+<button type="button" class="btn-neutral" onclick="alert('Profil →')">👤 Voir profil</button>
+<button type="button" class="btn-danger" onclick="openBlModal('bl-modal-annulation')">↩ Demander levée</button>
+</div>
+<div style="height:8px;"></div>
+</div>
+</div>
+</div>
+<div class="modal-overlay" id="bl-modal-annulation" onclick="blBackdropClose(event,'bl-modal-annulation')">
 <div class="modal-sheet" onclick="event.stopPropagation()">
 <div class="modal-handle"></div>
-<div class="modal-title">Lever la blacklist ?</div>
-<div class="modal-sub">Indique le motif. Le dossier peut être conservé pour le SAV.</div>
-<div class="motif-options" id="bl-motif-opts">
-<div class="motif-opt sel" onclick="selBlMotif(this)"><div class="mo-dot on"></div><div class="mo-text">Accord avec la cliente</div></div>
-<div class="motif-opt" onclick="selBlMotif(this)"><div class="mo-dot"></div><div class="mo-text">Erreur dans le dossier</div></div>
-<div class="motif-opt" onclick="selBlMotif(this)"><div class="mo-dot"></div><div class="mo-text">Sanction expirée</div></div>
+<div class="modal-title">Demander la levée</div>
+<div class="modal-sub">Ta demande sera examinée par le service SEAVEN. La blacklist reste active jusqu'à décision.</div>
+<div class="motif-options">
+<div class="motif-opt sel" onclick="selBlMotif(this)"><div class="mo-dot on"></div><div class="mo-text">Je me suis trompé(e) de cliente</div></div>
+<div class="motif-opt" onclick="selBlMotif(this)"><div class="mo-dot"></div><div class="mo-text">La cliente a régularisé la situation</div></div>
+<div class="motif-opt" onclick="selBlMotif(this)"><div class="mo-dot"></div><div class="mo-text">Accord amiable trouvé</div></div>
+<div class="motif-opt" onclick="selBlMotif(this)"><div class="mo-dot"></div><div class="mo-text">Autre raison</div></div>
 </div>
-<textarea class="modal-textarea" rows="3" placeholder="Commentaire optionnel…"></textarea>
-<div class="action-row">
-<button type="button" class="btn-neutral" onclick="closeBlModal('bl-modal-cancel')">Retour</button>
-<button type="button" class="btn-danger" onclick="closeBlModal('bl-modal-cancel')">Confirmer le retrait</button>
-</div>
+<textarea class="modal-textarea" rows="3" placeholder="Détails supplémentaires (optionnel)…"></textarea>
+<button type="button" class="btn-main" onclick="closeBlModal('bl-modal-annulation')">Envoyer au SAV SEAVEN →</button>
 </div>
 </div>
 <div class="modal-overlay" id="bl-modal-add" onclick="blBackdropClose(event,'bl-modal-add')">
-<div class="modal-sheet" onclick="event.stopPropagation()">
+<div class="modal-sheet" style="max-height:85%;overflow-y:auto;" onclick="event.stopPropagation()">
 <div class="modal-handle"></div>
-<div class="modal-title">Ajouter à la blacklist</div>
-<div class="modal-sub">Recherche un profil et définis la durée du blocage.</div>
+<div class="modal-title">Nouvelle blacklist</div>
+<div class="modal-sub">La cliente sera bloquée immédiatement. Le SAV SEAVEN sera notifié pour validation.</div>
 <div class="add-form">
-<label class="form-label">Pseudo ou @username</label>
-<input class="form-input" type="text" placeholder="@exemple" autocomplete="off"/>
-<label class="form-label">Motif (court)</label>
-<input class="form-input" type="text" placeholder="Ex. No-show, impayé…"/>
-<label class="form-label">Durée</label>
-<div class="duree-grid" id="bl-duree-grid">
-<div class="duree-opt" onclick="selBlDuree(this)">7 j</div>
-<div class="duree-opt sel" onclick="selBlDuree(this)">30 j</div>
-<div class="duree-opt" onclick="selBlDuree(this)">90 j</div>
-<div class="duree-opt" onclick="selBlDuree(this)">1 an</div>
-<div class="duree-opt" onclick="selBlDuree(this)">Indéfini</div>
-<div class="duree-opt" onclick="selBlDuree(this)">SAV</div>
+<div>
+<div class="form-label">Rechercher la cliente</div>
+<input class="form-input" type="text" placeholder="Nom ou @username…" autocomplete="off"/>
+</div>
+<div>
+<div class="form-label">Motif principal</div>
+<div class="motif-options" style="gap:6px;">
+<div class="motif-opt sel" onclick="selBlMotif(this)"><div class="mo-dot on"></div><div class="mo-text">Impayé</div></div>
+<div class="motif-opt" onclick="selBlMotif(this)"><div class="mo-dot"></div><div class="mo-text">No-show répété</div></div>
+<div class="motif-opt" onclick="selBlMotif(this)"><div class="mo-dot"></div><div class="mo-text">Comportement irrespectueux</div></div>
+<div class="motif-opt" onclick="selBlMotif(this)"><div class="mo-dot"></div><div class="mo-text">Annulations tardives répétées</div></div>
+<div class="motif-opt" onclick="selBlMotif(this)"><div class="mo-dot"></div><div class="mo-text">Autre</div></div>
+</div>
+</div>
+<div>
+<div class="form-label">Durée suggérée</div>
+<div class="duree-grid">
+<div class="duree-opt" onclick="selBlDuree(this)">1 mois</div>
+<div class="duree-opt" onclick="selBlDuree(this)">2 mois</div>
+<div class="duree-opt sel" onclick="selBlDuree(this)">3 mois</div>
+<div class="duree-opt" onclick="selBlDuree(this)">6 mois</div>
+<div class="duree-opt" onclick="selBlDuree(this)">12 mois</div>
+<div class="duree-opt" onclick="selBlDuree(this)">Définitif</div>
+</div>
+<div style="font-size:10px;color:var(--gray);margin-top:6px;">La durée finale est décidée par le SAV SEAVEN.</div>
+</div>
+<div>
+<div class="form-label">Commentaire (visible uniquement par toi)</div>
+<textarea class="modal-textarea" rows="3" placeholder="Décris ce qui s'est passé…" style="margin-bottom:0;"></textarea>
 </div>
 <div class="partage-row">
-<span class="form-label" style="margin:0;">Alerter le réseau SAV</span>
-<div class="toggle" id="bl-partage-toggle" onclick="toggleBlPartage(this)"></div>
+<div>
+<div style="font-size:13px;font-weight:700;color:var(--black);">Autoriser le partage</div>
+<div style="font-size:10px;color:var(--gray);margin-top:2px;">Les autres pros voient ton identité si tu acceptes</div>
 </div>
+<div class="toggle on" onclick="toggleBlPartage(this)"></div>
 </div>
-<button type="button" class="btn-main" style="margin-top:6px;" onclick="closeBlModal('bl-modal-add')">Enregistrer</button>
+<button type="button" class="btn-main" onclick="closeBlModal('bl-modal-add')">Blacklister · Notifier le SAV →</button>
+</div>
 </div>
 </div>
 </div>
@@ -1553,6 +1727,7 @@ closeFan('cl');closeFan('pro');
 const mod=document.getElementById(id);
 if(!mod){console.warn('Module introuvable:',id);return;}
 mod.classList.add('on');
+if(id==='mod-blacklist')blResetBlacklistView();
 if(!mod._swipeInit){
 mod._swipeInit=true;
 let sx=0,sw=false;
@@ -1574,7 +1749,51 @@ const target=document.getElementById(contentId);
 if(target)target.style.display='block';
 }
 function togChip(el){el.classList.toggle('on');}
-function togBlFpill(el){document.querySelectorAll('#bl-filters .fpill').forEach(p=>p.classList.remove('on'));el.classList.add('on');}
+let blCurrentFilter='toutes';
+function blResetBlacklistView(){
+const pl=document.getElementById('bl-page-liste');
+const pf=document.getElementById('bl-page-fiche');
+if(pl)pl.classList.add('on');
+if(pf)pf.classList.remove('on');
+['bl-modal-annulation','bl-modal-add'].forEach(id=>closeBlModal(id));
+blCurrentFilter='toutes';
+const pills=document.querySelectorAll('#bl-filters .fpill');
+pills.forEach(p=>p.classList.remove('on'));
+if(pills[0])pills[0].classList.add('on');
+const inp=document.querySelector('#bl-page-liste .search-bar input');
+if(inp)inp.value='';
+blApplyListFilter();
+}
+function blGoFiche(id){
+const pl=document.getElementById('bl-page-liste');
+const pf=document.getElementById('bl-page-fiche');
+if(pl)pl.classList.remove('on');
+if(pf)pf.classList.add('on');
+}
+function blGoBack(){
+const pl=document.getElementById('bl-page-liste');
+const pf=document.getElementById('bl-page-fiche');
+if(pl)pl.classList.add('on');
+if(pf)pf.classList.remove('on');
+}
+function blSetFilter(el,filter){
+blCurrentFilter=filter;
+document.querySelectorAll('#bl-filters .fpill').forEach(p=>p.classList.remove('on'));
+el.classList.add('on');
+blApplyListFilter();
+}
+function blApplyListFilter(){
+const inp=document.querySelector('#bl-page-liste .search-bar input');
+const val=(inp&&inp.value?inp.value:'').toLowerCase();
+document.querySelectorAll('#bl-client-list .client-card').forEach(c=>{
+const showFilter=blCurrentFilter==='toutes'||c.dataset.filter===blCurrentFilter;
+const name=c.querySelector('.client-name')?.textContent.toLowerCase()||'';
+const motif=c.querySelector('.client-motif')?.textContent.toLowerCase()||'';
+const matchSearch=!val||name.includes(val)||motif.includes(val);
+c.style.display=(showFilter&&matchSearch)?'flex':'none';
+});
+}
+function blFilterClients(v){blApplyListFilter();}
 function openBlModal(id){const m=document.getElementById(id);if(m)m.classList.add('on');}
 function closeBlModal(id){const m=document.getElementById(id);if(m)m.classList.remove('on');}
 function blBackdropClose(e,id){if(e.target===e.currentTarget)closeBlModal(id);}
