@@ -220,7 +220,7 @@ label.config-title{display:block;cursor:default;}
 .page-dots{display:flex;justify-content:center;gap:6px;padding:5px 0 3px;flex-shrink:0;}
 .pdot{width:6px;height:6px;border-radius:50%;background:var(--border);transition:all .2s;}
 .pdot.on{width:18px;border-radius:3px;background:var(--black);}
-.search-zone{padding:4px 18px 8px;flex-shrink:0;display:flex;justify-content:center;align-items:center;min-height:48px;}
+.search-zone{padding:4px 18px 8px;flex-shrink:0;display:flex;justify-content:center;align-items:center;min-height:48px;margin-bottom:var(--dock-h);}
 .s-icon{display:flex;align-items:center;justify-content:center;width:40px;height:40px;cursor:pointer;}
 .s-icon.hidden{display:none;}
 .s-bar-acc{display:none;width:100%;align-items:center;gap:10px;background:var(--light);border-radius:14px;padding:11px 14px;cursor:pointer;}
@@ -1682,12 +1682,7 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="grid-page">
 <div class="app-item" onclick="openModule('mod-planning')"><div class="app-icon" style="background:#EEF2FF;">📅</div><div class="app-name">Planning</div></div>
 <div class="app-item"><div class="app-icon">⏳</div><div class="app-name">Stories</div></div>
-<div class="app-item" onclick="openModule('mod-promos')"><div class="app-icon">🏷️</div><div class="app-name">Promotions</div></div>
-<div class="app-item" onclick="openModule('mod-urgence')"><div class="app-icon" style="background:#FFF0F0;">⚡</div><div class="app-name">Urgences</div></div>
-<div class="app-item" onclick="openModule('mod-marketplace')"><div class="app-icon">🛍️</div><div class="app-name">Marketplace</div></div>
-<div class="app-item" onclick="openModule('mod-notifs')"><div class="app-icon"><span style="font-size:26px;">🔔</span><span class="app-badge">5</span></div><div class="app-name">Notifications</div></div>
 <div class="app-item" onclick="openModule('mod-panier')"><div class="app-icon">🧺</div><div class="app-name">Panier</div></div>
-<div class="app-item" onclick="openModule('mod-feed')"><div class="app-icon">📸</div><div class="app-name">Feed</div></div>
 <div class="app-item" onclick="openModule('mod-concours')"><div class="app-icon">✨</div><div class="app-name">Concours</div></div>
 <div class="app-item" onclick="openModule('mod-modele')"><div class="app-icon">👗</div><div class="app-name">Models</div></div>
 <div class="app-item" onclick="openModule('mod-domicile')"><div class="app-icon">🏠</div><div class="app-name">À domicile</div></div>
@@ -1696,25 +1691,12 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="app-item" onclick="openModule('mod-formation')"><div class="app-icon">🎓</div><div class="app-name">Formations</div></div>
 <div class="app-item"><div class="app-icon" style="background:#F0FFF4;">📊</div><div class="app-name">Finances</div></div>
 <div class="app-item" onclick="openModule('mod-reglages')"><div class="app-icon">⚙️</div><div class="app-name">Réglages</div></div>
-</div>
-<div class="grid-page">
 <div class="app-item" onclick="openModule('mod-blacklist')"><div class="app-icon" style="background:#FFF0F0;">🚫</div><div class="app-name">Blacklist</div></div>
 <div class="app-item app-slot-empty" aria-hidden="true"></div>
 <div class="app-item app-slot-empty" aria-hidden="true"></div>
 <div class="app-item app-slot-empty" aria-hidden="true"></div>
 <div class="app-item app-slot-empty" aria-hidden="true"></div>
-<div class="app-item app-slot-empty" aria-hidden="true"></div>
-<div class="app-item app-slot-empty" aria-hidden="true"></div>
-<div class="app-item app-slot-empty" aria-hidden="true"></div>
-<div class="app-item app-slot-empty" aria-hidden="true"></div>
-<div class="app-item app-slot-empty" aria-hidden="true"></div>
-<div class="app-item app-slot-empty" aria-hidden="true"></div>
-<div class="app-item app-slot-empty" aria-hidden="true"></div>
-<div class="app-item app-slot-empty" aria-hidden="true"></div>
-<div class="app-item app-slot-empty" aria-hidden="true"></div>
-<div class="app-item app-slot-empty" aria-hidden="true"></div>
-<div class="app-item app-slot-empty" aria-hidden="true"></div>
-</div></div></div><div class="page-dots" id="p-dots"><div class="pdot on"></div><div class="pdot"></div></div></div>
+</div></div></div><div class="page-dots" id="p-dots"><div class="pdot on"></div></div></div>
 <div class="search-zone">
 <div class="s-icon" id="p-s-icon" onclick="deploySearch('pro')"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></div>
 <div class="s-bar-acc" id="p-s-bar" onclick="openSearchPage('pro')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg><div class="s-bar-text">Rechercher…</div><div class="s-bar-x" onclick="collapseSearch(event,'pro')">✕</div></div>
