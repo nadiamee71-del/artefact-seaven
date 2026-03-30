@@ -326,6 +326,38 @@ body.dark-mode{
 #mod-blacklist .sav-ic{width:28px;height:28px;border-radius:8px;background:var(--black);color:white;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;}
 #mod-blacklist .sav-title{font-size:13px;font-weight:800;color:var(--black);}
 #mod-blacklist .sav-sub{font-size:10px;color:var(--gray);}
+#mod-blacklist{position:relative;}
+#mod-blacklist .action-row{display:flex;gap:8px;margin-bottom:8px;}
+#mod-blacklist .btn-danger{flex:1;padding:13px;border-radius:13px;background:#FFF0EE;color:var(--red);font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Manrope',sans-serif;}
+#mod-blacklist .btn-neutral{flex:1;padding:13px;border-radius:13px;background:var(--light);color:var(--black);font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Manrope',sans-serif;}
+#mod-blacklist .btn-main{width:100%;padding:14px;border-radius:13px;background:var(--btn-bg);color:var(--btn-fg);font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'Manrope',sans-serif;}
+#mod-blacklist .modal-overlay{position:absolute;inset:0;background:rgba(0,0,0,.4);z-index:300;display:none;align-items:flex-end;justify-content:center;}
+#mod-blacklist .modal-overlay.on{display:flex;}
+#mod-blacklist .modal-sheet{background:var(--bg);border-radius:24px 24px 0 0;padding:16px 20px max(20px,env(safe-area-inset-bottom));width:100%;max-height:92%;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+#mod-blacklist .modal-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 16px;}
+#mod-blacklist .modal-title{font-size:16px;font-weight:800;color:var(--black);margin-bottom:4px;}
+#mod-blacklist .modal-sub{font-size:12px;color:var(--gray);margin-bottom:14px;line-height:1.5;}
+#mod-blacklist .motif-options{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
+#mod-blacklist .motif-opt{display:flex;align-items:center;gap:10px;padding:11px 13px;border:1.5px solid var(--border);border-radius:12px;cursor:pointer;transition:all .15s;}
+#mod-blacklist .motif-opt.sel{border-color:var(--black);background:var(--light);}
+#mod-blacklist .mo-dot{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+#mod-blacklist .mo-dot.on{border-color:var(--black);background:var(--black);}
+#mod-blacklist .mo-dot.on::after{content:'';width:6px;height:6px;border-radius:50%;background:white;}
+#mod-blacklist .mo-text{font-size:13px;font-weight:600;color:var(--black);}
+#mod-blacklist .modal-textarea{width:100%;border:1.5px solid var(--border);border-radius:12px;padding:11px 13px;font-size:13px;font-family:'Manrope',sans-serif;outline:none;resize:none;color:var(--black);margin-bottom:14px;background:var(--bg);}
+#mod-blacklist .modal-textarea:focus{border-color:var(--black);}
+#mod-blacklist .add-form{display:flex;flex-direction:column;gap:10px;}
+#mod-blacklist .form-label{font-size:12px;font-weight:700;color:var(--gray);margin-bottom:2px;display:block;}
+#mod-blacklist .form-input{width:100%;border:1.5px solid var(--border);border-radius:12px;padding:11px 13px;font-size:14px;font-family:'Manrope',sans-serif;outline:none;color:var(--black);background:var(--bg);}
+#mod-blacklist .form-input:focus{border-color:var(--black);}
+#mod-blacklist .duree-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+#mod-blacklist .duree-opt{padding:9px 4px;border:1.5px solid var(--border);border-radius:10px;text-align:center;font-size:11px;font-weight:700;color:var(--gray);cursor:pointer;transition:all .15s;}
+#mod-blacklist .duree-opt.sel{border-color:var(--btn-bg);background:var(--btn-bg);color:var(--btn-fg);}
+#mod-blacklist .partage-row{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;background:var(--light);border-radius:12px;}
+#mod-blacklist .toggle{width:44px;height:26px;border-radius:13px;background:var(--border);position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;}
+#mod-blacklist .toggle.on{background:var(--btn-bg);}
+#mod-blacklist .toggle::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:white;transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,.2);}
+#mod-blacklist .toggle.on::after{transform:translateX(18px);}
 .mod-filters{display:flex;gap:7px;padding:10px 16px;overflow-x:auto;flex-shrink:0;}
 .mod-filters::-webkit-scrollbar{display:none;}
 .fchip{padding:6px 14px;border-radius:18px;border:1.5px solid var(--border);font-size:12px;font-weight:700;color:var(--gray);background:white;cursor:pointer;white-space:nowrap;flex-shrink:0;}
@@ -1161,7 +1193,7 @@ MODULES PROFIL
 <div class="navbar">
 <div class="nav-back" onclick="closeModule('mod-blacklist')">‹</div>
 <div class="nav-title">Blacklist</div>
-<div class="nav-add" onclick="alert('Ajouter à la blacklist…')">+</div>
+<div class="nav-add" onclick="openBlModal('bl-modal-add')">+</div>
 </div>
 <div class="search-bar"><input type="search" placeholder="Rechercher un profil…" autocomplete="off"/></div>
 <div class="filters" id="bl-filters">
@@ -1177,7 +1209,7 @@ MODULES PROFIL
 </div>
 <div class="global-count">Signalements globaux : <span>18</span></div>
 <div class="scroll">
-<div class="client-card">
+<div class="client-card" onclick="openBlModal('bl-modal-cancel')">
 <div class="client-avatar red">M<div class="bl-dot en-cours"></div></div>
 <div class="client-info">
 <div class="client-name">Marine B.</div>
@@ -1212,6 +1244,50 @@ MODULES PROFIL
 <div class="client-meta">@soraya.l · 26 févr. 2026</div>
 </div>
 <div class="client-right"><div class="status-badge sb-avertissement">Avertissement</div><div class="client-dur">Suivi</div></div>
+</div>
+</div>
+<div class="modal-overlay" id="bl-modal-cancel" onclick="blBackdropClose(event,'bl-modal-cancel')">
+<div class="modal-sheet" onclick="event.stopPropagation()">
+<div class="modal-handle"></div>
+<div class="modal-title">Lever la blacklist ?</div>
+<div class="modal-sub">Indique le motif. Le dossier peut être conservé pour le SAV.</div>
+<div class="motif-options" id="bl-motif-opts">
+<div class="motif-opt sel" onclick="selBlMotif(this)"><div class="mo-dot on"></div><div class="mo-text">Accord avec la cliente</div></div>
+<div class="motif-opt" onclick="selBlMotif(this)"><div class="mo-dot"></div><div class="mo-text">Erreur dans le dossier</div></div>
+<div class="motif-opt" onclick="selBlMotif(this)"><div class="mo-dot"></div><div class="mo-text">Sanction expirée</div></div>
+</div>
+<textarea class="modal-textarea" rows="3" placeholder="Commentaire optionnel…"></textarea>
+<div class="action-row">
+<button type="button" class="btn-neutral" onclick="closeBlModal('bl-modal-cancel')">Retour</button>
+<button type="button" class="btn-danger" onclick="closeBlModal('bl-modal-cancel')">Confirmer le retrait</button>
+</div>
+</div>
+</div>
+<div class="modal-overlay" id="bl-modal-add" onclick="blBackdropClose(event,'bl-modal-add')">
+<div class="modal-sheet" onclick="event.stopPropagation()">
+<div class="modal-handle"></div>
+<div class="modal-title">Ajouter à la blacklist</div>
+<div class="modal-sub">Recherche un profil et définis la durée du blocage.</div>
+<div class="add-form">
+<label class="form-label">Pseudo ou @username</label>
+<input class="form-input" type="text" placeholder="@exemple" autocomplete="off"/>
+<label class="form-label">Motif (court)</label>
+<input class="form-input" type="text" placeholder="Ex. No-show, impayé…"/>
+<label class="form-label">Durée</label>
+<div class="duree-grid" id="bl-duree-grid">
+<div class="duree-opt" onclick="selBlDuree(this)">7 j</div>
+<div class="duree-opt sel" onclick="selBlDuree(this)">30 j</div>
+<div class="duree-opt" onclick="selBlDuree(this)">90 j</div>
+<div class="duree-opt" onclick="selBlDuree(this)">1 an</div>
+<div class="duree-opt" onclick="selBlDuree(this)">Indéfini</div>
+<div class="duree-opt" onclick="selBlDuree(this)">SAV</div>
+</div>
+<div class="partage-row">
+<span class="form-label" style="margin:0;">Alerter le réseau SAV</span>
+<div class="toggle" id="bl-partage-toggle" onclick="toggleBlPartage(this)"></div>
+</div>
+</div>
+<button type="button" class="btn-main" style="margin-top:6px;" onclick="closeBlModal('bl-modal-add')">Enregistrer</button>
 </div>
 </div>
 </div>
@@ -1499,6 +1575,12 @@ if(target)target.style.display='block';
 }
 function togChip(el){el.classList.toggle('on');}
 function togBlFpill(el){document.querySelectorAll('#bl-filters .fpill').forEach(p=>p.classList.remove('on'));el.classList.add('on');}
+function openBlModal(id){const m=document.getElementById(id);if(m)m.classList.add('on');}
+function closeBlModal(id){const m=document.getElementById(id);if(m)m.classList.remove('on');}
+function blBackdropClose(e,id){if(e.target===e.currentTarget)closeBlModal(id);}
+function selBlMotif(el){const g=el.closest('.motif-options');if(!g)return;g.querySelectorAll('.motif-opt').forEach(o=>{o.classList.remove('sel');const d=o.querySelector('.mo-dot');if(d)d.classList.remove('on');});el.classList.add('sel');const dot=el.querySelector('.mo-dot');if(dot)dot.classList.add('on');}
+function selBlDuree(el){const g=el.closest('.duree-grid');if(!g)return;g.querySelectorAll('.duree-opt').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');}
+function toggleBlPartage(el){el.classList.toggle('on');}
 function setFeedView(n,btn){btn.closest('.view-toggle').querySelectorAll('.vbtn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');const g=document.getElementById('feed-grid');if(g)g.className='feed-'+n;}
 
 // ── FLOWS CLIENT ──
