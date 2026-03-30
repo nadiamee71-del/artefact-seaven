@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>SEAVEN</title>
 <meta name="theme-color" content="#1A1A1A">
-<meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="SEAVEN">
@@ -2715,6 +2714,7 @@ MODULES PROFIL
 </div>
 </div>
 </div>
+</div>
 
 </div><!-- /phone -->
 
@@ -3289,8 +3289,8 @@ function closeSearchPage(m){const el=document.getElementById(m==='cl'?'cl-search
 
 // ── FAN ──
 const fanState={cl:false,pro:false};
-function toggleFan(m){if(fanState[m]){closeFan(m);return;}fanState[m]=true;document.getElementById('fan-bd-'+m).classList.add('on');document.getElementById('tb-plus-'+m).classList.add('open');document.querySelectorAll(`#fan-${m} .fan-item`).forEach(i=>i.classList.add('on'));}
-function closeFan(m){fanState[m]=false;document.getElementById('fan-bd-'+m).classList.remove('on');document.getElementById('tb-plus-'+m).classList.remove('open');document.querySelectorAll(`#fan-${m} .fan-item`).forEach(i=>i.classList.remove('on'));}
+function toggleFan(m){if(fanState[m]){closeFan(m);return;}fanState[m]=true;document.getElementById('fan-bd-'+m)?.classList.add('on');document.getElementById('tb-plus-'+m)?.classList.add('open');document.querySelectorAll(`#fan-${m} .fan-item`).forEach(i=>i.classList.add('on'));}
+function closeFan(m){fanState[m]=false;document.getElementById('fan-bd-'+m)?.classList.remove('on');document.getElementById('tb-plus-'+m)?.classList.remove('open');document.querySelectorAll(`#fan-${m} .fan-item`).forEach(i=>i.classList.remove('on'));}
 
 // ── MODULES ──
 // ── PROFILS ──
