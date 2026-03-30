@@ -911,6 +911,124 @@ body.dark-mode #mod-reglages{background:var(--bg)!important;}
 #mod-reglages .pro-only{display:none;}
 #mod-reglages .pro-only.show{display:block;}
 #mod-reglages .client-only.hide{display:none;}
+/* ══ MODULE SERVICES ══ */
+#mod-services{z-index:66;}
+#mod-services .svc-screen{position:absolute;inset:0;background:var(--bg);display:none;flex-direction:column;z-index:10;}
+#mod-services .svc-screen.svc-root{position:relative;flex:1;display:flex;flex-direction:column;z-index:0;}
+#mod-services .svc-screen.on{display:flex;}
+#mod-services .svc-scroll{flex:1;overflow-y:auto;padding-bottom:32px;}
+#mod-services .svc-scroll::-webkit-scrollbar{display:none;}
+#mod-services .svc-nav{display:flex;align-items:center;gap:8px;padding:12px 16px 8px;flex-shrink:0;}
+#mod-services .svc-back{font-size:22px;font-weight:700;color:var(--black);cursor:pointer;padding:2px 4px 2px 0;line-height:1;}
+#mod-services .svc-nav-title{font-size:17px;font-weight:900;color:var(--black);flex:1;}
+#mod-services .svc-nav-action{font-size:13px;font-weight:700;color:var(--black);background:var(--bg);padding:5px 12px;border-radius:20px;cursor:pointer;border:1.5px solid var(--border);white-space:nowrap;}
+#mod-services .svc-nav-plus{font-size:22px;color:var(--black);cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;}
+#mod-services .svc-progress{display:flex;gap:4px;padding:0 16px 10px;flex-shrink:0;}
+#mod-services .svc-pb{flex:1;height:3px;border-radius:2px;background:var(--border);transition:background .3s;}
+#mod-services .svc-pb.on{background:var(--black);}
+.svc-group{margin:10px 16px 0;}
+.svc-group-lbl{font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;padding-left:4px;}
+.svc-list{background:var(--bg);border-radius:16px;overflow:hidden;border:1px solid var(--border);}
+.svc-row{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .1s;}
+.svc-row:last-child{border-bottom:none;}
+.svc-row:active{background:var(--light);}
+.svc-color{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.svc-info{flex:1;}
+.svc-name{font-size:15px;font-weight:700;color:var(--black);}
+.svc-meta{font-size:11px;color:var(--gray);margin-top:2px;}
+.svc-price{font-size:13px;font-weight:800;color:var(--black);text-align:right;}
+.svc-dur{font-size:11px;color:var(--gray);text-align:right;margin-top:1px;}
+.svc-del{font-size:16px;color:#D1D1D6;cursor:pointer;padding:4px;flex-shrink:0;}
+.svc-card{background:var(--bg);border-radius:16px;overflow:hidden;border:1px solid var(--border);}
+.svc-inp-group{margin:10px 16px 0;}
+.svc-inp-lbl{font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.3px;margin-bottom:6px;}
+.svc-inp{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:12px 14px;font-size:15px;font-weight:600;color:var(--black);font-family:'Manrope',sans-serif;outline:none;}
+.svc-inp:focus{border-color:var(--black);}
+.svc-inp-row{display:flex;gap:8px;margin:10px 16px 0;}
+.svc-inp-row .svc-inp-group{flex:1;margin:0;}
+.svc-chips{display:flex;flex-wrap:wrap;gap:8px;padding:12px 16px 0;}
+.svc-chip{padding:9px 16px;border-radius:22px;font-size:13px;font-weight:700;color:var(--gray);background:var(--light);border:1.5px solid var(--border);cursor:pointer;transition:all .15s;}
+.svc-chip.on{background:var(--black);color:white;border-color:var(--black);}
+.svc-primary-btn{display:block;margin:12px 16px 0;width:calc(100% - 32px);padding:15px;border-radius:14px;background:var(--black);color:white;font-size:15px;font-weight:800;border:none;cursor:pointer;font-family:'Manrope',sans-serif;text-align:center;}
+.svc-ghost-btn{display:block;margin:8px 16px 0;width:calc(100% - 32px);padding:12px;border-radius:14px;background:transparent;color:var(--gray);font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Manrope',sans-serif;text-align:center;}
+.svc-danger-btn{display:block;margin:8px 16px 0;width:calc(100% - 32px);padding:13px;border-radius:14px;background:#FFF0F0;color:var(--red,#FF3B30);font-size:14px;font-weight:800;border:none;cursor:pointer;font-family:'Manrope',sans-serif;text-align:center;}
+.svc-note{font-size:11px;color:var(--gray);font-weight:600;text-align:center;margin:8px 16px 0;line-height:1.6;}
+.svc-pp{margin:10px 16px 0;background:var(--black);border-radius:14px;padding:14px 16px;}
+.svc-pp .pp-top{display:flex;justify-content:space-between;align-items:flex-start;}
+.svc-pp .pp-label{font-size:11px;color:rgba(255,255,255,.45);font-weight:700;text-transform:uppercase;letter-spacing:.3px;margin-bottom:4px;}
+.svc-pp .pp-price{font-size:24px;font-weight:900;color:white;}
+.svc-pp .pp-dur{font-size:16px;font-weight:800;color:rgba(255,255,255,.6);text-align:right;}
+.svc-pp .pp-desc{font-size:11px;color:rgba(255,255,255,.35);margin-top:8px;line-height:1.5;font-weight:500;}
+.svc-q-item{margin:8px 16px 0;background:var(--bg);border-radius:14px;overflow:hidden;border:1px solid var(--border);}
+.svc-q-header{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--border);}
+.svc-q-num{width:24px;height:24px;border-radius:50%;background:var(--black);color:white;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.svc-q-delta{display:flex;gap:6px;padding:8px 14px;flex-wrap:wrap;}
+.svc-qd{font-size:11px;font-weight:700;color:var(--black);background:var(--light);padding:4px 9px;border-radius:8px;}
+.svc-qd.muted{color:var(--gray);}
+.svc-add-q{display:flex;align-items:center;gap:10px;margin:8px 16px 0;padding:13px 16px;background:var(--bg);border-radius:14px;cursor:pointer;border:1.5px dashed var(--border);}
+.svc-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;text-align:center;gap:12px;}
+.svc-empty .es-ic{font-size:52px;margin-bottom:4px;}
+.svc-empty .es-title{font-size:22px;font-weight:900;color:var(--black);letter-spacing:-.4px;line-height:1.2;}
+.svc-empty .es-sub{font-size:13px;color:var(--gray);font-weight:600;line-height:1.7;max-width:270px;}
+.svc-empty .es-btn{background:var(--black);color:white;font-size:15px;font-weight:800;padding:15px 36px;border-radius:14px;border:none;cursor:pointer;font-family:'Manrope',sans-serif;margin-top:10px;}
+.svc-sheet-ov{position:absolute;inset:0;background:rgba(0,0,0,.45);z-index:80;display:none;align-items:flex-end;}
+.svc-sheet-ov.on{display:flex;}
+.svc-sheet{background:var(--bg);border-radius:24px 24px 0 0;width:100%;max-height:90%;display:flex;flex-direction:column;animation:svc-sup .25s cubic-bezier(.4,0,.2,1);}
+@keyframes svc-sup{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.svc-sh-handle{width:36px;height:4px;border-radius:2px;background:var(--border);margin:14px auto 0;flex-shrink:0;}
+.svc-sh-nav{display:flex;align-items:center;padding:10px 16px 6px;flex-shrink:0;}
+.svc-sh-title{font-size:17px;font-weight:900;color:var(--black);flex:1;}
+.svc-sh-close{font-size:22px;color:var(--gray);cursor:pointer;line-height:1;}
+.svc-sh-tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0;padding:0 16px;}
+.svc-sh-tab{flex:1;padding:9px 0;text-align:center;font-size:13px;font-weight:700;color:var(--gray);cursor:pointer;border-bottom:2px solid transparent;}
+.svc-sh-tab.on{color:var(--black);border-bottom-color:var(--black);}
+.svc-sh-body{flex:1;overflow-y:auto;}
+.svc-sh-body::-webkit-scrollbar{display:none;}
+.svc-tmpl-sec{padding:10px 16px 4px;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.4px;}
+.svc-tmpl-row{display:flex;align-items:center;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .1s;}
+.svc-tmpl-row:active{background:var(--light);}
+.svc-tmpl-ic{font-size:16px;flex-shrink:0;}
+.svc-tmpl-info{flex:1;}
+.svc-tmpl-q{font-size:13px;font-weight:700;color:var(--black);}
+.svc-tmpl-t{font-size:10px;color:var(--gray);font-weight:600;margin-top:2px;}
+.svc-tmpl-add{font-size:20px;color:var(--gray);}
+.svc-type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:8px 16px 12px;}
+.svc-type-cell{border:1.5px solid var(--border);border-radius:12px;padding:12px 8px;text-align:center;cursor:pointer;transition:all .15s;}
+.svc-type-cell.on{border-color:var(--black);background:var(--light);}
+.svc-disp-grid{display:flex;gap:8px;padding:0 16px 12px;}
+.svc-disp-cell{flex:1;border:1.5px solid var(--border);border-radius:12px;padding:10px 8px;text-align:center;cursor:pointer;transition:all .15s;}
+.svc-disp-cell.on{border-color:var(--black);background:var(--light);}
+.svc-color-palette{display:flex;flex-wrap:wrap;gap:8px;padding:8px 16px 12px;}
+.svc-color-dot{width:30px;height:30px;border-radius:50%;cursor:pointer;transition:transform .1s;border:2px solid transparent;}
+.svc-color-dot.on{transform:scale(1.2);border-color:var(--black);box-shadow:0 0 0 2px white,0 0 0 4px var(--black);}
+.svc-rep-item{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--border);}
+.svc-rep-handle{font-size:16px;color:var(--border);cursor:grab;}
+.svc-rep-inp{flex:1;border:none;outline:none;font-size:14px;font-weight:600;color:var(--black);font-family:'Manrope',sans-serif;background:transparent;}
+.svc-rep-color{width:20px;height:20px;border-radius:50%;cursor:pointer;border:1.5px solid var(--border);flex-shrink:0;}
+.svc-rep-del{font-size:14px;color:var(--border);cursor:pointer;flex-shrink:0;}
+.svc-dm{display:flex;gap:6px;padding:4px 16px 10px;}
+.svc-dm-f{flex:1;}
+.svc-dm-lbl{font-size:10px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.3px;margin-bottom:4px;}
+.svc-dm-inp{width:100%;background:var(--light);border:1.5px solid var(--border);border-radius:8px;padding:8px 10px;font-size:13px;font-weight:700;color:var(--black);font-family:'Manrope',sans-serif;outline:none;text-align:center;}
+.svc-dm-inp:focus{border-color:var(--black);background:var(--bg);}
+.svc-on-preview{display:flex;gap:8px;padding:8px 16px 12px;}
+.svc-on-btn{flex:1;padding:12px;border-radius:12px;border:1.5px solid var(--border);text-align:center;font-size:14px;font-weight:700;color:var(--black);background:var(--bg);}
+.svc-on-btn.oui{border-color:#34C759;background:#E8FFF0;color:#34C759;}
+.svc-on-btn.non{border-color:#FF3B30;background:#FFF0F0;color:#FF3B30;}
+.svc-oblig-row{display:flex;justify-content:space-between;align-items:center;background:var(--light);border-radius:12px;padding:12px 14px;margin:0 16px 12px;}
+.svc-rule-item{display:flex;align-items:flex-start;gap:10px;padding:12px 16px;border-bottom:1px solid var(--border);}
+.svc-rule-item:last-child{border-bottom:none;}
+.svc-rule-ck{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--border);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:11px;color:white;font-weight:800;}
+.svc-rule-ck.on{background:var(--black);border-color:var(--black);}
+.svc-rule-txt{font-size:13px;font-weight:600;color:var(--black);flex:1;line-height:1.5;}
+.svc-rule-del{color:#FF3B30;font-size:14px;cursor:pointer;flex-shrink:0;}
+.svc-team-row{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border);cursor:pointer;}
+.svc-team-row:last-child{border-bottom:none;}
+.svc-team-av{width:36px;height:36px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--black);flex-shrink:0;}
+.svc-team-ck{width:22px;height:22px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:10px;color:white;flex-shrink:0;cursor:pointer;font-weight:800;}
+.svc-team-ck.on{background:var(--black);border-color:var(--black);}
+.svc-sec-lbl{padding:10px 16px 4px;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.4px;}
+.svc-img-upload{margin:8px 16px;border:2px dashed var(--border);border-radius:12px;padding:20px;text-align:center;}
 /* ══ FLOWS ══ */
 .flow{position:absolute;top:0;left:0;right:0;bottom:var(--dock-h);z-index:100;display:none;flex-direction:column;background:white;}
 .flow.on{display:flex;}
@@ -1930,7 +2048,7 @@ MODULES PROFIL
 <div class="row-text"><div class="row-label">Mon activité</div><div class="row-sub">Métier, équipe, horaires, conditions</div></div>
 <div class="chev">›</div>
 </div>
-<div class="row">
+<div class="row" onclick="closeModule('mod-reglages');openModule('mod-services');">
 <div class="icon ic-pink">💅</div>
 <div class="row-text"><div class="row-label">Mes services</div><div class="row-sub">Prestations & tarifs</div></div>
 <div class="chev">›</div>
@@ -2004,6 +2122,309 @@ MODULES PROFIL
 </div>
 </div>
 </div>
+
+<!-- MODULE SERVICES -->
+
+<div class="prof-module" id="mod-services">
+<div class="sbar"><span>9:41</span><span>WiFi 🔋</span></div>
+
+<!-- ═ LISTE SERVICES ═ -->
+<div class="svc-screen svc-root" id="svc-list">
+<div class="svc-nav"><div class="svc-back" onclick="closeModule('mod-services')">‹</div><div class="svc-nav-title">Mes services</div><div class="svc-nav-plus" onclick="svcStartCreate()">＋</div></div>
+<div class="svc-scroll">
+<div class="svc-group">
+<div class="svc-group-lbl">💅 Ongles · 3 services</div>
+<div class="svc-list">
+<div class="svc-row" onclick="svcOpenScreen('svc-modify')"><div class="svc-color" style="background:#E8638C;"></div><div class="svc-info"><div class="svc-name">Pose complète Gel-X</div><div class="svc-meta">5 questions · IA photo activée</div></div><div><div class="svc-price">À partir de 50 €</div><div class="svc-dur">À partir de 1h</div></div><div class="svc-del" onclick="event.stopPropagation()">🗑</div></div>
+<div class="svc-row" onclick="svcOpenScreen('svc-modify')"><div class="svc-color" style="background:#4A90D9;"></div><div class="svc-info"><div class="svc-name">Remplissage gel</div><div class="svc-meta">3 questions</div></div><div><div class="svc-price">À partir de 40 €</div><div class="svc-dur">À partir de 45 min</div></div><div class="svc-del" onclick="event.stopPropagation()">🗑</div></div>
+<div class="svc-row" onclick="svcOpenScreen('svc-modify')"><div class="svc-color" style="background:#A87DC8;"></div><div class="svc-info"><div class="svc-name">Nail Art</div><div class="svc-meta">2 questions · En option</div></div><div><div class="svc-price">+10 € à +25 €</div><div class="svc-dur">+15 à +30 min</div></div><div class="svc-del" onclick="event.stopPropagation()">🗑</div></div>
+</div>
+</div>
+<div class="svc-group">
+<div class="svc-group-lbl">🦷 Blanchiment · 1 service</div>
+<div class="svc-list">
+<div class="svc-row" onclick="svcOpenScreen('svc-modify')"><div class="svc-color" style="background:#7EC8A4;"></div><div class="svc-info"><div class="svc-name">Blanchiment dentaire</div><div class="svc-meta">2 questions</div></div><div><div class="svc-price">À partir de 80 €</div><div class="svc-dur">À partir de 1h</div></div><div class="svc-del" onclick="event.stopPropagation()">🗑</div></div>
+</div>
+</div>
+<button class="svc-primary-btn" onclick="svcStartCreate()">+ Ajouter un service</button>
+</div>
+</div>
+
+<!-- ═ ÉTAT VIDE ═ -->
+<div class="svc-screen" id="svc-empty">
+<div class="svc-nav"><div class="svc-back" onclick="closeModule('mod-services')">‹</div><div class="svc-nav-title">Mes services</div><div style="width:32px;"></div></div>
+<div class="svc-empty">
+<div class="es-ic">✨</div>
+<div class="es-title">Créez vos premiers services</div>
+<div class="es-sub">Définissez vos prestations, vos prix et laissez vos clientes réserver facilement.</div>
+<button class="es-btn" onclick="svcStartCreate()">Ajouter un service</button>
+</div>
+</div>
+
+<!-- ═ ÉTAPE 1 — MÉTIER ═ -->
+<div class="svc-screen" id="svc-step1">
+<div class="svc-nav"><div class="svc-back" onclick="svcCloseScreen('svc-step1')">‹</div><div class="svc-nav-title">Nouveau service</div><div class="svc-nav-action" onclick="svcGoStep(2)">Suivant</div></div>
+<div class="svc-progress"><div class="svc-pb on"></div><div class="svc-pb"></div><div class="svc-pb"></div><div class="svc-pb"></div></div>
+<div class="svc-scroll">
+<div style="padding:16px 20px 8px;"><div style="font-size:20px;font-weight:900;color:var(--black);letter-spacing:-.3px;margin-bottom:6px;">Pour quel métier ?</div><div style="font-size:13px;color:var(--gray);font-weight:600;line-height:1.6;">Choisissez l'activité associée à ce service.</div></div>
+<div class="svc-chips">
+<div class="svc-chip on" onclick="svcSelChip(this)">💅 Ongles</div>
+<div class="svc-chip" onclick="svcSelChip(this)">🦷 Blanchiment</div>
+<div class="svc-chip" onclick="svcSelChip(this)">💄 Maquillage</div>
+<div class="svc-chip" onclick="svcSelChip(this)">✂️ Coiffure</div>
+<div class="svc-chip" onclick="svcSelChip(this)">💆 Massage</div>
+<div class="svc-chip" onclick="svcSelChip(this)">🌸 Esthétique</div>
+<div class="svc-chip" onclick="svcSelChip(this)">➕ Autre</div>
+</div>
+</div>
+</div>
+
+<!-- ═ ÉTAPE 2 — BASE ═ -->
+<div class="svc-screen" id="svc-step2">
+<div class="svc-nav"><div class="svc-back" onclick="svcCloseScreen('svc-step2')">‹</div><div class="svc-nav-title">Base du service</div><div class="svc-nav-action" onclick="svcGoStep(3)">Suivant</div></div>
+<div class="svc-progress"><div class="svc-pb on"></div><div class="svc-pb on"></div><div class="svc-pb"></div><div class="svc-pb"></div></div>
+<div class="svc-scroll">
+<div style="padding:14px 20px 6px;"><div style="font-size:20px;font-weight:900;color:var(--black);letter-spacing:-.3px;margin-bottom:4px;">💅 Ongles</div><div style="font-size:13px;color:var(--gray);font-weight:600;line-height:1.6;">Ces valeurs sont le minimum. Les questions ajusteront le prix et la durée.</div></div>
+<div class="svc-inp-row">
+<div class="svc-inp-group"><div class="svc-inp-lbl">Prix min (€)</div><input class="svc-inp" type="number" placeholder="50" id="svc-base-price" oninput="svcUpdatePreview()"></div>
+<div class="svc-inp-group"><div class="svc-inp-lbl">Durée min (min)</div><input class="svc-inp" type="number" placeholder="60" id="svc-base-dur" oninput="svcUpdatePreview()"></div>
+</div>
+<div class="svc-inp-group"><div class="svc-inp-lbl">Description (optionnel)</div><textarea class="svc-inp" rows="3" placeholder="Ex : Pose sur capsules américaines, gel UV…" style="resize:none;line-height:1.5;" id="svc-base-desc" oninput="svcUpdatePreview()"></textarea></div>
+<div style="padding:12px 16px 4px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.4px;">Aperçu côté cliente</div>
+<div class="svc-pp">
+<div class="pp-top"><div><div class="pp-label">Service</div><div class="pp-price" id="svc-pp-price">À partir de — €</div></div><div class="pp-dur" id="svc-pp-dur">—</div></div>
+<div class="pp-desc" id="svc-pp-desc">Aucune description pour l'instant.</div>
+</div>
+<div class="svc-note">Le prix évolue ensuite selon les réponses aux questions.</div>
+</div>
+</div>
+
+<!-- ═ ÉTAPE 3 — QUESTIONS ═ -->
+<div class="svc-screen" id="svc-step3">
+<div class="svc-nav"><div class="svc-back" onclick="svcCloseScreen('svc-step3')">‹</div><div class="svc-nav-title">Questions</div><div class="svc-nav-action" onclick="svcGoStep(4)">Suivant</div></div>
+<div class="svc-progress"><div class="svc-pb on"></div><div class="svc-pb on"></div><div class="svc-pb on"></div><div class="svc-pb"></div></div>
+<div class="svc-scroll">
+<div style="padding:12px 20px 8px;"><div style="font-size:20px;font-weight:900;color:var(--black);letter-spacing:-.3px;margin-bottom:4px;">Questions clientes</div><div style="font-size:13px;color:var(--gray);font-weight:600;line-height:1.6;">Chaque réponse peut ajuster le prix et la durée.</div></div>
+<div id="svc-q-list"></div>
+<div class="svc-add-q" onclick="svcOpenSheet('svc-sh-q')"><div style="width:28px;height:28px;border-radius:8px;border:1.5px dashed var(--gray);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--gray);">＋</div><div style="font-size:14px;font-weight:700;color:var(--gray);">Ajouter une question</div></div>
+<div id="svc-preview-range" style="display:none;">
+<div class="svc-pp" style="margin-top:10px;"><div class="pp-top"><div><div class="pp-label">Fourchette cliente</div><div class="pp-price" id="svc-pp-range">50 € → —</div></div><div class="pp-dur" id="svc-pp-range-dur">1h → —</div></div></div>
+</div>
+</div>
+</div>
+
+<!-- ═ ÉTAPE 4 — RÈGLES & ÉQUIPE ═ -->
+<div class="svc-screen" id="svc-step4">
+<div class="svc-nav"><div class="svc-back" onclick="svcCloseScreen('svc-step4')">‹</div><div class="svc-nav-title">Règles & équipe</div><div class="svc-nav-action" onclick="svcValidate()">Valider</div></div>
+<div class="svc-progress"><div class="svc-pb on"></div><div class="svc-pb on"></div><div class="svc-pb on"></div><div class="svc-pb on"></div></div>
+<div class="svc-scroll">
+<div style="padding:12px 20px 6px;"><div style="font-size:20px;font-weight:900;color:var(--black);letter-spacing:-.3px;">Règles & équipe</div></div>
+<div style="margin:10px 16px 0;"><div class="svc-sec-lbl" style="padding-left:4px;">Règles à accepter</div>
+<div class="svc-card" id="svc-rules-new">
+<div class="svc-rule-item"><div class="svc-rule-ck on" onclick="this.classList.toggle('on')">✓</div><div class="svc-rule-txt">Un acompte de 30% est requis à la réservation pour confirmer le RDV.</div><div class="svc-rule-del" onclick="this.closest('.svc-rule-item').remove()">🗑</div></div>
+<div class="svc-rule-item"><div class="svc-rule-ck on" onclick="this.classList.toggle('on')">✓</div><div class="svc-rule-txt">Toute annulation moins de 24h entraîne la perte de l'acompte.</div><div class="svc-rule-del" onclick="this.closest('.svc-rule-item').remove()">🗑</div></div>
+<div style="display:flex;align-items:center;gap:12px;padding:12px 16px;cursor:pointer;" onclick="svcOpenSheet('svc-sh-rule')"><div style="font-size:13px;font-weight:700;color:var(--gray);">+ Ajouter une règle</div></div>
+</div></div>
+<div style="margin:10px 16px 0;"><div class="svc-sec-lbl" style="padding-left:4px;">Équipe autorisée</div>
+<div class="svc-card">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border);"><div><div style="font-size:14px;font-weight:700;color:var(--black);">N'importe qui de disponible</div><div style="font-size:11px;color:var(--gray);margin-top:2px;">La cliente peut aussi choisir quelqu'un</div></div><div class="toggle-flow on" onclick="this.classList.toggle('on')"></div></div>
+<div class="svc-team-row"><div class="svc-team-av" style="background:linear-gradient(135deg,#E8638C,#A87DC8);color:white;">S</div><div style="flex:1;"><div style="font-size:14px;font-weight:700;color:var(--black);">Sassa</div><div style="font-size:11px;color:var(--gray);">Vous-même · Prothésiste ongulaire</div></div><div class="svc-team-ck on" onclick="this.classList.toggle('on')">✓</div></div>
+<div class="svc-team-row"><div class="svc-team-av">L</div><div style="flex:1;"><div style="font-size:14px;font-weight:700;color:var(--black);">Leila</div><div style="font-size:11px;color:var(--gray);">Apprentie · Mer–Sam</div></div><div class="svc-team-ck" onclick="this.classList.toggle('on')"></div></div>
+</div></div>
+<button class="svc-primary-btn" onclick="svcValidate()">✓ Valider ce service</button>
+<button class="svc-ghost-btn" onclick="svcCloseScreen('svc-step4')">Annuler</button>
+</div>
+</div>
+
+<!-- ═ MODIFIER SERVICE ═ -->
+<div class="svc-screen" id="svc-modify">
+<div class="svc-nav"><div class="svc-back" onclick="svcCloseScreen('svc-modify')">‹</div><div class="svc-nav-title">Modifier le service</div><div class="svc-nav-action">Sauver</div></div>
+<div class="svc-scroll">
+<div style="padding:12px 20px 4px;"><div style="font-size:18px;font-weight:900;color:var(--black);margin-bottom:2px;">💅 Pose complète Gel-X</div><div style="font-size:12px;color:var(--gray);font-weight:600;">Ongles · Créé le 14 juil. 2024</div></div>
+<div class="svc-inp-row">
+<div class="svc-inp-group"><div class="svc-inp-lbl">Prix min (€)</div><input class="svc-inp" type="number" value="50"></div>
+<div class="svc-inp-group"><div class="svc-inp-lbl">Durée min (min)</div><input class="svc-inp" type="number" value="60"></div>
+</div>
+<div class="svc-inp-group"><div class="svc-inp-lbl">Description</div><textarea class="svc-inp" rows="2" style="resize:none;line-height:1.5;">Pose sur capsules américaines, gel UV, fini brillant ou mat.</textarea></div>
+<div class="svc-pp">
+<div class="pp-top"><div><div class="pp-label">Aperçu cliente</div><div class="pp-price">À partir de 50 €</div></div><div class="pp-dur">1h</div></div>
+<div class="pp-desc">Pose sur capsules américaines, gel UV, fini brillant ou mat.</div>
+</div>
+<div style="padding:14px 16px 4px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.4px;">Questions · 5</div>
+<div class="svc-q-item"><div class="svc-q-header"><div class="svc-q-num">1</div><div style="flex:1;"><div style="font-size:14px;font-weight:700;color:var(--black);">Dépose ou remplissage ?</div><div style="font-size:11px;color:var(--gray);margin-top:2px;">Choix unique · Obligatoire</div></div><div style="font-size:14px;color:var(--gray);cursor:pointer;padding:4px;" onclick="svcOpenScreen('svc-edit-q')">✏️</div><div style="font-size:14px;color:#FF3B30;cursor:pointer;padding:4px;" onclick="this.closest('.svc-q-item').remove()">🗑</div></div><div class="svc-q-delta"><div class="svc-qd">Dépose : +10€ / +15 min</div><div class="svc-qd muted">Remplissage : pas de Δ</div></div></div>
+<div class="svc-q-item"><div class="svc-q-header"><div class="svc-q-num">2</div><div style="flex:1;"><div style="font-size:14px;font-weight:700;color:var(--black);">Longueur souhaitée ?</div><div style="font-size:11px;color:var(--gray);margin-top:2px;">Capsules · Obligatoire</div></div><div style="font-size:14px;color:var(--gray);cursor:pointer;padding:4px;" onclick="svcOpenScreen('svc-edit-q')">✏️</div><div style="font-size:14px;color:#FF3B30;cursor:pointer;padding:4px;" onclick="this.closest('.svc-q-item').remove()">🗑</div></div><div class="svc-q-delta"><div class="svc-qd">L : +5€</div><div class="svc-qd">XL : +10€ / +10 min</div></div></div>
+<div class="svc-q-item"><div class="svc-q-header"><div class="svc-q-num">3</div><div style="flex:1;"><div style="font-size:14px;font-weight:700;color:var(--black);">Ongle cassé ou abîmé ?</div><div style="font-size:11px;color:var(--gray);margin-top:2px;">Oui / Non · Facultatif</div></div><div style="font-size:14px;color:var(--gray);cursor:pointer;padding:4px;" onclick="svcOpenScreen('svc-edit-q')">✏️</div><div style="font-size:14px;color:#FF3B30;cursor:pointer;padding:4px;" onclick="this.closest('.svc-q-item').remove()">🗑</div></div><div class="svc-q-delta"><div class="svc-qd">Oui : +5€ / +5 min</div><div class="svc-qd muted">Non : pas de Δ</div></div></div>
+<div class="svc-q-item"><div class="svc-q-header"><div class="svc-q-num">4</div><div style="flex:1;"><div style="font-size:14px;font-weight:700;color:var(--black);">Photo d'inspiration ?</div><div style="font-size:11px;color:var(--gray);margin-top:2px;">Image · IA activée · Facultatif</div></div><div style="font-size:14px;color:var(--gray);cursor:pointer;padding:4px;" onclick="svcOpenScreen('svc-edit-q')">✏️</div><div style="font-size:14px;color:#FF3B30;cursor:pointer;padding:4px;" onclick="this.closest('.svc-q-item').remove()">🗑</div></div><div class="svc-q-delta"><div class="svc-qd muted">Estimation auto si IA activée</div></div></div>
+<div class="svc-q-item"><div class="svc-q-header"><div class="svc-q-num">5</div><div style="flex:1;"><div style="font-size:14px;font-weight:700;color:var(--black);">Note ou demande spéciale ?</div><div style="font-size:11px;color:var(--gray);margin-top:2px;">Texte libre · Facultatif</div></div><div style="font-size:14px;color:var(--gray);cursor:pointer;padding:4px;" onclick="svcOpenScreen('svc-edit-q')">✏️</div><div style="font-size:14px;color:#FF3B30;cursor:pointer;padding:4px;" onclick="this.closest('.svc-q-item').remove()">🗑</div></div><div class="svc-q-delta"><div class="svc-qd muted">Pas de Δ</div></div></div>
+<div class="svc-add-q" onclick="svcOpenSheet('svc-sh-q')"><div style="width:28px;height:28px;border-radius:8px;border:1.5px dashed var(--gray);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--gray);">＋</div><div style="font-size:14px;font-weight:700;color:var(--gray);">Ajouter une question</div></div>
+<div class="svc-pp" style="margin-top:10px;"><div class="pp-top"><div><div class="pp-label">Fourchette cliente</div><div class="pp-price">50 € → 85 €</div></div><div class="pp-dur">1h → 1h45</div></div></div>
+<div style="padding:14px 16px 4px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.4px;">Règles</div>
+<div class="svc-card" id="svc-mod-rules">
+<div class="svc-rule-item"><div class="svc-rule-ck on" onclick="this.classList.toggle('on')">✓</div><div class="svc-rule-txt">Un acompte de 30% est requis à la réservation.</div><div class="svc-rule-del" onclick="this.closest('.svc-rule-item').remove()">🗑</div></div>
+<div class="svc-rule-item"><div class="svc-rule-ck on" onclick="this.classList.toggle('on')">✓</div><div class="svc-rule-txt">Annulation moins de 24h = perte de l'acompte.</div><div class="svc-rule-del" onclick="this.closest('.svc-rule-item').remove()">🗑</div></div>
+<div style="display:flex;align-items:center;gap:12px;padding:12px 16px;cursor:pointer;" onclick="svcOpenSheet('svc-sh-rule')"><div style="font-size:13px;font-weight:700;color:var(--gray);">+ Ajouter une règle</div></div>
+</div>
+<div style="padding:14px 16px 4px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.4px;">Équipe</div>
+<div class="svc-card">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--border);"><div><div style="font-size:14px;font-weight:700;color:var(--black);">N'importe qui de disponible</div><div style="font-size:11px;color:var(--gray);margin-top:2px;">La cliente peut aussi choisir</div></div><div class="toggle-flow on" onclick="this.classList.toggle('on')"></div></div>
+<div class="svc-team-row"><div class="svc-team-av" style="background:linear-gradient(135deg,#E8638C,#A87DC8);color:white;">S</div><div style="flex:1;"><div style="font-size:14px;font-weight:700;color:var(--black);">Sassa</div><div style="font-size:11px;color:var(--gray);">Vous-même</div></div><div class="svc-team-ck on" onclick="this.classList.toggle('on')">✓</div></div>
+<div class="svc-team-row"><div class="svc-team-av">L</div><div style="flex:1;"><div style="font-size:14px;font-weight:700;color:var(--black);">Leila</div><div style="font-size:11px;color:var(--gray);">Apprentie</div></div><div class="svc-team-ck" onclick="this.classList.toggle('on')"></div></div>
+</div>
+<button class="svc-danger-btn">Supprimer ce service</button>
+<div style="height:16px;"></div>
+</div>
+</div>
+
+<!-- ═ MODIFIER QUESTION ═ -->
+<div class="svc-screen" id="svc-edit-q" style="z-index:20;">
+<div class="svc-nav"><div class="svc-back" onclick="svcCloseScreen('svc-edit-q')">‹</div><div class="svc-nav-title">Modifier la question</div><div class="svc-nav-action" onclick="svcCloseScreen('svc-edit-q')">Sauver</div></div>
+<div class="svc-scroll">
+<div style="padding:12px 16px 4px;">
+<div class="svc-inp-lbl" style="margin-bottom:6px;">Titre de la question</div>
+<input class="svc-inp" type="text" value="Ongle cassé ou abîmé ?">
+<div class="svc-inp-lbl" style="margin:10px 0 6px;">Description (optionnel)</div>
+<input class="svc-inp" type="text" placeholder="Aide pour la cliente">
+</div>
+<div style="padding:10px 16px 4px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.3px;">Type de réponse</div>
+<div class="svc-type-grid">
+<div class="svc-type-cell" onclick="svcSelTypeEdit(this)" data-type="choix-unique"><div style="font-size:20px;margin-bottom:4px;">⚪</div><div style="font-size:11px;font-weight:700;color:var(--black);">Choix unique</div></div>
+<div class="svc-type-cell" onclick="svcSelTypeEdit(this)" data-type="choix-multi"><div style="font-size:20px;margin-bottom:4px;">☑️</div><div style="font-size:11px;font-weight:700;color:var(--black);">Choix multiple</div></div>
+<div class="svc-type-cell on" onclick="svcSelTypeEdit(this)" data-type="oui-non"><div style="font-size:20px;margin-bottom:4px;">✅</div><div style="font-size:11px;font-weight:700;color:var(--black);">Oui / Non</div></div>
+<div class="svc-type-cell" onclick="svcSelTypeEdit(this)" data-type="nombre"><div style="font-size:20px;margin-bottom:4px;">🔢</div><div style="font-size:11px;font-weight:700;color:var(--black);">Nombre</div></div>
+<div class="svc-type-cell" onclick="svcSelTypeEdit(this)" data-type="texte"><div style="font-size:20px;margin-bottom:4px;">📝</div><div style="font-size:11px;font-weight:700;color:var(--black);">Texte libre</div></div>
+<div class="svc-type-cell" onclick="svcSelTypeEdit(this)" data-type="image"><div style="font-size:20px;margin-bottom:4px;">📸</div><div style="font-size:11px;font-weight:700;color:var(--black);">Image</div></div>
+</div>
+<div id="svc-edit-zone-choix" style="display:none;">
+<div style="padding:0 16px 4px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.3px;">Mode d'affichage</div>
+<div class="svc-disp-grid"><div class="svc-disp-cell on" onclick="svcSelDisp(this)"><div style="font-size:18px;margin-bottom:3px;">⚪</div><div style="font-size:11px;font-weight:700;color:var(--black);">Liste</div></div><div class="svc-disp-cell" onclick="svcSelDisp(this)"><div style="font-size:18px;margin-bottom:3px;">🏷️</div><div style="font-size:11px;font-weight:700;color:var(--black);">Capsules</div></div></div>
+<div style="padding:0 16px 4px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.3px;">Réponses</div>
+<div id="svc-edit-rep-list">
+<div class="svc-rep-item"><div class="svc-rep-handle">⠿</div><input class="svc-rep-inp" type="text" value="Remplissage"><div class="svc-rep-color" style="background:#E8638C;" onclick="svcOpenSheet('svc-sh-color')"></div><div class="svc-rep-del">🗑</div></div>
+<div class="svc-rep-item"><div class="svc-rep-handle">⠿</div><input class="svc-rep-inp" type="text" value="Dépose"><div class="svc-rep-color" style="background:#4A90D9;" onclick="svcOpenSheet('svc-sh-color')"></div><div class="svc-rep-del">🗑</div></div>
+<div class="svc-rep-item"><div class="svc-rep-handle">⠿</div><input class="svc-rep-inp" type="text" value="Pose sur base clean"><div class="svc-rep-color" style="background:#FF9500;" onclick="svcOpenSheet('svc-sh-color')"></div><div class="svc-rep-del">🗑</div></div>
+</div>
+<div style="display:flex;align-items:center;gap:8px;padding:8px 16px;cursor:pointer;border-bottom:1px solid var(--border);" onclick="svcAddEditRep()"><div style="width:22px;height:22px;border-radius:50%;border:1.5px dashed var(--gray);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--gray);">+</div><div style="font-size:13px;font-weight:700;color:var(--gray);">Ajouter une réponse</div></div>
+<div style="padding:8px 16px 4px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.3px;">Δ Prix / durée par réponse</div>
+<div class="svc-dm"><div class="svc-dm-f"><div class="svc-dm-lbl">+ Prix (€)</div><input class="svc-dm-inp" type="number" placeholder="—"></div><div class="svc-dm-f"><div class="svc-dm-lbl">+ Durée (min)</div><input class="svc-dm-inp" type="number" placeholder="—"></div></div>
+</div>
+<div id="svc-edit-zone-oui-non">
+<div style="padding:0 16px 4px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.3px;">Aperçu réponses</div>
+<div class="svc-on-preview"><div class="svc-on-btn oui">✓ Oui</div><div class="svc-on-btn non">✕ Non</div></div>
+<div style="padding:0 16px 4px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.3px;">Ajustement si Oui</div>
+<div class="svc-dm"><div class="svc-dm-f"><div class="svc-dm-lbl">+ Prix (€)</div><input class="svc-dm-inp" type="number" value="5"></div><div class="svc-dm-f"><div class="svc-dm-lbl">+ Durée (min)</div><input class="svc-dm-inp" type="number" value="5"></div></div>
+</div>
+<div id="svc-edit-zone-nombre" style="display:none;"><div style="padding:8px 16px 12px;"><div style="background:var(--light);border-radius:12px;padding:14px 16px;text-align:center;font-size:14px;font-weight:600;color:var(--gray);">🔢 Champ numérique</div></div></div>
+<div id="svc-edit-zone-texte" style="display:none;"><div style="padding:8px 16px 12px;"><div style="background:var(--light);border-radius:12px;padding:14px 16px;font-size:14px;font-weight:600;color:var(--gray);">Champ de saisie libre…</div></div></div>
+<div id="svc-edit-zone-image" style="display:none;"><div class="svc-img-upload"><div style="font-size:28px;margin-bottom:6px;">📎</div><div style="font-size:13px;font-weight:700;color:var(--gray);">Importer votre fichier</div></div><div style="margin:8px 16px;" class="svc-card"><div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;"><div><div style="font-size:14px;font-weight:700;color:var(--black);">🤖 Analyse IA</div><div style="font-size:11px;color:var(--gray);margin-top:2px;">Estimation de prix depuis la photo</div></div><div class="toggle-flow" onclick="this.classList.toggle('on')"></div></div></div></div>
+<div style="padding:10px 16px 4px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.3px;border-top:1px solid var(--border);margin-top:4px;">Couleur planning (optionnel)</div>
+<div class="svc-color-palette">
+<div class="svc-color-dot" style="background:#E8638C;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#FFB3C6;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#FF3B30;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#FF9500;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#FFCA28;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#7EC8A4;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#34C759;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#4A90D9;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#A8D4F5;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#007AFF;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#A87DC8;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#D4A8F0;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#5856D6;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#1A1A1A;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#8E8E93;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#F2F2F7;border:1px solid #E5E5EA;" onclick="svcSelColor(this)"></div>
+</div>
+<div style="margin:0 16px 0;" class="svc-card"><div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;"><div style="font-size:14px;font-weight:700;color:var(--black);">Question obligatoire</div><div class="toggle-flow on" onclick="this.classList.toggle('on')"></div></div></div>
+<div style="height:16px;"></div>
+</div>
+</div>
+
+<!-- ═ SHEETS SERVICES ═ -->
+
+<div class="svc-sheet-ov" id="svc-sh-q" onclick="if(event.target===this)svcCloseSheet('svc-sh-q')">
+<div class="svc-sheet" onclick="event.stopPropagation()">
+<div class="svc-sh-handle"></div>
+<div class="svc-sh-nav"><div class="svc-sh-title">Ajouter une question</div><div class="svc-sh-close" onclick="svcCloseSheet('svc-sh-q')">×</div></div>
+<div class="svc-sh-tabs">
+<div class="svc-sh-tab on" onclick="svcShTab(this,'svc-tab-tmpl','svc-tab-creer')">Templates</div>
+<div class="svc-sh-tab" onclick="svcShTab(this,'svc-tab-creer','svc-tab-tmpl')">Créer</div>
+</div>
+<div class="svc-sh-body">
+<div id="svc-tab-tmpl">
+<div class="svc-tmpl-sec">💅 Ongles</div>
+<div class="svc-tmpl-row" onclick="svcAddQ('Dépose ou remplissage ?','Choix unique','Dépose : +10€ / +15 min')"><div class="svc-tmpl-ic">🔄</div><div class="svc-tmpl-info"><div class="svc-tmpl-q">Dépose ou remplissage ?</div><div class="svc-tmpl-t">Choix unique · Dépose, Remplissage, Pose</div></div><div class="svc-tmpl-add">＋</div></div>
+<div class="svc-tmpl-row" onclick="svcAddQ('Longueur souhaitée ?','Capsules','L : +5€ / XL : +10€ +10 min')"><div class="svc-tmpl-ic">📏</div><div class="svc-tmpl-info"><div class="svc-tmpl-q">Longueur souhaitée ?</div><div class="svc-tmpl-t">Capsules · XS, S, M, L, XL</div></div><div class="svc-tmpl-add">＋</div></div>
+<div class="svc-tmpl-row" onclick="svcAddQ('Forme souhaitée ?','Capsules','Pas de Δ')"><div class="svc-tmpl-ic">💎</div><div class="svc-tmpl-info"><div class="svc-tmpl-q">Forme souhaitée ?</div><div class="svc-tmpl-t">Capsules · Amande, Carré, Stiletto, Ballerine</div></div><div class="svc-tmpl-add">＋</div></div>
+<div class="svc-tmpl-row" onclick="svcAddQ('Nail art ou nude ?','Choix unique','Nail art : +15€ +20 min')"><div class="svc-tmpl-ic">🎨</div><div class="svc-tmpl-info"><div class="svc-tmpl-q">Nail art ou nude ?</div><div class="svc-tmpl-t">Choix unique · Nude, French, Nail art</div></div><div class="svc-tmpl-add">＋</div></div>
+<div class="svc-tmpl-row" onclick="svcAddQ('Ongle cassé ou abîmé ?','Oui / Non','Oui : +5€ +5 min')"><div class="svc-tmpl-ic">💔</div><div class="svc-tmpl-info"><div class="svc-tmpl-q">Ongle cassé ou abîmé ?</div><div class="svc-tmpl-t">Oui / Non · Oui = +5€</div></div><div class="svc-tmpl-add">＋</div></div>
+<div class="svc-tmpl-row" onclick="svcAddQ('Photo d\'inspiration ?','Image · IA','Estimation auto si IA')"><div class="svc-tmpl-ic">📸</div><div class="svc-tmpl-info"><div class="svc-tmpl-q">Photo d'inspiration ?</div><div class="svc-tmpl-t">Image · IA activable</div></div><div class="svc-tmpl-add">＋</div></div>
+<div class="svc-tmpl-row" onclick="svcAddQ('Note ou demande spéciale ?','Texte libre','Pas de Δ')"><div class="svc-tmpl-ic">📝</div><div class="svc-tmpl-info"><div class="svc-tmpl-q">Note ou demande spéciale ?</div><div class="svc-tmpl-t">Texte libre · Facultatif</div></div><div class="svc-tmpl-add">＋</div></div>
+<div style="height:1px;background:var(--border);margin:4px 0;"></div>
+<div class="svc-tmpl-sec">🦷 Blanchiment</div>
+<div class="svc-tmpl-row" onclick="svcAddQ('Sensibilité dentaire ?','Oui / Non','Pas de Δ')"><div class="svc-tmpl-ic">😬</div><div class="svc-tmpl-info"><div class="svc-tmpl-q">Sensibilité dentaire ?</div><div class="svc-tmpl-t">Oui / Non</div></div><div class="svc-tmpl-add">＋</div></div>
+<div class="svc-tmpl-row" onclick="svcAddQ('Teinte souhaitée ?','Capsules','B1 : +10€')"><div class="svc-tmpl-ic">🦷</div><div class="svc-tmpl-info"><div class="svc-tmpl-q">Teinte souhaitée ?</div><div class="svc-tmpl-t">Capsules · A1, B1, A2…</div></div><div class="svc-tmpl-add">＋</div></div>
+<div style="height:1px;background:var(--border);margin:4px 0;"></div>
+<div class="svc-tmpl-sec">✂️ Coiffure</div>
+<div class="svc-tmpl-row" onclick="svcAddQ('Longueur des cheveux ?','Choix unique','Longs : +10€ +15 min')"><div class="svc-tmpl-ic">💇</div><div class="svc-tmpl-info"><div class="svc-tmpl-q">Longueur des cheveux ?</div><div class="svc-tmpl-t">Courts, Mi-longs, Longs, Très longs</div></div><div class="svc-tmpl-add">＋</div></div>
+<div class="svc-tmpl-row" onclick="svcAddQ('Soin ou masque inclus ?','Oui / Non','Oui : +8€ +10 min')"><div class="svc-tmpl-ic">🧴</div><div class="svc-tmpl-info"><div class="svc-tmpl-q">Soin ou masque inclus ?</div><div class="svc-tmpl-t">Oui / Non · Oui = +8€</div></div><div class="svc-tmpl-add">＋</div></div>
+<div style="height:1px;background:var(--border);margin:4px 0;"></div>
+<div class="svc-tmpl-sec">💆 Massage</div>
+<div class="svc-tmpl-row" onclick="svcAddQ('Durée souhaitée ?','Choix unique','60 min : base / 90 min : +15€ +30 min')"><div class="svc-tmpl-ic">⏱</div><div class="svc-tmpl-info"><div class="svc-tmpl-q">Durée souhaitée ?</div><div class="svc-tmpl-t">30 min, 60 min, 90 min</div></div><div class="svc-tmpl-add">＋</div></div>
+<div class="svc-tmpl-row" onclick="svcAddQ('Zone à masser ?','Choix multiple','Corps entier : +10€')"><div class="svc-tmpl-ic">🤲</div><div class="svc-tmpl-info"><div class="svc-tmpl-q">Zone à masser ?</div><div class="svc-tmpl-t">Dos, Jambes, Corps entier…</div></div><div class="svc-tmpl-add">＋</div></div>
+<div style="height:20px;"></div>
+</div>
+<div id="svc-tab-creer" style="display:none;">
+<div style="padding:10px 16px 6px;">
+<div class="svc-inp-lbl" style="margin-bottom:6px;">Titre de la question</div>
+<input class="svc-inp" type="text" placeholder="Ex : Longueur souhaitée ?" id="svc-cq-title">
+<div class="svc-inp-lbl" style="margin:10px 0 6px;">Description (optionnel)</div>
+<input class="svc-inp" type="text" placeholder="Aide pour la cliente">
+</div>
+<div style="padding:6px 16px 4px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.3px;">Type</div>
+<div class="svc-type-grid">
+<div class="svc-type-cell on" onclick="svcSelTypeCreate(this)" data-type="choix-unique"><div style="font-size:20px;margin-bottom:4px;">⚪</div><div style="font-size:11px;font-weight:700;color:var(--black);">Choix unique</div></div>
+<div class="svc-type-cell" onclick="svcSelTypeCreate(this)" data-type="choix-multi"><div style="font-size:20px;margin-bottom:4px;">☑️</div><div style="font-size:11px;font-weight:700;color:var(--black);">Choix multiple</div></div>
+<div class="svc-type-cell" onclick="svcSelTypeCreate(this)" data-type="oui-non"><div style="font-size:20px;margin-bottom:4px;">✅</div><div style="font-size:11px;font-weight:700;color:var(--black);">Oui / Non</div></div>
+<div class="svc-type-cell" onclick="svcSelTypeCreate(this)" data-type="nombre"><div style="font-size:20px;margin-bottom:4px;">🔢</div><div style="font-size:11px;font-weight:700;color:var(--black);">Nombre</div></div>
+<div class="svc-type-cell" onclick="svcSelTypeCreate(this)" data-type="texte"><div style="font-size:20px;margin-bottom:4px;">📝</div><div style="font-size:11px;font-weight:700;color:var(--black);">Texte libre</div></div>
+<div class="svc-type-cell" onclick="svcSelTypeCreate(this)" data-type="image"><div style="font-size:20px;margin-bottom:4px;">📸</div><div style="font-size:11px;font-weight:700;color:var(--black);">Image</div></div>
+</div>
+<div id="svc-create-zone-choix">
+<div style="padding:0 16px 4px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.3px;">Mode affichage</div>
+<div class="svc-disp-grid"><div class="svc-disp-cell on" onclick="svcSelDisp(this)"><div style="font-size:18px;margin-bottom:3px;">⚪</div><div style="font-size:11px;font-weight:700;color:var(--black);">Liste</div></div><div class="svc-disp-cell" onclick="svcSelDisp(this)"><div style="font-size:18px;margin-bottom:3px;">🏷️</div><div style="font-size:11px;font-weight:700;color:var(--black);">Capsules</div></div></div>
+<div style="padding:0 16px 4px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.3px;">Réponses</div>
+<div id="svc-create-rep-list"><div class="svc-rep-item"><div class="svc-rep-handle">⠿</div><input class="svc-rep-inp" type="text" placeholder="Réponse 1"><div class="svc-rep-color" style="background:#E5E5EA;" onclick="svcOpenSheet('svc-sh-color')"></div><div class="svc-rep-del" onclick="this.closest('.svc-rep-item').remove()">🗑</div></div><div class="svc-rep-item"><div class="svc-rep-handle">⠿</div><input class="svc-rep-inp" type="text" placeholder="Réponse 2"><div class="svc-rep-color" style="background:#E5E5EA;" onclick="svcOpenSheet('svc-sh-color')"></div><div class="svc-rep-del" onclick="this.closest('.svc-rep-item').remove()">🗑</div></div></div>
+<div style="display:flex;align-items:center;gap:8px;padding:8px 16px;cursor:pointer;border-bottom:1px solid var(--border);" onclick="svcAddCreateRep()"><div style="width:22px;height:22px;border-radius:50%;border:1.5px dashed var(--gray);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--gray);">+</div><div style="font-size:13px;font-weight:700;color:var(--gray);">Ajouter une réponse</div></div>
+<div class="svc-dm"><div class="svc-dm-f"><div class="svc-dm-lbl">+ Prix (€)</div><input class="svc-dm-inp" type="number" placeholder="—"></div><div class="svc-dm-f"><div class="svc-dm-lbl">+ Durée (min)</div><input class="svc-dm-inp" type="number" placeholder="—"></div></div>
+</div>
+<div id="svc-create-zone-oui-non" style="display:none;">
+<div class="svc-on-preview"><div class="svc-on-btn oui">✓ Oui</div><div class="svc-on-btn non">✕ Non</div></div>
+<div style="padding:0 16px 4px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.3px;">Ajustement si Oui</div>
+<div class="svc-dm"><div class="svc-dm-f"><div class="svc-dm-lbl">+ Prix (€)</div><input class="svc-dm-inp" type="number" placeholder="—"></div><div class="svc-dm-f"><div class="svc-dm-lbl">+ Durée (min)</div><input class="svc-dm-inp" type="number" placeholder="—"></div></div>
+</div>
+<div id="svc-create-zone-nombre" style="display:none;"><div style="padding:8px 16px 12px;"><div style="background:var(--light);border-radius:12px;padding:14px 16px;text-align:center;font-size:14px;font-weight:600;color:var(--gray);">🔢 Clavier numérique</div></div></div>
+<div id="svc-create-zone-texte" style="display:none;"><div style="padding:8px 16px 12px;"><div style="background:var(--light);border-radius:12px;padding:14px 16px;font-size:14px;font-weight:600;color:var(--gray);">Champ de saisie libre…</div></div></div>
+<div id="svc-create-zone-image" style="display:none;"><div class="svc-img-upload"><div style="font-size:28px;margin-bottom:6px;">📎</div><div style="font-size:13px;font-weight:700;color:var(--gray);">Importer votre fichier</div></div><div style="margin:0 16px;" class="svc-card"><div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;"><div><div style="font-size:14px;font-weight:700;color:var(--black);">🤖 Analyse IA</div><div style="font-size:11px;color:var(--gray);margin-top:2px;">Estimation prix depuis photo</div></div><div class="toggle-flow" onclick="this.classList.toggle('on')"></div></div></div></div>
+<div style="padding:10px 16px 4px;font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.3px;border-top:1px solid var(--border);margin-top:4px;">Couleur planning (optionnel)</div>
+<div class="svc-color-palette"><div class="svc-color-dot" style="background:#E8638C;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#FFB3C6;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#FF3B30;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#FF9500;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#FFCA28;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#7EC8A4;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#34C759;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#4A90D9;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#A8D4F5;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#007AFF;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#A87DC8;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#D4A8F0;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#1A1A1A;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#8E8E93;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#F2F2F7;border:1px solid #E5E5EA;" onclick="svcSelColor(this)"></div></div>
+<div class="svc-oblig-row"><div style="font-size:14px;font-weight:700;color:var(--black);">Question obligatoire</div><div class="toggle-flow on" onclick="this.classList.toggle('on')"></div></div>
+<div style="padding:0 16px 24px;"><button class="svc-primary-btn" style="margin:0;" onclick="svcAddCustomQ()">Ajouter la question</button></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="svc-sheet-ov" id="svc-sh-rule" onclick="if(event.target===this)svcCloseSheet('svc-sh-rule')">
+<div class="svc-sheet" style="max-height:50%;" onclick="event.stopPropagation()">
+<div class="svc-sh-handle"></div>
+<div class="svc-sh-nav"><div class="svc-sh-title">Nouvelle règle</div><div class="svc-sh-close" onclick="svcCloseSheet('svc-sh-rule')">×</div></div>
+<div class="svc-sh-body"><div style="padding:8px 16px 12px;">
+<textarea class="svc-inp" rows="3" id="svc-rule-txt" placeholder="Ex : Venir seule. Ongles propres et sans vernis." style="resize:none;line-height:1.5;"></textarea>
+<div style="display:flex;justify-content:space-between;align-items:center;background:var(--light);border-radius:12px;padding:12px 14px;margin:10px 0 12px;"><div style="font-size:14px;font-weight:700;color:var(--black);">Règle obligatoire</div><div class="toggle-flow on" onclick="this.classList.toggle('on')"></div></div>
+<button class="svc-primary-btn" style="margin:0;" onclick="svcAddRule()">Ajouter la règle</button>
+</div></div>
+</div>
+</div>
+
+<div class="svc-sheet-ov" id="svc-sh-color" onclick="if(event.target===this)svcCloseSheet('svc-sh-color')">
+<div class="svc-sheet" style="max-height:50%;" onclick="event.stopPropagation()">
+<div class="svc-sh-handle"></div>
+<div class="svc-sh-nav"><div class="svc-sh-title">Couleur planning</div><div class="svc-sh-close" onclick="svcCloseSheet('svc-sh-color')">×</div></div>
+<div class="svc-sh-body">
+<div style="padding:6px 16px 4px;font-size:12px;color:var(--gray);font-weight:600;">Associez une couleur à cette réponse dans le planning.</div>
+<div class="svc-color-palette"><div class="svc-color-dot on" style="background:#E8638C;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#FFB3C6;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#FF3B30;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#FF9500;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#FFCA28;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#FFF3A3;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#7EC8A4;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#34C759;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#A8D8A8;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#4A90D9;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#A8D4F5;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#007AFF;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#A87DC8;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#D4A8F0;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#5856D6;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#A0522D;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#C8A882;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#1A1A1A;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#8E8E93;" onclick="svcSelColor(this)"></div><div class="svc-color-dot" style="background:#F2F2F7;border:1px solid #E5E5EA;" onclick="svcSelColor(this)"></div></div>
+<div style="padding:0 16px 20px;"><button class="svc-primary-btn" style="margin:0;" onclick="svcCloseSheet('svc-sh-color')">Confirmer</button></div>
+</div>
+</div>
+</div>
+
+</div><!-- /mod-services -->
 
 <!-- MODULE FEED -->
 
@@ -2893,6 +3314,85 @@ initSwipe('c-track','c-dots');
 initSwipe('p-track','p-dots');
 
 function closeAllModules(){document.querySelectorAll('.module.on,.prof-module.on').forEach(m=>m.classList.remove('on'));}
+
+// ── MODULE SERVICES ──
+function svcOpenScreen(id){document.getElementById(id).classList.add('on');}
+function svcCloseScreen(id){document.getElementById(id).classList.remove('on');}
+function svcOpenSheet(id){document.getElementById(id).classList.add('on');}
+function svcCloseSheet(id){document.getElementById(id).classList.remove('on');}
+var svcMultiMetier=true;
+function svcStartCreate(){svcMultiMetier?svcOpenScreen('svc-step1'):svcOpenScreen('svc-step2');}
+function svcGoStep(n){var m={2:'svc-step2',3:'svc-step3',4:'svc-step4'};if(m[n])svcOpenScreen(m[n]);}
+function svcValidate(){['svc-step1','svc-step2','svc-step3','svc-step4'].forEach(svcCloseScreen);}
+function svcSelChip(el){el.closest('.svc-chips').querySelectorAll('.svc-chip').forEach(function(c){c.classList.remove('on');});el.classList.add('on');}
+function svcSelDisp(el){el.closest('.svc-disp-grid').querySelectorAll('.svc-disp-cell').forEach(function(c){c.classList.remove('on');});el.classList.add('on');}
+function svcSelColor(el){el.closest('.svc-color-palette').querySelectorAll('.svc-color-dot').forEach(function(c){c.classList.remove('on');});el.classList.add('on');}
+function svcShTab(el,showId,hideId){el.closest('.svc-sh-tabs').querySelectorAll('.svc-sh-tab').forEach(function(t){t.classList.remove('on');});el.classList.add('on');document.getElementById(showId).style.display='block';document.getElementById(hideId).style.display='none';}
+function svcUpdatePreview(){
+  var p=document.getElementById('svc-base-price').value;
+  var d=document.getElementById('svc-base-dur').value;
+  var desc=document.getElementById('svc-base-desc').value;
+  document.getElementById('svc-pp-price').textContent=p?'À partir de '+p+' €':'À partir de — €';
+  if(d){var h=Math.floor(d/60),m=d%60;document.getElementById('svc-pp-dur').textContent=h>0?(m>0?h+'h'+m+'min':h+'h'):m+' min';}
+  else document.getElementById('svc-pp-dur').textContent='—';
+  document.getElementById('svc-pp-desc').textContent=desc||'Aucune description pour l\'instant.';
+}
+function svcSelTypeEdit(el){
+  el.closest('.svc-type-grid').querySelectorAll('.svc-type-cell').forEach(function(c){c.classList.remove('on');});el.classList.add('on');
+  var t=el.dataset.type;
+  ['svc-edit-zone-choix','svc-edit-zone-oui-non','svc-edit-zone-nombre','svc-edit-zone-texte','svc-edit-zone-image'].forEach(function(id){document.getElementById(id).style.display='none';});
+  var map={'choix-unique':'svc-edit-zone-choix','choix-multi':'svc-edit-zone-choix','oui-non':'svc-edit-zone-oui-non','nombre':'svc-edit-zone-nombre','texte':'svc-edit-zone-texte','image':'svc-edit-zone-image'};
+  if(map[t])document.getElementById(map[t]).style.display='block';
+}
+function svcSelTypeCreate(el){
+  el.closest('.svc-type-grid').querySelectorAll('.svc-type-cell').forEach(function(c){c.classList.remove('on');});el.classList.add('on');
+  var t=el.dataset.type;
+  ['svc-create-zone-choix','svc-create-zone-oui-non','svc-create-zone-nombre','svc-create-zone-texte','svc-create-zone-image'].forEach(function(id){document.getElementById(id).style.display='none';});
+  var map={'choix-unique':'svc-create-zone-choix','choix-multi':'svc-create-zone-choix','oui-non':'svc-create-zone-oui-non','nombre':'svc-create-zone-nombre','texte':'svc-create-zone-texte','image':'svc-create-zone-image'};
+  if(map[t])document.getElementById(map[t]).style.display='block';
+}
+var svcQCount=0;
+function svcAddQ(title,type,delta){
+  svcQCount++;svcCloseSheet('svc-sh-q');
+  var list=document.getElementById('svc-q-list');if(!list)return;
+  var div=document.createElement('div');div.className='svc-q-item';
+  div.innerHTML='<div class="svc-q-header"><div class="svc-q-num">'+svcQCount+'</div><div style="flex:1;"><div style="font-size:14px;font-weight:700;color:var(--black);">'+title+'</div><div style="font-size:11px;color:var(--gray);margin-top:2px;">'+type+' · Obligatoire</div></div><div style="font-size:14px;color:var(--gray);cursor:pointer;padding:4px;" onclick="svcOpenScreen(\'svc-edit-q\')">✏️</div><div style="font-size:14px;color:#FF3B30;cursor:pointer;padding:4px;" onclick="this.closest(\'.svc-q-item\').remove();svcQCount--;">🗑</div></div><div class="svc-q-delta"><div class="svc-qd">'+delta+'</div></div>';
+  list.appendChild(div);
+  var pr=document.getElementById('svc-preview-range');if(pr)pr.style.display='block';
+}
+function svcAddCustomQ(){
+  var title=document.getElementById('svc-cq-title');
+  var tVal=title?title.value:'Nouvelle question';
+  if(!tVal)tVal='Nouvelle question';
+  var at=document.querySelector('#svc-tab-creer .svc-type-cell.on');
+  var type=at?at.querySelector('div:last-child').textContent:'Choix unique';
+  svcAddQ(tVal,type,'Pas de Δ configuré');
+  if(title)title.value='';
+}
+function svcAddCreateRep(){
+  var list=document.getElementById('svc-create-rep-list');var n=list.children.length+1;
+  var div=document.createElement('div');div.className='svc-rep-item';
+  div.innerHTML='<div class="svc-rep-handle">⠿</div><input class="svc-rep-inp" type="text" placeholder="Réponse '+n+'"><div class="svc-rep-color" style="background:#E5E5EA;" onclick="svcOpenSheet(\'svc-sh-color\')"></div><div class="svc-rep-del" onclick="this.closest(\'.svc-rep-item\').remove()">🗑</div>';
+  list.appendChild(div);
+}
+function svcAddEditRep(){
+  var list=document.getElementById('svc-edit-rep-list');
+  var div=document.createElement('div');div.className='svc-rep-item';
+  div.innerHTML='<div class="svc-rep-handle">⠿</div><input class="svc-rep-inp" type="text" placeholder="Nouvelle réponse"><div class="svc-rep-color" style="background:#E5E5EA;" onclick="svcOpenSheet(\'svc-sh-color\')"></div><div class="svc-rep-del" onclick="this.closest(\'.svc-rep-item\').remove()">🗑</div>';
+  list.appendChild(div);
+}
+function svcAddRule(){
+  var txt=document.getElementById('svc-rule-txt').value;if(!txt){svcCloseSheet('svc-sh-rule');return;}
+  ['svc-mod-rules','svc-rules-new'].forEach(function(id){
+    var list=document.getElementById(id);if(!list)return;
+    var btn=list.querySelector('[onclick*="svcOpenSheet"]');
+    var div=document.createElement('div');div.className='svc-rule-item';
+    div.innerHTML='<div class="svc-rule-ck on" onclick="this.classList.toggle(\'on\')">✓</div><div class="svc-rule-txt">'+txt+'</div><div class="svc-rule-del" onclick="this.closest(\'.svc-rule-item\').remove()">🗑</div>';
+    if(btn&&btn.parentNode)list.insertBefore(div,btn.parentNode);else list.appendChild(div);
+  });
+  document.getElementById('svc-rule-txt').value='';svcCloseSheet('svc-sh-rule');
+}
+
 function dockSetTab(dockId,idx){
   const dock=document.getElementById(dockId);
   if(!dock)return;
