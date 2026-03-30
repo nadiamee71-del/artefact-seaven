@@ -24,17 +24,18 @@ body{background:#D4D4DB;display:flex;flex-direction:column;align-items:center;pa
 /* ══ ONBOARDING ══ */
 #splash{align-items:center;justify-content:space-between;padding:60px 0 48px;}
 .splash-top{flex:1;display:flex;align-items:center;justify-content:center;}
-.splash-scene{position:relative;width:160px;height:200px;}
-.peacock-profile{position:absolute;inset:0;animation:pArrive .9s cubic-bezier(.4,0,.2,1) .4s both,pTurn .4s ease 1.5s both;}
-.peacock-front{position:absolute;inset:0;opacity:0;animation:pShow .01s 2.0s both;}
-.peacock-wings{position:absolute;inset:-70px;transform-origin:center 70%;transform:scale(0);animation:pWings .7s cubic-bezier(.34,1.56,.64,1) 2.1s both;}
-.seaven-text{text-align:center;opacity:0;animation:pFade .8s ease 2.8s both;}
-.seaven-name{font-size:30px;font-weight:900;color:var(–black);letter-spacing:-1px;}
-.seaven-tag{font-size:11px;color:var(–gray);font-weight:600;margin-top:4px;}
-@keyframes pArrive{from{transform:translateX(-200px) scaleX(-1);opacity:0;}to{transform:translateX(0) scaleX(-1);opacity:1;}}
-@keyframes pTurn{to{opacity:0;}}
-@keyframes pShow{to{opacity:1;}}
-@keyframes pWings{from{transform:scale(0);opacity:0;}to{transform:scale(1);opacity:1;}}
+.splash-scene{position:relative;width:160px;height:160px;display:flex;align-items:center;justify-content:center;}
+.splash-logo-wrap{position:relative;width:132px;height:132px;animation:logoIn .7s cubic-bezier(.2,.9,.2,1) .15s both;}
+.splash-logo-ring{position:absolute;inset:0;border-radius:32px;background:linear-gradient(135deg,#C9A84C,#7EC8A4,#4FC4CF,#4A90D9);padding:2px;animation:ringSpin 6s linear infinite;}
+.splash-logo-core{width:100%;height:100%;border-radius:30px;background:white;display:flex;align-items:center;justify-content:center;}
+.splash-logo-mark{width:88px;height:88px;border-radius:24px;background:linear-gradient(135deg,#111,#333);display:flex;align-items:center;justify-content:center;color:white;font-size:38px;font-weight:900;letter-spacing:-1px;box-shadow:0 8px 22px rgba(0,0,0,.22);}
+.splash-logo-glow{position:absolute;inset:-14px;border-radius:38px;background:radial-gradient(circle,rgba(126,200,164,.35),rgba(126,200,164,0) 65%);filter:blur(2px);opacity:.9;animation:glowPulse 2.2s ease-in-out infinite;}
+.seaven-text{text-align:center;opacity:0;animation:pFade .7s ease .75s both;}
+.seaven-name{font-size:30px;font-weight:900;color:var(--black);letter-spacing:-1px;}
+.seaven-tag{font-size:11px;color:var(--gray);font-weight:600;margin-top:4px;}
+@keyframes logoIn{from{opacity:0;transform:translateY(10px) scale(.92);}to{opacity:1;transform:translateY(0) scale(1);}}
+@keyframes ringSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+@keyframes glowPulse{0%,100%{opacity:.55;transform:scale(.95);}50%{opacity:1;transform:scale(1.03);}}
 @keyframes pFade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 .splash-bottom{padding:0 28px;width:100%;}
 .splash-main-btn{width:100%;padding:16px;border-radius:14px;background:var(–black);color:white;font-size:16px;font-weight:800;border:none;cursor:pointer;font-family:'Manrope',sans-serif;margin-bottom:14px;}
@@ -622,9 +623,10 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="page on" id="splash">
 <div class="splash-top"><div style="display:flex;flex-direction:column;align-items:center;gap:24px;">
 <div class="splash-scene">
-<div class="peacock-profile"><svg width="100" height="130" viewBox="0 0 100 130"><ellipse cx="50" cy="88" rx="18" ry="26" fill="#1A1A1A"/><path d="M44 66 Q40 48 46 36 Q50 26 56 28 Q62 30 60 44 Q58 56 52 64Z" fill="#1A1A1A"/><circle cx="52" cy="28" r="12" fill="#1A1A1A"/><path d="M64 26 L76 24 L64 30Z" fill="#C9A84C"/><circle cx="60" cy="24" r="2.5" fill="white"/><line x1="50" y1="16" x2="46" y2="5" stroke="#4A90D9" stroke-width="1.5" stroke-linecap="round"/><circle cx="46" cy="4" r="2" fill="#4A90D9"/><line x1="54" y1="14" x2="52" y2="3" stroke="#7EC8A4" stroke-width="1.5" stroke-linecap="round"/><circle cx="52" cy="2" r="2" fill="#7EC8A4"/><line x1="58" y1="15" x2="62" y2="4" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/><circle cx="62" cy="3" r="2" fill="#C9A84C"/><line x1="42" y1="113" x2="36" y2="126" stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round"/><line x1="52" y1="114" x2="48" y2="126" stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-<div class="peacock-front"><svg width="100" height="130" viewBox="0 0 100 130"><ellipse cx="50" cy="88" rx="17" ry="25" fill="#1A1A1A"/><rect x="43" y="52" width="14" height="26" rx="7" fill="#1A1A1A"/><circle cx="50" cy="38" r="14" fill="#1A1A1A"/><circle cx="44" cy="36" r="3.5" fill="white"/><circle cx="44" cy="36" r="1.8" fill="#1A1A1A"/><circle cx="56" cy="36" r="3.5" fill="white"/><circle cx="56" cy="36" r="1.8" fill="#1A1A1A"/><path d="M46 43 L50 48 L54 43Z" fill="#C9A84C"/><line x1="44" y1="24" x2="40" y2="13" stroke="#4A90D9" stroke-width="1.8" stroke-linecap="round"/><circle cx="40" cy="12" r="2.5" fill="#4A90D9"/><line x1="50" y1="24" x2="50" y2="12" stroke="#7EC8A4" stroke-width="1.8" stroke-linecap="round"/><circle cx="50" cy="11" r="2.5" fill="#7EC8A4"/><line x1="56" y1="24" x2="60" y2="13" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"/><circle cx="60" cy="12" r="2.5" fill="#C9A84C"/><line x1="42" y1="113" x2="36" y2="126" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/><line x1="58" y1="113" x2="64" y2="126" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/></svg></div>
-<div class="peacock-wings"><svg width="300" height="300" viewBox="0 0 300 300"><g transform="translate(150,180)"><ellipse cx="0" cy="-85" rx="11" ry="38" fill="#4A90D9" opacity=".85"/><circle cx="0" cy="-122" r="7" fill="#7EC8A4"/><circle cx="0" cy="-122" r="3.5" fill="#1A1A1A"/><ellipse cx="0" cy="-80" rx="9" ry="34" fill="#4FC4CF" opacity=".75" transform="rotate(-20)"/><circle cx="-28" cy="-112" r="6" fill="#C9A84C"/><circle cx="-28" cy="-112" r="3" fill="#1A1A1A"/><ellipse cx="0" cy="-72" rx="8" ry="28" fill="#A87DC8" opacity=".7" transform="rotate(-40)"/><circle cx="-48" cy="-96" r="5.5" fill="#4A90D9"/><circle cx="-48" cy="-96" r="2.5" fill="#1A1A1A"/><ellipse cx="0" cy="-60" rx="7" ry="22" fill="#7EC8A4" opacity=".65" transform="rotate(-60)"/><circle cx="-58" cy="-74" r="4.5" fill="#E8638C"/><circle cx="-58" cy="-74" r="2" fill="#1A1A1A"/><ellipse cx="0" cy="-80" rx="9" ry="34" fill="#4FC4CF" opacity=".75" transform="rotate(20)"/><circle cx="28" cy="-112" r="6" fill="#C9A84C"/><circle cx="28" cy="-112" r="3" fill="#1A1A1A"/><ellipse cx="0" cy="-72" rx="8" ry="28" fill="#A87DC8" opacity=".7" transform="rotate(40)"/><circle cx="48" cy="-96" r="5.5" fill="#4A90D9"/><circle cx="48" cy="-96" r="2.5" fill="#1A1A1A"/><ellipse cx="0" cy="-60" rx="7" ry="22" fill="#7EC8A4" opacity=".65" transform="rotate(60)"/><circle cx="58" cy="-74" r="4.5" fill="#E8638C"/><circle cx="58" cy="-74" r="2" fill="#1A1A1A"/></g></svg></div>
+<div class="splash-logo-wrap">
+<div class="splash-logo-glow"></div>
+<div class="splash-logo-ring"><div class="splash-logo-core"><div class="splash-logo-mark">S</div></div></div>
+</div>
 </div>
 <div class="seaven-text"><div class="seaven-name">SEAVEN</div><div class="seaven-tag">One App. One Place. All in One.</div></div>
 </div></div>
