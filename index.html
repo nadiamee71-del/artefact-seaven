@@ -1295,6 +1295,164 @@ label.adj-label{display:block;}
 .cf-k{font-size:12px;color:var(--gray);}
 .cf-v{font-size:12px;font-weight:700;color:var(--black);}
 
+/* ══ MODULE AVANT-APRÈS (consultation) ══ */
+#mod-avant-apres{z-index:66;}
+#mod-avant-apres .aa-toolbar{display:flex;align-items:center;justify-content:space-between;padding:6px 16px 8px;flex-shrink:0;}
+#mod-avant-apres .aa-views{display:flex;gap:4px;}
+#mod-avant-apres .aa-view-btn{width:32px;height:32px;border-radius:8px;background:var(--light);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .15s;}
+#mod-avant-apres .aa-view-btn.on{background:var(--black);color:white;}
+#mod-avant-apres .aa-pills{display:flex;gap:6px;}
+#mod-avant-apres .aa-pill{padding:6px 14px;border-radius:20px;border:1.5px solid var(--border);font-size:12px;font-weight:700;color:var(--gray);cursor:pointer;white-space:nowrap;}
+#mod-avant-apres .aa-pill.on{background:var(--black);color:white;border-color:var(--black);}
+#mod-avant-apres .aa-feed-single{padding:0 16px;display:flex;flex-direction:column;gap:16px;padding-bottom:16px;}
+#mod-avant-apres .aa-post{border-radius:16px;overflow:hidden;background:var(--light);}
+#mod-avant-apres .aa-post-header{display:flex;align-items:center;gap:10px;padding:10px 12px;}
+#mod-avant-apres .aa-avatar{width:34px;height:34px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:white;flex-shrink:0;}
+#mod-avant-apres .aa-username{font-size:13px;font-weight:700;color:var(--black);}
+#mod-avant-apres .aa-category{font-size:10px;color:var(--gray);margin-top:1px;}
+#mod-avant-apres .aa-post-time{margin-left:auto;font-size:10px;color:var(--gray);}
+#mod-avant-apres .aa-slider-wrap{position:relative;width:100%;height:220px;overflow:hidden;cursor:ew-resize;}
+#mod-avant-apres .aa-img-before{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:60px;}
+#mod-avant-apres .aa-img-after{position:absolute;top:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;font-size:60px;overflow:hidden;}
+#mod-avant-apres .aa-slider-line{position:absolute;top:0;bottom:0;width:2px;background:white;box-shadow:0 0 8px rgba(0,0,0,.3);z-index:10;}
+#mod-avant-apres .aa-slider-handle{position:absolute;top:50%;transform:translate(-50%,-50%);width:32px;height:32px;border-radius:50%;background:white;box-shadow:0 2px 12px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;font-size:12px;z-index:11;cursor:ew-resize;}
+#mod-avant-apres .aa-label{position:absolute;bottom:8px;background:rgba(0,0,0,.5);color:white;font-size:9px;font-weight:700;padding:3px 8px;border-radius:6px;letter-spacing:.5px;}
+#mod-avant-apres .aa-label.avant{left:8px;}
+#mod-avant-apres .aa-label.apres{right:8px;}
+#mod-avant-apres .aa-collage{width:100%;height:220px;display:flex;}
+#mod-avant-apres .aa-col-half{flex:1;display:flex;align-items:center;justify-content:center;font-size:50px;position:relative;}
+#mod-avant-apres .aa-col-half:first-child{border-right:2px solid white;}
+#mod-avant-apres .aa-col-label{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.5);color:white;font-size:9px;font-weight:700;padding:2px 7px;border-radius:5px;}
+#mod-avant-apres .aa-swipe-wrap{width:100%;height:220px;overflow:hidden;position:relative;}
+#mod-avant-apres .aa-swipe-track{display:flex;height:100%;transition:transform .3s ease;}
+#mod-avant-apres .aa-swipe-slide{min-width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:60px;position:relative;}
+#mod-avant-apres .aa-actions{display:flex;align-items:center;gap:14px;padding:10px 12px 4px;}
+#mod-avant-apres .aa-action{display:flex;align-items:center;gap:5px;cursor:pointer;}
+#mod-avant-apres .aa-action svg{width:20px;height:20px;}
+#mod-avant-apres .aa-action-count{font-size:12px;font-weight:700;color:var(--gray);}
+#mod-avant-apres .aa-caption{font-size:13px;color:var(--black);padding:4px 12px 12px;line-height:1.5;}
+#mod-avant-apres .aa-grid2{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+#mod-avant-apres .aa-grid2-item{aspect-ratio:1;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:36px;cursor:pointer;position:relative;overflow:hidden;}
+#mod-avant-apres .aa-grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;}
+#mod-avant-apres .aa-grid3-item{aspect-ratio:1;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:28px;cursor:pointer;overflow:hidden;}
+#mod-avant-apres .aa-post-overlay{position:absolute;inset:0;background:white;z-index:100;display:none;flex-direction:column;overflow:hidden;}
+#mod-avant-apres .aa-post-overlay.on{display:flex;}
+#mod-avant-apres .po-img{width:100%;height:300px;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:80px;flex-shrink:0;}
+#mod-avant-apres .po-actions{display:flex;align-items:center;gap:16px;padding:12px 16px 8px;flex-shrink:0;}
+#mod-avant-apres .po-like{cursor:pointer;display:flex;align-items:center;gap:5px;}
+#mod-avant-apres .po-count{font-size:13px;font-weight:700;color:var(--gray);}
+#mod-avant-apres .po-comments{flex:1;overflow-y:auto;padding:0 16px;}
+#mod-avant-apres .po-comments::-webkit-scrollbar{display:none;}
+#mod-avant-apres .po-comment{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--light);}
+#mod-avant-apres .po-com-av{width:30px;height:30px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--gray);flex-shrink:0;}
+#mod-avant-apres .po-com-name{font-size:12px;font-weight:700;color:var(--black);}
+#mod-avant-apres .po-com-text{font-size:12px;color:var(--black);margin-top:2px;line-height:1.4;}
+#mod-avant-apres .po-com-time{font-size:10px;color:var(--gray);margin-top:2px;}
+#mod-avant-apres .po-input-row{display:flex;align-items:center;gap:10px;padding:10px 16px 24px;border-top:1px solid var(--border);flex-shrink:0;}
+#mod-avant-apres .po-input{flex:1;background:var(--light);border:none;outline:none;border-radius:20px;padding:9px 14px;font-size:13px;font-family:'Manrope',sans-serif;}
+#mod-avant-apres .po-send{width:34px;height:34px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;font-size:14px;color:white;cursor:pointer;flex-shrink:0;}
+
+/* ══ MODULE FORUM ══ */
+#mod-forum{z-index:66;}
+#mod-forum .forum-cats{display:flex;gap:8px;padding:6px 16px 12px;overflow-x:auto;flex-shrink:0;}
+#mod-forum .forum-cats::-webkit-scrollbar{display:none;}
+#mod-forum .forum-cat{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;flex-shrink:0;}
+#mod-forum .fc-circle{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;border:2px solid transparent;transition:all .15s;}
+#mod-forum .fc-circle.on{border-color:var(--black);}
+#mod-forum .fc-name{font-size:10px;font-weight:600;color:var(--black);text-align:center;max-width:56px;}
+#mod-forum .forum-thread{display:flex;gap:12px;padding:13px 16px;border-bottom:1px solid var(--light);cursor:pointer;}
+#mod-forum .ft-avatar{width:40px;height:40px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--gray);flex-shrink:0;}
+#mod-forum .ft-content{flex:1;min-width:0;}
+#mod-forum .ft-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
+#mod-forum .ft-title{font-size:14px;font-weight:700;color:var(--black);line-height:1.3;flex:1;}
+#mod-forum .ft-time{font-size:10px;color:var(--gray);flex-shrink:0;margin-top:2px;}
+#mod-forum .ft-preview{font-size:12px;color:var(--gray);margin-top:3px;line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+#mod-forum .ft-meta{display:flex;align-items:center;gap:10px;margin-top:6px;}
+#mod-forum .ft-cat-badge{font-size:9px;font-weight:700;padding:2px 8px;border-radius:6px;background:var(--light);color:var(--gray);}
+#mod-forum .ft-stat{font-size:11px;color:var(--gray);display:flex;align-items:center;gap:3px;}
+#mod-forum .ft-hot{font-size:9px;font-weight:700;color:#FF3B30;background:#FFF0EE;padding:2px 7px;border-radius:6px;}
+#mod-forum .forum-thread-overlay{position:absolute;inset:0;background:white;z-index:100;display:none;flex-direction:column;overflow:hidden;}
+#mod-forum .forum-thread-overlay.on{display:flex;}
+#mod-forum .thread-scroll{flex:1;overflow-y:auto;padding:12px 16px;}
+#mod-forum .thread-scroll::-webkit-scrollbar{display:none;}
+#mod-forum .thread-op{background:var(--light);border-radius:14px;padding:14px;margin-bottom:14px;}
+#mod-forum .thread-op-title{font-size:16px;font-weight:800;color:var(--black);margin-bottom:8px;line-height:1.3;}
+#mod-forum .thread-op-text{font-size:13px;color:var(--black);line-height:1.6;}
+#mod-forum .thread-op-meta{font-size:11px;color:var(--gray);margin-top:8px;}
+#mod-forum .thread-reply{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--light);}
+#mod-forum .tr-av{width:32px;height:32px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:var(--gray);flex-shrink:0;}
+#mod-forum .tr-name{font-size:12px;font-weight:700;color:var(--black);}
+#mod-forum .tr-text{font-size:12px;color:var(--black);margin-top:2px;line-height:1.5;}
+#mod-forum .tr-time{font-size:10px;color:var(--gray);margin-top:3px;}
+#mod-forum .tr-like{font-size:11px;color:var(--gray);margin-top:4px;cursor:pointer;}
+
+/* ══ MODULE PARRAINAGE ══ */
+#mod-parrainage{z-index:66;}
+#mod-parrainage .parrain-hero{background:var(--black);margin:12px 16px;border-radius:18px;padding:20px;position:relative;overflow:hidden;}
+#mod-parrainage .parrain-hero::before{content:'';position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.04);top:-40px;right:-40px;}
+#mod-parrainage .ph-title{font-size:13px;font-weight:700;color:rgba(255,255,255,.6);margin-bottom:4px;}
+#mod-parrainage .ph-amount{font-size:36px;font-weight:900;color:white;}
+#mod-parrainage .ph-sub{font-size:12px;color:rgba(255,255,255,.5);margin-top:4px;}
+#mod-parrainage .ph-badge{display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.1);border-radius:8px;padding:4px 10px;margin-top:10px;font-size:12px;font-weight:700;color:white;}
+#mod-parrainage .jauge-wrap{margin:0 16px 12px;}
+#mod-parrainage .jauge-top{display:flex;justify-content:space-between;margin-bottom:6px;}
+#mod-parrainage .jauge-label{font-size:12px;font-weight:700;color:var(--black);}
+#mod-parrainage .jauge-count{font-size:12px;font-weight:700;color:var(--gray);}
+#mod-parrainage .jauge-bar{height:8px;background:var(--light);border-radius:4px;overflow:hidden;}
+#mod-parrainage .jauge-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#C9A84C,#7EC8A4);width:17%;}
+#mod-parrainage .jauge-milestones{display:flex;justify-content:space-between;margin-top:4px;}
+#mod-parrainage .jm{font-size:9px;color:var(--gray);font-weight:600;}
+#mod-parrainage .parrain-stats{display:flex;gap:8px;margin:0 16px 14px;}
+#mod-parrainage .ps-box{flex:1;background:var(--light);border-radius:12px;padding:10px 12px;text-align:center;}
+#mod-parrainage .ps-n{font-size:18px;font-weight:900;color:var(--black);}
+#mod-parrainage .ps-l{font-size:10px;color:var(--gray);font-weight:600;margin-top:2px;}
+#mod-parrainage .code-box{margin:0 16px 16px;background:var(--light);border-radius:14px;padding:14px;display:flex;align-items:center;gap:12px;}
+#mod-parrainage .code-text{flex:1;}
+#mod-parrainage .code-label{font-size:11px;color:var(--gray);font-weight:600;margin-bottom:4px;}
+#mod-parrainage .code-val{font-size:20px;font-weight:900;color:var(--black);letter-spacing:2px;}
+#mod-parrainage .code-copy{background:var(--black);color:white;border:none;border-radius:10px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Manrope',sans-serif;}
+#mod-parrainage .parrain-item{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--light);}
+#mod-parrainage .pi-avatar{width:40px;height:40px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--gray);flex-shrink:0;}
+#mod-parrainage .pi-info{flex:1;}
+#mod-parrainage .pi-name{font-size:14px;font-weight:700;color:var(--black);}
+#mod-parrainage .pi-meta{font-size:11px;color:var(--gray);margin-top:2px;}
+#mod-parrainage .pi-right{text-align:right;}
+#mod-parrainage .pi-amount{font-size:14px;font-weight:800;color:var(--black);}
+#mod-parrainage .pi-status{font-size:10px;font-weight:700;margin-top:2px;}
+#mod-parrainage .ps-confirmed{color:#34C759;}
+#mod-parrainage .ps-pending{color:#FF9500;}
+#mod-parrainage .ps-expired{color:var(--gray);}
+
+/* ══ MODULE STORIES ARCHIVES ══ */
+#mod-stories-archive{z-index:66;background:var(--black)!important;}
+#mod-stories-archive .sa-navbar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px 8px;flex-shrink:0;}
+#mod-stories-archive .sa-title{font-size:16px;font-weight:800;color:white;}
+#mod-stories-archive .sa-action{font-size:13px;font-weight:700;color:rgba(255,255,255,.6);}
+#mod-stories-archive .month-scroll{display:flex;gap:8px;padding:0 16px 12px;overflow-x:auto;flex-shrink:0;}
+#mod-stories-archive .month-scroll::-webkit-scrollbar{display:none;}
+#mod-stories-archive .month-pill{padding:6px 14px;border-radius:20px;flex-shrink:0;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;}
+#mod-stories-archive .month-pill.on{background:white;color:var(--black);}
+#mod-stories-archive .archive-grid{flex:1;overflow-y:auto;padding:0 2px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;align-content:start;}
+#mod-stories-archive .archive-grid::-webkit-scrollbar{display:none;}
+#mod-stories-archive .archive-item{aspect-ratio:9/16;background:#2A2A2A;display:flex;align-items:center;justify-content:center;font-size:36px;cursor:pointer;position:relative;overflow:hidden;}
+#mod-stories-archive .archive-date{position:absolute;bottom:4px;left:0;right:0;text-align:center;font-size:9px;font-weight:700;color:rgba(255,255,255,.7);}
+#mod-stories-archive .archive-views{position:absolute;top:4px;right:4px;background:rgba(0,0,0,.5);color:white;font-size:8px;font-weight:700;padding:2px 5px;border-radius:4px;display:flex;align-items:center;gap:2px;}
+#mod-stories-archive .story-viewer{position:absolute;inset:0;background:black;z-index:200;display:none;flex-direction:column;}
+#mod-stories-archive .story-viewer.on{display:flex;}
+#mod-stories-archive .sv-progress{display:flex;gap:3px;padding:12px 12px 0;flex-shrink:0;}
+#mod-stories-archive .sv-prog-seg{flex:1;height:2px;background:rgba(255,255,255,.3);border-radius:1px;}
+#mod-stories-archive .sv-prog-seg.done{background:white;}
+#mod-stories-archive .sv-header{display:flex;align-items:center;gap:10px;padding:8px 12px;flex-shrink:0;}
+#mod-stories-archive .sv-av{width:32px;height:32px;border-radius:50%;background:var(--grad);flex-shrink:0;}
+#mod-stories-archive .sv-name{font-size:13px;font-weight:700;color:white;flex:1;}
+#mod-stories-archive .sv-time{font-size:11px;color:rgba(255,255,255,.6);}
+#mod-stories-archive .sv-close{font-size:22px;color:white;cursor:pointer;}
+#mod-stories-archive .sv-content{flex:1;display:flex;align-items:center;justify-content:center;font-size:100px;}
+#mod-stories-archive .sv-footer{padding:12px 16px 32px;flex-shrink:0;}
+#mod-stories-archive .sv-stats{display:flex;gap:16px;margin-bottom:8px;}
+#mod-stories-archive .sv-stat{font-size:12px;color:rgba(255,255,255,.7);font-weight:600;}
+#mod-stories-archive .sv-share{background:rgba(255,255,255,.1);border:none;border-radius:12px;padding:10px;width:100%;font-size:13px;font-weight:700;color:white;cursor:pointer;font-family:'Manrope',sans-serif;}
+
 /* ══ MODULE FICHIER CLIENTS ══ */
 #mod-fichier-clients{z-index:66;}
 #mod-fichier-clients .fc-screen{position:absolute;inset:0;background:var(--bg);display:none;flex-direction:column;z-index:10;}
@@ -1571,7 +1729,7 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="grid-area"><div class="grid-slider"><div class="grid-track" id="c-track">
 <div class="grid-page">
 <div class="app-item" onclick="openModule('mod-planning')"><div class="app-icon" style="background:#EEF2FF;">📅</div><div class="app-name">Planning</div></div>
-<div class="app-item"><div class="app-icon">⏳</div><div class="app-name">Stories</div></div>
+<div class="app-item" onclick="openModule('mod-stories-archive')"><div class="app-icon">⏳</div><div class="app-name">Stories</div></div>
 <div class="app-item" onclick="openModule('mod-promos')"><div class="app-icon">🏷️</div><div class="app-name">Promotions</div></div>
 <div class="app-item" onclick="openModule('mod-urgence')"><div class="app-icon" style="background:#FFF0F0;">⚡</div><div class="app-name">Urgences</div></div>
 <div class="app-item" onclick="openModule('mod-marketplace')"><div class="app-icon">🛍️</div><div class="app-name">Marketplace</div></div>
@@ -1582,7 +1740,7 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="app-item" onclick="openModule('mod-modele')"><div class="app-icon">👗</div><div class="app-name">Models</div></div>
 <div class="app-item" onclick="openModule('mod-domicile')"><div class="app-icon">🏠</div><div class="app-name">À domicile</div></div>
 <div class="app-item" onclick="openModule('mod-evenements')"><div class="app-icon">🎉</div><div class="app-name">Événements</div></div>
-<div class="app-item"><div class="app-icon">🪞</div><div class="app-name">Avant-Après</div></div>
+<div class="app-item" onclick="openModule('mod-avant-apres')"><div class="app-icon">🪞</div><div class="app-name">Avant-Après</div></div>
 <div class="app-item" onclick="openModule('mod-formation')"><div class="app-icon">🎓</div><div class="app-name">Formations</div></div>
 <div class="app-item"><div class="app-icon" style="background:#F0FFF4;">📊</div><div class="app-name">Finances</div></div>
 <div class="app-item" onclick="openModule('mod-reglages')"><div class="app-icon">⚙️</div><div class="app-name">Réglages</div></div>
@@ -1874,7 +2032,7 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="grid-area"><div class="grid-slider"><div class="grid-track" id="p-track">
 <div class="grid-page">
 <div class="app-item" onclick="openModule('mod-planning')"><div class="app-icon" style="background:#EEF2FF;">📅</div><div class="app-name">Planning</div></div>
-<div class="app-item"><div class="app-icon">⏳</div><div class="app-name">Stories</div></div>
+<div class="app-item" onclick="openModule('mod-stories-archive')"><div class="app-icon">⏳</div><div class="app-name">Stories</div></div>
 <div class="app-item" onclick="openModule('mod-promos')"><div class="app-icon">🏷️</div><div class="app-name">Promotions</div></div>
 <div class="app-item" onclick="openModule('mod-urgence')"><div class="app-icon" style="background:#FFF0F0;">⚡</div><div class="app-name">Urgences</div></div>
 <div class="app-item" onclick="openModule('mod-marketplace')"><div class="app-icon">🛍️</div><div class="app-name">Marketplace</div></div>
@@ -1885,7 +2043,7 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="app-item" onclick="openModule('mod-modele')"><div class="app-icon">👗</div><div class="app-name">Models</div></div>
 <div class="app-item" onclick="openModule('mod-domicile')"><div class="app-icon">🏠</div><div class="app-name">À domicile</div></div>
 <div class="app-item" onclick="openModule('mod-evenements')"><div class="app-icon">🎉</div><div class="app-name">Événements</div></div>
-<div class="app-item"><div class="app-icon">🪞</div><div class="app-name">Avant-Après</div></div>
+<div class="app-item" onclick="openModule('mod-avant-apres')"><div class="app-icon">🪞</div><div class="app-name">Avant-Après</div></div>
 <div class="app-item" onclick="openModule('mod-formation')"><div class="app-icon">🎓</div><div class="app-name">Formations</div></div>
 <div class="app-item"><div class="app-icon" style="background:#F0FFF4;">📊</div><div class="app-name">Finances</div></div>
 <div class="app-item" onclick="openModule('mod-reglages')"><div class="app-icon">⚙️</div><div class="app-name">Réglages</div></div>
@@ -2931,6 +3089,159 @@ MODULES PROFIL
 </div>
 
 </div><!-- /mod-fichier-clients -->
+
+<!-- ═══ MODULE AVANT-APRÈS (consultation) ═══ -->
+<div class="module" id="mod-avant-apres">
+<div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-avant-apres')">‹</div><div class="mod-title">Avant-Après</div><div class="mod-action">＋</div></div>
+<div class="tabs" style="border-bottom:1px solid var(--border);flex-shrink:0;">
+<div class="tab on" onclick="modTab(this,'aa-pourtoi')">Pour toi</div>
+<div class="tab" onclick="modTab(this,'aa-suivis')">Suivis</div>
+</div>
+<div class="aa-toolbar">
+<div class="aa-views">
+<div class="aa-view-btn on" onclick="aaSetView('single',this)">▬</div>
+<div class="aa-view-btn" onclick="aaSetView('grid2',this)">⊞</div>
+<div class="aa-view-btn" onclick="aaSetView('grid3',this)">⊟</div>
+</div>
+<div class="aa-pills">
+<div class="aa-pill on" onclick="aaSelPill(this)">Tous</div>
+<div class="aa-pill" onclick="aaSelPill(this)">Ongles</div>
+<div class="aa-pill" onclick="aaSelPill(this)">Cils</div>
+</div>
+</div>
+<div class="mod-scroll" id="aa-feed">
+<div id="aa-view-single" class="aa-feed-single">
+<div class="aa-post">
+<div class="aa-post-header"><div class="aa-avatar">N</div><div><div class="aa-username">@nina.cils</div><div class="aa-category">Extensions · Volume russe</div></div><div class="aa-post-time">2h</div></div>
+<div class="aa-slider-wrap" id="aa-slider1" onmousedown="aaStartSlide(event,'aa-slider1')" ontouchstart="aaStartSlideTouch(event,'aa-slider1')"><div class="aa-img-before" style="background:linear-gradient(135deg,#f0e0d0,#e8d0c0);">😔</div><div class="aa-img-after" id="aa-after1" style="width:50%;background:linear-gradient(135deg,#d0e8f0,#c0d8e8);">✨</div><div class="aa-slider-line" id="aa-line1" style="left:50%;"></div><div class="aa-slider-handle" id="aa-handle1" style="left:50%;">↔</div><div class="aa-label avant">AVANT</div><div class="aa-label apres">APRÈS</div></div>
+<div class="aa-actions"><div class="aa-action" onclick="aaToggleLike(this)"><svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><div class="aa-action-count">248</div></div><div class="aa-action" onclick="aaOpenPost()"><svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><div class="aa-action-count">34</div></div></div>
+<div class="aa-caption"><b>@nina.cils</b> Volume russe avant/après 🖤 Résultat dingue sur des cils très courts au départ !</div>
+</div>
+<div class="aa-post">
+<div class="aa-post-header"><div class="aa-avatar" style="background:linear-gradient(135deg,#E8638C,#A87DC8);">S</div><div><div class="aa-username">@sassa.nails</div><div class="aa-category">Ongles · Remplissage gel</div></div><div class="aa-post-time">5h</div></div>
+<div class="aa-collage" style="background:var(--light);"><div class="aa-col-half" style="background:linear-gradient(135deg,#f5e8d0,#ead8c0);">🫥<div class="aa-col-label">AVANT</div></div><div class="aa-col-half" style="background:linear-gradient(135deg,#d0eaf5,#c0dae8);">💅<div class="aa-col-label">APRÈS</div></div></div>
+<div class="aa-actions"><div class="aa-action" onclick="aaToggleLike(this)"><svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><div class="aa-action-count">189</div></div><div class="aa-action" onclick="aaOpenPost()"><svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><div class="aa-action-count">21</div></div></div>
+<div class="aa-caption"><b>@sassa.nails</b> Remplissage + changement de forme 🤍 Amande M, gel nude rosé</div>
+</div>
+<div class="aa-post">
+<div class="aa-post-header"><div class="aa-avatar" style="background:linear-gradient(135deg,#4A90D9,#7EC8A4);">K</div><div><div class="aa-username">@karima.hair</div><div class="aa-category">Coiffure · Brushing lissant</div></div><div class="aa-post-time">1j</div></div>
+<div class="aa-swipe-wrap"><div class="aa-swipe-track" id="aa-swipe1"><div class="aa-swipe-slide" style="background:linear-gradient(135deg,#f0e0c0,#e0d0b0);">🌀<div class="aa-label avant">AVANT — Swipe →</div></div><div class="aa-swipe-slide" style="background:linear-gradient(135deg,#d0e8f8,#c0d8e8);">✨<div class="aa-label apres">APRÈS</div></div></div></div>
+<div class="aa-actions"><div class="aa-action" onclick="aaToggleLike(this)"><svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><div class="aa-action-count">312</div></div><div class="aa-action" onclick="aaOpenPost()"><svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><div class="aa-action-count">47</div></div></div>
+<div class="aa-caption"><b>@karima.hair</b> Brushing lissant sur cheveux bouclés 🔥 Swipe pour voir la transformation</div>
+</div>
+</div>
+<div id="aa-view-grid2" class="aa-grid2" style="display:none;">
+<div class="aa-grid2-item" onclick="aaOpenPost()" style="background:linear-gradient(135deg,#f0e0d0,#d0e8f0);">💅</div>
+<div class="aa-grid2-item" onclick="aaOpenPost()" style="background:linear-gradient(135deg,#e8d0f0,#d0f0e8);">✨</div>
+<div class="aa-grid2-item" onclick="aaOpenPost()" style="background:linear-gradient(135deg,#f0f0d0,#f0d0d0);">👁️</div>
+<div class="aa-grid2-item" onclick="aaOpenPost()" style="background:linear-gradient(135deg,#d0d0f0,#f0e8d0);">💇</div>
+<div class="aa-grid2-item" onclick="aaOpenPost()" style="background:linear-gradient(135deg,#f0d8e8,#d8f0e8);">🌸</div>
+<div class="aa-grid2-item" onclick="aaOpenPost()" style="background:linear-gradient(135deg,#e8e8d0,#d0e8f0);">⭐</div>
+</div>
+<div id="aa-view-grid3" class="aa-grid3" style="display:none;">
+<div class="aa-grid3-item" onclick="aaOpenPost()" style="background:linear-gradient(135deg,#f0e0d0,#d0e8f0);">💅</div>
+<div class="aa-grid3-item" onclick="aaOpenPost()" style="background:linear-gradient(135deg,#e8d0f0,#d0f0e8);">✨</div>
+<div class="aa-grid3-item" onclick="aaOpenPost()" style="background:linear-gradient(135deg,#f0f0d0,#f0d0d0);">👁️</div>
+<div class="aa-grid3-item" onclick="aaOpenPost()" style="background:linear-gradient(135deg,#d0d0f0,#f0e8d0);">💇</div>
+<div class="aa-grid3-item" onclick="aaOpenPost()" style="background:linear-gradient(135deg,#f0d8e8,#d8f0e8);">🌸</div>
+<div class="aa-grid3-item" onclick="aaOpenPost()" style="background:linear-gradient(135deg,#e8e8d0,#d0e8f0);">⭐</div>
+<div class="aa-grid3-item" onclick="aaOpenPost()" style="background:linear-gradient(135deg,#f0d0e8,#e0f0d0);">🎨</div>
+<div class="aa-grid3-item" onclick="aaOpenPost()" style="background:linear-gradient(135deg,#d0e0f0,#f0d0d8);">💋</div>
+<div class="aa-grid3-item" onclick="aaOpenPost()" style="background:linear-gradient(135deg,#e0d0f0,#f0e0d0);">🪄</div>
+</div>
+</div>
+<div class="aa-post-overlay" id="aa-post-overlay">
+<div class="mod-hdr"><div class="mod-back" onclick="aaClosePost()">‹</div><div class="mod-title">Publication</div><div style="width:28px;"></div></div>
+<div class="po-img" style="background:linear-gradient(135deg,#d0e8f0,#f0e0d0);">✨</div>
+<div class="po-actions"><div class="po-like" onclick="aaToggleLike(this)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div class="po-count">248 j'aime</div><div style="font-size:11px;color:var(--gray);margin-left:4px;">(visible uniquement par toi)</div></div>
+<div class="po-comments" style="flex:1;overflow-y:auto;padding:0 16px;">
+<div style="font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.4px;padding:4px 0 8px;">34 commentaires</div>
+<div class="po-comment"><div class="po-com-av">S</div><div><div class="po-com-name">@sassa.nails</div><div class="po-com-text">Incroyable le résultat 😍 Tu as utilisé quelle colle ?</div><div class="po-com-time">2h</div></div></div>
+<div class="po-comment"><div class="po-com-av">K</div><div><div class="po-com-name">@karima.pro</div><div class="po-com-text">Le volume est parfait ! 🔥</div><div class="po-com-time">1h</div></div></div>
+<div class="po-comment"><div class="po-com-av">M</div><div><div class="po-com-name">@maya.beauty</div><div class="po-com-text">Je veux faire pareil chez ma technicienne 👏</div><div class="po-com-time">45min</div></div></div>
+</div>
+<div class="po-input-row"><div class="po-com-av" style="width:30px;height:30px;font-size:11px;">N</div><input class="po-input" placeholder="Ajouter un commentaire…"/><div class="po-send">↑</div></div>
+</div>
+</div><!-- /mod-avant-apres -->
+
+<!-- ═══ MODULE FORUM ═══ -->
+<div class="module" id="mod-forum">
+<div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-forum')">‹</div><div class="mod-title">Forum Pro</div><div class="mod-action" onclick="forumOpenThread()">＋</div></div>
+<div style="display:flex;align-items:center;gap:8px;background:var(--light);border-radius:12px;padding:9px 12px;margin:4px 16px 10px;flex-shrink:0;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg><input style="flex:1;border:none;outline:none;background:transparent;font-size:14px;font-family:'Manrope',sans-serif;color:var(--black);" placeholder="Rechercher dans le forum…"/></div>
+<div class="forum-cats">
+<div class="forum-cat"><div class="fc-circle on" style="background:#FFF0F8;">💅</div><div class="fc-name">Ongles</div></div>
+<div class="forum-cat"><div class="fc-circle" style="background:#F0F8FF;">👁️</div><div class="fc-name">Cils</div></div>
+<div class="forum-cat"><div class="fc-circle" style="background:#F8FFF0;">💇</div><div class="fc-name">Coiffure</div></div>
+<div class="forum-cat"><div class="fc-circle" style="background:#FFF8F0;">🌿</div><div class="fc-name">Bien-être</div></div>
+<div class="forum-cat"><div class="fc-circle" style="background:#F0F0FF;">💋</div><div class="fc-name">Maquillage</div></div>
+<div class="forum-cat"><div class="fc-circle" style="background:#FFFFF0;">💡</div><div class="fc-name">Business</div></div>
+</div>
+<div class="mod-scroll">
+<div class="forum-thread" onclick="forumOpenThread()"><div class="ft-avatar" style="background:#FFF0F8;color:#E8638C;">S</div><div class="ft-content"><div class="ft-top"><div class="ft-title">Vous utilisez quoi comme base anti-décollement en ce moment ?</div><div class="ft-time">12min</div></div><div class="ft-preview">Depuis quelques semaines j'ai beaucoup de retours clients sur des décollements rapides même avec ma base habituelle.</div><div class="ft-meta"><div class="ft-cat-badge">💅 Ongles</div><div class="ft-stat">💬 28</div><div class="ft-stat">👁 142</div><div class="ft-hot">🔥 Hot</div></div></div></div>
+<div class="forum-thread" onclick="forumOpenThread()"><div class="ft-avatar" style="background:#F0F8FF;color:#4A90D9;">N</div><div class="ft-content"><div class="ft-top"><div class="ft-title">Technique fleurs 3D — vous les faites comment ?</div><div class="ft-time">1h</div></div><div class="ft-preview">Je vois partout la tendance fleurs 3D en acrylique. Quelqu'un a une formation à recommander ?</div><div class="ft-meta"><div class="ft-cat-badge">💅 Ongles</div><div class="ft-stat">💬 15</div><div class="ft-stat">👁 89</div></div></div></div>
+<div class="forum-thread" onclick="forumOpenThread()"><div class="ft-avatar" style="background:#FFF8F0;color:#FF9500;">K</div><div class="ft-content"><div class="ft-top"><div class="ft-title">Comment gérer les clientes qui bougent pendant la pose de cils ?</div><div class="ft-time">3h</div></div><div class="ft-preview">Sérieusement c'est mon calvaire. J'ai une cliente qui s'endort et qui bouge à chaque fois.</div><div class="ft-meta"><div class="ft-cat-badge">👁️ Cils</div><div class="ft-stat">💬 42</div><div class="ft-stat">👁 201</div><div class="ft-hot">🔥 Hot</div></div></div></div>
+<div class="forum-thread" onclick="forumOpenThread()"><div class="ft-avatar" style="background:#FFFFF0;color:#C9A84C;">L</div><div class="ft-content"><div class="ft-top"><div class="ft-title">Tarifs 2026 — vous avez augmenté ?</div><div class="ft-time">6h</div></div><div class="ft-preview">Avec l'inflation des produits j'hésite à augmenter mes prix.</div><div class="ft-meta"><div class="ft-cat-badge">💡 Business</div><div class="ft-stat">💬 67</div><div class="ft-stat">👁 445</div></div></div></div>
+<div class="forum-thread" onclick="forumOpenThread()"><div class="ft-avatar" style="background:#F8FFF0;color:#7EC8A4;">A</div><div class="ft-content"><div class="ft-top"><div class="ft-title">Nouvelle tendance lèvres aquarelle — tuto ?</div><div class="ft-time">1j</div></div><div class="ft-preview">J'ai vu ça partout sur TikTok, quelqu'un sait faire ça ?</div><div class="ft-meta"><div class="ft-cat-badge">💋 Maquillage</div><div class="ft-stat">💬 11</div><div class="ft-stat">👁 78</div></div></div></div>
+</div>
+<div class="forum-thread-overlay" id="forum-thread-overlay">
+<div class="mod-hdr"><div class="mod-back" onclick="forumCloseThread()">‹</div><div class="mod-title">Discussion</div><div class="mod-action">⋯</div></div>
+<div class="thread-scroll">
+<div style="display:flex;gap:6px;margin-bottom:10px;"><div class="ft-cat-badge" style="font-size:11px;padding:4px 10px;">💅 Ongles</div><div class="ft-stat" style="font-size:11px;">💬 28 réponses · 👁 142 vues</div></div>
+<div class="thread-op"><div class="thread-op-title">Vous utilisez quoi comme base anti-décollement en ce moment ?</div><div class="thread-op-text">Depuis quelques semaines j'ai beaucoup de retours clients sur des décollements rapides même avec ma base habituelle (IBD). Vous avez testé quoi de bien récemment ? J'entends beaucoup parler de la base Gelish mais j'hésite à changer.</div><div class="thread-op-meta">@sassa.nails · il y a 12 min</div></div>
+<div class="thread-reply"><div class="tr-av">N</div><div><div class="tr-name">@nina.pro</div><div class="tr-text">Moi j'utilise la base Harmony Gelish depuis 6 mois et zéro décollements ! Par contre bien dégraisser avant avec l'acetone.</div><div class="tr-time">8min</div><div class="tr-like">👍 12</div></div></div>
+<div class="thread-reply"><div class="tr-av">K</div><div><div class="tr-name">@karima.nails</div><div class="tr-text">Le problème vient souvent de la lampe. Tu l'as depuis combien de temps la tienne ? Après 12-18 mois les UV faiblissent.</div><div class="tr-time">5min</div><div class="tr-like">👍 8</div></div></div>
+<div class="thread-reply"><div class="tr-av">A</div><div><div class="tr-name">@amira.beauty</div><div class="tr-text">J'ai switché sur la base Rubber de Nail Perfect et c'est nettement mieux. Plus adhérente sur les ongles gras.</div><div class="tr-time">2min</div><div class="tr-like">👍 5</div></div></div>
+</div>
+<div class="po-input-row" style="display:flex;align-items:center;gap:10px;padding:10px 16px 24px;border-top:1px solid var(--border);flex-shrink:0;"><div class="tr-av">S</div><input class="po-input" style="flex:1;background:var(--light);border:none;outline:none;border-radius:20px;padding:9px 14px;font-size:13px;font-family:'Manrope',sans-serif;" placeholder="Répondre à cette discussion…"/><div class="po-send" style="width:34px;height:34px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;font-size:14px;color:white;cursor:pointer;flex-shrink:0;">↑</div></div>
+</div>
+</div><!-- /mod-forum -->
+
+<!-- ═══ MODULE PARRAINAGE ═══ -->
+<div class="module" id="mod-parrainage">
+<div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-parrainage')">‹</div><div class="mod-title">Parrainage</div><div style="width:28px;"></div></div>
+<div class="mod-scroll">
+<div class="parrain-hero"><div class="ph-title">Total gagné</div><div class="ph-amount">125€</div><div class="ph-sub">5 parrainages confirmés sur 30 max/an</div><div class="ph-badge">🎁 25€ par parrainage confirmé</div></div>
+<div class="jauge-wrap"><div class="jauge-top"><div class="jauge-label">Progression annuelle</div><div class="jauge-count">5 / 30 parrainages</div></div><div class="jauge-bar"><div class="jauge-fill"></div></div><div class="jauge-milestones"><div class="jm">0</div><div class="jm">10</div><div class="jm">20</div><div class="jm">30</div></div></div>
+<div class="parrain-stats"><div class="ps-box"><div class="ps-n" style="color:#34C759;">5</div><div class="ps-l">Confirmés</div></div><div class="ps-box"><div class="ps-n" style="color:#FF9500;">2</div><div class="ps-l">En cours</div></div><div class="ps-box"><div class="ps-n" style="color:var(--gray);">3</div><div class="ps-l">Expirés</div></div><div class="ps-box"><div class="ps-n">25</div><div class="ps-l">Restants</div></div></div>
+<div class="code-box"><div class="code-text"><div class="code-label">Ton code parrainage</div><div class="code-val">SEAVEN-N42K</div></div><button class="code-copy" onclick="this.textContent='Copié ✓'">Copier</button></div>
+<div style="padding:0 16px;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px;">Historique</div>
+<div class="parrain-item"><div class="pi-avatar" style="background:#F0FFF4;color:#34C759;">L</div><div class="pi-info"><div class="pi-name">Lina M. · Prestataire</div><div class="pi-meta">Inscrite le 12 jan. 2026 · Abonnement actif</div></div><div class="pi-right"><div class="pi-amount">+25€</div><div class="pi-status ps-confirmed">Confirmé ✓</div></div></div>
+<div class="parrain-item"><div class="pi-avatar" style="background:#F0FFF4;color:#34C759;">S</div><div class="pi-info"><div class="pi-name">Sofia B. · Cliente</div><div class="pi-meta">Inscrite le 28 jan. 2026</div></div><div class="pi-right"><div class="pi-amount">+25€</div><div class="pi-status ps-confirmed">Confirmé ✓</div></div></div>
+<div class="parrain-item"><div class="pi-avatar" style="background:#FFF8EE;color:#FF9500;">A</div><div class="pi-info"><div class="pi-name">Amira D. · Prestataire</div><div class="pi-meta">Inscription en cours · Lien envoyé le 20 mar.</div></div><div class="pi-right"><div class="pi-amount">+25€</div><div class="pi-status ps-pending">En attente</div></div></div>
+<div class="parrain-item"><div class="pi-avatar" style="background:#FFF8EE;color:#FF9500;">R</div><div class="pi-info"><div class="pi-name">Rim K. · Cliente</div><div class="pi-meta">N'a pas finalisé l'inscription</div></div><div class="pi-right"><div class="pi-amount">—</div><div class="pi-status ps-pending">En cours</div></div></div>
+<div class="parrain-item"><div class="pi-avatar">N</div><div class="pi-info"><div class="pi-name">Nadia R.</div><div class="pi-meta">Lien expiré · N'a jamais commencé</div></div><div class="pi-right"><div class="pi-amount">—</div><div class="pi-status ps-expired">Expiré</div></div></div>
+</div>
+</div><!-- /mod-parrainage -->
+
+<!-- ═══ MODULE STORIES ARCHIVES ═══ -->
+<div class="module" id="mod-stories-archive">
+<div class="sa-navbar"><div style="font-size:24px;color:white;cursor:pointer;" onclick="closeModule('mod-stories-archive')">‹</div><div class="sa-title">Mes archives</div><div class="sa-action">Gérer</div></div>
+<div class="month-scroll">
+<div class="month-pill on" onclick="saSelMonth(this)">Mars 2026</div>
+<div class="month-pill" onclick="saSelMonth(this)">Fév. 2026</div>
+<div class="month-pill" onclick="saSelMonth(this)">Jan. 2026</div>
+<div class="month-pill" onclick="saSelMonth(this)">Déc. 2025</div>
+<div class="month-pill" onclick="saSelMonth(this)">Nov. 2025</div>
+<div class="month-pill" onclick="saSelMonth(this)">Oct. 2025</div>
+</div>
+<div class="archive-grid">
+<div class="archive-item" onclick="saOpenStory()" style="background:linear-gradient(135deg,#2a1a3a,#1a2a3a);">✨<div class="archive-date">28 mar.</div><div class="archive-views">👁 124</div></div>
+<div class="archive-item" onclick="saOpenStory()" style="background:linear-gradient(135deg,#1a2a1a,#2a1a2a);">💅<div class="archive-date">27 mar.</div><div class="archive-views">👁 89</div></div>
+<div class="archive-item" onclick="saOpenStory()" style="background:linear-gradient(135deg,#2a2a1a,#1a1a2a);">🌸<div class="archive-date">26 mar.</div><div class="archive-views">👁 203</div></div>
+<div class="archive-item" onclick="saOpenStory()" style="background:linear-gradient(135deg,#1a1a2a,#2a1a1a);">🎨<div class="archive-date">25 mar.</div><div class="archive-views">👁 156</div></div>
+<div class="archive-item" onclick="saOpenStory()" style="background:linear-gradient(135deg,#2a1a1a,#1a2a2a);">💇<div class="archive-date">24 mar.</div><div class="archive-views">👁 78</div></div>
+<div class="archive-item" onclick="saOpenStory()" style="background:linear-gradient(135deg,#1a2a2a,#2a2a1a);">🪶<div class="archive-date">23 mar.</div><div class="archive-views">👁 312</div></div>
+<div class="archive-item" onclick="saOpenStory()" style="background:linear-gradient(135deg,#2a1a2a,#1a2a1a);">⭐<div class="archive-date">22 mar.</div><div class="archive-views">👁 91</div></div>
+<div class="archive-item" onclick="saOpenStory()" style="background:linear-gradient(135deg,#1a1a1a,#2a2a2a);">💋<div class="archive-date">21 mar.</div><div class="archive-views">👁 445</div></div>
+<div class="archive-item" onclick="saOpenStory()" style="background:linear-gradient(135deg,#2a2a2a,#1a1a2a);">🌿<div class="archive-date">20 mar.</div><div class="archive-views">👁 67</div></div>
+</div>
+<div class="story-viewer" id="sa-story-viewer">
+<div class="sv-progress"><div class="sv-prog-seg done"></div><div class="sv-prog-seg done"></div><div class="sv-prog-seg"></div></div>
+<div class="sv-header"><div class="sv-av"></div><div class="sv-name">Toi · @sassa.nails</div><div class="sv-time">28 mar. 2026</div><div class="sv-close" onclick="saCloseStory()">✕</div></div>
+<div class="sv-content">✨</div>
+<div class="sv-footer"><div class="sv-stats"><div class="sv-stat">👁 124 vues</div><div class="sv-stat">❤️ 48 réactions</div><div class="sv-stat">↗ 12 partages</div></div><button class="sv-share">Partager à nouveau</button></div>
+</div>
+</div><!-- /mod-stories-archive -->
 
 <!-- MODULE FEED -->
 
@@ -4585,6 +4896,30 @@ picker.classList.add('filled');
 picker.innerHTML=`<div class="cp-av">${name[0]}</div><div style="flex:1;"><div class="cp-name">${name}</div>${sub?`<div class="cp-sub">${sub}</div>`:''}</div><div class="cp-arrow" onclick="openClienteSheet('${ctx}')">›</div>`;
 closeClienteSheet(ctx);
 }
+
+// ── MODULE AVANT-APRÈS ──
+function aaSetView(view,btn){document.querySelectorAll('#mod-avant-apres .aa-view-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');document.getElementById('aa-view-single').style.display=view==='single'?'flex':'none';document.getElementById('aa-view-grid2').style.display=view==='grid2'?'grid':'none';document.getElementById('aa-view-grid3').style.display=view==='grid3'?'grid':'none';}
+function aaSelPill(el){el.closest('.aa-pills').querySelectorAll('.aa-pill').forEach(p=>p.classList.remove('on'));el.classList.add('on');}
+function aaToggleLike(el){const svg=el.querySelector('svg');if(!svg)return;const isLiked=svg.getAttribute('fill')==='#FF3B30';svg.setAttribute('fill',isLiked?'none':'#FF3B30');svg.setAttribute('stroke',isLiked?'#8E8E93':'#FF3B30');}
+function aaOpenPost(){document.getElementById('aa-post-overlay').classList.add('on');}
+function aaClosePost(){document.getElementById('aa-post-overlay').classList.remove('on');}
+let aaSliding=null;
+function aaStartSlide(e,id){aaSliding=id;aaMoveSlide(e.clientX,id);document.addEventListener('mousemove',aaOnSlideMove);document.addEventListener('mouseup',aaStopSlide);}
+function aaStartSlideTouch(e,id){aaSliding=id;aaMoveSlide(e.touches[0].clientX,id);document.addEventListener('touchmove',aaOnSlideTouchMove,{passive:true});document.addEventListener('touchend',aaStopSlide);}
+function aaOnSlideMove(e){if(aaSliding)aaMoveSlide(e.clientX,aaSliding);}
+function aaOnSlideTouchMove(e){if(aaSliding)aaMoveSlide(e.touches[0].clientX,aaSliding);}
+function aaStopSlide(){aaSliding=null;document.removeEventListener('mousemove',aaOnSlideMove);document.removeEventListener('mouseup',aaStopSlide);document.removeEventListener('touchmove',aaOnSlideTouchMove);document.removeEventListener('touchend',aaStopSlide);}
+function aaMoveSlide(clientX,id){const wrap=document.getElementById(id);if(!wrap)return;const rect=wrap.getBoundingClientRect();const pct=Math.max(5,Math.min(95,((clientX-rect.left)/rect.width)*100));const num=id.replace('aa-slider','');document.getElementById('aa-after'+num).style.width=(100-pct)+'%';document.getElementById('aa-line'+num).style.left=pct+'%';document.getElementById('aa-handle'+num).style.left=pct+'%';}
+(function(){const sw=document.getElementById('aa-swipe1');if(!sw)return;let sx=null;sw.parentElement.addEventListener('mousedown',e=>{sx=e.clientX;});sw.parentElement.addEventListener('mouseup',e=>{if(sx!==null){const d=sx-e.clientX;if(Math.abs(d)>40)sw.style.transform=d>0?'translateX(-100%)':'translateX(0)';sx=null;}});sw.parentElement.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});sw.parentElement.addEventListener('touchend',e=>{if(sx!==null){const d=sx-e.changedTouches[0].clientX;if(Math.abs(d)>40)sw.style.transform=d>0?'translateX(-100%)':'translateX(0)';sx=null;}});})();
+
+// ── MODULE FORUM ──
+function forumOpenThread(){document.getElementById('forum-thread-overlay').classList.add('on');}
+function forumCloseThread(){document.getElementById('forum-thread-overlay').classList.remove('on');}
+
+// ── MODULE STORIES ARCHIVES ──
+function saSelMonth(el){el.closest('.month-scroll').querySelectorAll('.month-pill').forEach(p=>p.classList.remove('on'));el.classList.add('on');}
+function saOpenStory(){document.getElementById('sa-story-viewer').classList.add('on');}
+function saCloseStory(){document.getElementById('sa-story-viewer').classList.remove('on');}
 
 // ── MODULE FICHIER CLIENTS ──
 function fcGoFiche(){document.getElementById('fc-liste').classList.remove('on');document.getElementById('fc-liste').style.display='none';document.getElementById('fc-fiche').classList.add('on');}
