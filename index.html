@@ -1295,6 +1295,97 @@ label.adj-label{display:block;}
 .cf-k{font-size:12px;color:var(--gray);}
 .cf-v{font-size:12px;font-weight:700;color:var(--black);}
 
+/* ══ MODULE FICHIER CLIENTS ══ */
+#mod-fichier-clients{z-index:66;}
+#mod-fichier-clients .fc-screen{position:absolute;inset:0;background:var(--bg);display:none;flex-direction:column;z-index:10;}
+#mod-fichier-clients .fc-screen.fc-root{position:relative;flex:1;display:flex;flex-direction:column;z-index:0;}
+#mod-fichier-clients .fc-screen.on{display:flex;}
+#mod-fichier-clients .fc-scroll{flex:1;overflow-y:auto;}
+#mod-fichier-clients .fc-scroll::-webkit-scrollbar{display:none;}
+#mod-fichier-clients .fc-nav{display:flex;align-items:center;justify-content:space-between;padding:8px 16px 4px;flex-shrink:0;}
+#mod-fichier-clients .fc-nav-back{font-size:22px;color:var(--black);cursor:pointer;}
+#mod-fichier-clients .fc-nav-title{font-size:16px;font-weight:800;color:var(--black);}
+#mod-fichier-clients .fc-nav-act{font-size:13px;font-weight:700;color:var(--black);cursor:pointer;}
+#mod-fichier-clients .fc-search-wrap{padding:8px 16px 4px;flex-shrink:0;}
+#mod-fichier-clients .fc-search-bar{display:flex;align-items:center;gap:8px;background:var(--light);border-radius:12px;padding:10px 14px;}
+#mod-fichier-clients .fc-search-bar input{flex:1;background:none;border:none;outline:none;font-size:14px;font-family:'Manrope',sans-serif;color:var(--black);}
+#mod-fichier-clients .fc-list-actions{display:flex;gap:8px;padding:6px 16px 4px;flex-shrink:0;overflow-x:auto;}
+#mod-fichier-clients .fc-list-actions::-webkit-scrollbar{display:none;}
+#mod-fichier-clients .fc-lact{padding:6px 13px;border-radius:16px;border:1.5px solid var(--border);font-size:12px;font-weight:700;color:var(--gray);background:white;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+#mod-fichier-clients .fc-lact.on{background:var(--black);color:white;border-color:var(--black);}
+#mod-fichier-clients .fc-sort-row{display:flex;align-items:center;justify-content:space-between;padding:4px 16px 8px;flex-shrink:0;}
+#mod-fichier-clients .fc-sort-lbl{font-size:11px;color:#AAA;}
+#mod-fichier-clients .fc-sort-val{font-size:12px;font-weight:700;color:var(--black);cursor:pointer;display:flex;align-items:center;gap:3px;}
+#mod-fichier-clients .client-row{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #F5F5F5;cursor:pointer;}
+#mod-fichier-clients .client-row:active{background:var(--light);}
+#mod-fichier-clients .cl-av{width:46px;height:46px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:var(--black);flex-shrink:0;overflow:hidden;}
+#mod-fichier-clients .cl-name{font-size:14px;font-weight:800;color:var(--black);}
+#mod-fichier-clients .cl-meta{font-size:11px;color:var(--gray);margin-top:2px;}
+#mod-fichier-clients .cl-right{margin-left:auto;text-align:right;flex-shrink:0;}
+#mod-fichier-clients .cl-rdv{font-size:12px;font-weight:700;color:var(--black);}
+#mod-fichier-clients .cl-last{font-size:11px;color:#AAA;margin-top:2px;}
+#mod-fichier-clients .cl-alert{width:8px;height:8px;border-radius:50%;background:#FF3B30;flex-shrink:0;}
+#mod-fichier-clients .fiche-header{padding:14px 16px 0;flex-shrink:0;}
+#mod-fichier-clients .fiche-top{display:flex;gap:14px;align-items:flex-start;margin-bottom:12px;}
+#mod-fichier-clients .fiche-av{width:58px;height:58px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:var(--black);flex-shrink:0;}
+#mod-fichier-clients .fiche-name{font-size:18px;font-weight:800;color:var(--black);letter-spacing:-0.3px;}
+#mod-fichier-clients .fiche-contact{font-size:12px;color:var(--black);font-weight:700;text-decoration:underline;cursor:pointer;margin-top:3px;display:block;}
+#mod-fichier-clients .fiche-since{font-size:11px;color:#AAA;margin-top:3px;}
+#mod-fichier-clients .fiche-btns{display:flex;gap:8px;margin-bottom:12px;}
+#mod-fichier-clients .fbtn{flex:1;padding:9px;border-radius:11px;border:1.5px solid var(--border);font-size:13px;font-weight:700;color:var(--black);cursor:pointer;text-align:center;background:white;font-family:'Manrope',sans-serif;}
+#mod-fichier-clients .fbtn.dark{background:var(--black);color:white;border-color:var(--black);}
+#mod-fichier-clients .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px;}
+#mod-fichier-clients .stat-cell{background:var(--light);border-radius:10px;padding:8px 6px;text-align:center;}
+#mod-fichier-clients .stat-val{font-size:16px;font-weight:800;color:var(--black);}
+#mod-fichier-clients .stat-lbl{font-size:9px;color:#AAA;font-weight:600;margin-top:2px;text-transform:uppercase;letter-spacing:.3px;}
+#mod-fichier-clients .stat-cell.alert{background:#FFF0F0;}
+#mod-fichier-clients .stat-cell.alert .stat-val{color:#FF3B30;}
+#mod-fichier-clients .fc-tabs{display:flex;border-bottom:1px solid #F0F0F0;flex-shrink:0;}
+#mod-fichier-clients .fc-tab{flex:1;padding:10px 0;text-align:center;font-size:12px;font-weight:700;color:#AAA;cursor:pointer;border-bottom:2px solid transparent;}
+#mod-fichier-clients .fc-tab.on{color:var(--black);border-bottom:2px solid var(--black);}
+#mod-fichier-clients .fc-tab-content{display:none;padding:12px 16px;}
+#mod-fichier-clients .fc-tab-content.on{display:block;}
+#mod-fichier-clients .rdv-item{padding:11px 0;border-bottom:1px solid #F5F5F5;cursor:pointer;}
+#mod-fichier-clients .rdv-item:last-child{border-bottom:none;}
+#mod-fichier-clients .rdv-item:active{opacity:.8;}
+#mod-fichier-clients .rdv-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;}
+#mod-fichier-clients .rdv-date{font-size:12px;font-weight:700;color:#AAA;}
+#mod-fichier-clients .rdv-price{font-size:13px;font-weight:800;color:var(--black);}
+#mod-fichier-clients .rdv-prest{font-size:13px;font-weight:700;color:var(--black);}
+#mod-fichier-clients .rdv-detail{font-size:11px;color:var(--gray);margin-top:2px;display:flex;gap:6px;flex-wrap:wrap;}
+#mod-fichier-clients .rdv-tag{background:var(--light);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:600;color:var(--gray);}
+#mod-fichier-clients .pref-section{margin-bottom:14px;}
+#mod-fichier-clients .pref-title{font-size:11px;font-weight:700;color:#AAA;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px;}
+#mod-fichier-clients .fingers-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:6px;}
+#mod-fichier-clients .finger-cell{background:var(--light);border-radius:10px;padding:8px 4px;text-align:center;}
+#mod-fichier-clients .finger-name{font-size:9px;color:#AAA;font-weight:600;margin-bottom:4px;}
+#mod-fichier-clients .finger-val{font-size:13px;font-weight:800;color:var(--black);}
+#mod-fichier-clients .pref-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #F5F5F5;}
+#mod-fichier-clients .pref-row:last-child{border-bottom:none;}
+#mod-fichier-clients .pref-k{font-size:13px;color:var(--gray);}
+#mod-fichier-clients .pref-v{font-size:13px;font-weight:700;color:var(--black);}
+#mod-fichier-clients .lash-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+#mod-fichier-clients .lash-cell{background:var(--light);border-radius:10px;padding:10px;}
+#mod-fichier-clients .lash-zone{font-size:10px;font-weight:700;color:#AAA;text-transform:uppercase;margin-bottom:4px;}
+#mod-fichier-clients .lash-val{font-size:12px;font-weight:700;color:var(--black);}
+#mod-fichier-clients .journal-item{padding:11px 0;border-bottom:1px solid #F5F5F5;}
+#mod-fichier-clients .journal-item:last-child{border-bottom:none;}
+#mod-fichier-clients .jour-date{font-size:11px;font-weight:700;color:#AAA;margin-bottom:6px;}
+#mod-fichier-clients .jour-row{display:flex;gap:8px;align-items:flex-start;margin-bottom:4px;font-size:12px;color:#666;}
+#mod-fichier-clients .jour-ic{font-size:13px;flex-shrink:0;}
+#mod-fichier-clients .info-section{margin-bottom:14px;}
+#mod-fichier-clients .info-title{font-size:11px;font-weight:700;color:#AAA;text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px;}
+#mod-fichier-clients .info-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #F5F5F5;align-items:center;}
+#mod-fichier-clients .info-row:last-child{border-bottom:none;}
+#mod-fichier-clients .info-k{font-size:13px;color:var(--gray);}
+#mod-fichier-clients .info-v{font-size:13px;font-weight:700;color:var(--black);text-align:right;}
+#mod-fichier-clients .alert-box{background:#FFF0F0;border-radius:10px;padding:10px 12px;display:flex;gap:8px;align-items:flex-start;margin-bottom:8px;}
+#mod-fichier-clients .alert-ic{font-size:16px;flex-shrink:0;}
+#mod-fichier-clients .alert-txt{font-size:12px;font-weight:700;color:#FF3B30;line-height:1.5;}
+#mod-fichier-clients .solde-box{background:var(--light);border-radius:10px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;}
+#mod-fichier-clients .solde-lbl{font-size:13px;color:var(--gray);}
+#mod-fichier-clients .solde-val{font-size:18px;font-weight:800;color:var(--black);}
+
 /* ══ FLOW ENCAISSEMENT RDV ══ */
 #flow-pro-enc .enc-progress{display:flex;gap:5px;padding:0 16px 8px;flex-shrink:0;}
 #flow-pro-enc .enc-pd{flex:1;height:3px;border-radius:2px;background:var(--border);}
@@ -2111,7 +2202,7 @@ MODULES PROFIL
 </div>
 <div class="shortcuts">
 <div class="shortcut" onclick="openModule('mod-planning')"><div class="shortcut-ring"><div class="shortcut-icon">📅</div></div><div class="shortcut-label">Planning</div></div>
-<div class="shortcut" onclick="alert('Fichiers clients →')"><div class="shortcut-ring"><div class="shortcut-icon">👥</div></div><div class="shortcut-label">Fichiers clients</div></div>
+<div class="shortcut" onclick="openModule('mod-fichier-clients')"><div class="shortcut-ring"><div class="shortcut-icon">👥</div></div><div class="shortcut-label">Fichiers clients</div></div>
 <div class="shortcut" onclick="alert('Statistiques →')"><div class="shortcut-ring"><div class="shortcut-icon">📊</div></div><div class="shortcut-label">Statistiques</div></div>
 </div>
 <div class="p-tabs">
@@ -2697,6 +2788,149 @@ MODULES PROFIL
 </div>
 
 </div><!-- /mod-services -->
+
+<!-- ═══ MODULE FICHIER CLIENTS ═══ -->
+<div class="prof-module" id="mod-fichier-clients">
+<div class="sbar"><span>9:41</span><span>WiFi 🔋</span></div>
+
+<!-- LISTE CLIENTS -->
+<div class="fc-screen fc-root" id="fc-liste">
+<div class="fc-nav">
+<div class="fc-nav-back" onclick="closeModule('mod-fichier-clients')">‹</div>
+<div class="fc-nav-title">Mes clientes</div>
+<div style="display:flex;gap:10px;font-size:18px;">
+<span style="cursor:pointer;">⋯</span>
+<span style="cursor:pointer;" onclick="fcGoFiche()">＋</span>
+</div>
+</div>
+<div class="fc-search-wrap">
+<div class="fc-search-bar"><span style="font-size:16px;color:#AAA;">🔍</span><input placeholder="Nom, email, téléphone…" /></div>
+</div>
+<div class="fc-list-actions">
+<div class="fc-lact on" onclick="fcTogLact(this)">Toutes</div>
+<div class="fc-lact" onclick="fcTogLact(this)">Fidèles</div>
+<div class="fc-lact" onclick="fcTogLact(this)">Nouvelles</div>
+<div class="fc-lact" onclick="fcTogLact(this)">Inactives</div>
+<div class="fc-lact" onclick="fcTogLact(this)">⬆ Importer</div>
+<div class="fc-lact" onclick="fcTogLact(this)">⬇ Exporter</div>
+<div class="fc-lact" onclick="fcTogLact(this)">Fusionner</div>
+</div>
+<div class="fc-sort-row">
+<div class="fc-sort-lbl">24 clientes</div>
+<div class="fc-sort-val">Dernière visite ▾</div>
+</div>
+<div class="fc-scroll">
+<div class="client-row" onclick="fcGoFiche()">
+<div class="cl-av">S</div>
+<div style="flex:1;"><div class="cl-name">Soraya Lehtinaf</div><div class="cl-meta">soraya@gmail.com · +33 7 59 84 02 67</div></div>
+<div class="cl-right"><div class="cl-rdv">14 RDV</div><div class="cl-last">il y a 2 jours</div></div>
+</div>
+<div class="client-row" onclick="fcGoFiche()">
+<div class="cl-av">N</div>
+<div style="flex:1;"><div class="cl-name">Naomie Wamir</div><div class="cl-meta">naomiewamir@icloud.com</div></div>
+<div class="cl-right"><div class="cl-rdv">8 RDV</div><div class="cl-last">il y a 1 sem.</div></div>
+</div>
+<div class="client-row" onclick="fcGoFiche()">
+<div class="cl-av" style="background:#F0FAF4;color:#3DA874;">Y</div>
+<div style="flex:1;"><div class="cl-name">Ylan Alves Dias</div><div class="cl-meta">ylan@gmail.com · +61 491 086 710</div></div>
+<div class="cl-right"><div class="cl-rdv">5 RDV</div><div class="cl-last">il y a 2 sem.</div></div>
+</div>
+<div class="client-row" onclick="fcGoFiche()">
+<div class="cl-av">M</div>
+<div style="flex:1;"><div class="cl-name">Marine Dupont</div><div class="cl-meta">marine.d@gmail.com</div></div>
+<div class="cl-right"><div class="cl-rdv">11 RDV</div><div class="cl-last">il y a 3 sem.</div></div>
+</div>
+<div class="client-row" onclick="fcGoFiche()">
+<div class="cl-av" style="background:#FFF0F0;">A</div>
+<div style="flex:1;"><div class="cl-name">Anaïs Ferreira</div><div class="cl-meta">anais.f@gmail.com</div></div>
+<div style="display:flex;align-items:center;gap:8px;margin-left:auto;"><div class="cl-alert"></div><div class="cl-right"><div class="cl-rdv">3 RDV</div><div class="cl-last">il y a 1 mois</div></div></div>
+</div>
+<div class="client-row" onclick="fcGoFiche()">
+<div class="cl-av">K</div>
+<div style="flex:1;"><div class="cl-name">Karina Belazaff</div><div class="cl-meta">karina.b@gmail.com</div></div>
+<div class="cl-right"><div class="cl-rdv">7 RDV</div><div class="cl-last">il y a 1 mois</div></div>
+</div>
+<div class="client-row" onclick="fcGoFiche()">
+<div class="cl-av" style="background:var(--light);color:#AAA;">J</div>
+<div style="flex:1;"><div class="cl-name">July Piaz</div><div class="cl-meta">july.piaz@gmail.com</div></div>
+<div class="cl-right"><div class="cl-rdv">2 RDV</div><div class="cl-last">il y a 2 mois</div></div>
+</div>
+</div>
+</div>
+
+<!-- FICHE CLIENTE -->
+<div class="fc-screen" id="fc-fiche">
+<div class="fc-nav">
+<div class="fc-nav-back" onclick="fcGoListe()">‹</div>
+<div class="fc-nav-title">Fiche cliente</div>
+<div class="fc-nav-act">⋯</div>
+</div>
+<div class="fc-scroll">
+<div class="fiche-header">
+<div class="fiche-top">
+<div class="fiche-av">S</div>
+<div style="flex:1;">
+<div class="fiche-name">Soraya Lehtinaf</div>
+<span class="fiche-contact">+33 7 59 84 02 67</span>
+<span class="fiche-contact">soraya@gmail.com</span>
+<div class="fiche-since">Cliente depuis le 15 janvier 2025</div>
+</div>
+</div>
+<div class="fiche-btns">
+<button class="fbtn">📞 Appeler</button>
+<button class="fbtn">💬 Message</button>
+<button class="fbtn dark">📅 Réserver</button>
+</div>
+<div class="stats-grid">
+<div class="stat-cell"><div class="stat-val">14</div><div class="stat-lbl">RDV</div></div>
+<div class="stat-cell"><div class="stat-val">910€</div><div class="stat-lbl">CA total</div></div>
+<div class="stat-cell alert"><div class="stat-val">2</div><div class="stat-lbl">Annulés</div></div>
+<div class="stat-cell"><div class="stat-val">0</div><div class="stat-lbl">Manqués</div></div>
+</div>
+</div>
+
+<div class="fc-tabs">
+<div class="fc-tab on" onclick="fcSwitchTab(this,'fc-t-histo')">Historique</div>
+<div class="fc-tab" onclick="fcSwitchTab(this,'fc-t-prefs')">Préférences</div>
+<div class="fc-tab" onclick="fcSwitchTab(this,'fc-t-journal')">Journal</div>
+<div class="fc-tab" onclick="fcSwitchTab(this,'fc-t-infos')">Infos</div>
+</div>
+
+<!-- HISTORIQUE -->
+<div class="fc-tab-content on" id="fc-t-histo">
+<div class="rdv-item"><div class="rdv-top"><div class="rdv-date">Mer. 25 mars 2026</div><div class="rdv-price">65€</div></div><div class="rdv-prest">Remplissage gel · French</div><div class="rdv-detail"><div class="rdv-tag">Gel X</div><div class="rdv-tag">Amande M</div><div class="rdv-tag">Espèces</div></div></div>
+<div class="rdv-item"><div class="rdv-top"><div class="rdv-date">Mer. 4 mars 2026</div><div class="rdv-price">75€</div></div><div class="rdv-prest">Pose complète · Nail art</div><div class="rdv-detail"><div class="rdv-tag">Gel X</div><div class="rdv-tag">Amande L</div><div class="rdv-tag">Wero</div></div></div>
+<div class="rdv-item"><div class="rdv-top"><div class="rdv-date">Mer. 11 fév. 2026</div><div class="rdv-price">65€</div></div><div class="rdv-prest">Remplissage gel · French</div><div class="rdv-detail"><div class="rdv-tag">Gel X</div><div class="rdv-tag">Amande M</div></div></div>
+<div class="rdv-item"><div class="rdv-top"><div class="rdv-date">Mer. 21 jan. 2026</div><div class="rdv-price">—</div></div><div class="rdv-prest" style="color:#FF3B30;">Annulé · 48h avant</div></div>
+<div class="rdv-item"><div class="rdv-top"><div class="rdv-date">Mer. 7 jan. 2026</div><div class="rdv-price">70€</div></div><div class="rdv-prest">Pose complète · Nude</div><div class="rdv-detail"><div class="rdv-tag">Gel X</div><div class="rdv-tag">Carré M</div></div></div>
+</div>
+
+<!-- PRÉFÉRENCES -->
+<div class="fc-tab-content" id="fc-t-prefs">
+<div class="pref-section"><div class="pref-title">Tailles capsules · Mains</div><div class="fingers-grid"><div class="finger-cell"><div class="finger-name">Pouce</div><div class="finger-val">2</div></div><div class="finger-cell"><div class="finger-name">Index</div><div class="finger-val">7</div></div><div class="finger-cell"><div class="finger-name">Majeur</div><div class="finger-val">6</div></div><div class="finger-cell"><div class="finger-name">Annul.</div><div class="finger-val">7</div></div><div class="finger-cell"><div class="finger-name">Auricu.</div><div class="finger-val">9</div></div></div></div>
+<div class="pref-section"><div class="pref-title">Habitudes ongles</div><div class="pref-row"><span class="pref-k">Méthode habituelle</span><span class="pref-v">Gel X</span></div><div class="pref-row"><span class="pref-k">Forme préférée</span><span class="pref-v">Amande</span></div><div class="pref-row"><span class="pref-k">Longueur habituelle</span><span class="pref-v">M</span></div><div class="pref-row"><span class="pref-k">Finition préférée</span><span class="pref-v">French classique</span></div><div class="pref-row"><span class="pref-k">Nail art</span><span class="pref-v">Occasionnel</span></div></div>
+<div class="pref-section"><div class="pref-title">Mapping cils</div><div class="lash-grid"><div class="lash-cell"><div class="lash-zone">Coin interne</div><div class="lash-val">9 mm · C curl</div></div><div class="lash-cell"><div class="lash-zone">Centre</div><div class="lash-val">12 mm · D curl</div></div><div class="lash-cell"><div class="lash-zone">Coin externe</div><div class="lash-val">10 mm · C curl</div></div><div class="lash-cell"><div class="lash-zone">Technique</div><div class="lash-val">Volume russe 3D</div></div></div></div>
+</div>
+
+<!-- JOURNAL -->
+<div class="fc-tab-content" id="fc-t-journal">
+<div class="journal-item"><div class="jour-date">Mer. 25 mars 2026</div><div class="jour-row"><div class="jour-ic">📺</div>Desperate Housewives · S4 E8</div><div class="jour-row"><div class="jour-ic">🎵</div>Playlist R&B · ambiance détente</div><div class="jour-row"><div class="jour-ic">💬</div>Parle de son voyage à Dubai en avril. Veut des ongles longs pour les photos.</div></div>
+<div class="journal-item"><div class="jour-date">Mer. 4 mars 2026</div><div class="jour-row"><div class="jour-ic">📺</div>Emily in Paris · S3 E5</div><div class="jour-row"><div class="jour-ic">💬</div>Vient de changer de travail. Stressée mais contente. Anniversaire le 12 juin.</div></div>
+<div class="journal-item"><div class="jour-date">Mer. 11 fév. 2026</div><div class="jour-row"><div class="jour-ic">🎵</div>Afrobeats mix</div><div class="jour-row"><div class="jour-ic">💬</div>Prépare un mariage en septembre. Veut essayer le nude pour le grand jour.</div><div class="jour-row"><div class="jour-ic">📌</div>Note : lui proposer forfait mariée en juillet.</div></div>
+</div>
+
+<!-- INFOS -->
+<div class="fc-tab-content" id="fc-t-infos">
+<div class="alert-box"><div class="alert-ic">⚠️</div><div class="alert-txt">Allergie à l'acrylique · Ne jamais utiliser de produits acryliques.</div></div>
+<div class="info-section"><div class="info-title">Informations personnelles</div><div class="info-row"><span class="info-k">Date de naissance</span><span class="info-v">12 juin 1995</span></div><div class="info-row"><span class="info-k">Pronoms</span><span class="info-v">Elle / la</span></div><div class="info-row"><span class="info-k">Contact d'urgence</span><span class="info-v">Mama · +33 6 12 34 56 78</span></div><div class="info-row"><span class="info-k">1ère venue</span><span class="info-v">15 janv. 2025</span></div></div>
+<div class="info-section"><div class="info-title">Compte & paiement</div><div class="info-row"><span class="info-k">Politique d'annulation</span><span class="info-v">Acceptée ✓</span></div><div class="info-row"><span class="info-k">Acompte autorisé</span><span class="info-v">Oui</span></div><div class="info-row"><span class="info-k">Moyen de paiement préféré</span><span class="info-v">Espèces</span></div></div>
+<div class="solde-box"><div class="solde-lbl">Solde en attente</div><div class="solde-val">0€</div></div>
+</div>
+
+</div>
+</div>
+
+</div><!-- /mod-fichier-clients -->
 
 <!-- MODULE FEED -->
 
@@ -4351,6 +4585,12 @@ picker.classList.add('filled');
 picker.innerHTML=`<div class="cp-av">${name[0]}</div><div style="flex:1;"><div class="cp-name">${name}</div>${sub?`<div class="cp-sub">${sub}</div>`:''}</div><div class="cp-arrow" onclick="openClienteSheet('${ctx}')">›</div>`;
 closeClienteSheet(ctx);
 }
+
+// ── MODULE FICHIER CLIENTS ──
+function fcGoFiche(){document.getElementById('fc-liste').classList.remove('on');document.getElementById('fc-liste').style.display='none';document.getElementById('fc-fiche').classList.add('on');}
+function fcGoListe(){document.getElementById('fc-fiche').classList.remove('on');document.getElementById('fc-liste').style.display='';document.getElementById('fc-liste').classList.add('on');}
+function fcSwitchTab(el,cId){el.parentElement.querySelectorAll('.fc-tab').forEach(t=>t.classList.remove('on'));el.classList.add('on');document.querySelectorAll('#mod-fichier-clients .fc-tab-content').forEach(c=>c.classList.remove('on'));document.getElementById(cId).classList.add('on');}
+function fcTogLact(el){document.querySelectorAll('#mod-fichier-clients .fc-lact').forEach(l=>l.classList.remove('on'));el.classList.add('on');}
 
 // ── FLOW ENCAISSEMENT RDV ──
 function encTogStatut(){document.getElementById('enc-chips').classList.toggle('open');document.getElementById('enc-sa').classList.toggle('up');}
