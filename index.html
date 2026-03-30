@@ -979,3 +979,34 @@ MODULES PROFIL
 </div>
 </div>
 </div>
+
+<!-- MODULE FEED -->
+
+<div class="module" id="mod-feed">
+<div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-feed')">‹</div><div class="mod-title">Feed</div></div>
+<div class="mod-tabs"><div class="mod-tab on" onclick="modTab(this,'mf-algo')">Pour toi</div><div class="mod-tab" onclick="modTab(this,'mf-suivis')">Mes suivis</div></div>
+<div class="view-toggle"><button class="vbtn" onclick="setFeedView(1,this)">▬</button><button class="vbtn" onclick="setFeedView(2,this)">⊞</button><button class="vbtn on" onclick="setFeedView(3,this)">⊟</button></div>
+<div class="mod-filters"><div class="fchip on" onclick="togChip(this)">Tout</div><div class="fchip" onclick="togChip(this)">Ongles</div><div class="fchip" onclick="togChip(this)">Cils</div><div class="fchip" onclick="togChip(this)">Coiffure</div></div>
+<div class="mod-scroll">
+<div id="mf-algo"><div id="feed-grid" class="feed-3"><div class="feed-card fc1">💅<div class="overlay"><div class="f-name">Bloom Nails</div><div class="f-meta">Ongles</div></div></div><div class="feed-card fc2">✨<div class="overlay"><div class="f-name">Nina Cils</div><div class="f-meta">Cils</div></div></div><div class="feed-card fc3">💇<div class="overlay"><div class="f-name">Karima Hair</div><div class="f-meta">Coiffure</div></div></div><div class="feed-card fc4">🌿<div class="overlay"><div class="f-name">Leila</div><div class="f-meta">Bien-être</div></div></div><div class="feed-card fc5">💅<div class="overlay"><div class="f-name">Bloom Nails</div><div class="f-meta">Ongles</div></div></div><div class="feed-card fc6">✨<div class="overlay"><div class="f-name">Nina Cils</div><div class="f-meta">Cils</div></div></div><div class="feed-card fc1">🦷</div><div class="feed-card fc2">💅</div><div class="feed-card fc3">✨</div></div></div>
+<div id="mf-suivis" style="display:none"><div class="feed-3"><div class="feed-card fc2">💅</div><div class="feed-card fc4">🌿</div><div class="feed-card fc5">💇</div><div class="feed-card fc1">✨</div><div class="feed-card fc3">💅</div><div class="feed-card fc6">🦷</div></div></div>
+</div>
+</div>
+
+<!-- PROMOTIONS -->
+
+<div class="module" id="mod-promos">
+<div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-promos')">‹</div><div class="mod-title">Promotions</div></div>
+<div class="mod-tabs"><div class="mod-tab on" onclick="modTab(this,'mp-prest')">Prestations</div><div class="mod-tab" onclick="modTab(this,'mp-bout')">Boutiques</div></div>
+<div class="mod-filters"><div class="fchip on" onclick="togChip(this)">Tout</div><div class="fchip" onclick="togChip(this)">Ongles</div><div class="fchip" onclick="togChip(this)">Cils</div><div class="fchip" onclick="togChip(this)">Aujourd'hui</div></div>
+<div class="mod-scroll">
+<div id="mp-prest">
+<div class="promo-card"><div class="promo-avatar">💅</div><div><div class="promo-name">Remplissage gel · Bloom Nails</div><div class="promo-meta">Sassa · Nice</div><div><span class="promo-badge">−25%</span><span class="promo-badge-outline">dès 33,75€</span></div><div class="promo-dates">Du 25 au 29 mars 2026</div></div></div>
+<div class="promo-card"><div class="promo-avatar">👁️</div><div><div class="promo-name">Volume russe · Nina Cils</div><div class="promo-meta">Nina · Nice</div><div><span class="promo-badge">−10€</span><span class="promo-badge-outline">dès 70€</span></div><div class="promo-dates">Jusqu'au 31 mars 2026</div></div></div>
+<div class="promo-card"><div class="promo-avatar">💇</div><div><div class="promo-name">Balayage californien</div><div class="promo-meta">Karima · Nice</div><div><span class="promo-badge">−15%</span></div><div class="promo-dates">28 mars – 4 avril 2026</div></div></div>
+</div>
+<div id="mp-bout" style="display:none">
+<div class="promo-card"><div class="promo-avatar">💅</div><div><div class="promo-name">Bloom Nails</div><div class="promo-meta">Sassa · Nice</div><div><span class="promo-badge">−20% sur tout</span></div><div class="promo-dates">Du 25 au 30 mars 2026</div></div></div>
+</div>
+</div>
+</div>
