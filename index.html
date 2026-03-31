@@ -5581,15 +5581,13 @@ function closeAllRegSubs(){document.querySelectorAll('#mod-reglages .reg-sub').f
 function openRegFromProfile(mode){
   closeModule('mod-profil-pro-int');
   closeModule('mod-profil-client-int');
-  setTimeout(function(){openModule('mod-reglages');},300);
-  if(mode==='pro') regSetMode('pro'); else regSetMode('client');
-  const target=mode==='pro'?'bloom':'nina';
-  setTimeout(()=>{
-    const sec=document.getElementById('reg-profiles-section');
-    if(sec)sec.scrollIntoView({behavior:'smooth',block:'start'});
-    const bubble=document.querySelector('.reg-profile-bubble[data-profile="'+target+'"]');
-    if(bubble){bubble.style.transform='scale(1.08)';setTimeout(()=>{bubble.style.transform='';},400);}
-  },150);
+  setTimeout(function(){
+    openModule('mod-reglages');
+    if(mode==='pro') regSetMode('pro'); else regSetMode('client');
+    setTimeout(function(){
+      openRegProfileSettings(regActiveProfile);
+    },100);
+  },300);
 }
 function openRegProfileSettings(profileId){
   const p=regProfiles[profileId];
