@@ -5579,6 +5579,8 @@ function openRegSub(id){var el=document.getElementById(id);if(el)el.classList.ad
 function closeRegSub(id){var el=document.getElementById(id);if(el)el.classList.remove('on');}
 function closeAllRegSubs(){document.querySelectorAll('#mod-reglages .reg-sub').forEach(function(s){s.classList.remove('on');});}
 function openRegFromProfile(mode){
+  closeModule('mod-profil-pro-int');
+  closeModule('mod-profil-client-int');
   openModule('mod-reglages');
   if(mode==='pro') regSetMode('pro'); else regSetMode('client');
   const target=mode==='pro'?'bloom':'nina';
