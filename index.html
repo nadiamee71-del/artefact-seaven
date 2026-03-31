@@ -6038,7 +6038,16 @@ function selItinMode(el){el.closest('.itin-modes').querySelectorAll('.itin-mode'
 function openMapReserve(){
   closeMapSheet();
   closeModule('mod-carte');
-  goReserve();
+  closeFan('cl');closeFan('pro');
+  closeAllModules();
+  forceOpenBookingFlow();
+}
+function forceOpenBookingFlow(){
+  var f=document.getElementById('flow-rdv');
+  if(!f)return;
+  f.classList.add('on');
+  try{rdvApplyContext();}catch(e){}
+  try{rdvResetWizard();}catch(e){}
 }
 function goReserve(opts){
   opts=opts||{};
@@ -6046,9 +6055,7 @@ function goReserve(opts){
   closeAllModules();
   if(opts.domicileAddr) sessionStorage.setItem('rdvDomicileAddr',opts.domicileAddr);
   else sessionStorage.removeItem('rdvDomicileAddr');
-  const cl=document.getElementById('screen-client')?.classList?.contains('on');
-  if(cl) openFlow('flow-rdv');
-  else openFlowPro('flow-pro-rdv');
+  forceOpenBookingFlow();
 }
 function rdvApplyContext(){
   const a=sessionStorage.getItem('rdvDomicileAddr');
