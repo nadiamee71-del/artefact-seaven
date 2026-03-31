@@ -6540,6 +6540,12 @@ function openMapReserve(){
   forceOpenBookingFlow();
 }
 function forceOpenBookingFlow(){
+  var sc=document.getElementById('screen-client');
+  var sp=document.getElementById('screen-pro');
+  if(sc&&!sc.classList.contains('on')){
+    if(sp)sp.classList.remove('on');
+    sc.classList.add('on');
+  }
   var f=document.getElementById('flow-rdv');
   if(!f)return;
   f.classList.add('on');
