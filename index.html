@@ -2670,8 +2670,7 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="fan-item" data-pos="photo" onclick="openFlow('flow-photo')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><span>Photo</span></div>
 <div class="fan-item" data-pos="video" onclick="openFlow('flow-video')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg><span>Vidéo</span></div>
 <div class="fan-item" data-pos="aa" onclick="openFlow('flow-aa')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="9" height="18" rx="2"/><rect x="13" y="3" width="9" height="18" rx="2"/></svg><span>Av./Ap.</span></div>
-<div class="fan-item" data-pos="resa" onclick="openFlow('flow-rdv')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>RDV</span></div>
-<div class="fan-item" data-pos="vente" onclick="openFlow('flow-vente')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span>Vente</span></div>
+<div class="fan-item" data-pos="resa" onclick="openFlow('flow-rdv')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>Réserver</span></div>
 </div>
 </div>
 <div class="tb-item" onclick="dockMsgs('cl')"><div class="tb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div></div>
@@ -6385,14 +6384,89 @@ if(parent)parent.querySelectorAll(':scope > div[id]').forEach(d=>d.style.display
 const target=document.getElementById(contentId);
 if(target)target.style.display='grid';
 }
+function isProScreen(){return !!document.getElementById('screen-pro')?.classList?.contains('on');}
+function adaptModuleToRole(id,isPro){
+  if(id==='mod-marketplace'){
+    var tab=document.querySelector('#mod-marketplace .mod-tabs');
+    var mesP=document.getElementById('mm-mesprod');
+    if(tab){var tabs=tab.querySelectorAll('.mod-tab');if(tabs[1])tabs[1].style.display=isPro?'':'none';}
+    if(!isPro&&mesP){mesP.style.display='none';var br=document.getElementById('mm-browse');if(br)br.style.display='';}
+  }
+  if(id==='mod-notifs'){
+    document.querySelectorAll('#mod-notifs .notif-item').forEach(function(n){n.style.display='';});
+    if(!isPro){
+      document.querySelectorAll('#mod-notifs .notif-item').forEach(function(n){
+        var t=n.querySelector('.notif-text');if(!t)return;
+        var txt=t.textContent;
+        if(txt.indexOf('a réservé')>-1||txt.indexOf('Nouvel avis')>-1||txt.indexOf('a annulé son RDV')>-1)n.style.display='none';
+      });
+    }else{
+      document.querySelectorAll('#mod-notifs .notif-item').forEach(function(n){
+        var t=n.querySelector('.notif-text');if(!t)return;
+        var txt=t.textContent;
+        if(txt.indexOf('chez Bloom')>-1||txt.indexOf('Promotion')>-1)n.style.display='none';
+      });
+    }
+  }
+  if(id==='mod-messages'){
+    var mt=document.querySelector('#mod-messages .mod-tabs');
+    if(mt){
+      var tabs=mt.querySelectorAll('.mod-tab');
+      if(!isPro){
+        if(tabs[0])tabs[0].textContent='Prestataires';
+        if(tabs[1])tabs[1].textContent='Autres';
+        var cl=document.getElementById('msg-clients');
+        var pr=document.getElementById('msg-pros');
+        if(cl)cl.style.display='none';
+        if(pr)pr.style.display='';
+        tabs.forEach(function(t,i){t.classList.toggle('on',i===0);});
+      }else{
+        if(tabs[0])tabs[0].textContent='Clients';
+        if(tabs[1])tabs[1].textContent='Prestataires';
+        var cl=document.getElementById('msg-clients');
+        var pr=document.getElementById('msg-pros');
+        if(cl)cl.style.display='';
+        if(pr)pr.style.display='none';
+        tabs.forEach(function(t,i){t.classList.toggle('on',i===0);});
+      }
+    }
+  }
+  if(id==='mod-stories-archive'){
+    var navbar=document.querySelector('#mod-stories-archive .sa-title');
+    var footer=document.querySelector('#mod-stories-archive .sv-footer');
+    var svName=document.querySelector('#mod-stories-archive .sv-name');
+    var views=document.querySelectorAll('#mod-stories-archive .archive-views');
+    if(!isPro){
+      if(navbar)navbar.textContent='Stories';
+      views.forEach(function(v){v.style.display='none';});
+      if(footer)footer.style.display='none';
+      if(svName)svName.textContent='Story';
+    }else{
+      if(navbar)navbar.textContent='Mes archives';
+      views.forEach(function(v){v.style.display='';});
+      if(footer)footer.style.display='';
+      if(svName)svName.textContent='Toi · @sassa.nails';
+    }
+  }
+  if(id==='mod-modele'){
+    document.querySelectorAll('#mod-modele .cbtn.dark').forEach(function(b){
+      if(isPro){
+        b.textContent=b.textContent.replace('Je suis partante','Publier une annonce');
+      }else{
+        b.textContent=b.textContent.replace('Publier une annonce','Je suis partante');
+      }
+    });
+  }
+}
 function openModule(id){
 closeFan('cl');closeFan('pro');
 const mod=document.getElementById(id);
 if(!mod){console.warn('Module introuvable:',id);return;}
 mod.classList.add('on');
+var isPro=isProScreen();
+adaptModuleToRole(id,isPro);
 if(id==='mod-reglages'){
-  const proOn=document.getElementById('screen-pro')?.classList?.contains('on');
-  regSetMode(proOn?'pro':'client');
+  regSetMode(isPro?'pro':'client');
 }
 if(id==='mod-profil-client-int')cliIntSetTab('pub');
 if(id==='mod-messages')closeConversation();
