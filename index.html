@@ -941,6 +941,29 @@ body.dark-mode #mod-reglages{background:var(--bg)!important;}
 #mod-reglages .pro-only{display:none;}
 #mod-reglages .pro-only.show{display:block;}
 #mod-reglages .client-only.hide{display:none;}
+#mod-reglages .reg-profiles-section{margin:0 16px 16px;}
+#mod-reglages .reg-profiles-lbl{font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px;padding-left:2px;}
+#mod-reglages .reg-profiles-row{display:flex;gap:12px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;}
+#mod-reglages .reg-profiles-row::-webkit-scrollbar{display:none;}
+#mod-reglages .reg-profile-bubble{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;flex-shrink:0;min-width:68px;transition:transform .15s;}
+#mod-reglages .reg-profile-bubble:active{transform:scale(.95);}
+#mod-reglages .rpb-avatar{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:white;position:relative;transition:all .2s;}
+#mod-reglages .rpb-avatar.active-ring{box-shadow:0 0 0 3px var(--black),0 0 0 5px var(--bg);}
+#mod-reglages .rpb-active-dot{position:absolute;bottom:0;right:0;width:14px;height:14px;border-radius:50%;background:var(--green);border:2.5px solid var(--bg);display:none;}
+#mod-reglages .reg-profile-bubble.active .rpb-active-dot{display:block;}
+#mod-reglages .rpb-name{font-size:11px;font-weight:700;color:var(--black);text-align:center;max-width:72px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+#mod-reglages .rpb-add{width:56px;height:56px;border-radius:50%;border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--gray);background:var(--bg);}
+#mod-reglages .reg-profile-settings{position:absolute;inset:0;background:var(--bg);z-index:10;display:none;flex-direction:column;overflow:hidden;}
+#mod-reglages .reg-profile-settings.on{display:flex;}
+#mod-reglages .rps-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:20px;}
+#mod-reglages .rps-scroll::-webkit-scrollbar{display:none;}
+#mod-reglages .rps-hero{display:flex;flex-direction:column;align-items:center;padding:20px 16px 14px;gap:6px;}
+#mod-reglages .rps-avatar{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:white;}
+#mod-reglages .rps-name{font-size:18px;font-weight:900;color:var(--black);}
+#mod-reglages .rps-meta{font-size:12px;color:var(--gray);}
+#mod-reglages .rps-active-badge{font-size:11px;font-weight:700;color:var(--green);background:#F0FAF4;padding:4px 12px;border-radius:12px;}
+#mod-reglages .rps-switch-btn{margin:0 16px 12px;padding:12px;border-radius:12px;border:1.5px solid var(--black);background:var(--bg);font-size:14px;font-weight:700;color:var(--black);cursor:pointer;text-align:center;font-family:'Manrope',sans-serif;}
+#mod-reglages .rps-switch-btn.is-active{border-color:var(--green);color:var(--green);cursor:default;}
 /* ══ MODULE SERVICES ══ */
 #mod-services{z-index:66;}
 #mod-services .svc-screen{position:absolute;inset:0;background:var(--bg);display:none;flex-direction:column;z-index:10;}
@@ -1691,7 +1714,7 @@ label.adj-label{display:block;}
 #flow-pro-enc .enc-btn-ghost{width:100%;padding:9px;background:none;border:none;color:var(--gray);font-size:13px;font-weight:600;cursor:pointer;margin-top:6px;font-family:'Manrope',sans-serif;}
 
 /* ══ GROUPES (Journée type) ══ */
-#mod-groupes{display:flex;flex-direction:column;min-height:0;z-index:66;}
+#mod-groupes{display:flex;flex-direction:column;min-height:0;z-index:66;position:absolute;}
 #mod-groupes .grp-pager{flex:1;position:relative;min-height:0;}
 #mod-groupes .grp-pg{display:none;flex-direction:column;position:absolute;inset:0;background:var(--bg);overflow:hidden;}
 #mod-groupes .grp-pg.on{display:flex;}
@@ -1821,7 +1844,7 @@ label.adj-label{display:block;}
 #mod-groupes .cf-rdv:last-of-type{border-bottom:none;}
 
 /* ══ FINANCES ══ */
-#mod-finances{display:flex;flex-direction:column;min-height:0;z-index:66;}
+#mod-finances{display:flex;flex-direction:column;min-height:0;z-index:66;position:absolute;}
 #mod-finances .fin-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 0 24px;}
 #mod-finances .fin-body::-webkit-scrollbar{display:none;}
 #mod-finances .fin-screen{display:none;flex-direction:column;position:absolute;inset:0;background:var(--bg);overflow:hidden;z-index:2;}
@@ -2656,7 +2679,7 @@ MODULES PROFIL
 
 <div class="prof-module" id="mod-profil-pro-int">
 <div class="sbar"><span>9:41</span><span>WiFi 🔋</span></div>
-<div class="pnav"><div class="pnav-title">Mon profil</div><span class="pnav-icon" onclick="openModule('mod-reglages')">⚙️</span></div>
+<div class="pnav"><div class="pnav-title">Mon profil</div><span class="pnav-icon" onclick="openRegFromProfile('pro')">⚙️</span></div>
 <div class="mod-scroll">
 <div class="prof-hdr">
 <div class="prof-left">
@@ -2711,7 +2734,7 @@ MODULES PROFIL
 
 <div class="prof-module" id="mod-profil-client-int">
 <div class="sbar"><span>9:41</span><span>WiFi 🔋</span></div>
-<div class="pnav"><div class="pnav-title">Mon profil</div><span class="pnav-icon" onclick="openModule('mod-reglages')">⚙️</span></div>
+<div class="pnav"><div class="pnav-title">Mon profil</div><span class="pnav-icon" onclick="openRegFromProfile('client')">⚙️</span></div>
 <div class="mod-scroll">
 <div class="prof-hdr">
 <div class="prof-left">
@@ -2812,13 +2835,23 @@ MODULES PROFIL
 <button type="button" class="mode-btn mode-pro inactive" onclick="regSetMode('pro')">💼 Prestataire</button>
 </div>
 <div class="reg-scroll">
-<div class="profile-card" onclick="closeModule('mod-reglages');openProfilFromReg();">
-<div class="avatar"><span class="reg-peek-client">S</span><span class="reg-peek-pro" style="display:none;">B</span></div>
-<div class="profile-info">
-<div class="reg-peek-client"><div class="profile-name">Sarah Bouteben</div><div class="profile-sub">Photo, nom, bio, handle</div></div>
-<div class="reg-peek-pro" style="display:none;"><div class="profile-name">Bloom Nails</div><div class="profile-sub">Métier, vitrine, bio</div></div>
+<!-- Bulles profils -->
+<div class="reg-profiles-section" id="reg-profiles-section">
+<div class="reg-profiles-lbl">Mes profils</div>
+<div class="reg-profiles-row" id="reg-profiles-row">
+<div class="reg-profile-bubble active" data-profile="bloom" data-type="pro" onclick="openRegProfileSettings('bloom')">
+<div class="rpb-avatar active-ring" style="background:linear-gradient(135deg,#E8638C,#A87DC8);">B<div class="rpb-active-dot"></div></div>
+<div class="rpb-name">Bloom Nails</div>
 </div>
-<div class="chev">›</div>
+<div class="reg-profile-bubble" data-profile="sarah" data-type="client" onclick="openRegProfileSettings('sarah')">
+<div class="rpb-avatar" style="background:linear-gradient(135deg,#7EC8A4,#4A90D9);">S</div>
+<div class="rpb-name">Sarah B.</div>
+</div>
+<div class="reg-profile-bubble" data-profile="add" onclick="alert('Créer un nouveau profil →')">
+<div class="rpb-add">＋</div>
+<div class="rpb-name" style="color:var(--gray);">Ajouter</div>
+</div>
+</div>
 </div>
 <div class="client-only" id="reg-c">
 <div class="section">
@@ -2952,6 +2985,89 @@ MODULES PROFIL
 <div class="disconnect">
 <div class="row"><div class="row-label">Déconnexion</div></div>
 </div>
+</div>
+</div>
+</div>
+<!-- Écran réglages d'un profil spécifique -->
+<div class="reg-profile-settings" id="reg-profile-settings">
+<div class="reg-back-h" style="padding-top:12px;"><span class="reg-back" onclick="closeRegProfileSettings()">‹</span></div>
+<div class="rps-scroll">
+<div class="rps-hero">
+<div class="rps-avatar" id="rps-avatar" style="background:linear-gradient(135deg,#E8638C,#A87DC8);">B</div>
+<div class="rps-name" id="rps-name">Bloom Nails</div>
+<div class="rps-meta" id="rps-meta">Prothésiste ongulaire · Nice</div>
+<div class="rps-active-badge" id="rps-badge">● Profil actif</div>
+</div>
+<div id="rps-switch-wrap" style="display:none;"><button class="rps-switch-btn" id="rps-switch-btn" onclick="regActivateProfile()">Activer ce profil</button></div>
+<div class="section">
+<div class="section-block">
+<div class="row" onclick="closeRegProfileSettings();closeModule('mod-reglages');openProfilFromRegFor();">
+<div class="icon ic-purple">👤</div>
+<div class="row-text"><div class="row-label">Voir le profil</div><div class="row-sub">Vitrine publique</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row">
+<div class="icon ic-pink">📸</div>
+<div class="row-text"><div class="row-label">Photo & avatar</div><div class="row-sub">Modifier la photo de profil</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row">
+<div class="icon ic-blue">✏️</div>
+<div class="row-text"><div class="row-label">Nom & bio</div><div class="row-sub" id="rps-name-sub">Bloom Nails · Prothésiste ongulaire</div></div>
+<div class="chev">›</div>
+</div>
+</div>
+</div>
+<div class="section" id="rps-pro-section">
+<div class="section-block">
+<div class="row" onclick="closeRegProfileSettings();closeModule('mod-reglages');openModule('mod-services');">
+<div class="icon ic-pink">💅</div>
+<div class="row-text"><div class="row-label">Mes services</div><div class="row-sub">Prestations & tarifs</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row">
+<div class="icon ic-orange">📍</div>
+<div class="row-text"><div class="row-label">Localisation</div><div class="row-sub">Adresse, zone d'intervention</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row">
+<div class="icon ic-green">🕐</div>
+<div class="row-text"><div class="row-label">Horaires</div><div class="row-sub">Disponibilités & jours de repos</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row">
+<div class="icon ic-teal">💳</div>
+<div class="row-text"><div class="row-label">Paiement</div><div class="row-sub">Moyens acceptés, acompte</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row">
+<div class="icon ic-yellow">📣</div>
+<div class="row-text"><div class="row-label">Marketing</div><div class="row-sub">Relances, promos, codes</div></div>
+<div class="chev">›</div>
+</div>
+</div>
+</div>
+<div class="section" id="rps-client-section" style="display:none;">
+<div class="section-block">
+<div class="row">
+<div class="icon ic-orange">💆</div>
+<div class="row-text"><div class="row-label">Préférences beauté</div><div class="row-sub">Types de soins, allergies</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row">
+<div class="icon ic-green">📍</div>
+<div class="row-text"><div class="row-label">Localisation</div><div class="row-sub">Adresse, périmètre de recherche</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row">
+<div class="icon ic-teal">💳</div>
+<div class="row-text"><div class="row-label">Paiement</div><div class="row-sub">Moyens enregistrés</div></div>
+<div class="chev">›</div>
+</div>
+</div>
+</div>
+<div class="disconnect" style="margin-bottom:20px;">
+<div class="row"><div class="row-label" style="color:var(--red);">Supprimer ce profil</div></div>
 </div>
 </div>
 </div>
@@ -4878,6 +4994,69 @@ function regSetMode(m){
 function openProfilFromReg(){
   const openPro=document.getElementById('reg-p')?.classList?.contains('show');
   openModule(openPro?'mod-profil-pro-int':'mod-profil-client-int');
+}
+const regProfiles={
+  bloom:{name:'Bloom Nails',letter:'B',meta:'Prothésiste ongulaire · Nice',type:'pro',grad:'linear-gradient(135deg,#E8638C,#A87DC8)'},
+  sarah:{name:'Sarah B.',letter:'S',meta:'Passionnée de beauté · Nice',type:'client',grad:'linear-gradient(135deg,#7EC8A4,#4A90D9)'}
+};
+let regActiveProfile='bloom';
+function openRegFromProfile(mode){
+  openModule('mod-reglages');
+  if(mode==='pro') regSetMode('pro'); else regSetMode('client');
+  const target=mode==='pro'?'bloom':'sarah';
+  setTimeout(()=>{
+    const sec=document.getElementById('reg-profiles-section');
+    if(sec)sec.scrollIntoView({behavior:'smooth',block:'start'});
+    const bubble=document.querySelector('.reg-profile-bubble[data-profile="'+target+'"]');
+    if(bubble){bubble.style.transform='scale(1.08)';setTimeout(()=>{bubble.style.transform='';},400);}
+  },150);
+}
+function openRegProfileSettings(profileId){
+  const p=regProfiles[profileId];
+  if(!p)return;
+  const av=document.getElementById('rps-avatar');
+  const nm=document.getElementById('rps-name');
+  const mt=document.getElementById('rps-meta');
+  const bd=document.getElementById('rps-badge');
+  const sw=document.getElementById('rps-switch-wrap');
+  const sb=document.getElementById('rps-switch-btn');
+  const ns=document.getElementById('rps-name-sub');
+  const proSec=document.getElementById('rps-pro-section');
+  const cliSec=document.getElementById('rps-client-section');
+  if(av){av.textContent=p.letter;av.style.background=p.grad;}
+  if(nm)nm.textContent=p.name;
+  if(mt)mt.textContent=p.meta;
+  if(ns)ns.textContent=p.name+' · '+p.meta.split(' · ')[0];
+  const isActive=(profileId===regActiveProfile);
+  if(bd){bd.textContent=isActive?'● Profil actif':'Profil inactif';bd.style.color=isActive?'var(--green)':'var(--gray)';bd.style.background=isActive?'#F0FAF4':'var(--light)';}
+  if(sw)sw.style.display=isActive?'none':'block';
+  if(sb)sb.dataset.profile=profileId;
+  if(proSec)proSec.style.display=p.type==='pro'?'':'none';
+  if(cliSec)cliSec.style.display=p.type==='client'?'':'none';
+  document.getElementById('reg-profile-settings')?.classList.add('on');
+  document.getElementById('reg-profile-settings').dataset.current=profileId;
+}
+function closeRegProfileSettings(){document.getElementById('reg-profile-settings')?.classList.remove('on');}
+function regActivateProfile(){
+  const el=document.getElementById('reg-profile-settings');
+  const pid=el?.dataset?.current;
+  if(!pid||pid===regActiveProfile)return;
+  regActiveProfile=pid;
+  document.querySelectorAll('.reg-profile-bubble').forEach(b=>{
+    const id=b.dataset.profile;
+    const isNow=(id===pid);
+    b.classList.toggle('active',isNow);
+    const av=b.querySelector('.rpb-avatar');
+    if(av)av.classList.toggle('active-ring',isNow);
+  });
+  openRegProfileSettings(pid);
+}
+function openProfilFromRegFor(){
+  const el=document.getElementById('reg-profile-settings');
+  const pid=el?.dataset?.current||regActiveProfile;
+  const p=regProfiles[pid];
+  if(p?.type==='pro')openModule('mod-profil-pro-int');
+  else openModule('mod-profil-client-int');
 }
 function cliIntSetTab(which){
   const pub=document.getElementById('pgrid-cli-int-pub');
