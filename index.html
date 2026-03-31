@@ -37,8 +37,8 @@
 html,body{width:100%;height:100%;overflow:hidden;overscroll-behavior:none;}
 body{background:#f7f7fa;display:flex;flex-direction:column;align-items:center;padding:0;font-family:'Manrope',-apple-system,sans-serif;gap:0;min-height:100vh;min-height:100dvh;color:var(--text);}
 body.dark-mode{
---bg:#0F1116;--text:#F7F9FF;--gray:#B9C1D1;--light:#1A1F2B;--border:#2A3140;
---btn-bg:#FFFFFF;--btn-fg:#111318;
+--bg:#0F1116;--text:#F7F9FF;--black:#F7F9FF;--gray:#B9C1D1;--light:#1A1F2B;--border:#2A3140;
+--btn-bg:#FFFFFF;--btn-fg:#111318;--set-page:#1A1F2B;
 }
 .phone{width:100vw;height:100vh;height:100svh;height:100dvh;background:var(--bg);border-radius:0;box-shadow:none;overflow:hidden;position:relative;}
 /* Tout ce qui est enfant direct de .phone et pas une vue/module reste invisible */
@@ -1341,7 +1341,7 @@ label.adj-label{display:block;}
 .source-bar{display:flex;gap:8px;padding:10px 16px;flex-shrink:0;background:rgba(0,0,0,.7);}
 .source-btn{flex:1;padding:9px;border-radius:10px;text-align:center;font-size:12px;font-weight:700;cursor:pointer;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);border:1.5px solid transparent;}
 .source-btn.on{background:white;color:var(--black);}
-.type-bar{display:flex;gap:8px;padding:0 16px 10px;flex-shrink:0;background:rgba(0,0,0,.7);}
+.type-bar{display:flex;gap:8px;padding:0 16px 10px;flex-shrink:0;background:rgba(0,0,0,.7);position:relative;z-index:2;}
 .type-btn{flex:1;padding:10px 8px;border-radius:12px;text-align:center;cursor:pointer;border:1.5px solid rgba(255,255,255,.2);}
 .type-btn.on{border-color:white;background:rgba(255,255,255,.08);}
 .type-btn-title{font-size:13px;font-weight:800;color:white;}
@@ -1736,7 +1736,7 @@ label.adj-label{display:block;}
 /* ══ GROUPES (Journée type) ══ */
 #mod-groupes{display:flex;flex-direction:column;min-height:0;z-index:66;position:absolute;}
 #mod-groupes .grp-pager{flex:1;position:relative;min-height:0;}
-#mod-groupes .grp-pg{display:none;flex-direction:column;position:absolute;inset:0;background:var(--bg);overflow:hidden;}
+#mod-groupes .grp-pg{display:none;flex-direction:column;position:absolute;inset:0;background:var(--bg);overflow:hidden;min-height:0;}
 #mod-groupes .grp-pg.on{display:flex;}
 #mod-groupes .grp-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 16px 20px;}
 #mod-groupes .grp-scroll::-webkit-scrollbar{display:none;}
@@ -2017,7 +2017,7 @@ label.adj-label{display:block;}
 #mod-finances .fin-note{font-size:11px;color:var(--gray);font-weight:600;margin:5px 16px 0;line-height:1.5;}
 
 /* ══ SOUS-ÉCRANS RÉGLAGES ══ */
-.reg-sub{display:none;position:absolute;inset:0;background:var(--bg);z-index:30;flex-direction:column;overflow:hidden;}
+.reg-sub{display:none;position:absolute;inset:0;background:var(--bg);z-index:30;flex-direction:column;overflow:hidden;min-height:0;}
 .reg-sub.on{display:flex;}
 .reg-sub-nav{display:flex;align-items:center;gap:10px;padding:10px 16px 6px;flex-shrink:0;}
 .reg-sub-back{font-size:26px;font-weight:700;color:var(--black);cursor:pointer;line-height:1;}
@@ -2123,7 +2123,7 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="screen" id="screen-client">
 <div class="sbar"><span>9:41</span><span>WiFi 🔋</span></div>
 <div class="stories-wrap"><div class="stories-row">
-<div class="story-item"><div class="story-ring-wrap"><div class="story-ring" style="background:linear-gradient(135deg,#C9A84C,#4A90D9);"><div class="story-vous">V</div></div><div class="story-add-btn">+</div></div><div class="story-name">Vous</div></div>
+<div class="story-item" onclick="openStoryCreation('cl')"><div class="story-ring-wrap"><div class="story-ring" style="background:linear-gradient(135deg,#C9A84C,#4A90D9);"><div class="story-vous">V</div></div><div class="story-add-btn">+</div></div><div class="story-name">Vous</div></div>
 <div class="story-item"><div class="story-ring"><div class="story-inner">🦋</div></div><div class="story-name">Sarah</div></div>
 <div class="story-item"><div class="story-ring"><div class="story-inner">🪼</div></div><div class="story-name">Lina</div></div>
 <div class="story-item"><div class="story-ring"><div class="story-inner">🐾</div></div><div class="story-name">Maya</div></div>
@@ -2132,7 +2132,6 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="divider"></div>
 <div class="grid-area"><div class="grid-slider"><div class="grid-track" id="c-track">
 <div class="grid-page">
-<div class="app-item" onclick="openModule('mod-planning')"><div class="app-icon" style="background:#EEF2FF;">📅</div><div class="app-name">Planning</div></div>
 <div class="app-item" onclick="openModule('mod-stories-archive')"><div class="app-icon">⏳</div><div class="app-name">Stories</div></div>
 <div class="app-item" onclick="openModule('mod-promos')"><div class="app-icon">🏷️</div><div class="app-name">Promotions</div></div>
 <div class="app-item" onclick="openModule('mod-urgence')"><div class="app-icon" style="background:#FFF0F0;">⚡</div><div class="app-name">Urgences</div></div>
@@ -2146,11 +2145,11 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="app-item" onclick="openModule('mod-evenements')"><div class="app-icon">🎉</div><div class="app-name">Événements</div></div>
 <div class="app-item" onclick="openModule('mod-avant-apres')"><div class="app-icon">🪞</div><div class="app-name">Avant-Après</div></div>
 <div class="app-item" onclick="openModule('mod-formation')"><div class="app-icon">🎓</div><div class="app-name">Formations</div></div>
-<div class="app-item" onclick="finResetScreens();openModule('mod-finances')"><div class="app-icon" style="background:#F0FFF4;">📊</div><div class="app-name">Finances</div></div>
 <div class="app-item" onclick="openModule('mod-reglages')"><div class="app-icon">⚙️</div><div class="app-name">Réglages</div></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item app-slot-empty" aria-hidden="true"></div>
 </div>
 <div class="grid-page">
-<div class="app-item" onclick="openModule('mod-blacklist')"><div class="app-icon" style="background:#FFF0F0;">🚫</div><div class="app-name">Blacklist</div></div>
 <div class="app-item" onclick="openModule('mod-forum')"><div class="app-icon" style="background:#EEF0FF;">💬</div><div class="app-name">Forum</div></div>
 <div class="app-item" onclick="openModule('mod-parrainage')"><div class="app-icon" style="background:#FFF8EE;">🤝</div><div class="app-name">Parrainage</div></div>
 <div class="app-item" onclick="openModule('mod-groupes')"><div class="app-icon" style="background:#F0F0FF;">👯</div><div class="app-name">Groupes</div></div>
@@ -2427,7 +2426,7 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="screen" id="screen-pro">
 <div class="sbar"><span>9:41</span><span>WiFi 🔋</span></div>
 <div class="stories-wrap"><div class="stories-row">
-<div class="story-item"><div class="story-ring-wrap"><div class="story-ring" style="background:linear-gradient(135deg,#C9A84C,#4A90D9);"><div class="story-vous">N</div></div><div class="story-add-btn">+</div></div><div class="story-name">Vous <span class="pro-badge">PRO</span></div></div>
+<div class="story-item" onclick="openStoryCreation('pro')"><div class="story-ring-wrap"><div class="story-ring" style="background:linear-gradient(135deg,#C9A84C,#4A90D9);"><div class="story-vous">N</div></div><div class="story-add-btn">+</div></div><div class="story-name">Vous <span class="pro-badge">PRO</span></div></div>
 <div class="story-item"><div class="story-ring"><div class="story-inner">💅</div></div><div class="story-name">Mon salon</div></div>
 <div class="story-item"><div class="story-ring"><div class="story-inner">🌸</div></div><div class="story-name">Promo</div></div>
 <div class="story-item"><div class="story-ring empty"><div class="story-inner">🐾</div></div><div class="story-name">Maya</div></div>
@@ -2483,7 +2482,7 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="flow" id="flow-pro-video"><div class="enc-page on" id="pvi-s1"><div class="flow-bar-w" style="background:transparent;border:none;position:absolute;top:0;left:0;right:0;z-index:5;padding-top:14px;"><div class="flow-close-w" style="background:rgba(0,0,0,0.4);" onclick="closeFlowPro('flow-pro-video')"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><div style="font-size:15px;font-weight:800;color:white;">Nouvelle vidéo</div><div style="width:32px;"></div></div><div class="type-bar"><div class="type-btn on" onclick="selType(this)"><div class="type-btn-title">📖 Publication</div><div class="type-btn-sub">Reste sur ton profil</div></div><div class="type-btn" onclick="selType(this)"><div class="type-btn-title">⭕ Story</div><div class="type-btn-sub">Disparaît en 24h</div></div></div><div class="camera-area" style="flex:1;"><div class="camera-emoji">🎬</div></div><div class="shutter-row"><div class="shutter" onclick="encGo('pvi-s1','pvi-s2')" style="border-color:#FF3B30;"><div class="shutter-inner" style="background:#FF3B30;border-radius:10px;width:42px;height:42px;"></div></div></div></div><div class="enc-page" id="pvi-s2"><div class="flow-bar-w"><div class="flow-close-w" onclick="encGo('pvi-s2','pvi-s1')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></div><div class="flow-title-w">Modifier</div><div class="flow-next-w" onclick="encGo('pvi-s2','pvi-s3')">Suivant</div></div><div class="edit-area" style="background:#1a2a3a;"><div style="font-size:80px;opacity:.3;">🎬</div></div></div><div class="enc-page" id="pvi-s3"><div class="flow-bar-w"><div class="flow-close-w" onclick="encGo('pvi-s3','pvi-s2')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></div><div class="flow-title-w">Détails</div><div class="flow-next-w" onclick="openFlowPro('flow-pro-confirm')">Publier</div></div><div class="det-preview" style="background:#1a2a3a;">🎬</div><div class="det-scroll"><div class="det-field"><div class="det-field-icon">✏️</div><label for="det-pvi-desc" class="sr-only">Description</label><textarea id="det-pvi-desc" name="det_pvi_desc" class="det-input" rows="3" placeholder="Description…" aria-label="Description"></textarea></div></div></div></div>
 <div class="flow" id="flow-pro-aa"><div class="enc-page on" id="paa-s1"><div class="flow-bar-w"><div class="flow-close-w" onclick="closeFlowPro('flow-pro-aa')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><div class="flow-title-w">Avant-Après</div><div class="flow-next-w" onclick="encGo('paa-s1','paa-s2')">Suivant</div></div><div class="aa-formats"><div class="aa-fmt sel" onclick="selAAFmt(this)"><div class="aa-fmt-ic">↔️</div><div><div class="aa-fmt-title">Slider interactif</div></div></div><div class="aa-fmt" onclick="selAAFmt(this)"><div class="aa-fmt-ic">⬛⬜</div><div><div class="aa-fmt-title">Côte à côte</div></div></div></div></div><div class="enc-page" id="paa-s2"><div class="flow-bar-w"><div class="flow-close-w" onclick="encGo('paa-s2','paa-s1')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></div><div class="flow-title-w">Photos</div><div class="flow-next-w" onclick="encGo('paa-s2','paa-s3')">Suivant</div></div><div class="aa-pick"><div class="aa-pick-btn"><div class="aa-pick-ic">🫥</div><div class="aa-pick-lbl">AVANT</div></div><div class="aa-pick-btn"><div class="aa-pick-ic">💅</div><div class="aa-pick-lbl">APRÈS</div></div></div></div><div class="enc-page" id="paa-s3"><div class="flow-bar-w"><div class="flow-close-w" onclick="encGo('paa-s3','paa-s2')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></div><div class="flow-title-w">Détails</div><div class="flow-next-w" onclick="openFlowPro('flow-pro-confirm')">Publier</div></div><div class="det-preview" style="background:linear-gradient(135deg,#f0e0d0,#d0e8f0);"><span style="font-size:50px;">🫥</span><span style="padding:0 10px;color:#AAA;">→</span><span style="font-size:50px;">💅</span></div><div class="det-scroll"><div class="det-field"><div class="det-field-icon">✏️</div><label for="det-paa-transf" class="sr-only">Décris la transformation</label><textarea id="det-paa-transf" name="det_paa_transf" class="det-input" rows="3" placeholder="Décris la transformation…" aria-label="Décris la transformation"></textarea></div></div></div></div>
 
-<div class="flow" id="flow-pro-rdv"><div class="enc-page on" id="prdv-s1"><div class="flow-bar-w"><div class="flow-close-w" onclick="closeFlowPro('flow-pro-rdv')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><div class="flow-title-w">Créer un RDV</div><div style="width:32px;"></div></div><div class="enc-scroll" style="padding-top:14px;"><div id="prdv-domicile-banner" class="rdv-banner" style="display:none;"></div><div class="sec-lbl" style="margin-top:0;">Cliente</div><div class="cliente-picker" id="prdv-cliente-picker" onclick="openClienteSheet('prdv')"><div class="cp-av-empty"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#AAA" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div style="flex:1;"><div style="font-size:14px;font-weight:600;color:var(--gray);">Ajouter une cliente</div></div><div class="cp-arrow">›</div></div><div class="sec-lbl">Heure & date</div><div class="rdv-time-grid"><div class="rdv-field"><div class="rdv-field-label">Heure</div><div class="rdv-field-val placeholder">Choisir</div></div><div class="rdv-field"><div class="rdv-field-label">Date</div><div class="rdv-field-val placeholder">Choisir</div></div></div><div class="sec-lbl">Prestation(s)</div><div class="prest-card"><div class="pc-bar"></div><div style="flex:1;"><div class="pc-name">Remplissage gel</div></div><div class="pc-price">65€</div></div><div class="sec-lbl">Paiement</div><div class="pay-grid"><div class="pay-card on" onclick="selPay(this)"><div class="pay-ic">💳</div><div class="pay-nm">Carte</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">📲</div><div class="pay-nm">Wero</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">💵</div><div class="pay-nm">Espèces</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">🅿️</div><div class="pay-nm">PayPal</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">⏭️</div><div class="pay-nm">Sans paiement</div></div></div></div><div class="enc-bottom"><button class="enc-btn" onclick="openFlowPro('flow-pro-confirm')">Créer le RDV →</button></div></div><div class="cs-backdrop" id="prdv-cs-bd" onclick="closeClienteSheet('prdv')"></div><div class="cliente-sheet" id="prdv-cs"><div class="cs-handle"></div><div class="cs-title">Choisir une cliente</div><div class="cs-option" onclick="selectCliente('prdv','Mes clientes','')"><div class="cs-ic">👤</div><div><div class="cs-name">Mes clientes</div></div></div><div class="cs-recent-label">Récentes</div><div class="cs-recent-item" onclick="selectCliente('prdv','Soraya L.','15 mars')"><div class="cs-r-av">S</div><div style="flex:1;"><div class="cs-r-name">Soraya L.</div></div></div></div></div>
+<div class="flow" id="flow-pro-rdv"><div class="enc-page on" id="prdv-s1"><div class="flow-bar-w"><div class="flow-close-w" onclick="closeFlowPro('flow-pro-rdv')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><div class="flow-title-w">Créer un RDV</div><div style="width:32px;"></div></div><div class="enc-scroll" style="padding-top:14px;"><div id="prdv-domicile-banner" class="rdv-banner" style="display:none;"></div><div class="sec-lbl" style="margin-top:0;">Cliente</div><div class="cliente-picker" id="prdv-cliente-picker" onclick="openClienteSheet('prdv')"><div class="cp-av-empty"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#AAA" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div style="flex:1;"><div style="font-size:14px;font-weight:600;color:var(--gray);">Ajouter une cliente</div></div><div class="cp-arrow">›</div></div><div class="sec-lbl">Heure & date</div><div class="rdv-time-grid"><div class="rdv-field"><div class="rdv-field-label">Heure</div><div class="rdv-field-val placeholder">Choisir</div></div><div class="rdv-field"><div class="rdv-field-label">Date</div><div class="rdv-field-val placeholder">Choisir</div></div></div><div class="sec-lbl">Prestation(s)</div><div class="prest-card"><div class="pc-bar"></div><div style="flex:1;"><div class="pc-name">Remplissage gel</div></div><div class="pc-price">65€</div></div></div><div class="enc-bottom"><button class="enc-btn" onclick="openFlowPro('flow-pro-confirm')">Enregistrer le RDV →</button></div></div><div class="cs-backdrop" id="prdv-cs-bd" onclick="closeClienteSheet('prdv')"></div><div class="cliente-sheet" id="prdv-cs"><div class="cs-handle"></div><div class="cs-title">Choisir une cliente</div><div class="cs-option" onclick="selectCliente('prdv','Mes clientes','')"><div class="cs-ic">👤</div><div><div class="cs-name">Mes clientes</div></div></div><div class="cs-recent-label">Récentes</div><div class="cs-recent-item" onclick="selectCliente('prdv','Soraya L.','15 mars')"><div class="cs-r-av">S</div><div style="flex:1;"><div class="cs-r-name">Soraya L.</div></div></div></div></div>
 <div class="flow" id="flow-pro-vente"><div class="enc-page on" id="pvente-s1"><div class="flow-bar-w"><div class="flow-close-w" onclick="closeFlowPro('flow-pro-vente')"><svg viewBox="0 0 24 24" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><div class="flow-title-w">Vente produit</div><div style="width:32px;"></div></div><div class="enc-scroll" style="padding-top:14px;"><div class="sec-lbl" style="margin-top:0;">Cliente</div><div class="cliente-picker" id="pvente-cliente-picker" onclick="openClienteSheet('pvente')"><div class="cp-av-empty"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#AAA" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div style="flex:1;"><div style="font-size:14px;font-weight:600;color:var(--gray);">Ajouter une cliente</div></div><div class="cp-arrow">›</div></div><div class="sec-lbl">Produit</div><div class="produit-card sel" onclick="selProduit(this)"><div class="produit-ic">💅</div><div class="produit-name">Top coat gel brillant</div><div class="produit-price">18€</div></div><div class="produit-card" onclick="selProduit(this)"><div class="produit-ic">🧴</div><div class="produit-name">Huile cuticules Rose</div><div class="produit-price">12€</div></div><div class="sec-lbl">Quantité</div><div class="qte-row"><button class="qte-btn" onclick="changeQte(-1)">−</button><div class="qte-val" id="pqte-val">1</div><button class="qte-btn" onclick="changeQte(1)">+</button></div><div class="total-line"><div class="total-lbl">Total</div><div class="total-amt">18€</div></div><div class="sec-lbl">Paiement</div><div class="pay-grid"><div class="pay-card on" onclick="selPay(this)"><div class="pay-ic">💳</div><div class="pay-nm">Carte</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">📲</div><div class="pay-nm">Wero</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">💵</div><div class="pay-nm">Espèces</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">🅿️</div><div class="pay-nm">PayPal</div></div></div></div><div class="enc-bottom"><button class="enc-btn" onclick="openFlowPro('flow-pro-confirm')">Encaisser 18€ →</button></div></div><div class="cs-backdrop" id="pvente-cs-bd" onclick="closeClienteSheet('pvente')"></div><div class="cliente-sheet" id="pvente-cs"><div class="cs-handle"></div><div class="cs-title">Choisir une cliente</div><div class="cs-option" onclick="selectCliente('pvente','Mes clientes','')"><div class="cs-ic">👤</div><div><div class="cs-name">Mes clientes</div></div></div></div></div>
 <!-- ═══ FLOW ENCAISSEMENT RDV ═══ -->
 <div class="flow" id="flow-pro-enc">
@@ -2710,9 +2709,9 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div style="flex:1;"><div class="ps-name">Bloom Nails</div><div class="ps-meta">Prothésiste ongulaire · PRO</div></div>
 <div class="ps-check">✓</div>
 </div>
-<div class="ps-item" data-profile="sarah" onclick="switchActiveProfile('sarah')">
-<div class="ps-av" style="background:linear-gradient(135deg,#7EC8A4,#4A90D9);">S</div>
-<div style="flex:1;"><div class="ps-name">Sarah B.</div><div class="ps-meta">Compte personnel · Client</div></div>
+<div class="ps-item" data-profile="nina" onclick="switchActiveProfile('nina')">
+<div class="ps-av" style="background:linear-gradient(135deg,#6BB8E8,#3A6EA8);">N</div>
+<div style="flex:1;"><div class="ps-name">Nina Cils</div><div class="ps-meta">Spécialiste cils · PRO</div></div>
 <div class="ps-check" style="visibility:hidden;">✓</div>
 </div>
 </div>
@@ -2753,7 +2752,7 @@ MODULES PROFIL
 </div>
 <div class="prof-inst-link">Travaille chez <span onclick="openModule('mod-profil-institut')">Institut Lumière</span></div>
 <div class="shortcuts">
-<div class="shortcut" onclick="openFlow('flow-rdv')"><div class="shortcut-ring"><div class="shortcut-icon">📅</div></div><div class="shortcut-label">Réserver</div></div>
+<div class="shortcut" onclick="goReserve()"><div class="shortcut-ring"><div class="shortcut-icon">📅</div></div><div class="shortcut-label">Réserver</div></div>
 <div class="shortcut" onclick="alert('Services →')"><div class="shortcut-ring"><div class="shortcut-icon">💅</div></div><div class="shortcut-label">Services</div></div>
 <div class="shortcut" onclick="alert('Infos →')"><div class="shortcut-ring"><div class="shortcut-icon">ℹ️</div></div><div class="shortcut-label">Infos</div></div>
 <div class="shortcut" onclick="alert('Spécialisations →')"><div class="shortcut-ring"><div class="shortcut-icon">🎓</div></div><div class="shortcut-label">Spécialisations</div></div>
@@ -2787,9 +2786,9 @@ MODULES PROFIL
 <button class="pbtn" onclick="openCliLikes()">Mes likes</button>
 </div>
 <div class="shortcuts">
-<div class="shortcut" onclick="openModule('mod-planning')"><div class="shortcut-ring"><div class="shortcut-icon">📅</div></div><div class="shortcut-label">Planning</div></div>
-<div class="shortcut" onclick="openModule('mod-services')"><div class="shortcut-ring"><div class="shortcut-icon">💅</div></div><div class="shortcut-label">Mes services</div></div>
-<div class="shortcut" onclick="openModule('mod-fichier-clients')"><div class="shortcut-ring"><div class="shortcut-icon">👥</div></div><div class="shortcut-label">Fichiers clients</div></div>
+<div class="shortcut" onclick="closeModule('mod-profil-pro-int');openModule('mod-planning')"><div class="shortcut-ring"><div class="shortcut-icon">📅</div></div><div class="shortcut-label">Planning</div></div>
+<div class="shortcut" onclick="closeModule('mod-profil-pro-int');openModule('mod-services')"><div class="shortcut-ring"><div class="shortcut-icon">💅</div></div><div class="shortcut-label">Mes services</div></div>
+<div class="shortcut" onclick="closeModule('mod-profil-pro-int');openModule('mod-fichier-clients')"><div class="shortcut-ring"><div class="shortcut-icon">👥</div></div><div class="shortcut-label">Fichiers clients</div></div>
 <div class="shortcut" onclick="finResetScreens();openModule('mod-finances');setTimeout(function(){finGo('fin-db');},100)"><div class="shortcut-ring"><div class="shortcut-icon">📊</div></div><div class="shortcut-label">Statistiques</div></div>
 </div>
 <div class="p-tabs">
@@ -2840,12 +2839,8 @@ MODULES PROFIL
 <button type="button" class="pbtn" onclick="openCliSuivis()">Mes suivis</button>
 <button type="button" class="pbtn" onclick="openCliLikes()">Mes likes</button>
 </div>
-<div class="p-tabs">
-<div class="p-tab on" onclick="cliIntSetTab('pub')"><span class="p-tab-icon">⊞</span><span class="p-tab-label">Publications</span></div>
-<div class="p-tab" onclick="cliIntSetTab('like')"><span class="p-tab-icon">❤️</span><span class="p-tab-label">J'aime</span></div>
-</div>
+<div style="height:1px;background:var(--border);margin-top:6px;"></div>
 <div id="pgrid-cli-int-pub" class="p-grid" style="margin-top:2px;"><div class="p-gi">🌸</div><div class="p-gi">✨</div><div class="p-gi">💅</div><div class="p-gi">💎</div><div class="p-gi">🌸</div><div class="p-gi">✨</div><div class="p-gi">💅</div><div class="p-gi">💎</div><div class="p-gi">🌸</div></div>
-<div id="pgrid-cli-int-like" class="p-grid" style="margin-top:2px;display:none;"><div class="p-gi">💇</div><div class="p-gi">🌿</div><div class="p-gi">💅</div><div class="p-gi">✨</div><div class="p-gi">🦷</div><div class="p-gi">🌸</div><div class="p-gi">💎</div><div class="p-gi">✨</div><div class="p-gi">💅</div></div>
 </div>
 </div>
 
@@ -2939,9 +2934,9 @@ MODULES PROFIL
 <div class="rpb-avatar active-ring" style="background:linear-gradient(135deg,#E8638C,#A87DC8);">B<div class="rpb-active-dot"></div></div>
 <div class="rpb-name">Bloom Nails</div>
 </div>
-<div class="reg-profile-bubble" data-profile="sarah" data-type="client" onclick="openRegProfileSettings('sarah')">
-<div class="rpb-avatar" style="background:linear-gradient(135deg,#7EC8A4,#4A90D9);">S</div>
-<div class="rpb-name">Sarah B.</div>
+<div class="reg-profile-bubble" data-profile="nina" data-type="pro" onclick="openRegProfileSettings('nina')">
+<div class="rpb-avatar" style="background:linear-gradient(135deg,#6BB8E8,#3A6EA8);">N</div>
+<div class="rpb-name">Nina Cils</div>
 </div>
 <div class="reg-profile-bubble" data-profile="add" onclick="alert('Créer un nouveau profil →')">
 <div class="rpb-add">＋</div>
@@ -2953,7 +2948,7 @@ MODULES PROFIL
 <div style="padding:8px 18px 2px;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;">Réglages du profil</div>
 <div class="section">
 <div class="section-block">
-<div class="row" onclick="event.stopPropagation();closeModule('mod-reglages');openModule('mod-profil-client-int');">
+<div class="row" onclick="event.stopPropagation();openRegSub('reg-sub-edit-profil');">
 <div class="icon ic-purple">👤</div>
 <div class="row-text"><div class="row-label">Mon profil</div><div class="row-sub">Préférences, formulaire, favoris</div></div>
 <div class="chev">›</div>
@@ -3013,7 +3008,7 @@ MODULES PROFIL
 <div class="pro-only" id="reg-p">
 <div class="section">
 <div class="section-block">
-<div class="row" onclick="closeModule('mod-reglages');openModule('mod-profil-pro-int');">
+<div class="row" onclick="event.stopPropagation();openRegSub('reg-sub-edit-activite');">
 <div class="icon ic-purple">✂️</div>
 <div class="row-text"><div class="row-label">Mon activité</div><div class="row-sub">Métier, équipe, horaires, conditions</div></div>
 <div class="chev">›</div>
@@ -3262,7 +3257,7 @@ MODULES PROFIL
 <div class="rss-slbl">Apparence</div>
 <div class="rss-card">
 <div class="rss-row"><div class="rss-ic">🎨</div><div class="rss-label">Thème</div><div class="rss-val">Clair</div></div>
-<div class="rss-row"><div class="rss-ic">🌐</div><div class="rss-label">Langue</div><div class="rss-val">Français</div></div>
+<div class="rss-row" onclick="cycleLang(this)" style="cursor:pointer;"><div class="rss-ic">🌐</div><div class="rss-label">Langue</div><div class="rss-val" id="lang-val">Français</div></div>
 <div class="rss-row"><div class="rss-ic">📏</div><div class="rss-label">Taille de police</div><div class="rss-val">Normal</div></div>
 </div>
 <div class="rss-slbl">Sécurité</div>
@@ -3389,6 +3384,78 @@ MODULES PROFIL
 <div class="rss-row"><div class="rss-ic">🔒</div><div class="rss-label">Politique de confidentialité</div><div class="rss-val">›</div></div>
 <div class="rss-row"><div class="rss-ic">ℹ️</div><div class="rss-label">Version de l'app</div><div class="rss-val">1.0.0</div></div>
 </div>
+</div>
+</div>
+
+<!-- SUB: Édition Profil Nina Cils (PRO 2) -->
+<div class="reg-sub" id="reg-sub-edit-profil">
+<div class="reg-sub-nav"><div class="reg-sub-back" onclick="closeRegSub('reg-sub-edit-profil')">‹</div><div class="reg-sub-title">Modifier mon profil</div></div>
+<div class="reg-sub-scroll">
+<div style="display:flex;flex-direction:column;align-items:center;padding:24px 0 12px;">
+<div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#6BB8E8,#3A6EA8);display:flex;align-items:center;justify-content:center;font-size:32px;color:#fff;font-weight:700;">N</div>
+<div style="margin-top:8px;font-size:13px;color:var(--blue);cursor:pointer;">Changer le logo</div>
+</div>
+<div class="rss-slbl">Informations de l'activité</div>
+<div class="rss-card">
+<div class="rss-row"><div class="rss-ic">✂️</div><div class="rss-label">Nom de l'activité</div><div class="rss-val" contenteditable="true">Nina Cils</div></div>
+<div class="rss-row"><div class="rss-ic">💼</div><div class="rss-label">Métier</div><div class="rss-val" contenteditable="true">Spécialiste cils</div></div>
+<div class="rss-row"><div class="rss-ic">📍</div><div class="rss-label">Adresse</div><div class="rss-val" contenteditable="true">8 avenue Jean Médecin, Nice</div></div>
+<div class="rss-row"><div class="rss-ic">📱</div><div class="rss-label">Téléphone pro</div><div class="rss-val" contenteditable="true">06 11 22 33 44</div></div>
+<div class="rss-row"><div class="rss-ic">📧</div><div class="rss-label">Email pro</div><div class="rss-val" contenteditable="true">nina@cils.com</div></div>
+</div>
+<div class="rss-slbl">Spécialités</div>
+<div class="rss-card">
+<div class="rss-row"><div class="rss-ic">👁️</div><div class="rss-label">Volume russe</div><div class="rss-toggle on" onclick="this.classList.toggle('on')"></div></div>
+<div class="rss-row"><div class="rss-ic">👁️</div><div class="rss-label">Classique</div><div class="rss-toggle on" onclick="this.classList.toggle('on')"></div></div>
+<div class="rss-row"><div class="rss-ic">👁️</div><div class="rss-label">Mixte</div><div class="rss-toggle on" onclick="this.classList.toggle('on')"></div></div>
+<div class="rss-row"><div class="rss-ic">👁️</div><div class="rss-label">Méga Volume</div><div class="rss-toggle" onclick="this.classList.toggle('on')"></div></div>
+</div>
+<div class="rss-slbl">Bio professionnelle</div>
+<div class="rss-card">
+<div style="padding:12px;"><textarea style="width:100%;border:none;background:transparent;font-size:14px;color:var(--text);resize:none;min-height:60px;font-family:inherit;" placeholder="Décrivez votre activité...">Spécialiste extensions de cils ✨ Volume russe & classique · Nice</textarea></div>
+</div>
+<div style="padding:16px;"><button style="width:100%;padding:14px;border-radius:14px;border:none;background:var(--btn-bg);color:var(--btn-fg);font-size:15px;font-weight:700;cursor:pointer;" onclick="closeRegSub('reg-sub-edit-profil')">Enregistrer</button></div>
+</div>
+</div>
+
+<!-- SUB: Édition Activité PRO -->
+<div class="reg-sub" id="reg-sub-edit-activite">
+<div class="reg-sub-nav"><div class="reg-sub-back" onclick="closeRegSub('reg-sub-edit-activite')">‹</div><div class="reg-sub-title">Modifier mon activité</div></div>
+<div class="reg-sub-scroll">
+<div style="display:flex;flex-direction:column;align-items:center;padding:24px 0 12px;">
+<div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#E8638C,#A87DC8);display:flex;align-items:center;justify-content:center;font-size:32px;color:#fff;font-weight:700;">B</div>
+<div style="margin-top:8px;font-size:13px;color:var(--blue);cursor:pointer;">Changer le logo</div>
+</div>
+<div class="rss-slbl">Informations de l'activité</div>
+<div class="rss-card">
+<div class="rss-row"><div class="rss-ic">✂️</div><div class="rss-label">Nom de l'activité</div><div class="rss-val" contenteditable="true">Bloom Nails</div></div>
+<div class="rss-row"><div class="rss-ic">💼</div><div class="rss-label">Métier</div><div class="rss-val" contenteditable="true">Prothésiste ongulaire</div></div>
+<div class="rss-row"><div class="rss-ic">📍</div><div class="rss-label">Adresse</div><div class="rss-val" contenteditable="true">12 rue de la Paix, Nice</div></div>
+<div class="rss-row"><div class="rss-ic">📱</div><div class="rss-label">Téléphone pro</div><div class="rss-val" contenteditable="true">06 98 76 54 32</div></div>
+<div class="rss-row"><div class="rss-ic">📧</div><div class="rss-label">Email pro</div><div class="rss-val" contenteditable="true">bloom@nails.com</div></div>
+</div>
+<div class="rss-slbl">Équipe</div>
+<div class="rss-card">
+<div class="rss-row"><div class="rss-ic">👩</div><div class="rss-label">Sassa</div><div class="rss-val">Gérante</div></div>
+<div class="rss-row"><div class="rss-ic">👩</div><div class="rss-label">Nina</div><div class="rss-val">Employée</div></div>
+<div class="rss-row" style="justify-content:center;"><div style="font-size:13px;color:var(--blue);font-weight:600;">+ Ajouter un membre</div></div>
+</div>
+<div class="rss-slbl">Horaires d'ouverture</div>
+<div class="rss-card">
+<div class="rss-row"><div class="rss-ic">📅</div><div class="rss-label">Lun – Ven</div><div class="rss-val">9h – 19h</div></div>
+<div class="rss-row"><div class="rss-ic">📅</div><div class="rss-label">Samedi</div><div class="rss-val">10h – 17h</div></div>
+<div class="rss-row"><div class="rss-ic">📅</div><div class="rss-label">Dimanche</div><div class="rss-val">Fermé</div></div>
+</div>
+<div class="rss-slbl">Conditions</div>
+<div class="rss-card">
+<div class="rss-row"><div class="rss-ic">⏱️</div><div class="rss-label">Délai annulation</div><div class="rss-val">24h</div></div>
+<div class="rss-row"><div class="rss-ic">🔒</div><div class="rss-label">Acompte obligatoire</div><div class="rss-toggle on" onclick="this.classList.toggle('on')"></div></div>
+</div>
+<div class="rss-slbl">Bio professionnelle</div>
+<div class="rss-card">
+<div style="padding:12px;"><textarea style="width:100%;border:none;background:transparent;font-size:14px;color:var(--text);resize:none;min-height:60px;font-family:inherit;" placeholder="Décrivez votre activité...">Poses, remplissages & nail art ✨ Nice · À domicile disponible</textarea></div>
+</div>
+<div style="padding:16px;"><button style="width:100%;padding:14px;border-radius:14px;border:none;background:var(--btn-bg);color:var(--btn-fg);font-size:15px;font-weight:700;cursor:pointer;" onclick="closeRegSub('reg-sub-edit-activite')">Enregistrer</button></div>
 </div>
 </div>
 
@@ -4446,7 +4513,7 @@ MODULES PROFIL
 <div class="grp-tab on" onclick="grpHomeTab(this,'grp-t-new')">Nouvelle journée</div>
 <div class="grp-tab" onclick="grpHomeTab(this,'grp-t-mes')">Mes journées</div>
 </div>
-<div id="grp-t-new" style="display:flex;flex-direction:column;flex:1;">
+<div id="grp-t-new" style="display:flex;flex-direction:column;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;">
 <div class="p1-hero">
 <div class="p1-icon">✨</div>
 <div class="p1-title">Organise ta journée beauté en quelques clics</div>
@@ -5250,7 +5317,6 @@ MODULES PROFIL
 <div class="notif-item unread"><div class="notif-dot"></div><div class="notif-avatar">⏰</div><div style="flex:1"><div class="notif-text"><strong>Rappel RDV</strong> — Votre rendez-vous chez Bloom Nails est demain à 14h00.</div><div class="notif-time">il y a 3h</div></div></div>
 <div class="notif-item"><div class="notif-dot read"></div><div class="notif-avatar">❌</div><div style="flex:1"><div class="notif-text"><strong>Annulation</strong> — Marine B. a annulé son RDV du 26 mars.</div><div class="notif-time">hier</div></div></div>
 <div class="notif-item"><div class="notif-dot read"></div><div class="notif-avatar">📣</div><div style="flex:1"><div class="notif-text"><strong>Promotion</strong> — Bloom Nails a lancé une promo −20% sur les remplissages.</div><div class="notif-time">hier</div></div></div>
-<div class="notif-item"><div class="notif-dot read"></div><div class="notif-avatar">❤️</div><div style="flex:1"><div class="notif-text"><strong>Like</strong> — Soraya a aimé votre publication.</div><div class="notif-time">il y a 2 jours</div></div></div>
 </div>
 <div id="mn-rdv" style="display:none">
 <div class="notif-item unread"><div class="notif-dot"></div><div class="notif-avatar">📅</div><div style="flex:1"><div class="notif-text"><strong>Nouvelle réservation</strong> — Soraya L. a réservé pour le mar. 25 mars à 14h00.</div><div class="notif-time">il y a 5 min</div></div></div>
@@ -5262,7 +5328,6 @@ MODULES PROFIL
 </div>
 <div id="mn-social" style="display:none">
 <div class="notif-item"><div class="notif-dot read"></div><div class="notif-avatar">💬</div><div style="flex:1"><div class="notif-text"><strong>Commentaire</strong> — Nina a commenté votre publication.</div><div class="notif-time">il y a 2h</div></div></div>
-<div class="notif-item"><div class="notif-dot read"></div><div class="notif-avatar">❤️</div><div style="flex:1"><div class="notif-text"><strong>Like</strong> — Soraya a aimé votre publication.</div><div class="notif-time">il y a 2 jours</div></div></div>
 </div>
 </div>
 </div>
@@ -5411,6 +5476,14 @@ function toggleTheme(el){
 }
 applyTheme(localStorage.getItem('seaven-theme')||'light');
 
+var _langs=['Français','English','Español','العربية','Deutsch','Italiano','Português'];
+var _langIdx=0;
+function cycleLang(el){
+  _langIdx=(_langIdx+1)%_langs.length;
+  var v=document.getElementById('lang-val');
+  if(v)v.textContent=_langs[_langIdx];
+}
+
 function regSetMode(m){
   const mod=document.getElementById('mod-reglages');
   if(!mod)return;
@@ -5439,7 +5512,7 @@ function openProfilFromReg(){
 }
 const regProfiles={
   bloom:{name:'Bloom Nails',letter:'B',meta:'Prothésiste ongulaire · Nice',type:'pro',grad:'linear-gradient(135deg,#E8638C,#A87DC8)'},
-  sarah:{name:'Sarah B.',letter:'S',meta:'Passionnée de beauté · Nice',type:'client',grad:'linear-gradient(135deg,#7EC8A4,#4A90D9)'}
+  nina:{name:'Nina Cils',letter:'N',meta:'Spécialiste cils · Nice',type:'pro',grad:'linear-gradient(135deg,#6BB8E8,#3A6EA8)'}
 };
 let regActiveProfile='bloom';
 function openRegSub(id){var el=document.getElementById(id);if(el)el.classList.add('on');}
@@ -5448,7 +5521,7 @@ function closeAllRegSubs(){document.querySelectorAll('#mod-reglages .reg-sub').f
 function openRegFromProfile(mode){
   openModule('mod-reglages');
   if(mode==='pro') regSetMode('pro'); else regSetMode('client');
-  const target=mode==='pro'?'bloom':'sarah';
+  const target=mode==='pro'?'bloom':'nina';
   setTimeout(()=>{
     const sec=document.getElementById('reg-profiles-section');
     if(sec)sec.scrollIntoView({behavior:'smooth',block:'start'});
@@ -5730,6 +5803,9 @@ function dockHome(role){
   const isCl=role==='cl';
   closeFan('cl');closeFan('pro');
   closeAllModules();
+  try{closeAllFlows();}catch(e){}
+  try{closeAllFlowsPro();}catch(e){}
+  try{closeAllRegSubs();}catch(e){}
   try{closeSearchPage(isCl?'cl':'pro');}catch(e){}
   const tr=document.getElementById(isCl?'c-track':'p-track');
   if(tr&&tr._goTo)tr._goTo(0);
@@ -5758,7 +5834,7 @@ function dockProfile(role){
   dockSetTab(role==='cl'?'app-dock-client':'app-dock-pro',3);
 }
 
-var _dockProfileAllProfiles=['bloom','sarah'];
+var _dockProfileAllProfiles=['bloom','nina'];
 var _dockPressTimer=null;
 var _dockLongPressed=false;
 var _dockLastRole='cl';
@@ -5785,9 +5861,8 @@ function openActiveProfile(role){
   closeFan('cl');closeFan('pro');
   closeAllModules();
   try{closeSearchPage(role==='cl'?'cl':'pro');}catch(e){}
-  var p=regProfiles[regActiveProfile];
-  if(p&&p.type==='pro') openModule('mod-profil-pro-int');
-  else openModule('mod-profil-client-int');
+  if(role==='cl') openModule('mod-profil-client-int');
+  else openModule('mod-profil-pro-int');
   dockSetTab(role==='cl'?'app-dock-client':'app-dock-pro',3);
 }
 function cycleNextProfile(role){
@@ -5825,8 +5900,9 @@ function renderProfileSwitchList(){
     item.className='ps-item'+(isActive?' active':'');
     item.dataset.profile=pid;
     item.onclick=function(){switchActiveProfile(pid);};
+    var typeBadge=p.type==='pro'?'<span style="display:inline-block;font-size:9px;font-weight:800;color:#fff;background:#E8638C;padding:1px 6px;border-radius:6px;margin-left:6px;vertical-align:middle;">PRO</span>':'<span style="display:inline-block;font-size:9px;font-weight:800;color:#fff;background:#4A90D9;padding:1px 6px;border-radius:6px;margin-left:6px;vertical-align:middle;">CLIENT</span>';
     item.innerHTML='<div class="ps-av" style="background:'+p.grad+';">'+p.letter+(isActive?'<div class="ps-active-dot"></div>':'')+'</div>'
-      +'<div style="flex:1;"><div class="ps-name">'+p.name+'</div><div class="ps-meta">'+p.meta+'</div></div>'
+      +'<div style="flex:1;"><div class="ps-name">'+p.name+typeBadge+'</div><div class="ps-meta">'+p.meta+'</div></div>'
       +'<div class="ps-check" style="'+(isActive?'':'visibility:hidden;')+'">✓</div>';
     list.appendChild(item);
   });
@@ -6403,12 +6479,12 @@ function setFeedView(n,btn){btn.closest('.view-toggle').querySelectorAll('.vbtn'
 // ── MODULE PLANNING ──
 const planModals={
 new:'<div class="plan-mo-title">Nouveau créneau</div><div class="plan-mo-sub">Que voulez-vous créer ?</div><div class="plan-mo-btns"><button class="plan-mbtn" onclick="planCloseModal()">🚫 Bloquer</button><button class="plan-mbtn dark" onclick="planCloseModal()">📅 Réservation →</button></div>',
-e1:'<div class="plan-mo-title">Soraya Lehtinaf</div><div class="plan-mo-sub">Réservée en ligne ●</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Remplissage gel</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">10:00 → 11:10</span></div><div class="plan-mo-row"><span class="plan-mk">Durée</span><span class="plan-mv">1h10</span></div><div class="plan-mo-row"><span class="plan-mk">Prestataire</span><span class="plan-mv">Sassa</span></div><div class="plan-mo-row"><span class="plan-mk">Acompte</span><span class="plan-mv">19,50€ ✓</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn">Modifier</button><button class="plan-mbtn dark" onclick="planCloseModal();openFlowPro(\'flow-pro-enc\')">Encaisser →</button></div>',
-e2:'<div class="plan-mo-title">Marine Dupont</div><div class="plan-mo-sub">Créée manuellement</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Manucure simple</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">12:00 → 12:50</span></div><div class="plan-mo-row"><span class="plan-mk">Prestataire</span><span class="plan-mv">Sassa</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn">Modifier</button><button class="plan-mbtn dark" onclick="planCloseModal();openFlowPro(\'flow-pro-enc\')">Encaisser →</button></div>',
-e3:'<div class="plan-mo-title">Anaïs Ferreira</div><div class="plan-mo-sub">Réservée en ligne ●</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Blanchiment dentaire</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">14:00 → 15:00</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn dark" onclick="planCloseModal();openFlowPro(\'flow-pro-enc\')">Encaisser →</button></div>',
-e4:'<div class="plan-mo-title">Nina Wamir / Ylan A.</div><div class="plan-mo-sub">Réservée en ligne ●</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Forfait manucure + pédicure</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">16:00 → 17:30</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn dark" onclick="planCloseModal();openFlowPro(\'flow-pro-enc\')">Encaisser →</button></div>',
-e5:'<div class="plan-mo-title">Karina B. — Urgence</div><div class="plan-mo-sub">Créneau d\'urgence · En ligne ●</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Manucure express</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">15:00 → 16:00</span></div><div class="plan-mo-btns"><button class="plan-mbtn dark" onclick="planCloseModal();openFlowPro(\'flow-pro-enc\')">Encaisser →</button></div>',
-e6:'<div class="plan-mo-title">Corriga Sophie</div><div class="plan-mo-sub">Créée manuellement</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Dépose seule</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">09:00 → 10:00</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn dark" onclick="planCloseModal();openFlowPro(\'flow-pro-enc\')">Encaisser →</button></div>',
+e1:'<div class="plan-mo-title">Soraya Lehtinaf</div><div class="plan-mo-sub">Réservée en ligne ●</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Remplissage gel</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">10:00 → 11:10</span></div><div class="plan-mo-row"><span class="plan-mk">Durée</span><span class="plan-mv">1h10</span></div><div class="plan-mo-row"><span class="plan-mk">Prestataire</span><span class="plan-mv">Sassa</span></div><div class="plan-mo-row"><span class="plan-mk">Acompte</span><span class="plan-mv">19,50€ ✓</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn">Modifier</button><button class="plan-mbtn dark" onclick="planCloseModal();closeModule(\'mod-planning\');openFlowPro(\'flow-pro-enc\')">Encaisser →</button></div>',
+e2:'<div class="plan-mo-title">Marine Dupont</div><div class="plan-mo-sub">Créée manuellement</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Manucure simple</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">12:00 → 12:50</span></div><div class="plan-mo-row"><span class="plan-mk">Prestataire</span><span class="plan-mv">Sassa</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn">Modifier</button><button class="plan-mbtn dark" onclick="planCloseModal();closeModule(\'mod-planning\');openFlowPro(\'flow-pro-enc\')">Encaisser →</button></div>',
+e3:'<div class="plan-mo-title">Anaïs Ferreira</div><div class="plan-mo-sub">Réservée en ligne ●</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Blanchiment dentaire</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">14:00 → 15:00</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn dark" onclick="planCloseModal();closeModule(\'mod-planning\');openFlowPro(\'flow-pro-enc\')">Encaisser →</button></div>',
+e4:'<div class="plan-mo-title">Nina Wamir / Ylan A.</div><div class="plan-mo-sub">Réservée en ligne ●</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Forfait manucure + pédicure</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">16:00 → 17:30</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn dark" onclick="planCloseModal();closeModule(\'mod-planning\');openFlowPro(\'flow-pro-enc\')">Encaisser →</button></div>',
+e5:'<div class="plan-mo-title">Karina B. — Urgence</div><div class="plan-mo-sub">Créneau d\'urgence · En ligne ●</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Manucure express</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">15:00 → 16:00</span></div><div class="plan-mo-btns"><button class="plan-mbtn dark" onclick="planCloseModal();closeModule(\'mod-planning\');openFlowPro(\'flow-pro-enc\')">Encaisser →</button></div>',
+e6:'<div class="plan-mo-title">Corriga Sophie</div><div class="plan-mo-sub">Créée manuellement</div><div class="plan-mo-row"><span class="plan-mk">Prestation</span><span class="plan-mv">Dépose seule</span></div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">09:00 → 10:00</span></div><div class="plan-mo-btns"><button class="plan-mbtn">📞</button><button class="plan-mbtn dark" onclick="planCloseModal();closeModule(\'mod-planning\');openFlowPro(\'flow-pro-enc\')">Encaisser →</button></div>',
 blocked:'<div class="plan-mo-title">Créneau bloqué</div><div class="plan-mo-sub">Indisponibilité manuelle</div><div class="plan-mo-row"><span class="plan-mk">Heure</span><span class="plan-mv">18:30 → 19:30</span></div><div class="plan-mo-btns"><button class="plan-mbtn dark" onclick="planCloseModal()">Débloquer</button></div>'
 };
 function planSetView(v,el){
@@ -6501,6 +6577,17 @@ function setPhTool(tool,btn){document.querySelectorAll('#ph-s2 .edit-tool').forE
 function selAAFmt(el){el.closest('.aa-formats').querySelectorAll('.aa-fmt').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');}
 function selSource(el){el.closest('.source-bar').querySelectorAll('.source-btn').forEach(b=>b.classList.remove('on'));el.classList.add('on');}
 function selType(el){el.closest('.type-bar').querySelectorAll('.type-btn').forEach(b=>b.classList.remove('on'));el.classList.add('on');}
+function openStoryCreation(role){
+  if(role==='pro') openFlowPro('flow-pro-photo');
+  else openFlow('flow-photo');
+  setTimeout(function(){
+    var flowId=role==='pro'?'flow-pro-photo':'flow-photo';
+    var f=document.getElementById(flowId);
+    if(!f)return;
+    var btns=f.querySelectorAll('.type-btn');
+    if(btns.length>=2){btns[0].classList.remove('on');btns[1].classList.add('on');}
+  },50);
+}
 function selPay(el){el.closest('.pay-grid').querySelectorAll('.pay-card').forEach(c=>c.classList.remove('on'));el.classList.add('on');}
 function selProduit(el){el.closest('.enc-scroll').querySelectorAll('.produit-card').forEach(c=>c.classList.remove('sel'));el.classList.add('sel');}
 function selFmt(el){el.closest('div').querySelectorAll('.ef-btn').forEach(b=>b.classList.remove('on'));el.classList.add('on');}
