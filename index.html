@@ -618,11 +618,12 @@ label.config-title{display:block;cursor:default;}
 .pre-row{padding:6px 14px 0;display:flex;gap:7px;overflow-x:auto;flex-shrink:0;background:var(--bg);}
 .pre-row::-webkit-scrollbar{display:none;}
 .pre-chip{padding:6px 12px;border-radius:16px;border:1.5px solid var(--border);font-size:12px;font-weight:600;color:var(--gray);background:white;cursor:pointer;white-space:nowrap;flex-shrink:0;}
-.conv-input-row{display:flex;gap:8px;padding:10px 16px 14px;padding-bottom:max(14px,env(safe-area-inset-bottom));border-top:1px solid var(--border);align-items:flex-end;flex-shrink:0;background:var(--bg);position:relative;z-index:2;}
+.conv-input-row{display:flex;gap:8px;padding:10px 16px;padding-bottom:max(20px,calc(14px + env(safe-area-inset-bottom)));border-top:1px solid var(--border);align-items:flex-end;flex-shrink:0;background:var(--bg);position:relative;z-index:2;}
 .conv-input{flex:1;border:1.5px solid var(--border);border-radius:22px;padding:10px 14px;font-size:14px;font-family:'Manrope',sans-serif;outline:none;resize:none;max-height:80px;background:var(--bg);color:var(--text);}
 .conv-send{width:40px;height:40px;border-radius:50%;background:var(--black);border:none;color:white;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 /* Messages : la colonne conversation doit pouvoir rétrécir sinon la zone de saisie passe sous le dock */
-#mod-messages{display:flex;flex-direction:column;min-height:0;}
+#mod-messages{min-height:0;}
+#mod-messages.on{display:flex;flex-direction:column;}
 #msg-list-view{display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden;}
 #msg-conv-view{display:none;flex:1;flex-direction:column;min-height:0;overflow:hidden;}
 
