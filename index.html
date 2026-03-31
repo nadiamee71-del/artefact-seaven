@@ -2864,7 +2864,7 @@ MODULES PROFIL
 
 <div class="prof-module" id="mod-profil-pro-int">
 <div class="sbar"><span>9:41</span><span>WiFi 🔋</span></div>
-<div class="pnav"><div class="pnav-title">Mon profil</div><span class="pnav-icon" onclick="event.stopPropagation();openRegFromProfile('pro')">⚙️</span></div>
+<div class="pnav"><div class="pnav-title">Mon profil</div><span class="pnav-icon" ontouchstart="event.stopPropagation();" ontouchend="event.stopPropagation();event.preventDefault();openRegFromProfile('pro');" onclick="event.stopPropagation();event.preventDefault();openRegFromProfile('pro');">⚙️</span></div>
 <div class="mod-scroll">
 <div class="prof-hdr">
 <div class="prof-left">
@@ -2920,7 +2920,7 @@ MODULES PROFIL
 
 <div class="prof-module" id="mod-profil-client-int">
 <div class="sbar"><span>9:41</span><span>WiFi 🔋</span></div>
-<div class="pnav"><div class="pnav-title">Mon profil</div><span class="pnav-icon" onclick="event.stopPropagation();openRegFromProfile('client')">⚙️</span></div>
+<div class="pnav"><div class="pnav-title">Mon profil</div><span class="pnav-icon" ontouchstart="event.stopPropagation();" ontouchend="event.stopPropagation();event.preventDefault();openRegFromProfile('client');" onclick="event.stopPropagation();event.preventDefault();openRegFromProfile('client');">⚙️</span></div>
 <div class="mod-scroll">
 <div class="prof-hdr">
 <div class="prof-left">
@@ -6015,20 +6015,31 @@ function openRegSub(id){var el=document.getElementById(id);if(el)el.classList.ad
 function closeRegSub(id){var el=document.getElementById(id);if(el)el.classList.remove('on');}
 function closeAllRegSubs(){document.querySelectorAll('#mod-reglages .reg-sub').forEach(function(s){s.classList.remove('on');});}
 function openRegFromProfile(mode){
+  closeAllRegSubs();
+  closeRegProfileSettings();
+  closeModule('mod-services');
+  closeModule('mod-prestations-ext');
+  var proInt=document.getElementById('mod-profil-pro-int');
+  var cliInt=document.getElementById('mod-profil-client-int');
+  if(proInt){proInt.style.transition='none';proInt.classList.remove('on');proInt.offsetHeight;proInt.style.transition='';}
+  if(cliInt){cliInt.style.transition='none';cliInt.classList.remove('on');cliInt.offsetHeight;cliInt.style.transition='';}
+  closeFan('cl');closeFan('pro');
   var reg=document.getElementById('mod-reglages');
   if(reg){
     reg.style.zIndex='75';
+    reg.style.transition='none';
     reg.classList.add('on');
+    reg.offsetHeight;
+    reg.style.transition='';
   }
   if(mode==='pro') regSetMode('pro'); else regSetMode('client');
-  closeFan('cl');closeFan('pro');
+  var regScroll=document.querySelector('#mod-reglages .reg-body');
+  if(regScroll)regScroll.scrollTop=0;
   setTimeout(function(){
-    closeModule('mod-profil-pro-int');
-    closeModule('mod-profil-client-int');
+    if(reg)reg.style.zIndex='';
     var sec=document.getElementById('reg-profiles-section');
     if(sec)sec.scrollIntoView({behavior:'smooth',block:'start'});
-    setTimeout(function(){if(reg)reg.style.zIndex='';},350);
-  },50);
+  },100);
 }
 function openRegProfileSettings(profileId){
   const p=regProfiles[profileId];
