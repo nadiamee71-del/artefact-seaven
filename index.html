@@ -989,6 +989,20 @@ body.dark-mode #mod-reglages{background:var(--bg)!important;}
 #mod-reglages .rps-switch-btn.is-active{border-color:var(--green);color:var(--green);cursor:default;}
 /* ══ MODULE SERVICES ══ */
 #mod-services{z-index:66;}
+#mod-prestations-ext{z-index:67;}
+#mod-prestations-ext .prest-ext-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 16px 32px;}
+#mod-prestations-ext .prest-ext-scroll::-webkit-scrollbar{display:none;}
+#mod-prestations-ext .pe-group{margin-bottom:20px;}
+#mod-prestations-ext .pe-group-title{font-size:14px;font-weight:800;color:var(--gray);padding:12px 0 8px;display:flex;align-items:center;gap:8px;}
+#mod-prestations-ext .pe-card{display:flex;align-items:center;gap:12px;padding:14px;background:var(--bg);border:1.5px solid var(--border);border-radius:14px;margin-bottom:8px;}
+#mod-prestations-ext .pe-color{width:4px;height:36px;border-radius:2px;flex-shrink:0;}
+#mod-prestations-ext .pe-info{flex:1;min-width:0;}
+#mod-prestations-ext .pe-name{font-size:14px;font-weight:700;color:var(--black);}
+#mod-prestations-ext .pe-desc{font-size:11px;color:var(--gray);margin-top:2px;}
+#mod-prestations-ext .pe-right{text-align:right;flex-shrink:0;}
+#mod-prestations-ext .pe-price{font-size:14px;font-weight:800;color:var(--black);}
+#mod-prestations-ext .pe-dur{font-size:11px;color:var(--gray);margin-top:1px;}
+#mod-prestations-ext .pe-book{margin-top:4px;padding:5px 12px;border-radius:8px;background:var(--black);color:white;border:none;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;}
 #mod-services .svc-screen{position:absolute;inset:0;background:var(--bg);display:none;flex-direction:column;z-index:10;}
 #mod-services .svc-screen.svc-root{position:relative;flex:1;display:flex;flex-direction:column;z-index:0;}
 #mod-services .svc-screen.on{display:flex;}
@@ -2755,7 +2769,7 @@ MODULES PROFIL
 <div class="prof-inst-link">Travaille chez <span onclick="openModule('mod-profil-institut')">Institut Lumière</span></div>
 <div class="shortcuts">
 <div class="shortcut" onclick="goReserve()"><div class="shortcut-ring"><div class="shortcut-icon">📅</div></div><div class="shortcut-label">Réserver</div></div>
-<div class="shortcut" onclick="alert('Services →')"><div class="shortcut-ring"><div class="shortcut-icon">💅</div></div><div class="shortcut-label">Services</div></div>
+<div class="shortcut" onclick="openModule('mod-prestations-ext')"><div class="shortcut-ring"><div class="shortcut-icon">💅</div></div><div class="shortcut-label">Services</div></div>
 <div class="shortcut" onclick="alert('Infos →')"><div class="shortcut-ring"><div class="shortcut-icon">ℹ️</div></div><div class="shortcut-label">Infos</div></div>
 <div class="shortcut" onclick="alert('Spécialisations →')"><div class="shortcut-ring"><div class="shortcut-icon">🎓</div></div><div class="shortcut-label">Spécialisations</div></div>
 </div>
@@ -2765,6 +2779,49 @@ MODULES PROFIL
 </div>
 <div id="pgrid-pro-ext" class="p-grid"><div class="p-gi">💅</div><div class="p-gi">✨</div><div class="p-gi">💎</div><div class="p-gi">🌸</div><div class="p-gi">💅</div><div class="p-gi">✨</div><div class="p-gi">💎</div><div class="p-gi">🌸</div><div class="p-gi">💅</div></div>
 <div id="pgrid-pro-mkt" class="p-grid" style="display:none;"><div class="p-gi">🧴</div><div class="p-gi">💊</div><div class="p-gi">🪮</div></div>
+</div>
+</div>
+
+<!-- PRESTATIONS VUE EXTERNE -->
+<div class="prof-module" id="mod-prestations-ext">
+<div class="sbar"><span>9:41</span><span>WiFi 🔋</span></div>
+<div class="pnav"><div class="pnav-back" onclick="closeModule('mod-prestations-ext')">‹ Retour</div><div style="flex:1;text-align:center;font-size:16px;font-weight:800;color:var(--black);">Prestations</div><div style="width:60px;"></div></div>
+<div class="prest-ext-scroll">
+<div style="text-align:center;padding:16px 0 6px;">
+<div style="font-size:36px;">💅</div>
+<div style="font-size:18px;font-weight:800;color:var(--black);margin-top:6px;">Bloom Nails</div>
+<div style="font-size:12px;color:var(--gray);margin-top:2px;">Prothésiste ongulaire · Nice</div>
+<div style="font-size:12px;color:var(--gray);margin-top:2px;">★ 4,8 · 57 avis</div>
+</div>
+<div class="pe-group">
+<div class="pe-group-title">💅 Ongles · 3 prestations</div>
+<div class="pe-card">
+<div class="pe-color" style="background:#E8638C;"></div>
+<div class="pe-info"><div class="pe-name">Pose complète Gel-X</div><div class="pe-desc">Amande, Carré, Ballerine, Stiletto · Toutes longueurs</div></div>
+<div class="pe-right"><div class="pe-price">dès 50€</div><div class="pe-dur">~1h</div><button class="pe-book" onclick="closeModule('mod-prestations-ext');goReserve()">Réserver</button></div>
+</div>
+<div class="pe-card">
+<div class="pe-color" style="background:#4A90D9;"></div>
+<div class="pe-info"><div class="pe-name">Remplissage gel</div><div class="pe-desc">Gel X, Gainage, Acrygel · Entretien régulier</div></div>
+<div class="pe-right"><div class="pe-price">dès 40€</div><div class="pe-dur">~45min</div><button class="pe-book" onclick="closeModule('mod-prestations-ext');goReserve()">Réserver</button></div>
+</div>
+<div class="pe-card">
+<div class="pe-color" style="background:#A87DC8;"></div>
+<div class="pe-info"><div class="pe-name">Nail Art</div><div class="pe-desc">En supplément · French, motifs, strass, chrome</div></div>
+<div class="pe-right"><div class="pe-price">+10 à 25€</div><div class="pe-dur">+15min</div><button class="pe-book" onclick="closeModule('mod-prestations-ext');goReserve()">Réserver</button></div>
+</div>
+</div>
+<div class="pe-group">
+<div class="pe-group-title">🦷 Blanchiment · 1 prestation</div>
+<div class="pe-card">
+<div class="pe-color" style="background:#7EC8A4;"></div>
+<div class="pe-info"><div class="pe-name">Blanchiment dentaire</div><div class="pe-desc">LED · Résultat visible immédiatement</div></div>
+<div class="pe-right"><div class="pe-price">dès 80€</div><div class="pe-dur">~1h</div><button class="pe-book" onclick="closeModule('mod-prestations-ext');goReserve()">Réserver</button></div>
+</div>
+</div>
+<div style="text-align:center;padding:16px 0;">
+<button style="width:100%;padding:14px;border-radius:14px;background:var(--black);color:white;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:inherit;" onclick="closeModule('mod-prestations-ext');goReserve()">Réserver une prestation →</button>
+</div>
 </div>
 </div>
 
