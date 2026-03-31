@@ -926,7 +926,7 @@ body.dark-mode .pbtn-tab.on{background:var(--btn-bg);color:var(--btn-fg);border-
 .avis-date{font-size:10px;color:var(--gray);}
 .avis-text{font-size:12px;color:#555;line-height:1.5;}
 /* ══ RÉGLAGES PARAMÈTRES ══ */
-#mod-reglages{background:var(--set-page)!important;}
+#mod-reglages{background:var(--set-page)!important;z-index:70!important;}
 body.dark-mode #mod-reglages{background:var(--bg)!important;}
 #mod-reglages .reg-settings{flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden;}
 #mod-reglages .status{display:flex;justify-content:space-between;align-items:center;padding:max(10px,env(safe-area-inset-top)) 28px 0 28px;font-size:12px;font-weight:700;color:var(--black);background:transparent;flex-shrink:0;}
@@ -5579,8 +5579,6 @@ function openRegSub(id){var el=document.getElementById(id);if(el)el.classList.ad
 function closeRegSub(id){var el=document.getElementById(id);if(el)el.classList.remove('on');}
 function closeAllRegSubs(){document.querySelectorAll('#mod-reglages .reg-sub').forEach(function(s){s.classList.remove('on');});}
 function openRegFromProfile(mode){
-  closeModule('mod-profil-pro-int');
-  closeModule('mod-profil-client-int');
   openModule('mod-reglages');
   if(mode==='pro') regSetMode('pro'); else regSetMode('client');
   const target=mode==='pro'?'bloom':'nina';
