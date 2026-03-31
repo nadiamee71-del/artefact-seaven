@@ -3039,27 +3039,12 @@ MODULES PROFIL
 </div>
 </div>
 <div class="client-only" id="reg-c">
-<div style="padding:8px 18px 2px;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;">Réglages du profil</div>
+<div style="padding:8px 18px 2px;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;">Mon compte</div>
 <div class="section">
 <div class="section-block">
-<div class="row" onclick="event.stopPropagation();openRegSub('reg-sub-edit-profil');">
-<div class="icon ic-purple">👤</div>
-<div class="row-text"><div class="row-label">Mon profil</div><div class="row-sub">Préférences, formulaire, favoris</div></div>
-<div class="chev">›</div>
-</div>
 <div class="row" onclick="event.stopPropagation();openCliHistorique();">
 <div class="icon ic-teal">📋</div>
 <div class="row-text"><div class="row-label">Historique</div><div class="row-sub">RDV passés, prestataires préférés, notes</div></div>
-<div class="chev">›</div>
-</div>
-<div class="row" onclick="openRegSub('reg-sub-notifs')">
-<div class="icon ic-red">🔔</div>
-<div class="row-text"><div class="row-label">Notifications du profil</div><div class="row-sub">Alertes RDV, rappels, promos</div></div>
-<div class="chev">›</div>
-</div>
-<div class="row" onclick="openRegSub('reg-sub-confidentialite')">
-<div class="icon ic-teal">🛡️</div>
-<div class="row-text"><div class="row-label">Confidentialité</div><div class="row-sub">Visibilité du profil, bloqués</div></div>
 <div class="chev">›</div>
 </div>
 </div>
@@ -3077,9 +3062,19 @@ MODULES PROFIL
 <div class="row-text"><div class="row-label">Général</div><div class="row-sub">Thème, langue, paiement, sécurité</div></div>
 <div class="chev">›</div>
 </div>
+<div class="row" onclick="openRegSub('reg-sub-notifs')">
+<div class="icon ic-red">🔔</div>
+<div class="row-text"><div class="row-label">Notifications</div><div class="row-sub">Gérer les alertes de l'application</div></div>
+<div class="chev">›</div>
+</div>
 <div class="row" onclick="closeModule('mod-reglages');openModule('mod-reveil');">
 <div class="icon ic-dark">⏰</div>
 <div class="row-text"><div class="row-label">Réveil intelligent</div><div class="row-sub">Calcul automatique avant le 1er RDV</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row" onclick="openRegSub('reg-sub-confidentialite')">
+<div class="icon ic-teal">🛡️</div>
+<div class="row-text"><div class="row-label">Confidentialité</div><div class="row-sub">Données personnelles, compte</div></div>
 <div class="chev">›</div>
 </div>
 <div class="row" onclick="openRegSub('reg-sub-accessibilite')">
@@ -3100,40 +3095,17 @@ MODULES PROFIL
 </div>
 </div>
 <div class="pro-only" id="reg-p">
+<div style="padding:8px 18px 2px;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;">Outils métier</div>
 <div class="section">
 <div class="section-block">
-<div class="row" onclick="event.stopPropagation();openRegSub('reg-sub-edit-activite');">
-<div class="icon ic-purple">✂️</div>
-<div class="row-text"><div class="row-label">Mon activité</div><div class="row-sub">Métier, équipe, horaires, conditions</div></div>
-<div class="chev">›</div>
-</div>
-<div class="row" onclick="closeModule('mod-reglages');openModule('mod-services');">
-<div class="icon ic-pink">💅</div>
-<div class="row-text"><div class="row-label">Mes services</div><div class="row-sub">Prestations & tarifs</div></div>
-<div class="chev">›</div>
-</div>
-<div class="row" onclick="openRegSub('reg-sub-paiement')">
-<div class="icon ic-green">💳</div>
-<div class="row-text"><div class="row-label">Paiement</div><div class="row-sub">Moyens acceptés, acompte, facturation</div></div>
-<div class="chev">›</div>
-</div>
 <div class="row" onclick="closeModule('mod-reglages');openModule('mod-fichier-clients')">
 <div class="icon ic-orange">👥</div>
 <div class="row-text"><div class="row-label">Fichier client</div><div class="row-sub">Import, export, formulaire client</div></div>
 <div class="chev">›</div>
 </div>
-<div class="row" onclick="openRegSub('reg-sub-messages')">
-<div class="icon ic-blue">💬</div>
-<div class="row-text"><div class="row-label">Messages</div><div class="row-sub">Préenregistrés, automatiques, chatbot</div></div>
-<div class="chev">›</div>
-</div>
-<div class="row" onclick="openRegSub('reg-sub-marketing')">
-<div class="icon ic-yellow">📣</div>
-<div class="row-text"><div class="row-label">Marketing</div><div class="row-sub">Relances, campagnes, promos, codes</div></div>
-<div class="chev">›</div>
 </div>
 </div>
-</div>
+<div style="padding:8px 18px 2px;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;">Réglages de l'application</div>
 <div class="section">
 <div class="section-block">
 <div class="row" style="cursor:default;">
@@ -3148,17 +3120,17 @@ MODULES PROFIL
 </div>
 <div class="row" onclick="openRegSub('reg-sub-notifs')">
 <div class="icon ic-red">🔔</div>
-<div class="row-text"><div class="row-label">Notifications</div><div class="row-sub">Gérer vos alertes</div></div>
+<div class="row-text"><div class="row-label">Notifications</div><div class="row-sub">Gérer les alertes de l'application</div></div>
 <div class="chev">›</div>
 </div>
 <div class="row" onclick="closeModule('mod-reglages');openModule('mod-reveil');">
 <div class="icon ic-dark">⏰</div>
-<div class="row-text"><div class="row-label">Reveil intelligent</div><div class="row-sub">Calcul automatique avant le 1er RDV</div></div>
+<div class="row-text"><div class="row-label">Réveil intelligent</div><div class="row-sub">Calcul automatique avant le 1er RDV</div></div>
 <div class="chev">›</div>
 </div>
 <div class="row" onclick="openRegSub('reg-sub-confidentialite')">
 <div class="icon ic-teal">🛡️</div>
-<div class="row-text"><div class="row-label">Confidentialité</div><div class="row-sub">Visibilité, bloqués, données</div></div>
+<div class="row-text"><div class="row-label">Confidentialité</div><div class="row-sub">Données personnelles, compte</div></div>
 <div class="chev">›</div>
 </div>
 <div class="row" onclick="openRegSub('reg-sub-accessibilite')">
