@@ -1867,7 +1867,7 @@ label.adj-label{display:block;}
 #mod-finances{display:flex;flex-direction:column;min-height:0;z-index:66;position:absolute;}
 #mod-finances .fin-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 0 24px;}
 #mod-finances .fin-body::-webkit-scrollbar{display:none;}
-#mod-finances .fin-screen{display:none;flex-direction:column;position:absolute;inset:0;background:var(--bg);overflow:hidden;z-index:2;}
+#mod-finances .fin-screen{display:none;flex-direction:column;position:absolute;inset:0;background:var(--bg);overflow:hidden;z-index:20;}
 #mod-finances .fin-screen.on{display:flex;}
 #mod-finances .fin-nav{display:flex;align-items:center;gap:8px;padding:10px 16px 5px;flex-shrink:0;}
 #mod-finances .fin-bk{font-size:26px;font-weight:700;color:var(--black);cursor:pointer;line-height:1;padding-right:4px;flex-shrink:0;}
@@ -2098,7 +2098,7 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="app-item" onclick="openModule('mod-evenements')"><div class="app-icon">🎉</div><div class="app-name">Événements</div></div>
 <div class="app-item" onclick="openModule('mod-avant-apres')"><div class="app-icon">🪞</div><div class="app-name">Avant-Après</div></div>
 <div class="app-item" onclick="openModule('mod-formation')"><div class="app-icon">🎓</div><div class="app-name">Formations</div></div>
-<div class="app-item" onclick="openModule('mod-finances')"><div class="app-icon" style="background:#F0FFF4;">📊</div><div class="app-name">Finances</div></div>
+<div class="app-item" onclick="finResetScreens();openModule('mod-finances')"><div class="app-icon" style="background:#F0FFF4;">📊</div><div class="app-name">Finances</div></div>
 <div class="app-item" onclick="openModule('mod-reglages')"><div class="app-icon">⚙️</div><div class="app-name">Réglages</div></div>
 </div>
 <div class="grid-page">
@@ -2401,7 +2401,7 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="app-item" onclick="openModule('mod-evenements')"><div class="app-icon">🎉</div><div class="app-name">Événements</div></div>
 <div class="app-item" onclick="openModule('mod-avant-apres')"><div class="app-icon">🪞</div><div class="app-name">Avant-Après</div></div>
 <div class="app-item" onclick="openModule('mod-formation')"><div class="app-icon">🎓</div><div class="app-name">Formations</div></div>
-<div class="app-item" onclick="openModule('mod-finances')"><div class="app-icon" style="background:#F0FFF4;">📊</div><div class="app-name">Finances</div></div>
+<div class="app-item" onclick="finResetScreens();openModule('mod-finances')"><div class="app-icon" style="background:#F0FFF4;">📊</div><div class="app-name">Finances</div></div>
 <div class="app-item" onclick="openModule('mod-reglages')"><div class="app-icon">⚙️</div><div class="app-name">Réglages</div></div>
 </div>
 <div class="grid-page">
@@ -3718,8 +3718,8 @@ MODULES PROFIL
 
 <!-- ═══ MODULE FINANCES ═══ -->
 <div class="module" id="mod-finances">
-<div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-finances')">‹</div><div class="mod-title">Finances</div><div style="width:32px;"></div></div>
-<div class="fin-body" style="position:relative;">
+<div class="mod-hdr"><div class="mod-back" onclick="finResetScreens();closeModule('mod-finances')">‹</div><div class="mod-title">Finances</div><div style="width:32px;"></div></div>
+<div class="fin-body fin-home">
 
 <!-- HOME FINANCES -->
 <div style="padding:7px 20px 2px;"><h1 style="font-size:22px;font-weight:900;color:var(--black);letter-spacing:-.3px;">📊 SEAVEN</h1><div style="font-size:12px;color:var(--gray);font-weight:600;margin-top:1px;">Soraya · AE · juil. 2024</div></div>
@@ -5223,7 +5223,7 @@ goTo(0);
 initSwipe('c-track','c-dots');
 initSwipe('p-track','p-dots');
 
-function closeAllModules(){document.querySelectorAll('.module.on,.prof-module.on').forEach(m=>m.classList.remove('on'));}
+function closeAllModules(){document.querySelectorAll('.module.on,.prof-module.on').forEach(m=>m.classList.remove('on'));try{finResetScreens();}catch(e){}}
 
 // ── MODULE SERVICES ──
 function svcOpenScreen(id){document.getElementById(id).classList.add('on');}
@@ -6148,8 +6148,19 @@ function grpFilterSearch(val){const res=document.getElementById('grp-search-resu
 function grpAddPrest(ic,name,dur){const list=document.getElementById('grp-prest-list');const div=document.createElement('div');div.className='prest-row';div.innerHTML='<div class="prest-top"><div class="pr-ic">'+ic+'</div><div style="flex:1;"><div class="pr-name">'+name+'</div></div><div class="pr-duration">'+dur+'</div><div class="pr-del" onclick="this.closest(\'.prest-row\').remove()">🗑</div></div><div class="budget-row"><div class="budget-label">Budget max</div><input class="budget-input" type="number" value="60"/><span style="font-size:13px;color:var(--gray);">€</span></div>';list.appendChild(div);grpCloseSearch();}
 
 // ── MODULE FINANCES ──
-function finGo(id){document.getElementById(id)?.classList.add('on');}
+function finGo(id){
+  var el=document.getElementById(id);
+  if(!el)return;
+  var home=document.querySelector('#mod-finances .fin-home');
+  if(home)home.scrollTop=0;
+  el.classList.add('on');
+}
 function finBack(id){document.getElementById(id)?.classList.remove('on');}
+function finResetScreens(){
+  document.querySelectorAll('#mod-finances .fin-screen').forEach(function(s){s.classList.remove('on');});
+  var home=document.querySelector('#mod-finances .fin-home');
+  if(home)home.scrollTop=0;
+}
 function finSelTab(el){el.closest('.fin-ptabs').querySelectorAll('.fin-ptab').forEach(t=>t.classList.remove('on'));el.classList.add('on');}
 function finSelStab(el){el.closest('.fin-stabs').querySelectorAll('.fin-stab').forEach(t=>t.classList.remove('on'));el.classList.add('on');}
 function finSelDep(el){el.closest('.fin-dep-sel').querySelectorAll('.fin-dep-chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');}
