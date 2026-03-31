@@ -1690,6 +1690,136 @@ label.adj-label{display:block;}
 #flow-pro-enc .enc-btn-outline{width:100%;padding:13px;border-radius:14px;background:white;border:1.5px solid var(--border);color:var(--black);font-size:14px;font-weight:700;cursor:pointer;font-family:'Manrope',sans-serif;margin-top:8px;}
 #flow-pro-enc .enc-btn-ghost{width:100%;padding:9px;background:none;border:none;color:var(--gray);font-size:13px;font-weight:600;cursor:pointer;margin-top:6px;font-family:'Manrope',sans-serif;}
 
+/* ══ GROUPES (Journée type) ══ */
+#mod-groupes{display:flex;flex-direction:column;min-height:0;z-index:66;}
+#mod-groupes .grp-pager{flex:1;position:relative;min-height:0;}
+#mod-groupes .grp-pg{display:none;flex-direction:column;position:absolute;inset:0;background:var(--bg);overflow:hidden;}
+#mod-groupes .grp-pg.on{display:flex;}
+#mod-groupes .grp-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 16px 20px;}
+#mod-groupes .grp-scroll::-webkit-scrollbar{display:none;}
+#mod-groupes .grp-nav{display:flex;align-items:center;justify-content:space-between;padding:10px 16px 4px;flex-shrink:0;}
+#mod-groupes .grp-bk{font-size:22px;color:var(--black);cursor:pointer;width:28px;}
+#mod-groupes .grp-nt{font-size:16px;font-weight:800;color:var(--black);}
+#mod-groupes .grp-ns{font-size:11px;color:var(--gray);text-align:center;margin-top:1px;}
+#mod-groupes .grp-progress{display:flex;gap:5px;padding:0 16px 8px;flex-shrink:0;}
+#mod-groupes .grp-pd{flex:1;height:3px;border-radius:2px;background:var(--border);}
+#mod-groupes .grp-pd.on{background:var(--black);}
+#mod-groupes .grp-bottom{padding:10px 16px 20px;flex-shrink:0;border-top:1px solid var(--light);background:var(--bg);}
+#mod-groupes .grp-btn-main{width:100%;padding:15px;border-radius:14px;background:var(--black);color:white;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'Manrope',sans-serif;}
+#mod-groupes .grp-btn-outline{width:100%;padding:13px;border-radius:14px;background:white;color:var(--black);font-size:14px;font-weight:700;border:1.5px solid var(--border);cursor:pointer;font-family:'Manrope',sans-serif;}
+#mod-groupes .grp-btn-ghost{width:100%;padding:9px;background:none;border:none;color:var(--gray);font-size:13px;font-weight:600;cursor:pointer;font-family:'Manrope',sans-serif;margin-top:6px;}
+#mod-groupes .grp-tabs{display:flex;border-bottom:1px solid var(--light);flex-shrink:0;}
+#mod-groupes .grp-tab{flex:1;padding:10px 0;text-align:center;font-size:13px;font-weight:700;color:var(--gray);cursor:pointer;border-bottom:2px solid transparent;}
+#mod-groupes .grp-tab.on{color:var(--black);border-bottom-color:var(--black);}
+#mod-groupes .grp-sec-lbl{font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px;margin-top:14px;}
+#mod-groupes .grp-pill{padding:6px 12px;border-radius:16px;border:1.5px solid var(--border);font-size:12px;font-weight:700;color:var(--gray);cursor:pointer;background:white;}
+#mod-groupes .grp-pill.on{background:var(--black);color:white;border-color:var(--black);}
+#mod-groupes .p1-hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;gap:8px;}
+#mod-groupes .p1-icon{font-size:48px;margin-bottom:8px;}
+#mod-groupes .p1-title{font-size:20px;font-weight:900;color:var(--black);text-align:center;line-height:1.3;}
+#mod-groupes .p1-sub{font-size:13px;color:var(--gray);text-align:center;line-height:1.6;max-width:280px;}
+#mod-groupes .new-btn{display:flex;align-items:center;gap:14px;padding:18px;border:1.5px solid var(--black);border-radius:18px;cursor:pointer;margin:0 16px 16px;background:white;}
+#mod-groupes .new-btn-plus{width:44px;height:44px;border-radius:12px;background:var(--black);display:flex;align-items:center;justify-content:center;font-size:22px;color:white;flex-shrink:0;}
+#mod-groupes .new-btn-title{font-size:15px;font-weight:800;color:var(--black);}
+#mod-groupes .new-btn-sub{font-size:12px;color:var(--gray);margin-top:2px;}
+#mod-groupes .ji{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--light);cursor:pointer;align-items:center;}
+#mod-groupes .ji-ic{width:32px;height:32px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+#mod-groupes .ji-name{font-size:14px;font-weight:700;color:var(--black);}
+#mod-groupes .ji-meta{font-size:11px;color:var(--gray);margin-top:2px;}
+#mod-groupes .ji-status{margin-left:auto;font-size:11px;font-weight:700;padding:3px 10px;border-radius:8px;flex-shrink:0;}
+#mod-groupes .js-upcoming{background:#F0FAF4;color:var(--green);}
+#mod-groupes .js-past{background:var(--light);color:var(--gray);}
+#mod-groupes .prest-row{padding:13px 0;border-bottom:1px solid var(--light);}
+#mod-groupes .prest-top{display:flex;align-items:center;gap:12px;}
+#mod-groupes .pr-ic{font-size:22px;flex-shrink:0;}
+#mod-groupes .pr-name{font-size:14px;font-weight:700;color:var(--black);flex:1;}
+#mod-groupes .pr-duration{font-size:11px;color:var(--gray);font-weight:600;}
+#mod-groupes .pr-del{font-size:16px;color:#DDD;cursor:pointer;padding:4px;}
+#mod-groupes .budget-row{display:flex;gap:8px;padding:8px 0 0 34px;align-items:center;}
+#mod-groupes .budget-label{font-size:12px;font-weight:700;color:var(--gray);flex-shrink:0;}
+#mod-groupes .budget-input{width:80px;border:1.5px solid var(--border);border-radius:10px;padding:7px 10px;font-size:13px;font-weight:700;font-family:'Manrope',sans-serif;outline:none;text-align:center;}
+#mod-groupes .budget-input:focus{border-color:var(--black);}
+#mod-groupes .add-row{display:flex;align-items:center;gap:10px;padding:14px 0;cursor:pointer;}
+#mod-groupes .add-ic{width:34px;height:34px;border-radius:10px;border:1.5px dashed #CCC;display:flex;align-items:center;justify-content:center;font-size:18px;color:#CCC;}
+#mod-groupes .add-lbl{font-size:14px;font-weight:600;color:var(--gray);}
+#mod-groupes .grp-search-ov{display:none;position:absolute;bottom:0;left:0;right:0;background:white;border-radius:24px 24px 0 0;box-shadow:0 -8px 40px rgba(0,0,0,.12);z-index:100;padding:16px;max-height:70%;overflow-y:auto;}
+#mod-groupes .grp-search-ov.on{display:block;}
+#mod-groupes .grp-search-input{width:100%;border:1.5px solid var(--border);border-radius:12px;padding:11px 14px;font-size:14px;font-family:'Manrope',sans-serif;outline:none;margin-bottom:14px;}
+#mod-groupes .grp-search-input:focus{border-color:var(--black);}
+#mod-groupes .search-cat{padding:6px 12px;border-radius:20px;background:var(--light);font-size:12px;font-weight:700;color:#555;cursor:pointer;}
+#mod-groupes .search-result{display:flex;align-items:center;gap:12px;padding:10px 8px;border-radius:10px;cursor:pointer;}
+#mod-groupes .search-result:active{background:var(--light);}
+#mod-groupes .sr-ic{font-size:20px;width:32px;text-align:center;}
+#mod-groupes .sr-name{font-size:14px;font-weight:700;color:var(--black);flex:1;}
+#mod-groupes .sr-dur{font-size:11px;color:var(--gray);font-weight:600;}
+#mod-groupes .who-section{margin-bottom:10px;border:1.5px solid var(--light);border-radius:16px;overflow:hidden;}
+#mod-groupes .who-hdr{display:flex;align-items:center;gap:10px;padding:11px 14px;background:var(--light);}
+#mod-groupes .who-name{font-size:13px;font-weight:700;color:var(--black);flex:1;}
+#mod-groupes .who-opt{display:flex;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px solid var(--light);cursor:pointer;}
+#mod-groupes .who-opt:last-child{border-bottom:none;}
+#mod-groupes .wdot{width:18px;height:18px;border-radius:50%;border:1.5px solid #DDD;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+#mod-groupes .wdot.on{border-color:var(--black);background:var(--black);}
+#mod-groupes .wdot.on::after{content:'';width:6px;height:6px;border-radius:50%;background:white;}
+#mod-groupes .wav{width:30px;height:30px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;}
+#mod-groupes .wname{font-size:13px;font-weight:700;color:var(--black);}
+#mod-groupes .wmeta{font-size:11px;color:var(--gray);margin-top:1px;}
+#mod-groupes .perim-row{display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--light);border-top:1px solid var(--border);flex-wrap:wrap;}
+#mod-groupes .perim-lbl{font-size:12px;font-weight:700;color:var(--gray);}
+#mod-groupes .grp-stabs{display:flex;border-bottom:1px solid var(--light);flex-shrink:0;}
+#mod-groupes .grp-stab{flex:1;padding:9px 0;text-align:center;font-size:11px;font-weight:700;color:var(--gray);border-bottom:2px solid transparent;cursor:pointer;}
+#mod-groupes .grp-stab.on{color:var(--black);border-bottom-color:var(--black);}
+#mod-groupes .grp-sub-content{display:none;padding-top:10px;}
+#mod-groupes .grp-sub-content.on{display:block;}
+#mod-groupes .radio-item{display:flex;align-items:center;gap:10px;padding:10px 13px;border:1.5px solid var(--border);border-radius:12px;cursor:pointer;margin-bottom:7px;}
+#mod-groupes .radio-item.sel{border-color:var(--black);background:#FAFAFA;}
+#mod-groupes .rdot{width:16px;height:16px;border-radius:50%;border:1.5px solid #DDD;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+#mod-groupes .rdot.on{border-color:var(--black);background:var(--black);}
+#mod-groupes .rdot.on::after{content:'';width:6px;height:6px;border-radius:50%;background:white;}
+#mod-groupes .grp-form-label{font-size:13px;font-weight:700;color:var(--black);margin-bottom:8px;display:block;margin-top:14px;}
+#mod-groupes .grp-pills-wrap{display:flex;flex-wrap:wrap;gap:6px;}
+#mod-groupes .live-recap{background:var(--light);border-radius:12px;padding:10px 14px;margin-top:14px;display:flex;justify-content:space-between;align-items:center;}
+#mod-groupes .lr-label{font-size:12px;color:var(--gray);font-weight:600;}
+#mod-groupes .lr-val{font-size:13px;font-weight:800;color:var(--black);}
+#mod-groupes .lr-sep{width:1px;height:24px;background:var(--border);}
+#mod-groupes .recap-box{background:var(--light);border-radius:12px;padding:12px 14px;margin-bottom:12px;}
+#mod-groupes .rb-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #EEE;}
+#mod-groupes .rb-row:last-child{border-bottom:none;}
+#mod-groupes .rb-k{font-size:13px;color:var(--gray);}
+#mod-groupes .rb-v{font-size:13px;font-weight:700;color:var(--black);}
+#mod-groupes .ia-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:16px;padding:20px;text-align:center;}
+#mod-groupes .ia-spinner{width:56px;height:56px;border-radius:50%;border:3px solid var(--border);border-top:3px solid var(--black);animation:grpSpin 1s linear infinite;}
+@keyframes grpSpin{to{transform:rotate(360deg);}}
+#mod-groupes .ia-step{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--gray);padding:10px 12px;background:var(--light);border-radius:10px;line-height:1.4;}
+#mod-groupes .ia-step.done{color:var(--black);font-weight:600;background:#F0FAF4;}
+#mod-groupes .ia-step-reason{font-size:11px;color:var(--gray);font-weight:400;margin-top:2px;}
+#mod-groupes .itin-item{display:flex;gap:10px;}
+#mod-groupes .it-timeline{display:flex;flex-direction:column;align-items:center;width:28px;flex-shrink:0;}
+#mod-groupes .it-dot{width:10px;height:10px;border-radius:50%;background:var(--black);flex-shrink:0;margin-top:5px;}
+#mod-groupes .it-line{width:2px;flex:1;background:var(--border);margin:3px 0;min-height:16px;}
+#mod-groupes .it-line.dashed{background:repeating-linear-gradient(to bottom,var(--border) 0,var(--border) 4px,transparent 4px,transparent 8px);}
+#mod-groupes .it-card{background:var(--light);border-radius:12px;padding:11px 12px;}
+#mod-groupes .it-time{font-size:11px;font-weight:700;color:var(--gray);margin-bottom:3px;}
+#mod-groupes .itc-name{font-size:14px;font-weight:800;color:var(--black);}
+#mod-groupes .itc-who{font-size:11px;color:var(--gray);margin-top:2px;}
+#mod-groupes .itc-lieu{font-size:11px;color:var(--gray);margin-top:1px;}
+#mod-groupes .itc-price{font-size:13px;font-weight:800;color:var(--black);margin-top:6px;}
+#mod-groupes .itc-actions{display:flex;gap:6px;margin-top:8px;}
+#mod-groupes .itc-btn{flex:1;padding:7px 6px;border-radius:8px;border:1.5px solid var(--border);font-size:11px;font-weight:700;color:#555;background:white;cursor:pointer;text-align:center;}
+#mod-groupes .tight-alert{display:inline-flex;align-items:center;gap:4px;background:#FFF8E8;border-radius:6px;padding:3px 8px;font-size:11px;font-weight:700;color:#CC9900;margin-left:8px;}
+#mod-groupes .total-box{background:var(--light);border-radius:14px;padding:14px;margin-top:12px;}
+#mod-groupes .tot-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #EEE;}
+#mod-groupes .tot-row:last-child{border-bottom:none;}
+#mod-groupes .tot-k{font-size:13px;color:var(--gray);}
+#mod-groupes .tot-v{font-size:13px;font-weight:700;color:var(--black);}
+#mod-groupes .tot-final{display:flex;justify-content:space-between;padding:10px 0 0;border-top:1.5px solid var(--black);margin-top:6px;}
+#mod-groupes .grp-map-preview{height:160px;background:linear-gradient(135deg,#E8EEE0,#D8E8D0);border-radius:14px;margin-top:8px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+#mod-groupes .grp-map-marker{position:absolute;width:32px;height:32px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;font-size:14px;color:white;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,.2);}
+#mod-groupes .conf-body{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:16px;text-align:center;gap:10px;}
+#mod-groupes .chk{width:68px;height:68px;border-radius:50%;background:var(--black);display:flex;align-items:center;justify-content:center;font-size:28px;color:white;}
+#mod-groupes .conf-card{background:var(--light);border-radius:14px;padding:14px;width:100%;text-align:left;}
+#mod-groupes .cf-rdv{padding:9px 0;border-bottom:1px solid #EEE;}
+#mod-groupes .cf-rdv:last-of-type{border-bottom:none;}
+
 /* ══ FINANCES ══ */
 #mod-finances{display:flex;flex-direction:column;min-height:0;z-index:66;}
 #mod-finances .fin-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 0 24px;}
@@ -1932,7 +2062,7 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="app-item" onclick="openModule('mod-blacklist')"><div class="app-icon" style="background:#FFF0F0;">🚫</div><div class="app-name">Blacklist</div></div>
 <div class="app-item" onclick="openModule('mod-forum')"><div class="app-icon" style="background:#EEF0FF;">💬</div><div class="app-name">Forum</div></div>
 <div class="app-item" onclick="openModule('mod-parrainage')"><div class="app-icon" style="background:#FFF8EE;">🤝</div><div class="app-name">Parrainage</div></div>
-<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item" onclick="openModule('mod-groupes')"><div class="app-icon" style="background:#F0F0FF;">👯</div><div class="app-name">Groupes</div></div>
 <div class="app-item app-slot-empty" aria-hidden="true"></div>
 <div class="app-item app-slot-empty" aria-hidden="true"></div>
 <div class="app-item app-slot-empty" aria-hidden="true"></div>
@@ -2235,7 +2365,7 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="app-item" onclick="openModule('mod-blacklist')"><div class="app-icon" style="background:#FFF0F0;">🚫</div><div class="app-name">Blacklist</div></div>
 <div class="app-item" onclick="openModule('mod-forum')"><div class="app-icon" style="background:#EEF0FF;">💬</div><div class="app-name">Forum</div></div>
 <div class="app-item" onclick="openModule('mod-parrainage')"><div class="app-icon" style="background:#FFF8EE;">🤝</div><div class="app-name">Parrainage</div></div>
-<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item" onclick="openModule('mod-groupes')"><div class="app-icon" style="background:#F0F0FF;">👯</div><div class="app-name">Groupes</div></div>
 <div class="app-item app-slot-empty" aria-hidden="true"></div>
 <div class="app-item app-slot-empty" aria-hidden="true"></div>
 <div class="app-item app-slot-empty" aria-hidden="true"></div>
@@ -3746,6 +3876,192 @@ MODULES PROFIL
 
 </div>
 </div><!-- /mod-finances -->
+
+<!-- ═══ MODULE GROUPES (Journée type) ═══ -->
+<div class="module" id="mod-groupes">
+<div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-groupes');grpReset()">‹</div><div class="mod-title">Ma journée</div><div style="width:32px;"></div></div>
+<div class="grp-pager">
+
+<!-- PAGE 1 — ACCUEIL -->
+<div class="grp-pg on" id="grp-p1">
+<div class="grp-tabs">
+<div class="grp-tab on" onclick="grpHomeTab(this,'grp-t-new')">Nouvelle journée</div>
+<div class="grp-tab" onclick="grpHomeTab(this,'grp-t-mes')">Mes journées</div>
+</div>
+<div id="grp-t-new" style="display:flex;flex-direction:column;flex:1;">
+<div class="p1-hero">
+<div class="p1-icon">✨</div>
+<div class="p1-title">Organise ta journée beauté en quelques clics</div>
+<div class="p1-sub">Tu choisis tes soins et tes prestataires.<br>L'IA calcule l'ordre, les trajets et les horaires.</div>
+</div>
+<div class="new-btn" onclick="grpGoPage('grp-p2')">
+<div class="new-btn-plus">＋</div>
+<div style="flex:1;"><div class="new-btn-title">Organiser ma journée</div><div class="new-btn-sub">Ongles, cils, coiffure… tout en une fois</div></div>
+</div>
+</div>
+<div id="grp-t-mes" style="display:none;flex:1;overflow-y:auto;padding:0 16px 16px;">
+<div class="grp-sec-lbl">À venir</div>
+<div class="ji">
+<div style="display:flex;gap:4px;"><div class="ji-ic">💅</div><div class="ji-ic">👁️</div><div class="ji-ic">💇</div></div>
+<div style="flex:1;"><div class="ji-name">Journée complète</div><div class="ji-meta">Mer. 2 avril · 10h00 → 14h25 · 190€</div></div>
+<div class="ji-status js-upcoming">À venir</div>
+</div>
+<div class="grp-sec-lbl">Passées</div>
+<div class="ji">
+<div style="display:flex;gap:4px;"><div class="ji-ic">💅</div><div class="ji-ic">🌿</div></div>
+<div style="flex:1;"><div class="ji-name">Ongles + Massage</div><div class="ji-meta">Sam. 15 mars · 11h00 → 14h00 · 130€</div></div>
+<div class="ji-status js-past">Terminée</div>
+</div>
+<div class="ji">
+<div style="display:flex;gap:4px;"><div class="ji-ic">💅</div><div class="ji-ic">👁️</div></div>
+<div style="flex:1;"><div class="ji-name">Ongles + Cils</div><div class="ji-meta">Dim. 2 mars · 10h00 → 13h30 · 145€</div></div>
+<div class="ji-status js-past">Terminée</div>
+</div>
+</div>
+</div>
+
+<!-- PAGE 2 — PRESTATIONS -->
+<div class="grp-pg" id="grp-p2">
+<div class="grp-nav"><div class="grp-bk" onclick="grpGoPage('grp-p1')">‹</div><div style="flex:1;text-align:center;"><div class="grp-nt">Mes prestations</div><div class="grp-ns">Qu'est-ce que tu veux faire ?</div></div><div style="width:28px;"></div></div>
+<div class="grp-progress"><div class="grp-pd on"></div><div class="grp-pd"></div><div class="grp-pd"></div><div class="grp-pd"></div><div class="grp-pd"></div></div>
+<div class="grp-scroll" style="padding-top:8px;position:relative;">
+<div id="grp-prest-list">
+<div class="prest-row"><div class="prest-top"><div class="pr-ic">💅</div><div style="flex:1;"><div class="pr-name">Ongles</div></div><div class="pr-duration">~1h10</div><div class="pr-del" onclick="this.closest('.prest-row').remove()">🗑</div></div><div class="budget-row"><div class="budget-label">Budget max</div><input class="budget-input" type="number" value="80"/><span style="font-size:13px;color:var(--gray);">€</span></div></div>
+<div class="prest-row"><div class="prest-top"><div class="pr-ic">👁️</div><div style="flex:1;"><div class="pr-name">Cils</div></div><div class="pr-duration">~2h</div><div class="pr-del" onclick="this.closest('.prest-row').remove()">🗑</div></div><div class="budget-row"><div class="budget-label">Budget max</div><input class="budget-input" type="number" value="80"/><span style="font-size:13px;color:var(--gray);">€</span></div></div>
+<div class="prest-row"><div class="prest-top"><div class="pr-ic">💇</div><div style="flex:1;"><div class="pr-name">Coiffure</div></div><div class="pr-duration">~45min</div><div class="pr-del" onclick="this.closest('.prest-row').remove()">🗑</div></div><div class="budget-row"><div class="budget-label">Budget max</div><input class="budget-input" type="number" value="60"/><span style="font-size:13px;color:var(--gray);">€</span></div></div>
+</div>
+<div class="add-row" onclick="grpOpenSearch()"><div class="add-ic">＋</div><div class="add-lbl">Ajouter une prestation</div></div>
+<div class="grp-search-ov" id="grp-search-ov">
+<div style="width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 14px;cursor:pointer;" onclick="grpCloseSearch()"></div>
+<input class="grp-search-input" id="grp-search-input" placeholder="Ex : blanchiment dentaire, massage…" oninput="grpFilterSearch(this.value)"/>
+<div style="font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px;">Populaires</div>
+<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">
+<div class="search-cat" onclick="grpAddPrest('💆','Massage','~1h')">💆 Massage</div>
+<div class="search-cat" onclick="grpAddPrest('🦷','Blanchiment','~1h')">🦷 Blanchiment</div>
+<div class="search-cat" onclick="grpAddPrest('🧖','Épilation','~45min')">🧖 Épilation</div>
+<div class="search-cat" onclick="grpAddPrest('💆‍♀️','Soin visage','~1h')">💆‍♀️ Soin visage</div>
+<div class="search-cat" onclick="grpAddPrest('🌿','Spa','~2h')">🌿 Spa</div>
+<div class="search-cat" onclick="grpAddPrest('💋','Maquillage','~1h')">💋 Maquillage</div>
+</div>
+<div id="grp-search-results" style="display:none;"></div>
+</div>
+</div>
+<div class="grp-bottom"><button class="grp-btn-main" onclick="grpGoPage('grp-p3')">Continuer →</button></div>
+</div>
+
+<!-- PAGE 3 — PRESTATAIRES -->
+<div class="grp-pg" id="grp-p3">
+<div class="grp-nav"><div class="grp-bk" onclick="grpGoPage('grp-p2')">‹</div><div style="flex:1;text-align:center;"><div class="grp-nt">Mes prestataires</div><div class="grp-ns">Avec qui pour chaque soin ?</div></div><div style="width:28px;"></div></div>
+<div class="grp-progress"><div class="grp-pd on"></div><div class="grp-pd on"></div><div class="grp-pd"></div><div class="grp-pd"></div><div class="grp-pd"></div></div>
+<div class="grp-scroll" style="padding-top:8px;">
+<div class="who-section"><div class="who-hdr"><div style="font-size:18px;">💅</div><div class="who-name">Ongles · Budget max 80€</div></div><div style="padding:6px 14px;">
+<div class="who-opt" onclick="grpSelWho(this)"><div class="wdot on"></div><div class="wav">S</div><div><div class="wname">Sassa · Bloom Nails</div><div class="wmeta">Dernière visite il y a 3 sem. · 4,8★ · 1,2 km</div></div></div>
+<div class="who-opt" onclick="grpSelWho(this)"><div class="wdot"></div><div class="wav" style="font-size:14px;">✦</div><div><div class="wname">N'importe qui de disponible</div><div class="wmeta">Meilleur tarif dans le périmètre</div></div></div>
+</div><div class="perim-row"><div class="perim-lbl">Périmètre</div><div style="display:flex;gap:5px;"><div class="grp-pill" onclick="grpSelPer(this)">3 km</div><div class="grp-pill on" onclick="grpSelPer(this)">5 km</div><div class="grp-pill" onclick="grpSelPer(this)">10 km</div></div></div></div>
+<div class="who-section"><div class="who-hdr"><div style="font-size:18px;">👁️</div><div class="who-name">Cils · Budget max 80€</div></div><div style="padding:6px 14px;">
+<div class="who-opt" onclick="grpSelWho(this)"><div class="wdot on"></div><div class="wav">N</div><div><div class="wname">Nina Cils</div><div class="wmeta">Dernière visite il y a 1 mois · 4,9★ · 2,4 km</div></div></div>
+<div class="who-opt" onclick="grpSelWho(this)"><div class="wdot"></div><div class="wav" style="font-size:14px;">✦</div><div><div class="wname">N'importe qui de disponible</div><div class="wmeta">Meilleur tarif dans le périmètre</div></div></div>
+</div><div class="perim-row"><div class="perim-lbl">Périmètre</div><div style="display:flex;gap:5px;"><div class="grp-pill" onclick="grpSelPer(this)">3 km</div><div class="grp-pill on" onclick="grpSelPer(this)">5 km</div><div class="grp-pill" onclick="grpSelPer(this)">10 km</div></div></div></div>
+<div class="who-section"><div class="who-hdr"><div style="font-size:18px;">💇</div><div class="who-name">Coiffure · Budget max 60€</div></div><div style="padding:6px 14px;">
+<div class="who-opt" onclick="grpSelWho(this)"><div class="wdot on"></div><div class="wav" style="font-size:14px;">✦</div><div><div class="wname">N'importe qui de disponible</div><div class="wmeta">Meilleur tarif dans le périmètre</div></div></div>
+</div><div class="perim-row"><div class="perim-lbl">Périmètre</div><div style="display:flex;gap:5px;"><div class="grp-pill on" onclick="grpSelPer(this)">3 km</div><div class="grp-pill" onclick="grpSelPer(this)">5 km</div><div class="grp-pill" onclick="grpSelPer(this)">10 km</div></div></div></div>
+</div>
+<div class="grp-bottom"><button class="grp-btn-main" onclick="grpStartFlow()">Répondre aux questions →</button></div>
+</div>
+
+<!-- PAGE 4 — FLOW QUESTIONS -->
+<div class="grp-pg" id="grp-p4">
+<div class="grp-nav"><div class="grp-bk" onclick="grpGoPage('grp-p3')">‹</div><div style="flex:1;text-align:center;"><div class="grp-nt" id="grp-flow-title">Prestation 1/3</div><div class="grp-ns" id="grp-flow-sub">💅 Ongles · Sassa</div></div><div style="width:28px;"></div></div>
+<div style="display:flex;gap:6px;padding:0 16px 6px;flex-shrink:0;"><div class="grp-pd on" id="grp-rd1"></div><div class="grp-pd" id="grp-rd2"></div><div class="grp-pd" id="grp-rd3"></div></div>
+<div class="grp-stabs"><div class="grp-stab on" id="grp-st1" onclick="grpSetStep(1)">Questions</div><div class="grp-stab" id="grp-st2" onclick="grpSetStep(2)">Confirmation</div></div>
+<div class="grp-scroll" style="padding-top:4px;">
+<div class="grp-sub-content on" id="grp-sc1">
+<div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:8px;">Dépose ou remplissage ?</div>
+<div class="radio-item sel" onclick="grpSelRadio(this)"><div class="rdot on"></div><span style="font-size:14px;font-weight:600;">Remplissage</span></div>
+<div class="radio-item" onclick="grpSelRadio(this)"><div class="rdot"></div><span style="font-size:14px;font-weight:600;">Dépose</span></div>
+<div class="radio-item" onclick="grpSelRadio(this)"><div class="rdot"></div><span style="font-size:14px;font-weight:600;">Pose complète</span></div>
+<div class="grp-form-label">Longueur</div>
+<div class="grp-pills-wrap"><div class="grp-pill" onclick="grpSelPill(this)">XS</div><div class="grp-pill" onclick="grpSelPill(this)">S</div><div class="grp-pill on" onclick="grpSelPill(this)">M</div><div class="grp-pill" onclick="grpSelPill(this)">L</div><div class="grp-pill" onclick="grpSelPill(this)">XL</div></div>
+<div class="grp-form-label">Forme</div>
+<div class="grp-pills-wrap"><div class="grp-pill on" onclick="grpSelPill(this)">Amande</div><div class="grp-pill" onclick="grpSelPill(this)">Carré</div><div class="grp-pill" onclick="grpSelPill(this)">Ballerine</div><div class="grp-pill" onclick="grpSelPill(this)">Stiletto</div></div>
+<div class="grp-form-label">Note (optionnel)</div>
+<textarea style="width:100%;border:1.5px solid var(--border);border-radius:12px;padding:11px;font-size:13px;font-family:'Manrope',sans-serif;outline:none;resize:none;" rows="2" placeholder="Ex : j'ai un ongle cassé…"></textarea>
+<div class="live-recap"><div style="text-align:center;"><div class="lr-label">Durée estimée</div><div class="lr-val">1h10</div></div><div class="lr-sep"></div><div style="text-align:center;"><div class="lr-label">Prix estimé</div><div class="lr-val">~65€</div></div><div class="lr-sep"></div><div style="text-align:center;"><div class="lr-label">Total journée</div><div class="lr-val">~65€</div></div></div>
+</div>
+<div class="grp-sub-content" id="grp-sc2">
+<div style="font-size:13px;color:var(--gray);margin-bottom:4px;">Acompte requis · 30%</div>
+<div style="font-size:30px;font-weight:900;color:var(--black);margin-bottom:14px;">19,50€</div>
+<div class="recap-box"><div class="rb-row"><span class="rb-k">Prestation</span><span class="rb-v">Remplissage gel · Amande M</span></div><div class="rb-row"><span class="rb-k">Prestataire</span><span class="rb-v">Sassa · Bloom Nails</span></div><div class="rb-row"><span class="rb-k">Durée estimée</span><span class="rb-v">1h10</span></div><div class="rb-row"><span class="rb-k">Acompte</span><span class="rb-v">19,50€</span></div><div class="rb-row"><span class="rb-k">Reste sur place</span><span class="rb-v">45,50€</span></div><div class="rb-row"><span class="rb-k">Prix total</span><span class="rb-v" style="font-size:14px;">65€</span></div></div>
+<div class="pay-grid"><div class="pay-card on" onclick="selPay(this)"><div class="pay-ic">💳</div><div class="pay-nm">Carte</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">📲</div><div class="pay-nm">Wero</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">🅿️</div><div class="pay-nm">PayPal</div></div><div class="pay-card" onclick="selPay(this)"><div class="pay-ic">🍎</div><div class="pay-nm">Apple Pay</div></div></div>
+</div>
+</div>
+<div class="grp-bottom">
+<div id="grp-fbtn1"><button class="grp-btn-main" onclick="grpSetStep(2)">Confirmer →</button></div>
+<div id="grp-fbtn2" style="display:none;"><button class="grp-btn-main" onclick="grpNextRdv()">Payer · Prestation suivante →</button></div>
+</div>
+</div>
+
+<!-- PAGE 5 — CALCUL IA -->
+<div class="grp-pg" id="grp-p5">
+<div class="ia-wrap">
+<div class="ia-spinner"></div>
+<div style="font-size:18px;font-weight:800;color:var(--black);">L'IA optimise ta journée…</div>
+<div style="display:flex;flex-direction:column;gap:8px;width:100%;text-align:left;">
+<div class="ia-step done"><div class="ia-step-icon" style="flex-shrink:0;">✓</div><div style="flex:1;">3 créneaux vérifiés et réservés</div></div>
+<div class="ia-step done"><div class="ia-step-icon" style="flex-shrink:0;">✓</div><div style="flex:1;">Ordre optimisé calculé<div class="ia-step-reason">Les cils en premier — le gel des ongles sèche pendant les trajets</div></div></div>
+<div class="ia-step done"><div class="ia-step-icon" style="flex-shrink:0;">✓</div><div style="flex:1;">Trajets en temps réel calculés<div class="ia-step-reason">10 min de tampon entre chaque RDV</div></div></div>
+<div class="ia-step"><div class="ia-step-icon" style="flex-shrink:0;">⏳</div><div style="flex:1;">Création de l'itinéraire…</div></div>
+</div>
+</div>
+<div class="grp-bottom"><button class="grp-btn-main" onclick="grpGoPage('grp-p6')">Voir mon itinéraire →</button></div>
+</div>
+
+<!-- PAGE 6 — ITINÉRAIRE -->
+<div class="grp-pg" id="grp-p6">
+<div class="grp-nav"><div class="grp-bk" onclick="grpGoPage('grp-p5')">‹</div><div style="flex:1;text-align:center;"><div class="grp-nt">Mon itinéraire</div><div class="grp-ns">Mer. 2 avril · Optimisé par l'IA</div></div><div style="width:28px;"></div></div>
+<div class="grp-progress"><div class="grp-pd on"></div><div class="grp-pd on"></div><div class="grp-pd on"></div><div class="grp-pd on"></div><div class="grp-pd"></div></div>
+<div class="grp-scroll" style="padding-top:10px;">
+<div style="display:flex;flex-direction:column;">
+<div class="itin-item"><div class="it-timeline"><div class="it-dot"></div><div class="it-line"></div></div><div class="it-content"><div class="it-time">10:00</div><div class="it-card"><div class="itc-name">💅 Remplissage gel</div><div class="itc-who">Sassa · Bloom Nails</div><div class="itc-lieu">📍 27 av. Jean Médecin</div><div class="itc-price">65€ · 1h10</div><div class="itc-actions"><div class="itc-btn">👤 Profil</div><div class="itc-btn">📞 Appeler</div><div class="itc-btn">🗺 Y aller</div></div></div></div></div>
+<div class="itin-item"><div class="it-timeline"><div class="it-dot" style="background:var(--border);"></div><div class="it-line dashed"></div></div><div class="it-content" style="padding:4px 0;"><div style="display:flex;align-items:center;font-size:12px;color:var(--gray);">🚶 12 min · 0,9 km <span style="color:var(--gray);margin-left:4px;">→ 11:22</span></div></div></div>
+<div class="itin-item"><div class="it-timeline"><div class="it-dot"></div><div class="it-line"></div></div><div class="it-content"><div class="it-time">11:22 · +10 min tampon</div><div class="it-card"><div class="itc-name">👁️ Volume russe</div><div class="itc-who">Nina Cils</div><div class="itc-lieu">📍 8 rue Masséna</div><div class="itc-price">80€ · 2h</div><div class="itc-actions"><div class="itc-btn">👤 Profil</div><div class="itc-btn">📞 Appeler</div><div class="itc-btn">🗺 Y aller</div></div></div></div></div>
+<div class="itin-item"><div class="it-timeline"><div class="it-dot" style="background:var(--border);"></div><div class="it-line dashed"></div></div><div class="it-content" style="padding:4px 0;"><div style="display:flex;align-items:center;font-size:12px;color:var(--gray);">🚗 8 min · 2,1 km <span style="color:var(--gray);margin-left:4px;">→ 13:40</span><span class="tight-alert">⚠️ Serré</span></div></div></div>
+<div class="itin-item"><div class="it-timeline"><div class="it-dot"></div><div class="it-line" style="background:transparent;"></div></div><div class="it-content"><div class="it-time">13:40 · +10 min tampon</div><div class="it-card"><div class="itc-name">💇 Brushing</div><div class="itc-who">Karima Hair</div><div class="itc-lieu">📍 15 bd Victor Hugo</div><div class="itc-price">45€ · 45 min</div><div class="itc-actions"><div class="itc-btn">👤 Profil</div><div class="itc-btn">📞 Appeler</div><div class="itc-btn">🗺 Y aller</div></div></div></div></div>
+</div>
+<div class="total-box"><div class="tot-row"><span class="tot-k">Acomptes payés</span><span class="tot-v" style="color:var(--green);">43,50€ ✓</span></div><div class="tot-row"><span class="tot-k">Reste à payer sur place</span><span class="tot-v">146,50€</span></div><div class="tot-row"><span class="tot-k">Durée totale</span><span class="tot-v">4h · 10h → 14h25</span></div><div class="tot-final"><span style="font-size:14px;font-weight:700;">Total journée</span><span style="font-size:20px;font-weight:900;">190€</span></div></div>
+<div class="grp-map-preview">
+<div class="grp-map-marker" style="top:22%;left:16%;">💅</div>
+<div class="grp-map-marker" style="top:44%;left:50%;">👁️</div>
+<div class="grp-map-marker" style="top:62%;left:70%;">💇</div>
+<svg style="position:absolute;top:0;left:0;width:100%;height:100%;" viewBox="0 0 375 160"><path d="M68 35 Q140 60 195 70" stroke="var(--black)" stroke-width="2" fill="none" stroke-dasharray="4,4" opacity=".4"/><path d="M195 70 Q240 90 270 100" stroke="var(--black)" stroke-width="2" fill="none" stroke-dasharray="4,4" opacity=".4"/></svg>
+<div style="position:absolute;bottom:8px;right:8px;background:white;border-radius:8px;padding:5px 10px;font-size:11px;font-weight:700;color:var(--black);box-shadow:0 2px 8px rgba(0,0,0,.1);">Agrandir la carte ↗</div>
+</div>
+</div>
+<div class="grp-bottom"><button class="grp-btn-main" onclick="grpGoPage('grp-p7')">Confirmer ma journée →</button></div>
+</div>
+
+<!-- PAGE 7 — CONFIRMATION -->
+<div class="grp-pg" id="grp-p7">
+<div class="conf-body">
+<div class="chk">✓</div>
+<div style="font-size:22px;font-weight:900;color:var(--black);">Journée confirmée !</div>
+<div style="font-size:13px;color:var(--gray);line-height:1.6;">3 réservations enregistrées.<br>Un rappel la veille pour chaque RDV.</div>
+<div class="conf-card">
+<div class="cf-rdv"><div style="display:flex;justify-content:space-between;margin-bottom:2px;"><span style="font-size:13px;font-weight:800;">💅 10:00 · Remplissage</span><span style="font-size:13px;font-weight:800;">65€</span></div><div style="font-size:11px;color:var(--gray);margin-bottom:4px;">Sassa · 27 av. Jean Médecin</div><div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--green);font-weight:700;">✓ Acompte 19,50€</span><span style="color:var(--gray);">Sur place : 45,50€</span></div></div>
+<div class="cf-rdv"><div style="display:flex;justify-content:space-between;margin-bottom:2px;"><span style="font-size:13px;font-weight:800;">👁️ 11:32 · Volume russe</span><span style="font-size:13px;font-weight:800;">80€</span></div><div style="font-size:11px;color:var(--gray);margin-bottom:4px;">Nina · 8 rue Masséna</div><div style="display:flex;justify-content:space-between;font-size:11px;"><span style="color:var(--green);font-weight:700;">✓ Acompte 24€</span><span style="color:var(--gray);">Sur place : 56€</span></div></div>
+<div class="cf-rdv"><div style="display:flex;justify-content:space-between;margin-bottom:2px;"><span style="font-size:13px;font-weight:800;">💇 13:50 · Brushing</span><span style="font-size:13px;font-weight:800;">45€</span></div><div style="font-size:11px;color:var(--gray);margin-bottom:4px;">Karima · 15 bd Victor Hugo</div><div style="font-size:11px;color:var(--gray);">Pas d'acompte · 45€ sur place</div></div>
+<div style="padding:10px 0 0;"><div style="display:flex;justify-content:space-between;margin-bottom:3px;"><span style="font-size:12px;color:var(--gray);">Acomptes payés</span><span style="font-size:13px;font-weight:700;color:var(--green);">43,50€ ✓</span></div><div style="display:flex;justify-content:space-between;padding-top:8px;border-top:1.5px solid var(--black);margin-top:4px;"><span style="font-size:14px;font-weight:800;">Total journée</span><span style="font-size:18px;font-weight:900;">190€</span></div></div>
+</div>
+</div>
+<div class="grp-bottom">
+<button class="grp-btn-main" onclick="grpGoPage('grp-p6')" style="margin-bottom:8px;">🗺 Lancer l'itinéraire</button>
+<button class="grp-btn-outline">📅 Ajouter au calendrier</button>
+<button class="grp-btn-ghost" onclick="grpGoPage('grp-p1')">Voir mes RDV</button>
+</div>
+</div>
+
+</div>
+</div><!-- /mod-groupes -->
 
 <!-- MODULE FEED -->
 
@@ -5486,6 +5802,26 @@ function forumCloseThread(){document.getElementById('forum-thread-overlay').clas
 function saSelMonth(el){el.closest('.month-scroll').querySelectorAll('.month-pill').forEach(p=>p.classList.remove('on'));el.classList.add('on');}
 function saOpenStory(){document.getElementById('sa-story-viewer').classList.add('on');}
 function saCloseStory(){document.getElementById('sa-story-viewer').classList.remove('on');}
+
+// ── MODULE GROUPES (Journée type) ──
+function grpGoPage(id){document.querySelectorAll('#mod-groupes .grp-pg').forEach(p=>p.classList.remove('on'));document.getElementById(id)?.classList.add('on');}
+function grpReset(){grpGoPage('grp-p1');}
+function grpHomeTab(el,cId){el.parentElement.querySelectorAll('.grp-tab').forEach(t=>t.classList.remove('on'));el.classList.add('on');document.querySelectorAll('#grp-t-new,#grp-t-mes').forEach(d=>d.style.display='none');document.getElementById(cId).style.display=cId==='grp-t-new'?'flex':'block';}
+function grpSelWho(el){const opts=el.closest('div').querySelectorAll('.wdot');opts.forEach(d=>d.classList.remove('on'));el.querySelector('.wdot').classList.add('on');}
+function grpSelPer(el){el.closest('div').querySelectorAll('.grp-pill').forEach(p=>p.classList.remove('on'));el.classList.add('on');}
+function grpSelPill(el){el.closest('.grp-pills-wrap').querySelectorAll('.grp-pill').forEach(p=>p.classList.remove('on'));el.classList.add('on');}
+function grpSelRadio(el){el.closest('.grp-sub-content').querySelectorAll('.radio-item').forEach(r=>{r.classList.remove('sel');r.querySelector('.rdot').classList.remove('on');});el.classList.add('sel');el.querySelector('.rdot').classList.add('on');}
+let grpCurRdv=1;
+const grpRdvs=[{title:'Prestation 1/3',sub:'💅 Ongles · Sassa'},{title:'Prestation 2/3',sub:'👁️ Cils · Nina'},{title:'Prestation 3/3',sub:'💇 Coiffure · Karima'}];
+function grpStartFlow(){grpCurRdv=1;grpUpdateFlow();grpGoPage('grp-p4');}
+function grpUpdateFlow(){document.getElementById('grp-flow-title').textContent=grpRdvs[grpCurRdv-1].title;document.getElementById('grp-flow-sub').textContent=grpRdvs[grpCurRdv-1].sub;[1,2,3].forEach(i=>{const el=document.getElementById('grp-rd'+i);if(el)el.className='grp-pd'+(i<=grpCurRdv?' on':'');});grpSetStep(1);}
+function grpSetStep(n){[1,2].forEach(i=>{const sc=document.getElementById('grp-sc'+i);const fb=document.getElementById('grp-fbtn'+i);const st=document.getElementById('grp-st'+i);if(sc)sc.className='grp-sub-content'+(i===n?' on':'');if(fb)fb.style.display=i===n?'block':'none';if(st)st.className='grp-stab'+(i===n?' on':'');});}
+function grpNextRdv(){if(grpCurRdv<3){grpCurRdv++;grpUpdateFlow();}else{grpGoPage('grp-p5');}}
+function grpOpenSearch(){document.getElementById('grp-search-ov')?.classList.add('on');}
+function grpCloseSearch(){document.getElementById('grp-search-ov')?.classList.remove('on');const inp=document.getElementById('grp-search-input');if(inp)inp.value='';const res=document.getElementById('grp-search-results');if(res)res.style.display='none';}
+const grpAllPrests=[{ic:'💆',name:'Massage',dur:'~1h'},{ic:'🦷',name:'Blanchiment',dur:'~1h'},{ic:'🧖',name:'Épilation',dur:'~45min'},{ic:'💆‍♀️',name:'Soin visage',dur:'~1h'},{ic:'🌿',name:'Spa',dur:'~2h'},{ic:'💋',name:'Maquillage',dur:'~1h'},{ic:'💅',name:'Ongles',dur:'~1h10'},{ic:'👁️',name:'Cils',dur:'~2h'},{ic:'💇',name:'Coiffure',dur:'~45min'},{ic:'🧴',name:'Épilation cire',dur:'~30min'},{ic:'👄',name:'Microblading',dur:'~2h'},{ic:'🌸',name:'Soin corps',dur:'~1h30'}];
+function grpFilterSearch(val){const res=document.getElementById('grp-search-results');if(!val){res.style.display='none';return;}const filtered=grpAllPrests.filter(p=>p.name.toLowerCase().includes(val.toLowerCase()));res.innerHTML=filtered.map(p=>'<div class="search-result" onclick="grpAddPrest(\''+p.ic+'\',\''+p.name+'\',\''+p.dur+'\')"><div class="sr-ic">'+p.ic+'</div><div class="sr-name">'+p.name+'</div><div class="sr-dur">'+p.dur+'</div></div>').join('');res.style.display='block';}
+function grpAddPrest(ic,name,dur){const list=document.getElementById('grp-prest-list');const div=document.createElement('div');div.className='prest-row';div.innerHTML='<div class="prest-top"><div class="pr-ic">'+ic+'</div><div style="flex:1;"><div class="pr-name">'+name+'</div></div><div class="pr-duration">'+dur+'</div><div class="pr-del" onclick="this.closest(\'.prest-row\').remove()">🗑</div></div><div class="budget-row"><div class="budget-label">Budget max</div><input class="budget-input" type="number" value="60"/><span style="font-size:13px;color:var(--gray);">€</span></div>';list.appendChild(div);grpCloseSearch();}
 
 // ── MODULE FINANCES ──
 function finGo(id){document.getElementById(id)?.classList.add('on');}
