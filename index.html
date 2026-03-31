@@ -68,7 +68,7 @@ body.dark-mode .cliente-sheet{background:var(--bg);}
 body.dark-mode .cliente-picker.filled{background:var(--light);}
 body.dark-mode .produit-card.sel{background:var(--light);}
 body.dark-mode .source-btn.on{background:var(--light);color:var(--text);}
-body.dark-mode #mod-stories-archive .month-pill.on{background:var(--light);color:var(--text);}
+body.dark-mode #mod-stories-archive .sv-share{background:rgba(255,255,255,.15);}
 body.dark-mode .tb-icon svg{stroke:var(--text);fill:var(--text);}
 body.dark-mode .tb-item{color:var(--text);}
 body.dark-mode .pnav-icon{color:var(--text);}
@@ -1549,14 +1549,14 @@ label.adj-label{display:block;}
 #mod-parrainage .ps-expired{color:var(--gray);}
 
 /* ══ MODULE STORIES ARCHIVES ══ */
-#mod-stories-archive{z-index:66;background:var(--black)!important;}
+#mod-stories-archive{z-index:66;background:var(--bg)!important;}
 #mod-stories-archive .sa-navbar{display:flex;align-items:center;justify-content:space-between;padding:10px 16px 8px;flex-shrink:0;}
-#mod-stories-archive .sa-title{font-size:16px;font-weight:800;color:white;}
-#mod-stories-archive .sa-action{font-size:13px;font-weight:700;color:rgba(255,255,255,.6);}
+#mod-stories-archive .sa-title{font-size:16px;font-weight:800;color:var(--text);}
+#mod-stories-archive .sa-action{font-size:13px;font-weight:700;color:var(--gray);}
 #mod-stories-archive .month-scroll{display:flex;gap:8px;padding:0 16px 12px;overflow-x:auto;flex-shrink:0;}
 #mod-stories-archive .month-scroll::-webkit-scrollbar{display:none;}
-#mod-stories-archive .month-pill{padding:6px 14px;border-radius:20px;flex-shrink:0;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;}
-#mod-stories-archive .month-pill.on{background:var(--bg);color:var(--black);}
+#mod-stories-archive .month-pill{padding:6px 14px;border-radius:20px;flex-shrink:0;background:var(--light);color:var(--gray);font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;}
+#mod-stories-archive .month-pill.on{background:var(--btn-bg);color:var(--btn-fg);}
 #mod-stories-archive .archive-grid{flex:1;overflow-y:auto;padding:0 2px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px;align-content:start;}
 #mod-stories-archive .archive-grid::-webkit-scrollbar{display:none;}
 #mod-stories-archive .archive-item{aspect-ratio:9/16;background:#2A2A2A;display:flex;align-items:center;justify-content:center;font-size:36px;cursor:pointer;position:relative;overflow:hidden;}
@@ -4506,7 +4506,7 @@ MODULES PROFIL
 
 <!-- ═══ MODULE STORIES ARCHIVES ═══ -->
 <div class="module" id="mod-stories-archive">
-<div class="sa-navbar"><div style="font-size:24px;color:white;cursor:pointer;" onclick="closeModule('mod-stories-archive')">‹</div><div class="sa-title">Mes archives</div><div class="sa-action">Gérer</div></div>
+<div class="sa-navbar"><div style="font-size:24px;color:var(--text);cursor:pointer;" onclick="closeModule('mod-stories-archive')">‹</div><div class="sa-title">Mes archives</div><div class="sa-action">Gérer</div></div>
 <div class="month-scroll">
 <div class="month-pill on" onclick="saSelMonth(this)">Mars 2026</div>
 <div class="month-pill" onclick="saSelMonth(this)">Fév. 2026</div>
