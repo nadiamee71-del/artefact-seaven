@@ -1690,6 +1690,159 @@ label.adj-label{display:block;}
 #flow-pro-enc .enc-btn-outline{width:100%;padding:13px;border-radius:14px;background:white;border:1.5px solid var(--border);color:var(--black);font-size:14px;font-weight:700;cursor:pointer;font-family:'Manrope',sans-serif;margin-top:8px;}
 #flow-pro-enc .enc-btn-ghost{width:100%;padding:9px;background:none;border:none;color:var(--gray);font-size:13px;font-weight:600;cursor:pointer;margin-top:6px;font-family:'Manrope',sans-serif;}
 
+/* ══ FINANCES ══ */
+#mod-finances{display:flex;flex-direction:column;min-height:0;z-index:66;}
+#mod-finances .fin-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:0 0 24px;}
+#mod-finances .fin-body::-webkit-scrollbar{display:none;}
+#mod-finances .fin-screen{display:none;flex-direction:column;position:absolute;inset:0;background:var(--bg);overflow:hidden;z-index:2;}
+#mod-finances .fin-screen.on{display:flex;}
+#mod-finances .fin-nav{display:flex;align-items:center;gap:8px;padding:10px 16px 5px;flex-shrink:0;}
+#mod-finances .fin-bk{font-size:26px;font-weight:700;color:var(--black);cursor:pointer;line-height:1;padding-right:4px;flex-shrink:0;}
+#mod-finances .fin-nt{font-size:17px;font-weight:900;color:var(--black);flex:1;letter-spacing:-.2px;}
+#mod-finances .fin-na{font-size:12px;font-weight:800;color:var(--black);background:white;padding:6px 13px;border-radius:20px;cursor:pointer;border:1.5px solid var(--border);white-space:nowrap;flex-shrink:0;}
+#mod-finances .fin-sec{margin:7px 16px 0;}
+#mod-finances .fin-slbl{font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;padding-left:2px;}
+#mod-finances .fin-card{background:white;border-radius:16px;overflow:hidden;}
+#mod-finances .fin-row{display:flex;align-items:center;gap:11px;padding:12px 16px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .1s;}
+#mod-finances .fin-row:last-child{border-bottom:none;}
+#mod-finances .fin-row:active{background:#F4F4F4;}
+#mod-finances .fin-ric{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;background:var(--light);}
+#mod-finances .fin-rtx{flex:1;min-width:0;}
+#mod-finances .fin-rl{font-size:15px;font-weight:600;color:var(--black);}
+#mod-finances .fin-rs{font-size:11px;color:var(--gray);margin-top:1px;}
+#mod-finances .fin-chev{color:#C7C7CC;font-size:16px;font-weight:700;flex-shrink:0;}
+#mod-finances .fin-rend{display:flex;align-items:center;gap:5px;flex-shrink:0;}
+#mod-finances .fin-val{font-size:13px;font-weight:700;color:var(--gray);}
+#mod-finances .fin-val.g{color:var(--green);}
+#mod-finances .fin-val.r{color:var(--red);}
+#mod-finances .fin-val.o{color:var(--orange);}
+#mod-finances .fin-sc{background:white;border-radius:16px;padding:13px 15px;margin:6px 16px 0;}
+#mod-finances .fin-scl{font-size:10px;color:var(--gray);font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px;}
+#mod-finances .fin-scv{font-size:25px;font-weight:900;color:var(--black);letter-spacing:-.5px;line-height:1.1;}
+#mod-finances .fin-scg{display:grid;gap:5px;margin-top:8px;}
+#mod-finances .fin-scg3{grid-template-columns:1fr 1fr 1fr;}
+#mod-finances .fin-scg2{grid-template-columns:1fr 1fr;}
+#mod-finances .fin-pill{background:var(--light);border-radius:9px;padding:7px 9px;cursor:pointer;}
+#mod-finances .fin-pill-l{font-size:9px;color:var(--gray);font-weight:700;text-transform:uppercase;letter-spacing:.3px;margin-bottom:2px;}
+#mod-finances .fin-pill-v{font-size:13px;font-weight:800;color:var(--black);}
+#mod-finances .fin-pill-v.g{color:var(--green);}
+#mod-finances .fin-pill-v.r{color:var(--red);}
+#mod-finances .fin-pill-v.o{color:var(--orange);}
+#mod-finances .fin-pill-v.b{color:#4A90D9;}
+#mod-finances .fin-ptabs{display:flex;background:white;border-radius:10px;margin:4px 16px 5px;padding:3px;flex-shrink:0;}
+#mod-finances .fin-ptab{flex:1;text-align:center;padding:7px 2px;font-size:12px;font-weight:700;color:var(--gray);border-radius:8px;cursor:pointer;transition:all .15s;}
+#mod-finances .fin-ptab.on{background:var(--black);color:white;}
+#mod-finances .fin-stabs{display:flex;gap:6px;padding:2px 16px 5px;overflow-x:auto;flex-shrink:0;}
+#mod-finances .fin-stabs::-webkit-scrollbar{display:none;}
+#mod-finances .fin-stab{padding:5px 13px;border-radius:20px;font-size:12px;font-weight:700;color:var(--gray);background:white;white-space:nowrap;cursor:pointer;border:1.5px solid var(--border);flex-shrink:0;}
+#mod-finances .fin-stab.on{background:var(--black);color:white;border-color:var(--black);}
+#mod-finances .fin3{margin:6px 16px 0;border-radius:14px;overflow:hidden;}
+#mod-finances .fin3-row{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-bottom:1px solid rgba(255,255,255,.08);}
+#mod-finances .fin3-k{font-size:12px;font-weight:600;}
+#mod-finances .fin3-v{font-size:14px;font-weight:900;}
+#mod-finances .fin3-total{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;}
+#mod-finances .fin3-tk{font-size:13px;font-weight:700;}
+#mod-finances .fin3-tv{font-size:20px;font-weight:900;}
+#mod-finances .fin-pw{margin:6px 16px 0;background:white;border-radius:13px;padding:11px 13px;}
+#mod-finances .fin-pt{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;}
+#mod-finances .fin-pl{font-size:13px;font-weight:700;color:var(--black);}
+#mod-finances .fin-pp{font-size:13px;font-weight:900;}
+#mod-finances .fin-pbar{height:7px;background:var(--border);border-radius:4px;overflow:hidden;margin-bottom:5px;}
+#mod-finances .fin-pfill{height:100%;border-radius:4px;}
+#mod-finances .fin-pi{display:flex;justify-content:space-between;font-size:11px;color:var(--gray);font-weight:600;}
+#mod-finances .fin-dr{display:flex;justify-content:space-between;align-items:center;padding:9px 15px;border-bottom:1px solid var(--border);}
+#mod-finances .fin-dr:last-child{border-bottom:none;}
+#mod-finances .fin-drk{font-size:13px;color:var(--gray);font-weight:600;}
+#mod-finances .fin-drv{font-size:13px;font-weight:800;color:var(--black);}
+#mod-finances .fin-drv.g{color:var(--green);}
+#mod-finances .fin-drv.r{color:var(--red);}
+#mod-finances .fin-alert{margin:6px 16px 0;border-radius:11px;padding:8px 11px;display:flex;align-items:center;gap:9px;}
+#mod-finances .fin-alert.aw{background:#FFF8E8;border:1px solid #FFD580;}
+#mod-finances .fin-alert.ae{background:#FFF0F0;border:1px solid #FFBDBD;}
+#mod-finances .fin-alert.ag{background:#F0FFF4;border:1px solid #A8E6B8;}
+#mod-finances .fin-alert-ic{font-size:13px;flex-shrink:0;}
+#mod-finances .fin-alert-tx{font-size:11px;font-weight:600;flex:1;line-height:1.4;}
+#mod-finances .fin-ci{display:flex;align-items:center;gap:11px;padding:10px 16px;border-bottom:1px solid var(--border);cursor:pointer;}
+#mod-finances .fin-ci:last-child{border-bottom:none;}
+#mod-finances .fin-ci:active{background:#F4F4F4;}
+#mod-finances .fin-cin{font-size:15px;font-weight:600;color:var(--black);}
+#mod-finances .fin-cid{font-size:11px;color:var(--gray);margin-top:1px;}
+#mod-finances .fin-cia{font-size:14px;font-weight:900;color:var(--red);}
+#mod-finances .fin-potgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:6px 16px 0;}
+#mod-finances .fin-pot{background:white;border-radius:13px;padding:11px;cursor:pointer;}
+#mod-finances .fin-pot:active{opacity:.85;}
+#mod-finances .fin-pot-ic{font-size:19px;margin-bottom:3px;}
+#mod-finances .fin-pot-nm{font-size:12px;font-weight:700;color:var(--black);}
+#mod-finances .fin-pot-v{font-size:17px;font-weight:900;color:var(--black);}
+#mod-finances .fin-pot-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:5px;}
+#mod-finances .fin-pot-bf{height:100%;border-radius:2px;}
+#mod-finances .fin-pot-sub{font-size:10px;color:var(--gray);font-weight:600;margin-bottom:5px;line-height:1.3;}
+#mod-finances .fin-fi{display:flex;align-items:center;gap:10px;padding:10px 15px;border-bottom:1px solid var(--border);cursor:pointer;}
+#mod-finances .fin-fi:last-child{border-bottom:none;}
+#mod-finances .fin-fi:active{background:#F4F4F4;}
+#mod-finances .fin-finum{font-size:10px;font-weight:700;color:var(--gray);}
+#mod-finances .fin-fin{font-size:14px;font-weight:700;color:var(--black);}
+#mod-finances .fin-fid{font-size:11px;color:var(--gray);margin-top:1px;}
+#mod-finances .fin-fia{font-size:14px;font-weight:900;color:var(--black);}
+#mod-finances .fin-fist{font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;margin-top:2px;display:inline-block;}
+#mod-finances .fin-fist.paid{background:#EAF9EF;color:var(--green);}
+#mod-finances .fin-fist.pend{background:#FFF3E8;color:var(--orange);}
+#mod-finances .fin-fist.late{background:#FEECEB;color:var(--red);}
+#mod-finances .fin-ri{display:flex;align-items:center;gap:10px;padding:9px 15px;border-bottom:1px solid var(--border);cursor:pointer;}
+#mod-finances .fin-ri:last-child{border-bottom:none;}
+#mod-finances .fin-ri:active{background:#F4F4F4;}
+#mod-finances .fin-riic{width:33px;height:33px;border-radius:9px;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+#mod-finances .fin-rin{font-size:13px;font-weight:700;color:var(--black);}
+#mod-finances .fin-rid{font-size:11px;color:var(--gray);margin-top:1px;}
+#mod-finances .fin-ria{font-size:14px;font-weight:900;color:var(--black);}
+#mod-finances .fin-rim{font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;margin-top:2px;display:inline-block;}
+#mod-finances .fin-rim.esp{background:#EAF9EF;color:var(--green);}
+#mod-finances .fin-rim.cb{background:#EEF4FF;color:#4A90D9;}
+#mod-finances .fin-rim.vir{background:#F5F0FF;color:#A87DC8;}
+#mod-finances .fin-ii{display:flex;align-items:center;gap:10px;padding:10px 15px;border-bottom:1px solid var(--border);}
+#mod-finances .fin-ii:last-child{border-bottom:none;}
+#mod-finances .fin-iiav{width:35px;height:35px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--black);flex-shrink:0;}
+#mod-finances .fin-iin{font-size:13px;font-weight:700;color:var(--black);}
+#mod-finances .fin-iid{font-size:11px;color:var(--gray);margin-top:1px;}
+#mod-finances .fin-iib{font-size:10px;font-weight:700;color:white;background:var(--red);padding:2px 7px;border-radius:6px;cursor:pointer;margin-top:3px;display:inline-block;}
+#mod-finances .fin-iia{font-size:14px;font-weight:900;color:var(--red);flex-shrink:0;}
+#mod-finances .fin-dep-sel{display:flex;gap:5px;padding:4px 16px 2px;flex-shrink:0;overflow-x:auto;}
+#mod-finances .fin-dep-sel::-webkit-scrollbar{display:none;}
+#mod-finances .fin-dep-chip{padding:5px 12px;border-radius:18px;font-size:12px;font-weight:700;color:var(--gray);background:white;border:1.5px solid var(--border);cursor:pointer;white-space:nowrap;flex-shrink:0;}
+#mod-finances .fin-dep-chip.on{background:var(--black);color:white;border-color:var(--black);}
+#mod-finances .fin-trow{display:flex;align-items:center;gap:9px;padding:9px 13px;border-bottom:1px solid var(--border);cursor:pointer;}
+#mod-finances .fin-trow:last-child{border-bottom:none;}
+#mod-finances .fin-tdate{font-size:10px;font-weight:700;color:var(--gray);width:40px;flex-shrink:0;}
+#mod-finances .fin-titem{flex:1;font-size:13px;font-weight:700;color:var(--black);}
+#mod-finances .fin-tprix{font-size:14px;font-weight:900;color:var(--red);flex-shrink:0;}
+#mod-finances .fin-scat{display:flex;align-items:center;gap:11px;padding:12px 15px;border-bottom:1px solid var(--border);cursor:pointer;}
+#mod-finances .fin-scat:last-child{border-bottom:none;}
+#mod-finances .fin-scat:active{background:#F4F4F4;}
+#mod-finances .fin-scatic{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+#mod-finances .fin-scatn{font-size:14px;font-weight:700;color:var(--black);}
+#mod-finances .fin-scats{font-size:11px;color:var(--gray);margin-top:1px;}
+#mod-finances .fin-scatv{font-size:13px;font-weight:800;color:var(--black);}
+#mod-finances .fin-bar-chart{margin:6px 16px 0;background:white;border-radius:13px;padding:12px;}
+#mod-finances .fin-bar-chart-ttl{font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px;}
+#mod-finances .fin-bars{display:flex;align-items:flex-end;gap:4px;height:60px;}
+#mod-finances .fin-bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;}
+#mod-finances .fin-bar-fill{width:100%;border-radius:4px 4px 0 0;background:var(--black);}
+#mod-finances .fin-bar-lbl{font-size:9px;font-weight:700;color:var(--gray);}
+#mod-finances .fin-hb{display:flex;align-items:center;gap:7px;padding:8px 15px;border-bottom:1px solid var(--border);cursor:pointer;}
+#mod-finances .fin-hb:last-child{border-bottom:none;}
+#mod-finances .fin-hbn{font-size:12px;font-weight:700;color:var(--black);width:80px;flex-shrink:0;}
+#mod-finances .fin-hbw{flex:1;height:7px;background:var(--border);border-radius:4px;overflow:hidden;position:relative;}
+#mod-finances .fin-hbf{height:100%;border-radius:4px;background:var(--black);}
+#mod-finances .fin-hbv{font-size:12px;font-weight:800;color:var(--black);width:24px;text-align:right;flex-shrink:0;}
+#mod-finances .fin-hbc{font-size:11px;font-weight:700;color:var(--gray);width:56px;text-align:right;flex-shrink:0;}
+#mod-finances .fin-gr-row{display:flex;align-items:center;gap:7px;padding:7px 15px;border-bottom:1px solid var(--border);}
+#mod-finances .fin-gr-row:last-child{border-bottom:none;}
+#mod-finances .fin-gr-nm{font-size:12px;font-weight:700;color:var(--black);width:28px;flex-shrink:0;}
+#mod-finances .fin-gr-w{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden;}
+#mod-finances .fin-gr-f{height:100%;border-radius:4px;}
+#mod-finances .fin-gr-v{font-size:12px;font-weight:800;color:var(--black);width:60px;text-align:right;flex-shrink:0;}
+#mod-finances .fin-note{font-size:11px;color:var(--gray);font-weight:600;margin:5px 16px 0;line-height:1.5;}
+
 /* ══ RESPONSIVE — plein écran sur mobile ══ */
 @media(max-width:500px){
 body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
@@ -1772,7 +1925,7 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="app-item" onclick="openModule('mod-evenements')"><div class="app-icon">🎉</div><div class="app-name">Événements</div></div>
 <div class="app-item" onclick="openModule('mod-avant-apres')"><div class="app-icon">🪞</div><div class="app-name">Avant-Après</div></div>
 <div class="app-item" onclick="openModule('mod-formation')"><div class="app-icon">🎓</div><div class="app-name">Formations</div></div>
-<div class="app-item"><div class="app-icon" style="background:#F0FFF4;">📊</div><div class="app-name">Finances</div></div>
+<div class="app-item" onclick="openModule('mod-finances')"><div class="app-icon" style="background:#F0FFF4;">📊</div><div class="app-name">Finances</div></div>
 <div class="app-item" onclick="openModule('mod-reglages')"><div class="app-icon">⚙️</div><div class="app-name">Réglages</div></div>
 </div>
 <div class="grid-page">
@@ -2075,7 +2228,7 @@ body{background:white;padding:0;gap:0;min-height:100vh;min-height:100dvh;}
 <div class="app-item" onclick="openModule('mod-evenements')"><div class="app-icon">🎉</div><div class="app-name">Événements</div></div>
 <div class="app-item" onclick="openModule('mod-avant-apres')"><div class="app-icon">🪞</div><div class="app-name">Avant-Après</div></div>
 <div class="app-item" onclick="openModule('mod-formation')"><div class="app-icon">🎓</div><div class="app-name">Formations</div></div>
-<div class="app-item"><div class="app-icon" style="background:#F0FFF4;">📊</div><div class="app-name">Finances</div></div>
+<div class="app-item" onclick="openModule('mod-finances')"><div class="app-icon" style="background:#F0FFF4;">📊</div><div class="app-name">Finances</div></div>
 <div class="app-item" onclick="openModule('mod-reglages')"><div class="app-icon">⚙️</div><div class="app-name">Réglages</div></div>
 </div>
 <div class="grid-page">
@@ -3272,6 +3425,327 @@ MODULES PROFIL
 <div class="sv-footer"><div class="sv-stats"><div class="sv-stat">👁 124 vues</div><div class="sv-stat">❤️ 48 réactions</div><div class="sv-stat">↗ 12 partages</div></div><button class="sv-share">Partager à nouveau</button></div>
 </div>
 </div><!-- /mod-stories-archive -->
+
+<!-- ═══ MODULE FINANCES ═══ -->
+<div class="module" id="mod-finances">
+<div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-finances')">‹</div><div class="mod-title">Finances</div><div style="width:32px;"></div></div>
+<div class="fin-body" style="position:relative;">
+
+<!-- HOME FINANCES -->
+<div style="padding:7px 20px 2px;"><h1 style="font-size:22px;font-weight:900;color:var(--black);letter-spacing:-.3px;">📊 SEAVEN</h1><div style="font-size:12px;color:var(--gray);font-weight:600;margin-top:1px;">Soraya · AE · juil. 2024</div></div>
+
+<div class="fin-alert aw" style="margin:8px 16px 0;"><div class="fin-alert-ic">📋</div><div class="fin-alert-tx" style="color:#8A6000;">Aujourd'hui non renseigné</div><div style="font-size:11px;font-weight:800;color:var(--black);background:rgba(0,0,0,.07);padding:3px 8px;border-radius:7px;cursor:pointer;">Indiquer</div></div>
+
+<div class="fin-sec"><div class="fin-card">
+<div class="fin-row" onclick="finGo('fin-db')"><div class="fin-ric">📊</div><div class="fin-rtx"><div class="fin-rl">Tableau de bord</div><div class="fin-rs">CA · bénéfice · remplissage</div></div><div class="fin-rend"><div class="fin-val g">3 975 €</div><div class="fin-chev">›</div></div></div>
+<div class="fin-row" onclick="finGo('fin-global')"><div class="fin-ric">🌍</div><div class="fin-rtx"><div class="fin-rl">Global</div><div class="fin-rs">Depuis le début</div></div><div class="fin-rend"><div class="fin-val">55 198 €</div><div class="fin-chev">›</div></div></div>
+<div class="fin-row" onclick="finGo('fin-ca')"><div class="fin-ric">💰</div><div class="fin-rtx"><div class="fin-rl">CA & Prévisionnel</div><div class="fin-rs">Bénéfice · salaire · reste réel</div></div><div class="fin-rend"><div class="fin-val g">4 640 €</div><div class="fin-chev">›</div></div></div>
+</div></div>
+
+<div class="fin-sec"><div class="fin-slbl">Activité</div><div class="fin-card">
+<div class="fin-row" onclick="finGo('fin-activite')"><div class="fin-ric">📅</div><div class="fin-rtx"><div class="fin-rl">Activité</div><div class="fin-rs">Calendrier · jours</div></div><div class="fin-rend"><div class="fin-val">14 j.</div><div class="fin-chev">›</div></div></div>
+<div class="fin-row" onclick="finGo('fin-prestations')"><div class="fin-ric">💅</div><div class="fin-rtx"><div class="fin-rl">Prestations</div><div class="fin-rs">Stats · CA · objectif</div></div><div class="fin-rend"><div class="fin-val">61 poses</div><div class="fin-chev">›</div></div></div>
+<div class="fin-row" onclick="finGo('fin-clientes')"><div class="fin-ric">👥</div><div class="fin-rtx"><div class="fin-rl">Clientes</div><div class="fin-rs">Fidèles · nouvelles · inactives</div></div><div class="fin-rend"><div class="fin-val">39 hab.</div><div class="fin-chev">›</div></div></div>
+<div class="fin-row" onclick="finGo('fin-objectifs')"><div class="fin-ric">🎯</div><div class="fin-rtx"><div class="fin-rl">Objectifs</div><div class="fin-rs">Mois · année</div></div><div class="fin-rend"><div class="fin-val o">72%</div><div class="fin-chev">›</div></div></div>
+</div></div>
+
+<div class="fin-sec"><div class="fin-slbl">Finances</div><div class="fin-card">
+<div class="fin-row" onclick="finGo('fin-recettes')"><div class="fin-ric">📖</div><div class="fin-rtx"><div class="fin-rl">Recettes</div><div class="fin-rs">Livre · acomptes</div></div><div class="fin-rend"><div class="fin-chev">›</div></div></div>
+<div class="fin-row" onclick="finGo('fin-factures')"><div class="fin-ric">🧾</div><div class="fin-rtx"><div class="fin-rl">Factures</div><div class="fin-rs">Auto · TVA · export</div></div><div class="fin-rend"><div class="fin-chev">›</div></div></div>
+<div class="fin-row" onclick="finGo('fin-charges')"><div class="fin-ric">📋</div><div class="fin-rtx"><div class="fin-rl">Charges professionnelles</div><div class="fin-rs">Fixes · URSSAF</div></div><div class="fin-rend"><div class="fin-val r">−895 €</div><div class="fin-chev">›</div></div></div>
+<div class="fin-row" onclick="finGo('fin-depenses')"><div class="fin-ric">🛒</div><div class="fin-rtx"><div class="fin-rl">Dépenses</div><div class="fin-rs">Tickets par mois</div></div><div class="fin-rend"><div class="fin-val r">−233 €</div><div class="fin-chev">›</div></div></div>
+<div class="fin-row" onclick="finGo('fin-tresorerie')"><div class="fin-ric">🏦</div><div class="fin-rtx"><div class="fin-rl">Trésorerie</div><div class="fin-rs">Pots · 13% auto</div></div><div class="fin-rend"><div class="fin-val">4 722 €</div><div class="fin-chev">›</div></div></div>
+<div class="fin-row" onclick="finGo('fin-impayes')"><div class="fin-ric">🔴</div><div class="fin-rtx"><div class="fin-rl">Impayés</div><div class="fin-rs">Créances · à honorer</div></div><div class="fin-rend"><div style="width:7px;height:7px;border-radius:50%;background:var(--red);"></div><div class="fin-val r">115 €</div><div class="fin-chev">›</div></div></div>
+<div class="fin-row" onclick="finGo('fin-charges-perso')"><div class="fin-ric">🏠</div><div class="fin-rtx"><div class="fin-rl">Charges personnelles</div><div class="fin-rs">Fixes · rappels</div></div><div class="fin-rend"><div class="fin-chev">›</div></div></div>
+</div></div>
+
+<div class="fin-sec"><div class="fin-slbl">Matériel & tarifs</div><div class="fin-card">
+<div class="fin-row" onclick="finGo('fin-stocks')"><div class="fin-ric">📦</div><div class="fin-rtx"><div class="fin-rl">Stocks & matériel</div><div class="fin-rs">Catégories · alertes</div></div><div class="fin-rend"><div style="background:var(--red);color:white;font-size:10px;font-weight:800;padding:2px 7px;border-radius:10px;">3</div><div class="fin-chev">›</div></div></div>
+<div class="fin-row" onclick="finGo('fin-prix-revient')"><div class="fin-ric">🧮</div><div class="fin-rtx"><div class="fin-rl">Prix de revient</div><div class="fin-rs">Coût · bénéfice · salaire</div></div><div class="fin-rend"><div class="fin-chev">›</div></div></div>
+<div class="fin-row" onclick="finGo('fin-tarifs')"><div class="fin-ric">🏷️</div><div class="fin-rtx"><div class="fin-rl">Tarifs & rémunération</div><div class="fin-rs">Prix conseillé · besoin vital</div></div><div class="fin-rend"><div class="fin-chev">›</div></div></div>
+</div></div>
+
+<div class="fin-sec" style="margin-bottom:10px"><div class="fin-card">
+<div class="fin-row"><div class="fin-ric">↑</div><div class="fin-rtx"><div class="fin-rl">Exporter</div><div class="fin-rs">PDF · Excel · URSSAF</div></div><div class="fin-rend"><div class="fin-chev">›</div></div></div>
+<div class="fin-row" onclick="finGo('fin-config')"><div class="fin-ric">⚙️</div><div class="fin-rtx"><div class="fin-rl">Paramètres</div><div class="fin-rs">Statut · salariés · TVA</div></div><div class="fin-rend"><div class="fin-chev">›</div></div></div>
+</div></div>
+
+<!-- SUB-SCREEN : TABLEAU DE BORD -->
+<div class="fin-screen" id="fin-db">
+<div class="fin-nav"><div class="fin-bk" onclick="finBack('fin-db')">‹</div><div class="fin-nt">Tableau de bord</div></div>
+<div class="fin-ptabs"><div class="fin-ptab" onclick="finSelTab(this)">Jour</div><div class="fin-ptab" onclick="finSelTab(this)">Semaine</div><div class="fin-ptab on" onclick="finSelTab(this)">Mois</div><div class="fin-ptab" onclick="finSelTab(this)">Année</div></div>
+<div class="fin-body">
+<div class="fin-sc"><div class="fin-scl">Chiffre d'affaires · Déc. 2025</div><div class="fin-scv">3 975 €</div>
+<div class="fin-scg fin-scg3"><div class="fin-pill"><div class="fin-pill-l">Prestations</div><div class="fin-pill-v">3 475 €</div></div><div class="fin-pill"><div class="fin-pill-l">Ventes</div><div class="fin-pill-v">370 €</div></div><div class="fin-pill"><div class="fin-pill-l">Pourboires</div><div class="fin-pill-v">130 €</div></div></div></div>
+<div class="fin-bar-chart"><div class="fin-bar-chart-ttl">CA par semaine · Déc.</div><div class="fin-bars"><div class="fin-bar-col"><div class="fin-bar-fill" style="height:40px;"></div><div class="fin-bar-lbl">S1</div></div><div class="fin-bar-col"><div class="fin-bar-fill" style="height:55px;"></div><div class="fin-bar-lbl">S2</div></div><div class="fin-bar-col"><div class="fin-bar-fill" style="height:48px;"></div><div class="fin-bar-lbl">S3</div></div><div class="fin-bar-col"><div class="fin-bar-fill" style="height:32px;background:var(--border);"></div><div class="fin-bar-lbl">S4</div></div></div></div>
+<div class="fin-pw"><div class="fin-pt"><div class="fin-pl">Objectif mensuel</div><div class="fin-pp" style="color:var(--orange);">72%</div></div><div class="fin-pbar"><div class="fin-pfill" style="width:72%;background:var(--orange);"></div></div><div class="fin-pi"><span>3 975 € encaissés</span><span>objectif 5 500 €</span></div></div>
+<div class="fin-sec"><div class="fin-slbl">Remplissage</div><div class="fin-card">
+<div class="fin-hb"><div class="fin-hbn">Lundi</div><div class="fin-hbw"><div class="fin-hbf" style="width:85%;"></div></div><div class="fin-hbv">85</div><div class="fin-hbc">510 €</div></div>
+<div class="fin-hb"><div class="fin-hbn">Mardi</div><div class="fin-hbw"><div class="fin-hbf" style="width:100%;"></div></div><div class="fin-hbv">100</div><div class="fin-hbc">665 €</div></div>
+<div class="fin-hb"><div class="fin-hbn">Mercredi</div><div class="fin-hbw"><div class="fin-hbf" style="width:60%;"></div></div><div class="fin-hbv">60</div><div class="fin-hbc">390 €</div></div>
+<div class="fin-hb"><div class="fin-hbn">Jeudi</div><div class="fin-hbw"><div class="fin-hbf" style="width:90%;"></div></div><div class="fin-hbv">90</div><div class="fin-hbc">585 €</div></div>
+<div class="fin-hb"><div class="fin-hbn">Vendredi</div><div class="fin-hbw"><div class="fin-hbf" style="width:100%;"></div></div><div class="fin-hbv">100</div><div class="fin-hbc">650 €</div></div>
+<div class="fin-hb"><div class="fin-hbn">Samedi</div><div class="fin-hbw"><div class="fin-hbf" style="width:95%;"></div></div><div class="fin-hbv">95</div><div class="fin-hbc">630 €</div></div>
+</div></div>
+<div class="fin-sc"><div class="fin-scl">Moyennes</div>
+<div class="fin-scg fin-scg3"><div class="fin-pill"><div class="fin-pill-l">Panier moyen</div><div class="fin-pill-v">65 €</div></div><div class="fin-pill"><div class="fin-pill-l">RDV / jour</div><div class="fin-pill-v">4,4</div></div><div class="fin-pill"><div class="fin-pill-l">CA / jour</div><div class="fin-pill-v">284 €</div></div></div></div>
+</div></div>
+
+<!-- SUB-SCREEN : GLOBAL -->
+<div class="fin-screen" id="fin-global">
+<div class="fin-nav"><div class="fin-bk" onclick="finBack('fin-global')">‹</div><div class="fin-nt">Global · All time</div></div>
+<div class="fin-body">
+<div class="fin-sc"><div class="fin-scl">Depuis le début · juil. 2024</div><div class="fin-scv">55 198 €</div>
+<div class="fin-scg fin-scg3"><div class="fin-pill"><div class="fin-pill-l">Prestations</div><div class="fin-pill-v">48 620 €</div></div><div class="fin-pill"><div class="fin-pill-l">Ventes</div><div class="fin-pill-v">4 890 €</div></div><div class="fin-pill"><div class="fin-pill-l">Pourboires</div><div class="fin-pill-v">1 688 €</div></div></div></div>
+<div class="fin-sec"><div class="fin-slbl">Par année</div><div class="fin-card">
+<div class="fin-gr-row"><div class="fin-gr-nm">2025</div><div class="fin-gr-w"><div class="fin-gr-f" style="width:85%;background:var(--black);"></div></div><div class="fin-gr-v">42 580 €</div></div>
+<div class="fin-gr-row"><div class="fin-gr-nm">2024</div><div class="fin-gr-w"><div class="fin-gr-f" style="width:25%;background:var(--gray);"></div></div><div class="fin-gr-v">12 618 €</div></div>
+</div></div>
+<div class="fin-sc"><div class="fin-scl">Stats globales</div>
+<div class="fin-scg fin-scg2"><div class="fin-pill"><div class="fin-pill-l">Total RDV</div><div class="fin-pill-v">849</div></div><div class="fin-pill"><div class="fin-pill-l">Clientes uniques</div><div class="fin-pill-v">127</div></div><div class="fin-pill"><div class="fin-pill-l">Panier moyen</div><div class="fin-pill-v">65 €</div></div><div class="fin-pill"><div class="fin-pill-l">Taux fidélité</div><div class="fin-pill-v g">68%</div></div></div></div>
+</div></div>
+
+<!-- SUB-SCREEN : CA & PRÉVISIONNEL -->
+<div class="fin-screen" id="fin-ca">
+<div class="fin-nav"><div class="fin-bk" onclick="finBack('fin-ca')">‹</div><div class="fin-nt">CA & Prévisionnel</div></div>
+<div class="fin-body">
+<div class="fin-sc"><div class="fin-scl">CA Total prévisionnel · Déc. 2025</div><div class="fin-scv">4 640 €</div>
+<div class="fin-scg fin-scg3"><div class="fin-pill"><div class="fin-pill-l">Encaissé</div><div class="fin-pill-v g">3 975 €</div></div><div class="fin-pill"><div class="fin-pill-l">À venir</div><div class="fin-pill-v b">390 €</div></div><div class="fin-pill"><div class="fin-pill-l">Acompte 🔒</div><div class="fin-pill-v o">275 €</div></div></div></div>
+<div class="fin-pw"><div class="fin-pt"><div class="fin-pl">Objectif mensuel</div><div class="fin-pp" style="color:var(--orange);">72%</div></div><div class="fin-pbar"><div class="fin-pfill" style="width:72%;background:var(--orange);"></div></div><div class="fin-pi"><span>3 975 € encaissés</span><span>objectif 5 500 €</span></div></div>
+<!-- NIVEAU 1 : BÉNÉFICE NET -->
+<div class="fin-sec"><div class="fin-slbl">Résultat financier</div></div>
+<div class="fin3" style="background:linear-gradient(135deg,#1A1A1A,#2D2D2D);">
+<div class="fin3-row"><span class="fin3-k" style="color:rgba(255,255,255,.55);">CA encaissé</span><span class="fin3-v" style="color:#fff;">3 975 €</span></div>
+<div class="fin3-row"><span class="fin3-k" style="color:rgba(255,255,255,.55);">− Charges pro</span><span class="fin3-v" style="color:var(--red);">−895 €</span></div>
+<div class="fin3-row"><span class="fin3-k" style="color:rgba(255,255,255,.55);">− Dépenses</span><span class="fin3-v" style="color:var(--red);">−233 €</span></div>
+<div class="fin3-row"><span class="fin3-k" style="color:rgba(255,255,255,.55);">− Tréso 13%</span><span class="fin3-v" style="color:var(--orange);">−517 €</span></div>
+<div class="fin3-total" style="background:rgba(255,255,255,.1);"><span class="fin3-tk" style="color:rgba(255,255,255,.8);">= Bénéfice net</span><span class="fin3-tv" style="color:#7EC8A4;">2 330 €</span></div>
+</div>
+<!-- NIVEAU 2 : SALAIRE NET -->
+<div class="fin3" style="background:linear-gradient(135deg,#1A3A20,#1E5A28);margin-top:4px;">
+<div class="fin3-row"><span class="fin3-k" style="color:rgba(255,255,255,.55);">Bénéfice net</span><span class="fin3-v" style="color:#fff;">2 330 €</span></div>
+<div class="fin3-row"><span class="fin3-k" style="color:rgba(255,255,255,.55);">− URSSAF 22%</span><span class="fin3-v" style="color:var(--orange);">−513 €</span></div>
+<div class="fin3-total" style="background:rgba(255,255,255,.1);"><span class="fin3-tk" style="color:rgba(255,255,255,.8);">= Salaire net</span><span class="fin3-tv" style="color:#FFCA28;">1 817 €</span></div>
+</div>
+<!-- NIVEAU 3 : RESTE RÉEL -->
+<div class="fin3" style="background:linear-gradient(135deg,#1A1E3A,#1A2A5A);margin-top:4px;">
+<div class="fin3-row"><span class="fin3-k" style="color:rgba(255,255,255,.55);">Salaire net</span><span class="fin3-v" style="color:#fff;">1 817 €</span></div>
+<div class="fin3-row"><span class="fin3-k" style="color:rgba(255,255,255,.55);">− Charges perso</span><span class="fin3-v" style="color:var(--red);">−1 340 €</span></div>
+<div class="fin3-total" style="background:rgba(255,255,255,.1);"><span class="fin3-tk" style="color:rgba(255,255,255,.8);">= Reste réel</span><span class="fin3-tv" style="color:#E8638C;">477 €</span></div>
+</div>
+</div></div>
+
+<!-- SUB-SCREEN : ACTIVITÉ -->
+<div class="fin-screen" id="fin-activite">
+<div class="fin-nav"><div class="fin-bk" onclick="finBack('fin-activite')">‹</div><div class="fin-nt">Activité</div></div>
+<div class="fin-ptabs"><div class="fin-ptab" onclick="finSelTab(this)">Jour</div><div class="fin-ptab" onclick="finSelTab(this)">Semaine</div><div class="fin-ptab on" onclick="finSelTab(this)">Mois</div><div class="fin-ptab" onclick="finSelTab(this)">Année</div></div>
+<div class="fin-body">
+<div class="fin-sc"><div class="fin-scl">Activité · Déc. 2025</div><div class="fin-scv">14 jours travaillés</div>
+<div class="fin-scg fin-scg3"><div class="fin-pill"><div class="fin-pill-l">Travaillé</div><div class="fin-pill-v">14 j.</div></div><div class="fin-pill"><div class="fin-pill-l">Congé</div><div class="fin-pill-v o">3 j.</div></div><div class="fin-pill"><div class="fin-pill-l">Repos</div><div class="fin-pill-v">5 j.</div></div></div></div>
+<div class="fin-bar-chart"><div class="fin-bar-chart-ttl">Jours travaillés par mois</div><div class="fin-bars"><div class="fin-bar-col"><div class="fin-bar-fill" style="height:50px;"></div><div class="fin-bar-lbl">Oct</div></div><div class="fin-bar-col"><div class="fin-bar-fill" style="height:55px;"></div><div class="fin-bar-lbl">Nov</div></div><div class="fin-bar-col"><div class="fin-bar-fill" style="height:42px;background:var(--orange);"></div><div class="fin-bar-lbl">Déc</div></div></div></div>
+<div class="fin-sc"><div class="fin-scl">Ce mois</div>
+<div class="fin-scg fin-scg2"><div class="fin-pill"><div class="fin-pill-l">Total RDV</div><div class="fin-pill-v">61</div></div><div class="fin-pill"><div class="fin-pill-l">Annulations</div><div class="fin-pill-v r">3</div></div><div class="fin-pill"><div class="fin-pill-l">No-show</div><div class="fin-pill-v r">1</div></div><div class="fin-pill"><div class="fin-pill-l">Taux remplissage</div><div class="fin-pill-v g">88%</div></div></div></div>
+</div></div>
+
+<!-- SUB-SCREEN : PRESTATIONS -->
+<div class="fin-screen" id="fin-prestations">
+<div class="fin-nav"><div class="fin-bk" onclick="finBack('fin-prestations')">‹</div><div class="fin-nt">Prestations</div></div>
+<div class="fin-stabs"><div class="fin-stab on" onclick="finSelStab(this)">Ce mois</div><div class="fin-stab" onclick="finSelStab(this)">Cette année</div><div class="fin-stab" onclick="finSelStab(this)">Tout</div></div>
+<div class="fin-body">
+<div class="fin-sc"><div class="fin-scl">Prestations · Déc. 2025</div><div class="fin-scv">61 poses</div>
+<div class="fin-scg fin-scg3"><div class="fin-pill"><div class="fin-pill-l">CA presta</div><div class="fin-pill-v">3 475 €</div></div><div class="fin-pill"><div class="fin-pill-l">Panier</div><div class="fin-pill-v">57 €</div></div><div class="fin-pill"><div class="fin-pill-l">Objectif</div><div class="fin-pill-v o">72%</div></div></div></div>
+<div class="fin-sec"><div class="fin-slbl">Top prestations</div><div class="fin-card">
+<div class="fin-hb"><div class="fin-hbn">Remplissage</div><div class="fin-hbw"><div class="fin-hbf" style="width:60%;"></div></div><div class="fin-hbv">28</div><div class="fin-hbc">1 820 €</div></div>
+<div class="fin-hb"><div class="fin-hbn">Pose complète</div><div class="fin-hbw"><div class="fin-hbf" style="width:40%;"></div></div><div class="fin-hbv">19</div><div class="fin-hbc">1 235 €</div></div>
+<div class="fin-hb"><div class="fin-hbn">Nail Art</div><div class="fin-hbw"><div class="fin-hbf" style="width:20%;"></div></div><div class="fin-hbv">8</div><div class="fin-hbc">280 €</div></div>
+<div class="fin-hb"><div class="fin-hbn">Dépose</div><div class="fin-hbw"><div class="fin-hbf" style="width:12%;"></div></div><div class="fin-hbv">6</div><div class="fin-hbc">140 €</div></div>
+</div></div>
+</div></div>
+
+<!-- SUB-SCREEN : CLIENTES -->
+<div class="fin-screen" id="fin-clientes">
+<div class="fin-nav"><div class="fin-bk" onclick="finBack('fin-clientes')">‹</div><div class="fin-nt">Clientes</div></div>
+<div class="fin-stabs"><div class="fin-stab on" onclick="finSelStab(this)">Toutes</div><div class="fin-stab" onclick="finSelStab(this)">Fidèles</div><div class="fin-stab" onclick="finSelStab(this)">Nouvelles</div><div class="fin-stab" onclick="finSelStab(this)">Inactives</div></div>
+<div class="fin-body">
+<div class="fin-sc"><div class="fin-scl">Clientes · Déc. 2025</div><div class="fin-scv">39 habituées</div>
+<div class="fin-scg fin-scg3"><div class="fin-pill"><div class="fin-pill-l">Fidèles</div><div class="fin-pill-v g">39</div></div><div class="fin-pill"><div class="fin-pill-l">Nouvelles</div><div class="fin-pill-v b">7</div></div><div class="fin-pill"><div class="fin-pill-l">Inactives</div><div class="fin-pill-v r">12</div></div></div></div>
+<div class="fin-sec"><div class="fin-slbl">Top clientes CA</div><div class="fin-card">
+<div class="fin-ri"><div class="fin-riic">👤</div><div style="flex:1;"><div class="fin-rin">Soraya L.</div><div class="fin-rid">12 RDV · fidèle</div></div><div style="text-align:right;"><div class="fin-ria">845 €</div><div class="fin-rim esp">Espèces</div></div></div>
+<div class="fin-ri"><div class="fin-riic">👤</div><div style="flex:1;"><div class="fin-rin">Yasmine D.</div><div class="fin-rid">8 RDV · fidèle</div></div><div style="text-align:right;"><div class="fin-ria">620 €</div><div class="fin-rim cb">CB</div></div></div>
+<div class="fin-ri"><div class="fin-riic">👤</div><div style="flex:1;"><div class="fin-rin">Inès B.</div><div class="fin-rid">6 RDV · nouvelle</div></div><div style="text-align:right;"><div class="fin-ria">390 €</div><div class="fin-rim vir">Virement</div></div></div>
+</div></div>
+</div></div>
+
+<!-- SUB-SCREEN : OBJECTIFS -->
+<div class="fin-screen" id="fin-objectifs">
+<div class="fin-nav"><div class="fin-bk" onclick="finBack('fin-objectifs')">‹</div><div class="fin-nt">Objectifs</div></div>
+<div class="fin-stabs"><div class="fin-stab on" onclick="finSelStab(this)">Ce mois</div><div class="fin-stab" onclick="finSelStab(this)">Cette année</div><div class="fin-stab" onclick="finSelStab(this)">Historique</div></div>
+<div class="fin-body">
+<div class="fin-pw"><div class="fin-pt"><div class="fin-pl">💰 CA mensuel</div><div class="fin-pp" style="color:var(--orange);">72%</div></div><div class="fin-pbar"><div class="fin-pfill" style="width:72%;background:var(--orange);"></div></div><div class="fin-pi"><span>3 975 €</span><span>5 500 €</span></div></div>
+<div class="fin-pw"><div class="fin-pt"><div class="fin-pl">📅 RDV / mois</div><div class="fin-pp" style="color:var(--green);">87%</div></div><div class="fin-pbar"><div class="fin-pfill" style="width:87%;background:var(--green);"></div></div><div class="fin-pi"><span>61 RDV</span><span>70 RDV</span></div></div>
+<div class="fin-pw"><div class="fin-pt"><div class="fin-pl">👥 Nouvelles clientes</div><div class="fin-pp" style="color:var(--green);">100%</div></div><div class="fin-pbar"><div class="fin-pfill" style="width:100%;background:var(--green);"></div></div><div class="fin-pi"><span>7 nouvelles</span><span>5 objectif</span></div></div>
+<div class="fin-pw"><div class="fin-pt"><div class="fin-pl">💅 Panier moyen</div><div class="fin-pp" style="color:var(--orange);">81%</div></div><div class="fin-pbar"><div class="fin-pfill" style="width:81%;background:var(--orange);"></div></div><div class="fin-pi"><span>65 €</span><span>80 €</span></div></div>
+</div></div>
+
+<!-- SUB-SCREEN : RECETTES -->
+<div class="fin-screen" id="fin-recettes">
+<div class="fin-nav"><div class="fin-bk" onclick="finBack('fin-recettes')">‹</div><div class="fin-nt">Recettes</div></div>
+<div class="fin-stabs"><div class="fin-stab on" onclick="finSelStab(this)">Tout</div><div class="fin-stab" onclick="finSelStab(this)">Espèces</div><div class="fin-stab" onclick="finSelStab(this)">CB/Wero</div><div class="fin-stab" onclick="finSelStab(this)">Virement</div></div>
+<div class="fin-body">
+<div class="fin-sc"><div class="fin-scl">Recettes · Déc. 2025</div><div class="fin-scv">3 975 €</div>
+<div class="fin-scg fin-scg3"><div class="fin-pill"><div class="fin-pill-l">Espèces</div><div class="fin-pill-v">1 460 €</div></div><div class="fin-pill"><div class="fin-pill-l">CB / Wero</div><div class="fin-pill-v">2 045 €</div></div><div class="fin-pill"><div class="fin-pill-l">Virement</div><div class="fin-pill-v">470 €</div></div></div></div>
+<div class="fin-sec" style="margin-bottom:10px"><div class="fin-card">
+<div class="fin-ri"><div class="fin-riic">💵</div><div style="flex:1;"><div class="fin-rin">Soraya L. · Remplissage</div><div class="fin-rid">25 déc. 2025</div></div><div style="text-align:right;"><div class="fin-ria">65 €</div><div class="fin-rim esp">Espèces</div></div></div>
+<div class="fin-ri"><div class="fin-riic">💳</div><div style="flex:1;"><div class="fin-rin">Yasmine D. · Pose complète</div><div class="fin-rid">24 déc. 2025</div></div><div style="text-align:right;"><div class="fin-ria">75 €</div><div class="fin-rim cb">CB</div></div></div>
+<div class="fin-ri"><div class="fin-riic">💵</div><div style="flex:1;"><div class="fin-rin">Inès B. · Nail Art</div><div class="fin-rid">23 déc. 2025</div></div><div style="text-align:right;"><div class="fin-ria">45 €</div><div class="fin-rim esp">Espèces</div></div></div>
+<div class="fin-ri"><div class="fin-riic">🔄</div><div style="flex:1;"><div class="fin-rin">Anaïs F. · Remplissage</div><div class="fin-rid">22 déc. 2025</div></div><div style="text-align:right;"><div class="fin-ria">65 €</div><div class="fin-rim vir">Virement</div></div></div>
+</div></div>
+</div></div>
+
+<!-- SUB-SCREEN : FACTURES -->
+<div class="fin-screen" id="fin-factures">
+<div class="fin-nav"><div class="fin-bk" onclick="finBack('fin-factures')">‹</div><div class="fin-nt">Factures</div></div>
+<div class="fin-stabs"><div class="fin-stab on" onclick="finSelStab(this)">Toutes</div><div class="fin-stab" onclick="finSelStab(this)">En attente</div><div class="fin-stab" onclick="finSelStab(this)">Payées</div><div class="fin-stab" onclick="finSelStab(this)">En retard</div></div>
+<div class="fin-body">
+<div class="fin-sc"><div class="fin-scl">Factures · Déc. 2025</div><div class="fin-scv">3 975 €</div>
+<div class="fin-scg fin-scg3"><div class="fin-pill"><div class="fin-pill-l">Payées</div><div class="fin-pill-v g">3 860 €</div></div><div class="fin-pill"><div class="fin-pill-l">En attente</div><div class="fin-pill-v o">115 €</div></div><div class="fin-pill"><div class="fin-pill-l">Émises</div><div class="fin-pill-v">61</div></div></div></div>
+<div class="fin-sec" style="margin-bottom:10px"><div class="fin-card">
+<div class="fin-fi"><div style="flex:1;"><div class="fin-finum">FAC-2025-061</div><div class="fin-fin">Soraya Lehtinaf</div><div class="fin-fid">Remplissage · 25 déc.</div></div><div style="text-align:right;"><div class="fin-fia">65 €</div><div class="fin-fist paid">Payée ✓</div></div></div>
+<div class="fin-fi"><div style="flex:1;"><div class="fin-finum">FAC-2025-060</div><div class="fin-fin">Anaïs Ferreira</div><div class="fin-fid">Pose complète · 28 nov.</div></div><div style="text-align:right;"><div class="fin-fia">65 €</div><div class="fin-fist late">En retard</div></div></div>
+<div class="fin-fi"><div style="flex:1;"><div class="fin-finum">FAC-2025-059</div><div class="fin-fin">Yasmine Djerba</div><div class="fin-fid">Nail Art · 24 déc.</div></div><div style="text-align:right;"><div class="fin-fia">75 €</div><div class="fin-fist paid">Payée ✓</div></div></div>
+</div></div>
+</div></div>
+
+<!-- SUB-SCREEN : CHARGES PRO -->
+<div class="fin-screen" id="fin-charges">
+<div class="fin-nav"><div class="fin-bk" onclick="finBack('fin-charges')">‹</div><div class="fin-nt">Charges pro</div></div>
+<div class="fin-ptabs"><div class="fin-ptab on" onclick="finSelTab(this)">Mensuel</div><div class="fin-ptab" onclick="finSelTab(this)">Annuel</div></div>
+<div class="fin-body">
+<div class="fin-sc"><div class="fin-scl">Charges fixes · Déc. 2025</div><div class="fin-scv" style="color:var(--red);">895 €</div>
+<div class="fin-scg fin-scg2"><div class="fin-pill"><div class="fin-pill-l">Total mensuel</div><div class="fin-pill-v r">895 €</div></div><div class="fin-pill"><div class="fin-pill-l">Total annuel</div><div class="fin-pill-v r">10 740 €</div></div></div></div>
+<div class="fin-sec" style="margin-bottom:10px"><div class="fin-card">
+<div class="fin-ci"><div style="flex:1;"><div class="fin-cin">URSSAF</div><div class="fin-cid">22% du CA · auto</div></div><div class="fin-cia">−440 €</div></div>
+<div class="fin-ci"><div style="flex:1;"><div class="fin-cin">SEAVEN Pro</div><div class="fin-cid">Abonnement</div></div><div class="fin-cia">−29 €</div></div>
+<div class="fin-ci"><div style="flex:1;"><div class="fin-cin">Loyer salon</div><div class="fin-cid">Espace partagé</div></div><div class="fin-cia">−120 €</div></div>
+<div class="fin-ci"><div style="flex:1;"><div class="fin-cin">Assurance pro</div><div class="fin-cid">RC professionnelle</div></div><div class="fin-cia">−73 €</div></div>
+<div class="fin-ci"><div style="flex:1;"><div class="fin-cin">CFE</div><div class="fin-cid">Cotisation annuelle</div></div><div class="fin-cia">−233 €</div></div>
+</div></div>
+</div></div>
+
+<!-- SUB-SCREEN : DÉPENSES -->
+<div class="fin-screen" id="fin-depenses">
+<div class="fin-nav"><div class="fin-bk" onclick="finBack('fin-depenses')">‹</div><div class="fin-nt">Dépenses</div></div>
+<div class="fin-dep-sel"><div class="fin-dep-chip on" onclick="finSelDep(this)">Déc.</div><div class="fin-dep-chip" onclick="finSelDep(this)">Nov.</div><div class="fin-dep-chip" onclick="finSelDep(this)">Oct.</div></div>
+<div class="fin-body">
+<div class="fin-sc"><div class="fin-scl">Dépenses · Déc. 2025</div><div class="fin-scv" style="color:var(--red);">−233 €</div></div>
+<div class="fin-sec" style="margin-bottom:10px"><div class="fin-card">
+<div class="fin-trow"><div class="fin-tdate">25/12</div><div class="fin-titem">Gel UV — Amazon</div><div class="fin-tprix">−45 €</div></div>
+<div class="fin-trow"><div class="fin-tdate">22/12</div><div class="fin-titem">Tips Gel-X — Beauté Pro</div><div class="fin-tprix">−62 €</div></div>
+<div class="fin-trow"><div class="fin-tdate">18/12</div><div class="fin-titem">Lampe LED — Amazon</div><div class="fin-tprix">−89 €</div></div>
+<div class="fin-trow"><div class="fin-tdate">10/12</div><div class="fin-titem">Limes et buffers</div><div class="fin-tprix">−18 €</div></div>
+<div class="fin-trow"><div class="fin-tdate">5/12</div><div class="fin-titem">Paillettes décor</div><div class="fin-tprix">−19 €</div></div>
+</div></div>
+</div></div>
+
+<!-- SUB-SCREEN : TRÉSORERIE -->
+<div class="fin-screen" id="fin-tresorerie">
+<div class="fin-nav"><div class="fin-bk" onclick="finBack('fin-tresorerie')">‹</div><div class="fin-nt">Trésorerie</div></div>
+<div class="fin-body">
+<div class="fin-sc"><div class="fin-scl">Trésorerie totale</div><div class="fin-scv">4 722 €</div>
+<div class="fin-scg fin-scg2"><div class="fin-pill"><div class="fin-pill-l">Réserve 13%</div><div class="fin-pill-v o">517 €</div></div><div class="fin-pill"><div class="fin-pill-l">Pots perso</div><div class="fin-pill-v g">4 205 €</div></div></div></div>
+<div class="fin-potgrid">
+<div class="fin-pot"><div class="fin-pot-ic">🏖️</div><div class="fin-pot-nm">Congés</div><div class="fin-pot-sub">1 sem. budgétée</div><div class="fin-pot-v">1 200 €</div><div class="fin-pot-bar"><div class="fin-pot-bf" style="width:60%;background:var(--green);"></div></div></div>
+<div class="fin-pot"><div class="fin-pot-ic">👵</div><div class="fin-pot-nm">Retraite</div><div class="fin-pot-sub">Complément mensuel</div><div class="fin-pot-v">1 850 €</div><div class="fin-pot-bar"><div class="fin-pot-bf" style="width:37%;background:#4A90D9;"></div></div></div>
+<div class="fin-pot"><div class="fin-pot-ic">🛡️</div><div class="fin-pot-nm">Sécurité</div><div class="fin-pot-sub">3 mois charges</div><div class="fin-pot-v">855 €</div><div class="fin-pot-bar"><div class="fin-pot-bf" style="width:28%;background:var(--orange);"></div></div></div>
+<div class="fin-pot"><div class="fin-pot-ic">🎯</div><div class="fin-pot-nm">Formation</div><div class="fin-pot-sub">Objectif 500 €</div><div class="fin-pot-v">300 €</div><div class="fin-pot-bar"><div class="fin-pot-bf" style="width:60%;background:#A87DC8;"></div></div></div>
+</div>
+</div></div>
+
+<!-- SUB-SCREEN : IMPAYÉS -->
+<div class="fin-screen" id="fin-impayes">
+<div class="fin-nav"><div class="fin-bk" onclick="finBack('fin-impayes')">‹</div><div class="fin-nt">Impayés</div></div>
+<div class="fin-stabs"><div class="fin-stab on" onclick="finSelStab(this)">Créances</div><div class="fin-stab" onclick="finSelStab(this)">À honorer</div></div>
+<div class="fin-body">
+<div class="fin-sc"><div class="fin-scl">Impayés</div><div class="fin-scv" style="color:var(--red);">115 €</div>
+<div class="fin-scg fin-scg2"><div class="fin-pill"><div class="fin-pill-l">Créances clientes</div><div class="fin-pill-v r">115 €</div></div><div class="fin-pill"><div class="fin-pill-l">À honorer</div><div class="fin-pill-v o">0 €</div></div></div></div>
+<div class="fin-sec" style="margin-bottom:10px"><div class="fin-card">
+<div class="fin-ii"><div class="fin-iiav">AF</div><div style="flex:1;"><div class="fin-iin">Anaïs Ferreira</div><div class="fin-iid">Pose complète · 28 nov.</div><div class="fin-iib">Relancer</div></div><div class="fin-iia">65 €</div></div>
+<div class="fin-ii"><div class="fin-iiav">LM</div><div style="flex:1;"><div class="fin-iin">Lina Morel</div><div class="fin-iid">Remplissage · 15 nov.</div><div class="fin-iib">Relancer</div></div><div class="fin-iia">50 €</div></div>
+</div></div>
+</div></div>
+
+<!-- SUB-SCREEN : CHARGES PERSO -->
+<div class="fin-screen" id="fin-charges-perso">
+<div class="fin-nav"><div class="fin-bk" onclick="finBack('fin-charges-perso')">‹</div><div class="fin-nt">Charges personnelles</div></div>
+<div class="fin-body">
+<div class="fin-sc"><div class="fin-scl">Charges perso mensuelles</div><div class="fin-scv" style="color:var(--red);">1 340 €</div></div>
+<div class="fin-sec" style="margin-bottom:10px"><div class="fin-card">
+<div class="fin-ci"><div style="flex:1;"><div class="fin-cin">Loyer</div><div class="fin-cid">Appartement</div></div><div class="fin-cia">−750 €</div></div>
+<div class="fin-ci"><div style="flex:1;"><div class="fin-cin">Assurance auto</div><div class="fin-cid">Mensuel</div></div><div class="fin-cia">−85 €</div></div>
+<div class="fin-ci"><div style="flex:1;"><div class="fin-cin">Électricité + gaz</div><div class="fin-cid">EDF</div></div><div class="fin-cia">−120 €</div></div>
+<div class="fin-ci"><div style="flex:1;"><div class="fin-cin">Internet + mobile</div><div class="fin-cid">SFR</div></div><div class="fin-cia">−55 €</div></div>
+<div class="fin-ci"><div style="flex:1;"><div class="fin-cin">Mutuelle</div><div class="fin-cid">Santé</div></div><div class="fin-cia">−45 €</div></div>
+<div class="fin-ci"><div style="flex:1;"><div class="fin-cin">Alimentation</div><div class="fin-cid">Budget mensuel</div></div><div class="fin-cia">−285 €</div></div>
+</div></div>
+</div></div>
+
+<!-- SUB-SCREEN : STOCKS -->
+<div class="fin-screen" id="fin-stocks">
+<div class="fin-nav"><div class="fin-bk" onclick="finBack('fin-stocks')">‹</div><div class="fin-nt">Stocks & matériel</div></div>
+<div class="fin-body">
+<div class="fin-alert ae" style="margin:6px 16px 0;"><div class="fin-alert-ic">⚠️</div><div class="fin-alert-tx" style="color:#C00;">3 produits en stock critique</div></div>
+<div class="fin-sec" style="margin-bottom:10px"><div class="fin-card">
+<div class="fin-scat"><div class="fin-scatic" style="background:#FFF0F0;">💅</div><div style="flex:1;"><div class="fin-scatn">Gels & bases</div><div class="fin-scats">12 articles · 2 alertes</div></div><div style="text-align:right;"><div class="fin-scatv">840 €</div></div></div>
+<div class="fin-scat"><div class="fin-scatic" style="background:#F0F4FF;">📦</div><div style="flex:1;"><div class="fin-scatn">Tips & capsules</div><div class="fin-scats">8 articles · 1 alerte</div></div><div style="text-align:right;"><div class="fin-scatv">320 €</div></div></div>
+<div class="fin-scat"><div class="fin-scatic" style="background:#FFF8EE;">✨</div><div style="flex:1;"><div class="fin-scatn">Décorations</div><div class="fin-scats">24 articles</div></div><div style="text-align:right;"><div class="fin-scatv">180 €</div></div></div>
+<div class="fin-scat"><div class="fin-scatic" style="background:#F0FFF4;">🧴</div><div style="flex:1;"><div class="fin-scatn">Soins & hygiène</div><div class="fin-scats">6 articles</div></div><div style="text-align:right;"><div class="fin-scatv">95 €</div></div></div>
+<div class="fin-scat"><div class="fin-scatic" style="background:#F5F0FF;">🔧</div><div style="flex:1;"><div class="fin-scatn">Matériel & outils</div><div class="fin-scats">15 articles</div></div><div style="text-align:right;"><div class="fin-scatv">650 €</div></div></div>
+</div></div>
+</div></div>
+
+<!-- SUB-SCREEN : PRIX DE REVIENT -->
+<div class="fin-screen" id="fin-prix-revient">
+<div class="fin-nav"><div class="fin-bk" onclick="finBack('fin-prix-revient')">‹</div><div class="fin-nt">Prix de revient</div></div>
+<div class="fin-body">
+<div class="fin-note">Coût estimé par prestation incluant matériel, temps et charges.</div>
+<div class="fin-sec" style="margin-bottom:10px"><div class="fin-card">
+<div class="fin-ri"><div class="fin-riic" style="background:#FFF0F0;">💅</div><div style="flex:1;"><div class="fin-rin">Pose complète Gel-X</div><div class="fin-rid">Matériel 8,50 € · 1h30</div></div><div style="text-align:right;"><div style="font-size:14px;font-weight:900;color:var(--black);">22 €</div><div style="font-size:10px;font-weight:700;color:var(--green);margin-top:2px;">Marge 66%</div></div></div>
+<div class="fin-ri"><div class="fin-riic" style="background:#FFF8EE;">🔄</div><div style="flex:1;"><div class="fin-rin">Remplissage</div><div class="fin-rid">Matériel 5,20 € · 1h10</div></div><div style="text-align:right;"><div style="font-size:14px;font-weight:900;color:var(--black);">18 €</div><div style="font-size:10px;font-weight:700;color:var(--green);margin-top:2px;">Marge 72%</div></div></div>
+<div class="fin-ri"><div class="fin-riic" style="background:#F5F0FF;">🎨</div><div style="flex:1;"><div class="fin-rin">Nail Art complexe</div><div class="fin-rid">Matériel 3,80 € · 45 min</div></div><div style="text-align:right;"><div style="font-size:14px;font-weight:900;color:var(--black);">12 €</div><div style="font-size:10px;font-weight:700;color:var(--green);margin-top:2px;">Marge 76%</div></div></div>
+</div></div>
+</div></div>
+
+<!-- SUB-SCREEN : TARIFS -->
+<div class="fin-screen" id="fin-tarifs">
+<div class="fin-nav"><div class="fin-bk" onclick="finBack('fin-tarifs')">‹</div><div class="fin-nt">Tarifs & rémunération</div></div>
+<div class="fin-body">
+<div class="fin-sc"><div class="fin-scl">Salaire horaire net estimé</div><div class="fin-scv">14,50 €/h</div>
+<div class="fin-scg fin-scg3"><div class="fin-pill"><div class="fin-pill-l">Besoin vital</div><div class="fin-pill-v r">12 €/h</div></div><div class="fin-pill"><div class="fin-pill-l">Confort</div><div class="fin-pill-v o">18 €/h</div></div><div class="fin-pill"><div class="fin-pill-l">Objectif</div><div class="fin-pill-v g">22 €/h</div></div></div></div>
+<div class="fin-sec" style="margin-bottom:10px"><div class="fin-card">
+<div class="fin-dr"><div class="fin-drk">Prix moyen facturé</div><div class="fin-drv">65 €</div></div>
+<div class="fin-dr"><div class="fin-drk">Prix conseillé min.</div><div class="fin-drv o">58 €</div></div>
+<div class="fin-dr"><div class="fin-drk">Prix conseillé idéal</div><div class="fin-drv g">72 €</div></div>
+<div class="fin-dr"><div class="fin-drk">Durée moyenne RDV</div><div class="fin-drv">1h15</div></div>
+<div class="fin-dr"><div class="fin-drk">CA horaire net</div><div class="fin-drv">14,50 €</div></div>
+</div></div>
+</div></div>
+
+<!-- SUB-SCREEN : CONFIG -->
+<div class="fin-screen" id="fin-config">
+<div class="fin-nav"><div class="fin-bk" onclick="finBack('fin-config')">‹</div><div class="fin-nt">Paramètres</div></div>
+<div class="fin-body">
+<div class="fin-sec" style="margin-bottom:10px"><div class="fin-card">
+<div class="fin-dr"><div class="fin-drk">Statut</div><div class="fin-drv">Auto-entrepreneur</div></div>
+<div class="fin-dr"><div class="fin-drk">Début activité</div><div class="fin-drv">Juillet 2024</div></div>
+<div class="fin-dr"><div class="fin-drk">URSSAF</div><div class="fin-drv">22%</div></div>
+<div class="fin-dr"><div class="fin-drk">TVA</div><div class="fin-drv">Non assujettie</div></div>
+<div class="fin-dr"><div class="fin-drk">Épargne auto</div><div class="fin-drv">13%</div></div>
+<div class="fin-dr"><div class="fin-drk">Salariés</div><div class="fin-drv">0</div></div>
+</div></div>
+</div></div>
+
+</div>
+</div><!-- /mod-finances -->
 
 <!-- MODULE FEED -->
 
@@ -5012,6 +5486,13 @@ function forumCloseThread(){document.getElementById('forum-thread-overlay').clas
 function saSelMonth(el){el.closest('.month-scroll').querySelectorAll('.month-pill').forEach(p=>p.classList.remove('on'));el.classList.add('on');}
 function saOpenStory(){document.getElementById('sa-story-viewer').classList.add('on');}
 function saCloseStory(){document.getElementById('sa-story-viewer').classList.remove('on');}
+
+// ── MODULE FINANCES ──
+function finGo(id){document.getElementById(id)?.classList.add('on');}
+function finBack(id){document.getElementById(id)?.classList.remove('on');}
+function finSelTab(el){el.closest('.fin-ptabs').querySelectorAll('.fin-ptab').forEach(t=>t.classList.remove('on'));el.classList.add('on');}
+function finSelStab(el){el.closest('.fin-stabs').querySelectorAll('.fin-stab').forEach(t=>t.classList.remove('on'));el.classList.add('on');}
+function finSelDep(el){el.closest('.fin-dep-sel').querySelectorAll('.fin-dep-chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');}
 
 // ── MODULE FICHIER CLIENTS ──
 function fcGoFiche(){document.getElementById('fc-liste').classList.remove('on');document.getElementById('fc-liste').style.display='none';document.getElementById('fc-fiche').classList.add('on');}
