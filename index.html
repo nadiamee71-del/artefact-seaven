@@ -3073,6 +3073,116 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
     </div>
   </div>
 </div>
+
+<!-- FLOW — CRÉER UN CONCOURS (côté Prestataire) -->
+<div class="flow" id="flow-create-concours" style="display:none;position:fixed;inset:0;z-index:100;background:white;">
+  <div class="enc-page on" id="cc-create-s1" style="height:100%;display:flex;flex-direction:column;">
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F0F0F0;flex-shrink:0;">
+      <div onclick="closeCreateConcours()" style="font-size:22px;cursor:pointer;color:#1A1A1A;">‹</div>
+      <div style="font-size:16px;font-weight:800;color:#1A1A1A;flex:1;">Nouveau concours</div>
+      <div style="font-size:12px;color:#888;">1 / 2</div>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding:20px;">
+      <div style="margin-bottom:16px;">
+        <div style="font-size:13px;font-weight:700;color:#1A1A1A;margin-bottom:8px;">Titre *</div>
+        <input id="cc-title" placeholder="Ex : Giveaway Saint-Valentin" style="width:100%;border:1.5px solid #E5E5EA;border-radius:12px;padding:12px 14px;font-size:14px;font-family:inherit;color:#1A1A1A;outline:none;box-sizing:border-box;" oninput="ccSyncPreview()"/>
+      </div>
+      <div style="margin-bottom:16px;">
+        <div style="font-size:13px;font-weight:700;color:#1A1A1A;margin-bottom:8px;">Lot à gagner *</div>
+        <input id="cc-lot" placeholder="Ex : Pose complète offerte (120€)" style="width:100%;border:1.5px solid #E5E5EA;border-radius:12px;padding:12px 14px;font-size:14px;font-family:inherit;color:#1A1A1A;outline:none;box-sizing:border-box;" oninput="ccSyncPreview()"/>
+      </div>
+      <div style="margin-bottom:16px;">
+        <div style="font-size:13px;font-weight:700;color:#1A1A1A;margin-bottom:8px;">Date de fin *</div>
+        <input type="date" id="cc-deadline" style="width:100%;border:1.5px solid #E5E5EA;border-radius:12px;padding:12px 14px;font-size:14px;font-family:inherit;color:#1A1A1A;outline:none;box-sizing:border-box;" onchange="ccSyncPreview()"/>
+      </div>
+      <div style="margin-bottom:16px;">
+        <div style="font-size:13px;font-weight:700;color:#1A1A1A;margin-bottom:10px;">Règles (clientes)</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <label style="display:flex;gap:10px;align-items:flex-start;"><input type="checkbox" id="cc-r1" checked onchange="ccSyncPreview()"/><span style="font-size:13px;color:#555;line-height:1.4;">S'abonner au profil</span></label>
+          <label style="display:flex;gap:10px;align-items:flex-start;"><input type="checkbox" id="cc-r2" checked onchange="ccSyncPreview()"/><span style="font-size:13px;color:#555;line-height:1.4;">Liker la publication</span></label>
+          <label style="display:flex;gap:10px;align-items:flex-start;"><input type="checkbox" id="cc-r3" checked onchange="ccSyncPreview()"/><span style="font-size:13px;color:#555;line-height:1.4;">Identifier 2 amies</span></label>
+        </div>
+      </div>
+      <div style="background:#F8F8F8;border-radius:16px;padding:14px;">
+        <div style="font-size:12px;color:#888;font-weight:800;margin-bottom:10px;">APERÇU</div>
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px;">
+          <div style="width:38px;height:38px;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;">🎁</div>
+          <div style="flex:1;">
+            <div style="font-weight:900;color:#1A1A1A;" id="cc-prev-title">Concours</div>
+            <div style="font-size:12px;color:#888;" id="cc-prev-by">par Prestataire</div>
+          </div>
+        </div>
+        <div style="font-size:12px;color:#888;margin-bottom:6px;">Lot</div>
+        <div style="font-size:13px;font-weight:800;color:#1A1A1A;margin-bottom:10px;" id="cc-prev-lot">—</div>
+        <div style="font-size:12px;color:#888;">Fin</div>
+        <div style="font-size:13px;font-weight:800;color:#1A1A1A;" id="cc-prev-deadline">—</div>
+      </div>
+    </div>
+    <div style="padding:12px 20px calc(env(safe-area-inset-bottom,0px)+12px);border-top:1px solid #F0F0F0;flex-shrink:0;">
+      <button onclick="encGo('cc-create-s1','cc-create-s2');ccSyncPreview()" style="width:100%;padding:15px;background:#1A1A1A;color:white;font-size:15px;font-weight:800;border:none;border-radius:14px;cursor:pointer;font-family:inherit;">Continuer →</button>
+    </div>
+  </div>
+
+  <div class="enc-page" id="cc-create-s2" style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:32px 24px;">
+    <div style="width:72px;height:72px;border-radius:50%;background:#1A1A1A;display:flex;align-items:center;justify-content:center;color:white;font-size:32px;">✓</div>
+    <div style="font-size:22px;font-weight:800;color:#1A1A1A;">Concours publié !</div>
+    <div style="font-size:13px;color:#888;text-align:center;line-height:1.6;">Ton concours est visible et les clientes peuvent participer.</div>
+    <div style="background:#F8F8F8;border-radius:16px;padding:14px;width:100%;margin-top:8px;">
+      <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #EEE;">
+        <span style="font-size:13px;color:#888;">Concours</span>
+        <span style="font-size:13px;font-weight:700;color:#1A1A1A;" id="cc-conf-title">—</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #EEE;">
+        <span style="font-size:13px;color:#888;">Lot</span>
+        <span style="font-size:13px;font-weight:700;color:#1A1A1A;" id="cc-conf-lot">—</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;padding:7px 0;">
+        <span style="font-size:13px;color:#888;">Fin</span>
+        <span style="font-size:13px;font-weight:700;color:#1A1A1A;" id="cc-conf-deadline">—</span>
+      </div>
+    </div>
+    <button onclick="closeCreateConcours()" style="width:100%;padding:15px;background:#1A1A1A;color:white;font-size:15px;font-weight:800;border:none;border-radius:14px;cursor:pointer;font-family:inherit;margin-top:8px;">Voir mes concours</button>
+  </div>
+</div>
+
+<!-- FLOW — INSCRIPTION CONCOURS (côté Cliente) -->
+<div class="flow" id="flow-insc-concours" style="display:none;position:fixed;inset:0;z-index:100;background:white;">
+  <div class="enc-page on" id="cc-insc-s1" style="height:100%;display:flex;flex-direction:column;">
+    <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F0F0F0;flex-shrink:0;">
+      <div onclick="closeInscConcours()" style="font-size:22px;cursor:pointer;color:#1A1A1A;">‹</div>
+      <div style="font-size:16px;font-weight:800;color:#1A1A1A;flex:1;" id="cc-insc-title">Concours</div>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding:20px;">
+      <div style="background:#F8F8F8;border-radius:16px;padding:14px;margin-bottom:16px;">
+        <div style="font-size:12px;color:#888;margin-bottom:6px;">Lot à gagner</div>
+        <div style="font-size:15px;font-weight:900;color:#1A1A1A;" id="cc-insc-lot">—</div>
+        <div style="margin-top:10px;font-size:12px;color:#888;" id="cc-insc-deadline">Fin —</div>
+      </div>
+      <div style="margin-bottom:14px;">
+        <div style="font-size:13px;font-weight:800;color:#1A1A1A;margin-bottom:10px;">À faire pour valider</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <label style="display:flex;gap:10px;align-items:flex-start;"><input type="checkbox" class="cc-insc-check" onchange="ccInscCheck()"/><span style="font-size:13px;color:#555;line-height:1.4;">Je m’abonne au profil</span></label>
+          <label style="display:flex;gap:10px;align-items:flex-start;"><input type="checkbox" class="cc-insc-check" onchange="ccInscCheck()"/><span style="font-size:13px;color:#555;line-height:1.4;">Je like la publication</span></label>
+          <label style="display:flex;gap:10px;align-items:flex-start;"><input type="checkbox" class="cc-insc-check" onchange="ccInscCheck()"/><span style="font-size:13px;color:#555;line-height:1.4;">J’identifie 2 amies</span></label>
+        </div>
+      </div>
+      <div style="background:#F8F8F8;border-radius:12px;padding:14px;">
+        <div style="font-size:12px;color:#888;margin-bottom:6px;">Conseil</div>
+        <div style="font-size:13px;color:#555;line-height:1.55;">Tu peux participer une seule fois. Résultat annoncé dans “Mes participations”.</div>
+      </div>
+    </div>
+    <div style="padding:12px 20px calc(env(safe-area-inset-bottom,0px)+12px);border-top:1px solid #F0F0F0;flex-shrink:0;">
+      <button id="cc-insc-cta" onclick="ccConfirmParticipation()" disabled style="width:100%;padding:15px;background:#E5E5EA;color:#AAA;font-size:15px;font-weight:800;border:none;border-radius:14px;cursor:not-allowed;font-family:inherit;">Participer →</button>
+    </div>
+  </div>
+
+  <div class="enc-page" id="cc-insc-s2" style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:32px 24px;">
+    <div style="width:72px;height:72px;border-radius:50%;background:#1A1A1A;display:flex;align-items:center;justify-content:center;color:white;font-size:32px;">✓</div>
+    <div style="font-size:22px;font-weight:800;color:#1A1A1A;">Participation enregistrée !</div>
+    <div style="font-size:13px;color:#888;text-align:center;line-height:1.6;">Bonne chance. Tu peux retrouver le concours dans “Mes participations”.</div>
+    <button onclick="closeInscConcours()" style="width:100%;padding:15px;background:#1A1A1A;color:white;font-size:15px;font-weight:800;border:none;border-radius:14px;cursor:pointer;font-family:inherit;margin-top:8px;">Retour aux concours</button>
+  </div>
+</div>
 </div><!-- /screen-client -->
 
 <!-- ══ ACCUEIL PRO ══ -->
@@ -6854,7 +6964,7 @@ MODULES PROFIL
 </div>
 <div id="mc-miens" style="display:none">
 <div class="concours-card"><div class="cc-top"><div class="result-badge rb-pending">⏳ Résultat en attente</div><div class="cc-header"><div class="cc-av">💅</div><div><div class="cc-name">Giveaway Saint-Valentin</div><div class="cc-by">par Bloom Nails</div></div></div></div><div class="cc-footer"><div class="cc-nb">Participé le 10 fév. 2026</div></div></div>
-<div class="concours-card"><div class="cc-top"><div class="result-badge rb-won">🏆 Gagnante !</div><div class="cc-header"><div class="cc-av">🌿</div><div><div class="cc-name">Giveaway Nouvel An</div><div class="cc-by">par Leila Bien-être</div></div></div><div class="cc-lot"><div class="cc-lot-lbl">Lot gagné</div><div class="cc-lot-val">Massage relaxant 1h offert</div></div></div><div class="cc-footer"><div class="cc-nb">Participé le 1er janv. 2026</div><button type="button" class="cc-btn" onclick="goReserve()">Réserver →</button></div></div>
+<div class="concours-card"><div class="cc-top"><div class="result-badge rb-won">🏆 Gagnante !</div><div class="cc-header"><div class="cc-av">🌿</div><div><div class="cc-name">Giveaway Nouvel An</div><div class="cc-by">par Leila Bien-être</div></div></div><div class="cc-lot"><div class="cc-lot-lbl">Lot gagné</div><div class="cc-lot-val">Massage relaxant 1h offert</div></div></div><div class="cc-footer"><div class="cc-nb">Participé le 1er janv. 2026</div><button type="button" class="cc-btn" onclick="openFlow('flow-rdv')">Réserver →</button></div></div>
 </div>
 </div>
 </div>
@@ -8396,16 +8506,193 @@ function ccParticipate(btn){
   alert('Merci ! Ta participation est enregistrée (maquette).');
   if(btn) btn.textContent='Inscrit ✓';
 }
+// ── CONCOURS : flows Créer / Inscription ──
+let ccDraft={id:'',title:'',lot:'',deadline:'',rules:[],participants:0,by:''};
+let ccContests=[]; // concours créés en session
+let ccMyParts=[]; // participations clientes en session
+let ccActiveId='';
+
+function ccGetActiveProfileName(){
+  // essaye de récupérer un nom simple sans casser la logique existante
+  const p=regProfiles?.[regActiveProfileId||'']||null;
+  const fn=(p?.firstName||p?.prenom||'').trim();
+  const ln=(p?.lastName||p?.nom||'').trim();
+  const u=(p?.username||p?.pseudo||'').trim();
+  const name=(fn||ln)?(fn+' '+ln).trim():(u||p?.name||'Prestataire');
+  return name||'Prestataire';
+}
+function ccIsoToLabel(iso){
+  if(!iso) return '—';
+  const d=new Date(iso+'T00:00:00');
+  if(Number.isNaN(d.getTime())) return iso;
+  const months=['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+  const dd=d.getDate();
+  const mm=months[d.getMonth()]||'';
+  const yy=d.getFullYear();
+  return `Fin le ${dd} ${mm} ${yy}`;
+}
+function ccReadDraft(){
+  const title=(document.getElementById('cc-title')?.value||'').trim();
+  const lot=(document.getElementById('cc-lot')?.value||'').trim();
+  const deadline=(document.getElementById('cc-deadline')?.value||'').trim();
+  const rules=[];
+  const r1=document.getElementById('cc-r1')?.checked;
+  const r2=document.getElementById('cc-r2')?.checked;
+  const r3=document.getElementById('cc-r3')?.checked;
+  if(r1) rules.push("S'abonner au profil");
+  if(r2) rules.push('Liker la publication');
+  if(r3) rules.push('Identifier 2 amies');
+  return {title,lot,deadline,rules};
+}
+function ccSyncPreview(){
+  const d=ccReadDraft();
+  document.getElementById('cc-prev-title') && (document.getElementById('cc-prev-title').textContent=d.title||'Concours');
+  document.getElementById('cc-prev-lot') && (document.getElementById('cc-prev-lot').textContent=d.lot||'—');
+  document.getElementById('cc-prev-deadline') && (document.getElementById('cc-prev-deadline').textContent=ccIsoToLabel(d.deadline));
+  document.getElementById('cc-prev-by') && (document.getElementById('cc-prev-by').textContent='par '+ccGetActiveProfileName());
+}
+function ccRender(){
+  // En cours
+  const actifs=document.getElementById('mc-actifs');
+  if(actifs){
+    // garde les 2 cards de démo existantes, puis ajoute celles créées
+    const demo=[...actifs.querySelectorAll('.concours-card')];
+    actifs.innerHTML='';
+    demo.forEach(c=>actifs.appendChild(c));
+    ccContests.slice().reverse().forEach(c=>{
+      const card=document.createElement('div');
+      card.className='concours-card';
+      const rulesHtml=(c.rules||[]).map(r=>`<div class="cc-rule"><div class="cc-rule-dot"></div>${r}</div>`).join('');
+      card.innerHTML=
+        `<div class="cc-top">
+          <div class="cc-header">
+            <div class="cc-av">🎁</div>
+            <div><div class="cc-name">${c.title}</div><div class="cc-by">par ${c.by}</div></div>
+          </div>
+          <div class="cc-lot"><div class="cc-lot-lbl">Lot à gagner</div><div class="cc-lot-val">${c.lot}</div></div>
+          <div class="cc-rules">${rulesHtml}</div>
+          <div class="cc-footer">
+            <div><div class="cc-deadline">${ccIsoToLabel(c.deadline)}</div><div class="cc-nb">${c.participants||0} participants</div></div>
+            <button type="button" class="cc-btn" onclick="openInscConcours(this)" data-ccid="${c.id}">Participer</button>
+          </div>
+        </div>`;
+      actifs.appendChild(card);
+    });
+  }
+  // Mes participations
+  const miens=document.getElementById('mc-miens');
+  if(miens){
+    const demo=[...miens.querySelectorAll('.concours-card')];
+    miens.innerHTML='';
+    demo.forEach(c=>miens.appendChild(c));
+    ccMyParts.slice().reverse().forEach(p=>{
+      const card=document.createElement('div');
+      card.className='concours-card';
+      card.innerHTML=
+        `<div class="cc-top">
+          <div class="result-badge rb-pending">⏳ Résultat en attente</div>
+          <div class="cc-header">
+            <div class="cc-av">🎁</div>
+            <div><div class="cc-name">${p.title}</div><div class="cc-by">par ${p.by}</div></div>
+          </div>
+        </div>
+        <div class="cc-footer"><div class="cc-nb">Participé le ${p.when}</div></div>`;
+      miens.appendChild(card);
+    });
+  }
+}
 function openCreateConcours(){
   const f=document.getElementById('flow-create-concours');
-  if(f){ f.style.display='block'; return; }
-  alert('Créer un concours — bientôt disponible');
+  if(!f) return;
+  f.style.display='block';
+  document.querySelectorAll('#flow-create-concours .enc-page').forEach((p,i)=>p.classList.toggle('on',i===0));
+  // reset champs
+  document.getElementById('cc-title') && (document.getElementById('cc-title').value='');
+  document.getElementById('cc-lot') && (document.getElementById('cc-lot').value='');
+  document.getElementById('cc-deadline') && (document.getElementById('cc-deadline').value='');
+  ['cc-r1','cc-r2','cc-r3'].forEach(id=>{const el=document.getElementById(id); if(el) el.checked=true;});
+  ccSyncPreview();
+}
+function closeCreateConcours(){
+  const f=document.getElementById('flow-create-concours');
+  if(f) f.style.display='none';
+  document.querySelectorAll('#flow-create-concours .enc-page').forEach((p,i)=>p.classList.toggle('on',i===0));
+}
+function ccPublishConcours(){
+  const d=ccReadDraft();
+  if(!d.title || !d.lot || !d.deadline){
+    alert('Merci de remplir Titre, Lot et Date de fin.');
+    return;
+  }
+  const id='cc_'+Date.now();
+  const by=ccGetActiveProfileName();
+  const obj={id,title:d.title,lot:d.lot,deadline:d.deadline,rules:d.rules,participants:0,by};
+  ccContests.push(obj);
+  // confirmation
+  document.getElementById('cc-conf-title') && (document.getElementById('cc-conf-title').textContent=obj.title);
+  document.getElementById('cc-conf-lot') && (document.getElementById('cc-conf-lot').textContent=obj.lot);
+  document.getElementById('cc-conf-deadline') && (document.getElementById('cc-conf-deadline').textContent=ccIsoToLabel(obj.deadline));
+  ccRender();
+  encGo('cc-create-s1','cc-create-s2');
 }
 function openInscConcours(btn){
   const f=document.getElementById('flow-insc-concours');
-  if(f){ f.style.display='block'; return; }
-  if(btn){ btn.textContent='Inscrit ✓'; }
-  alert('Inscription au concours — bientôt disponible');
+  if(!f) return;
+  f.style.display='block';
+  document.querySelectorAll('#flow-insc-concours .enc-page').forEach((p,i)=>p.classList.toggle('on',i===0));
+  // reset checks + cta
+  document.querySelectorAll('#flow-insc-concours .cc-insc-check').forEach(c=>{c.checked=false;});
+  ccInscCheck();
+
+  ccActiveId=(btn?.dataset?.ccid||'').trim();
+  // si la card est une démo (sans data-ccid), on essaye de lire depuis le DOM
+  const card=btn?.closest?.('.concours-card')||null;
+  let title=(card?.querySelector?.('.cc-name')?.textContent||'Concours').trim();
+  let lot=(card?.querySelector?.('.cc-lot-val')?.textContent||'—').trim();
+  let deadline=(card?.querySelector?.('.cc-deadline')?.textContent||'').trim();
+  let by=(card?.querySelector?.('.cc-by')?.textContent||'').trim();
+
+  if(ccActiveId){
+    const c=ccContests.find(x=>x.id===ccActiveId);
+    if(c){
+      title=c.title; lot=c.lot; deadline=ccIsoToLabel(c.deadline); by='par '+c.by;
+    }
+  }
+  document.getElementById('cc-insc-title') && (document.getElementById('cc-insc-title').textContent=title);
+  document.getElementById('cc-insc-lot') && (document.getElementById('cc-insc-lot').textContent=lot);
+  document.getElementById('cc-insc-deadline') && (document.getElementById('cc-insc-deadline').textContent=deadline||'');
+  // stocke pour confirmation
+  ccDraft={id:ccActiveId,title,lot,deadline,by:by.replace(/^par\s+/,'')};
+}
+function closeInscConcours(){
+  const f=document.getElementById('flow-insc-concours');
+  if(f) f.style.display='none';
+  document.querySelectorAll('#flow-insc-concours .enc-page').forEach((p,i)=>p.classList.toggle('on',i===0));
+}
+function ccInscCheck(){
+  const checks=[...document.querySelectorAll('#flow-insc-concours .cc-insc-check')];
+  const ok=checks.length?checks.every(c=>c.checked):false;
+  const btn=document.getElementById('cc-insc-cta');
+  if(!btn) return;
+  btn.disabled=!ok;
+  btn.style.background=ok?'#1A1A1A':'#E5E5EA';
+  btn.style.color=ok?'white':'#AAA';
+  btn.style.cursor=ok?'pointer':'not-allowed';
+}
+function ccConfirmParticipation(){
+  // increment participants si concours créé en session
+  if(ccActiveId){
+    const c=ccContests.find(x=>x.id===ccActiveId);
+    if(c) c.participants=(c.participants||0)+1;
+  }
+  // ajoute à mes participations
+  const when=new Date();
+  const dd=String(when.getDate()).padStart(2,'0');
+  const mm=String(when.getMonth()+1).padStart(2,'0');
+  const yy=when.getFullYear();
+  ccMyParts.push({id:ccActiveId||'',title:ccDraft.title||'Concours',by:ccDraft.by||'',when:`${dd}/${mm}/${yy}`});
+  ccRender();
+  encGo('cc-insc-s1','cc-insc-s2');
 }
 function openCartCheckout(){
   const v=document.getElementById('cart-view'),c=document.getElementById('cart-checkout');
@@ -8874,6 +9161,7 @@ if(id==='mod-blacklist')blResetBlacklistView();
 if(id==='mod-planning')planResetModule();
 if(id==='mod-panier')closeCartCheckout();
 if(id==='mod-feed'){closeFeedPost();initFeedBadges();}
+if(id==='mod-concours')ccRender();
 if(id==='mod-reglages'){closeRegProfileSettings();closeClientProfileIdentity();}
 if(!mod._swipeInit){
 mod._swipeInit=true;
