@@ -2307,7 +2307,7 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
 .prev-bottom-bar{padding:12px 16px 24px;display:flex;gap:8px;background:var(--light);}
 .prev-btn-save{flex:1;padding:14px;border-radius:14px;background:var(--btn-bg);color:var(--btn-fg);font-size:15px;font-weight:900;border:none;cursor:pointer;font-family:inherit;letter-spacing:-.2px;}
 .prev-btn-share{padding:14px 16px;border-radius:14px;background:var(--bg);border:1.5px solid var(--border);font-size:20px;cursor:pointer;}
-.prev-ar-cam{margin:0 16px;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#1A1A2E,#16213E,#0F3460);height:320px;position:relative;display:flex;align-items:center;justify-content:center;}
+.prev-ar-cam{margin:0;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#1A1A2E,#16213E,#0F3460);height:60vh;position:relative;display:flex;align-items:center;justify-content:center;}
 .prev-ar-face{width:140px;height:170px;border-radius:50%;border:2px dashed rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:60px;opacity:.6;animation:breathe 3s ease-in-out infinite;}
 @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
 .prev-ar-badge{background:rgba(0,0,0,.6);backdrop-filter:blur(8px);border-radius:10px;padding:6px 12px;font-size:11px;font-weight:700;color:white;display:flex;align-items:center;gap:6px;}
@@ -11629,8 +11629,8 @@ var extraHTML='';
 if(feat==='coiffure')extraHTML='<div class="prev-sec-lbl">Longueur</div><div class="prev-panel"><div class="prev-slider-row"><div class="prev-slider-lbl">Longueur</div><input type="range" min="10" max="100" value="50" oninput="this.nextElementSibling.textContent=this.value+\'%\'" style="accent-color:#A87DC8"><div class="prev-slider-val">50%</div></div></div>';
 if(feat==='cils')extraHTML='<div class="prev-sec-lbl">Intensité</div><div class="prev-panel"><div class="prev-slider-row"><div class="prev-slider-lbl">Volume</div><input type="range" min="1" max="5" value="3" oninput="this.nextElementSibling.textContent=this.value" style="accent-color:#E8638C"><div class="prev-slider-val">3</div></div></div>';
 var stylesBtns=fxKeys.map(function(s,i){return '<div class="prev-shape-btn '+(i===0?'on':'')+'" onclick="prevApplyAREffect(\''+feat+'\',\''+s.replace(/'/g,"\\'")+'\',this)">'+s+'</div>';}).join('');
-b.innerHTML='<div class="prev-ar-cam" id="prev-ar-cam-box" style="position:relative;overflow:hidden;border-radius:20px;margin:0;height:60vh;background:#000;">'
-+'<canvas id="prev-deepar-canvas" style="width:100%;height:60vh;object-fit:cover;display:block;"></canvas>'
+b.innerHTML='<div class="prev-ar-cam" id="prev-ar-cam-box" style="position:relative;width:100%;height:60vh;overflow:hidden;border-radius:0;margin:0;background:#000;">'
++'<canvas id="prev-deepar-canvas" style="width:100%;height:100%;position:absolute;inset:0;object-fit:cover;display:block;"></canvas>'
 +'<div id="prev-cam-error" style="display:none;position:absolute;inset:0;flex-direction:column;align-items:center;justify-content:center;background:#1A1A2E;color:#fff;text-align:center;padding:20px;border-radius:20px;"><div style="font-size:40px;margin-bottom:12px;">📷</div><div style="font-size:14px;font-weight:700;margin-bottom:8px;">Caméra non autorisée</div><div style="font-size:12px;color:#8E8E93;">Autorise l\'accès à la caméra dans les réglages de ton navigateur</div></div>'
 +'<div style="position:absolute;bottom:12px;left:0;right:0;display:flex;justify-content:center;pointer-events:none;"><div class="prev-ar-badge" style="pointer-events:auto;"><div class="prev-ar-dot"></div>Caméra active · '+titles[feat]+'</div></div>'
 +'<div style="position:absolute;top:14px;right:14px;display:flex;flex-direction:column;gap:8px;">'
