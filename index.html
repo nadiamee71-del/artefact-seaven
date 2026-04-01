@@ -11483,11 +11483,12 @@ var _prevDeepAR=null;
 var _prevARFacing='user';
 var _prevARFallback=false;
 var DEEPAR_KEY='047ebbb7a3e5b7712e82c112a9ffcc55b4eac3418677c3414a1e138a0e11aa56eafe1ba13656fd73';
+var _DEEPAR_CDN='https://cdn.jsdelivr.net/npm/deepar@5.6.21/effects/';
 var DEEPAR_FX={
-coiffure:{'🌸 Fleurs':'Flower%20Face/Flower%20Face','💄 Maquillage':'Makeup%20Look%20Simple/Makeup%20Look%20Simple','✨ Glamour':'Makeup%20Look%20w_%20Slipt%20Screen%20Effect/Makeup%20Look%20w_%20Slipt%20Screen%20Effect'},
-cils:{'🌸 Fleurs':'Flower%20Face/Flower%20Face','💄 Maquillage':'Makeup%20Look%20Simple/Makeup%20Look%20Simple'},
-sourcils:{'🌸 Fleurs':'Flower%20Face/Flower%20Face','💄 Maquillage':'Makeup%20Look%20Simple/Makeup%20Look%20Simple'},
-barbe:{'🌸 Fleurs':'Flower%20Face/Flower%20Face'}
+coiffure:{'🕶️ Lunettes':_DEEPAR_CDN+'aviators','🐾 Dalmatien':_DEEPAR_CDN+'dalmatian','🦁 Lion':_DEEPAR_CDN+'lion','🐨 Koala':_DEEPAR_CDN+'koala','🌌 Galaxy':_DEEPAR_CDN+'galaxy_background','🔍 Flou':_DEEPAR_CDN+'background_blur.deepar'},
+cils:{'🕶️ Lunettes':_DEEPAR_CDN+'aviators','🐾 Dalmatien':_DEEPAR_CDN+'dalmatian','🦁 Lion':_DEEPAR_CDN+'lion','🐨 Koala':_DEEPAR_CDN+'koala'},
+sourcils:{'🕶️ Lunettes':_DEEPAR_CDN+'aviators','🐾 Dalmatien':_DEEPAR_CDN+'dalmatian','🦁 Lion':_DEEPAR_CDN+'lion'},
+barbe:{'🕶️ Lunettes':_DEEPAR_CDN+'aviators','🦁 Lion':_DEEPAR_CDN+'lion','🐾 Dalmatien':_DEEPAR_CDN+'dalmatian'}
 };
 function prevStopCamera(){
 if(_prevDeepAR){try{_prevDeepAR.shutdown();}catch(e){}_prevDeepAR=null;}
@@ -11523,7 +11524,7 @@ var fxMap=DEEPAR_FX[feat];
 if(fxMap&&_prevDeepAR){
 var keys=Object.keys(fxMap);
 if(keys.length>0){
-_prevDeepAR.switchEffect(0,'slot',fxMap[keys[0]]).catch(function(e){console.log('FX load:',e);});
+_prevDeepAR.switchEffect(fxMap[keys[0]]).catch(function(e){console.log('FX load:',e);});
 }
 }
 }).catch(function(err){
@@ -11602,7 +11603,7 @@ window.prevApplyAREffect=function(feat,style,el){
 document.querySelectorAll('#mod-previsualisation .prev-shape-btn').forEach(function(b){b.classList.remove('on');});
 el.classList.add('on');
 if(_prevDeepAR&&!_prevARFallback&&DEEPAR_FX[feat]&&DEEPAR_FX[feat][style]){
-_prevDeepAR.switchEffect(0,'slot',DEEPAR_FX[feat][style]).catch(function(e){console.log('FX:',e);});
+_prevDeepAR.switchEffect(DEEPAR_FX[feat][style]).catch(function(e){console.log('FX:',e);});
 }
 };
 function prevShowNotif(msg){
