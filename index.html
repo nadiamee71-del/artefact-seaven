@@ -3716,7 +3716,7 @@ MODULES PROFIL
 <div class="reg-back-h"><span class="reg-back" onclick="closeAllRegSubs();closeModule('mod-reglages')">‹</span></div>
 <div class="header"><h1>Paramètres</h1></div>
 <!-- Bloc profil (style iOS / iCloud) -->
-<div class="reg-top-profile" id="reg-top-profile" onclick="openRegSub('reg-sub-edit-profil')">
+<div class="reg-top-profile" id="reg-top-profile" onclick="openRegTopProfile()">
   <div class="rtp-avatar" id="reg-top-avatar">B</div>
   <div style="flex:1;min-width:0;">
     <div class="rtp-name">
@@ -7188,6 +7188,7 @@ function regEditProfilSync(){
   document.getElementById('ep-p-activity') && (document.getElementById('ep-p-activity').textContent=(p.name||'').trim());
 }
 function openRegSub(id){
+  document.querySelectorAll('#mod-reglages .reg-sub').forEach(function(s){s.classList.remove('on');s.style.display='';});
   var el=document.getElementById(id);
   if(el){ el.classList.add('on'); el.style.display='flex'; }
   if(id==='reg-sub-edit-profil') regEditProfilSync();
