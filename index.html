@@ -8120,6 +8120,34 @@ const _evtCopy={
   aid:{title:"Nocturnes de l'Aïd 2026",body:"Soirées réservées aux femmes, plusieurs prestataires (ongles, cils, coiffure), tarifs nocturnes. Institut Lumière · Nice. Entrée gratuite sur inscription."},
   noel:{title:"Marché de Noël Beauté",body:"Stands produits et poses flash, buffet offert. Entrée 5 € — places limitées · Bloom Nails."}
 };
+function evtMakeCardEl(evt, opts){
+  const o=opts||{};
+  const id=evt?.id||'evt';
+  const emoji=evt?.emoji||'🎉';
+  const title=evt?.title||'Événement';
+  const meta=evt?.meta||'—';
+  const desc=evt?.desc||'';
+  const date=evt?.dateLabel||'Date';
+  const time=evt?.timeLabel||'Horaires';
+  const cond=evt?.condLabel||'';
+  const tarif=evt?.tarifLabel||'';
+  const tags=[date,time,cond,tarif].filter(Boolean);
+  const w=document.createElement('div');
+  w.className='evt-card';
+  w.innerHTML=
+    '<div class="evt-banner">'+emoji+'</div>'+
+    '<div class="evt-body">'+
+      '<div class="evt-name">'+title+'</div>'+
+      '<div class="evt-by">'+meta+'</div>'+
+      '<div class="evt-info">'+tags.map(t=>'<div class="evt-tag">'+t+'</div>').join('')+'</div>'+
+      (desc?('<div class="evt-desc">'+desc+'</div>'):'')+
+      '<div class="evt-btns">'+
+        '<button type="button" class="evt-btn" onclick="openEvtDetail(\''+id.replace(/'/g,"\\'")+'\')">En savoir plus</button>'+
+        '<button type="button" class="evt-btn dark" onclick="openInscriptionEvent(this)">'+(o.ctaLabel||"S'inscrire →")+'</button>'+
+      '</div>'+
+    '</div>';
+  return w;
+}
 let _evtActiveName='';
 function openEvtDetail(id){
   const o=_evtCopy[id];
@@ -8241,6 +8269,30 @@ function publishEvent(){
   const isPay=document.querySelector('.ev-tarif-pill.on')?.textContent?.includes('Payant');
   const prix=(document.getElementById('ev-prix')?.value||'').trim();
   const tarifTxt=isPay?(prix?prix+'€':'Payant'):'Gratuit';
+  const emoji=document.querySelector('#flow-create-event .ev-emoji-pick.on')?.dataset?.v||'🎉';
+  const meta=(document.getElementById('ev-lieu')?.value||'').trim()||'—';
+  const desc=(document.getElementById('ev-desc')?.value||'').trim()||'';
+  const hstart=(document.getElementById('ev-hstart')?.value||'').trim();
+  const hend=(document.getElementById('ev-hend')?.value||'').trim();
+  const timeLbl=(hstart&&hend)?(hstart+' → '+hend):(hstart||hend||'Horaires');
+  const condOn=[...document.querySelectorAll('#flow-create-event .ev-cond-pill.on')].map(e=>e.textContent.trim()).filter(Boolean);
+  const condLbl=condOn[0]||'';
+  const id='usr_'+Date.now();
+  _evtCopy[id]={title,body:desc||('Événement · '+meta)};
+  const evtObj={id,emoji,title,meta,desc,dateLabel:date1,timeLabel:timeLbl,condLabel:condLbl,tarifLabel:tarifTxt};
+
+  // Ajoute la nouvelle card dans "Mes événements" (PRO) et "À venir" (CLIENT)
+  const listMine=document.getElementById('me-miens');
+  if(listMine){
+    const card=evtMakeCardEl(evtObj,{ctaLabel:'Voir inscriptions'});
+    listMine.insertBefore(card, listMine.firstChild?.nextSibling||listMine.firstChild);
+  }
+  const listAll=document.getElementById('me-tous');
+  if(listAll){
+    const card=evtMakeCardEl(evtObj,{ctaLabel:"S'inscrire →"});
+    listAll.insertBefore(card, listAll.firstChild);
+  }
+
   const confT=document.getElementById('ev-conf-title');
   const confD=document.getElementById('ev-conf-date');
   const confP=document.getElementById('ev-conf-places');
