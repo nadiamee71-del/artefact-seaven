@@ -75,18 +75,19 @@ body.dark-mode .pnav-icon{color:var(--text);}
 body.dark-mode .section-block .row{border-color:var(--border);}
 body.dark-mode .section-block{border-color:var(--border);}
 .phone{width:100%;max-width:100vw;height:100vh;height:100svh;height:100dvh;background:var(--bg);border-radius:0;box-shadow:none;overflow:hidden;position:relative;overscroll-behavior:none;touch-action:manipulation;}
+.mod-scroll,.enc-scroll,.reg-scroll,.rps-scroll,.mfo-create-scroll,.rdv-wiz-scroll,.det-scroll,.conv-body,.mkt-d-body,.evt-d-scroll,.fin-body,.ob-scroll,.reveil-scroll,.svc-scroll,.reg-sub-scroll,.fc-scroll,.grp-scroll,.plan-mo-sheet,.archive-grid,.svc-sh-body,[style*="overflow-y:auto"],[style*="overflow-y: auto"]{overscroll-behavior:contain;}
 /* Tout ce qui est enfant direct de .phone et pas une vue/module reste invisible */
 .phone>*:not(.page):not(.screen):not(.module):not(.prof-module):not(.app-dock):not(.fan-backdrop):not(.flow){display:none!important;}
 
 /* vues */
-.page,.screen{position:absolute;inset:0;display:none;flex-direction:column;background:var(--bg);overflow:hidden;min-height:0;}
+.page,.screen{position:absolute;inset:0;display:none;flex-direction:column;background:var(--bg);overflow:hidden;min-height:0;overscroll-behavior:none;}
 .page.on,.screen.on{display:flex;}
 /* Les écrans principaux au-dessus des pages d’onboarding pour éviter un écran vide si deux vues restent actives un instant */
 .phone>.page.on{z-index:2;}
 .phone>.screen.on{z-index:3;}
 :root{--dock-h:calc(86px + env(safe-area-inset-bottom));}
 /* modules — slide depuis droite, laissent la place au dock (barre + fan) */
-.module{position:absolute;top:0;left:0;right:0;bottom:var(--dock-h);width:100%;display:flex;flex-direction:column;background:var(--bg);overflow:hidden;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:60;box-sizing:border-box;will-change:transform;-webkit-backface-visibility:hidden;backface-visibility:hidden;}
+.module{position:absolute;top:0;left:0;right:0;bottom:var(--dock-h);width:100%;display:flex;flex-direction:column;background:var(--bg);overflow:hidden;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:60;box-sizing:border-box;will-change:transform;-webkit-backface-visibility:hidden;backface-visibility:hidden;overscroll-behavior:contain;}
 .module.on{transform:translateX(0);pointer-events:all;}
 /* Modales / bottom sheets : au-dessus du dock (80) pour ne pas masquer les boutons */
 .module:has(.plan-mo-overlay.open),
@@ -103,7 +104,7 @@ body.dark-mode .section-block{border-color:var(--border);}
 .splash-top{flex:1;display:flex;align-items:center;justify-content:center;}
 .splash-scene{position:relative;width:160px;height:160px;display:flex;align-items:center;justify-content:center;}
 .splash-logo-wrap{position:relative;width:132px;height:132px;animation:logoIn .7s cubic-bezier(.2,.9,.2,1) .15s both;}
-.splash-logo-ring{position:absolute;inset:0;border-radius:32px;background:linear-gradient(135deg,#C9A84C,#7EC8A4,#4FC4CF,#4A90D9);padding:2px;animation:ringSpin 6s linear infinite;}
+.splash-logo-ring{position:absolute;inset:0;border-radius:32px;background:linear-gradient(135deg,#C9A84C,#7EC8A4,#4FC4CF,#4A90D9);padding:2px;animation:ringSpin 1.2s cubic-bezier(.4,0,.2,1) .3s both;}
 .splash-logo-core{width:100%;height:100%;border-radius:30px;background:white;display:flex;align-items:center;justify-content:center;}
 .splash-logo-mark{width:88px;height:88px;border-radius:24px;background:white;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 22px rgba(0,0,0,.16);overflow:hidden;}
 .splash-logo-mark img{width:72px;height:72px;display:block;object-fit:contain;}
@@ -118,6 +119,7 @@ body.dark-mode .section-block{border-color:var(--border);}
 @keyframes glowPulse{0%,100%{opacity:.55;transform:scale(.95);}50%{opacity:1;transform:scale(1.03);}}
 @keyframes pFade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 @keyframes loadBar{from{width:0;}to{width:100%;}}
+@keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
 @media (prefers-reduced-motion: reduce){
 .seaven-text,.splash-progress,.splash-logo-wrap{opacity:1!important;animation:none!important;transform:none!important;}
 .splash-progress > span{width:100%!important;animation:none!important;}
@@ -325,7 +327,7 @@ label.config-title{display:block;cursor:default;}
 .mod-back{width:32px;height:32px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;font-weight:700;flex-shrink:0;}
 .mod-title{font-size:17px;font-weight:800;color:var(--black);flex:1;}
 .mod-action{font-size:13px;font-weight:700;color:var(--gray);cursor:pointer;}
-.mod-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.mod-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:max(80px,env(safe-area-inset-bottom));}
 .mod-scroll::-webkit-scrollbar{display:none;}
 .mod-tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0;}
 .mod-tab{flex:1;padding:11px 0;text-align:center;font-size:13px;font-weight:700;color:var(--gray);cursor:pointer;border-bottom:2px solid transparent;}
@@ -896,7 +898,7 @@ label.config-title{display:block;cursor:default;}
 .card-body{padding:14px;}
 .mfo-pro-only{display:none;}
 #screen-pro.on #mod-formation .mfo-pro-only{display:block;}
-.mfo-create-overlay{position:absolute;inset:0;background:var(--bg);z-index:90;display:none;flex-direction:column;overflow:hidden;}
+.mfo-create-overlay{position:absolute;inset:0;background:var(--bg);z-index:90;display:none;flex-direction:column;overflow:hidden;overscroll-behavior:contain;}
 .mfo-create-overlay.on{display:flex;}
 .mfo-create-scroll{flex:1;overflow-y:auto;padding:14px 16px 22px;}
 .mfo-stepper{display:flex;gap:8px;padding:10px 16px 8px;flex-shrink:0;border-bottom:1px solid var(--border);background:var(--bg);}
@@ -1026,7 +1028,7 @@ body.dark-mode #mod-reglages{background:var(--bg)!important;}
 #mod-reglages .mode-btn{flex:1;padding:8px;border-radius:10px;font-size:13px;font-weight:700;border:none;cursor:pointer;transition:all .2s;font-family:'Manrope',sans-serif;}
 #mod-reglages .mode-btn.active{background:var(--btn-bg);color:var(--btn-fg);}
 #mod-reglages .mode-btn.inactive{background:var(--border);color:var(--gray);}
-#mod-reglages .reg-scroll{flex:1;overflow-y:auto;padding-bottom:max(20px,env(safe-area-inset-bottom));-webkit-overflow-scrolling:touch;}
+#mod-reglages .reg-scroll{flex:1;overflow-y:auto;padding-bottom:max(80px,env(safe-area-inset-bottom));-webkit-overflow-scrolling:touch;}
 #mod-reglages .reg-scroll::-webkit-scrollbar{display:none;}
 #mod-reglages .profile-card{margin:0 16px 24px;background:var(--bg);border-radius:16px;padding:16px;display:flex;align-items:center;gap:14px;cursor:pointer;border:1px solid var(--border);}
 #mod-reglages .profile-card .avatar{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--purple));display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:white;flex-shrink:0;}
@@ -1216,7 +1218,7 @@ body.dark-mode #mod-reglages{background:var(--bg)!important;}
 .svc-sec-lbl{padding:10px 16px 4px;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.4px;}
 .svc-img-upload{margin:8px 16px;border:2px dashed var(--border);border-radius:12px;padding:20px;text-align:center;}
 /* ══ FLOWS ══ */
-.flow{position:absolute;top:0;left:0;right:0;bottom:var(--dock-h);z-index:100;display:none;flex-direction:column;background:var(--bg);}
+.flow{position:absolute;top:0;left:0;right:0;bottom:var(--dock-h);z-index:100;display:none;flex-direction:column;background:var(--bg);overflow:hidden;overscroll-behavior:contain;}
 .flow.on{display:flex;}
 /* Un flux ne doit jamais rester « ouvert » si son écran (client ou pro) est masqué — évite état incohérent (ex. RDV client ouvert en mode pro). */
 #screen-client:not(.on) .flow.on,#screen-pro:not(.on) .flow.on{display:none!important;}
@@ -1225,7 +1227,7 @@ body.dark-mode #mod-reglages{background:var(--bg)!important;}
 .flow-close-w svg{width:14px;height:14px;}
 .flow-title-w{font-size:15px;font-weight:800;color:var(--black);}
 .flow-next-w{background:var(--btn-bg);color:var(--btn-fg);border:none;border-radius:20px;padding:7px 16px;font-size:13px;font-weight:800;cursor:pointer;font-family:'Manrope',sans-serif;}
-.enc-page{display:none;flex-direction:column;flex:1;overflow:hidden;position:relative;}
+.enc-page{display:none;flex-direction:column;flex:1;overflow:hidden;position:relative;overscroll-behavior:contain;}
 .enc-page.on{display:flex;}
 /* ══ RÉSERVATION CLIENT v3 (flow-rdv) ══ */
 #flow-rdv.flow{background:var(--bg);}
@@ -2262,6 +2264,60 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
 .tabbar{padding-bottom:max(16px,env(safe-area-inset-bottom));}
 .sbar{padding-top:max(14px,env(safe-area-inset-top));}
 }
+
+/* ═══ PRÉVISUALISATION ═══ */
+.prev-hand-canvas{margin:0 16px;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#FFF5F8 0%,#F0EEF8 50%,#EEF4FF 100%);position:relative;}
+.prev-hand-wrap{display:flex;justify-content:center;align-items:flex-end;padding:20px 20px 0;min-height:240px;position:relative;}
+.prev-hand-svg{width:240px;height:220px;cursor:pointer;}
+.prev-skin-picker{display:flex;gap:8px;padding:10px 16px;align-items:center;flex-shrink:0;}
+.prev-skin-lbl{font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.4px;margin-right:2px;}
+.prev-skin{width:26px;height:26px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .15s;}
+.prev-skin.on{border-color:var(--black);transform:scale(1.15);}
+.prev-toolbar{margin:8px 16px 0;background:var(--bg);border-radius:16px;padding:10px 12px;display:flex;gap:6px;flex-wrap:wrap;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.prev-tool{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 10px;border-radius:10px;cursor:pointer;background:var(--light);border:1.5px solid var(--border);font-size:10px;font-weight:700;color:var(--gray);transition:all .15s;flex-shrink:0;min-width:52px;}
+.prev-tool-ic{font-size:18px;}
+.prev-tool.on{background:var(--black);color:white;border-color:var(--black);}
+.prev-tool.active-rose{background:#FFF0F4;color:#E8638C;border-color:#E8638C;}
+.prev-tool.active-violet{background:#F5F0FF;color:#A87DC8;border-color:#A87DC8;}
+.prev-tool.active-bleu{background:#EEF4FF;color:#4A90D9;border-color:#4A90D9;}
+.prev-tool.active-vert{background:#F0FFF7;color:#7EC8A4;border-color:#7EC8A4;}
+.prev-panel{margin:8px 16px 0;background:var(--bg);border-radius:16px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.prev-panel-ttl{font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px;}
+.prev-color-grid{display:flex;gap:6px;flex-wrap:wrap;}
+.prev-col-dot{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .15s;position:relative;}
+.prev-col-dot.on{border-color:var(--black);transform:scale(1.1);}
+.prev-col-dot.custom{background:conic-gradient(red,orange,yellow,green,cyan,blue,violet,red);display:flex;align-items:center;justify-content:center;font-size:11px;color:white;font-weight:800;}
+.prev-shape-row{display:flex;gap:8px;flex-wrap:wrap;}
+.prev-shape-btn{padding:6px 12px;border-radius:20px;font-size:12px;font-weight:700;color:var(--gray);background:var(--light);border:1.5px solid var(--border);cursor:pointer;transition:all .15s;}
+.prev-shape-btn.on{background:var(--black);color:white;border-color:var(--black);}
+.prev-sec-lbl{font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;margin:10px 16px 4px;}
+.prev-design-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.prev-design-item{border-radius:12px;overflow:hidden;cursor:pointer;border:2px solid var(--border);aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--light);transition:all .15s;font-size:8px;font-weight:700;color:var(--gray);gap:4px;}
+.prev-design-item.on{border-color:var(--black);}
+.prev-design-ic{font-size:22px;}
+.prev-strass-grid{display:flex;gap:8px;flex-wrap:wrap;}
+.prev-strass-item{width:36px;height:36px;border-radius:10px;background:var(--light);border:1.5px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;transition:all .15s;}
+.prev-strass-item.on{border-color:var(--black);background:var(--bg);}
+.prev-thumb-sel{display:flex;gap:8px;padding:8px 16px 0;overflow-x:auto;flex-shrink:0;}
+.prev-thumb-sel::-webkit-scrollbar{display:none;}
+.prev-thumb{width:36px;height:48px;border-radius:10px;background:var(--light);border:2px solid var(--border);cursor:pointer;flex-shrink:0;transition:all .15s;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:4px;gap:2px;}
+.prev-thumb.on{border-color:var(--black);}
+.prev-thumb-nail{width:18px;height:22px;border-radius:50% 50% 30% 30%/60% 60% 40% 40%;transition:background .2s;}
+.prev-thumb-lbl{font-size:8px;font-weight:700;color:var(--gray);}
+.prev-bottom-bar{padding:12px 16px 24px;display:flex;gap:8px;background:var(--light);}
+.prev-btn-save{flex:1;padding:14px;border-radius:14px;background:var(--btn-bg);color:var(--btn-fg);font-size:15px;font-weight:900;border:none;cursor:pointer;font-family:inherit;letter-spacing:-.2px;}
+.prev-btn-share{padding:14px 16px;border-radius:14px;background:var(--bg);border:1.5px solid var(--border);font-size:20px;cursor:pointer;}
+.prev-ar-cam{margin:0 16px;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#1A1A2E,#16213E,#0F3460);height:320px;position:relative;display:flex;align-items:center;justify-content:center;}
+.prev-ar-face{width:140px;height:170px;border-radius:50%;border:2px dashed rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:60px;opacity:.6;animation:breathe 3s ease-in-out infinite;}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+.prev-ar-badge{background:rgba(0,0,0,.6);backdrop-filter:blur(8px);border-radius:10px;padding:6px 12px;font-size:11px;font-weight:700;color:white;display:flex;align-items:center;gap:6px;}
+.prev-ar-dot{width:6px;height:6px;border-radius:50%;background:#7EC8A4;animation:pulse 1.5s infinite;}
+.prev-ear-canvas{margin:0 16px;border-radius:20px;background:linear-gradient(160deg,#FFF0F8,#F5F0FF);padding:20px;display:flex;justify-content:center;min-height:200px;}
+.prev-slider-row{display:flex;align-items:center;gap:10px;}
+.prev-slider-lbl{font-size:12px;font-weight:700;color:var(--gray);width:50px;flex-shrink:0;}
+.prev-slider-val{font-size:12px;font-weight:900;color:var(--black);width:30px;text-align:right;flex-shrink:0;}
+#mod-previsualisation input[type=range]{flex:1;height:4px;border-radius:2px;-webkit-appearance:none;background:var(--border);cursor:pointer;}
+#mod-previsualisation input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--black);border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,.2);}
 </style>
 </head>
 <body>
@@ -2337,7 +2393,7 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
 </div>
 <div class="grid-page">
 <div class="app-item" onclick="openModule('mod-groupes')"><div class="app-icon" style="background:#F0F0FF;">👯</div><div class="app-name">Groupes</div></div>
-<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item" onclick="openModule('mod-previsualisation')"><div class="app-icon" style="background:#FFF0F8;">✦</div><div class="app-name">Prévisu.</div></div>
 <div class="app-item app-slot-empty" aria-hidden="true"></div>
 <div class="app-item app-slot-empty" aria-hidden="true"></div>
 <div class="app-item app-slot-empty" aria-hidden="true"></div>
@@ -2760,9 +2816,9 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
 <!-- FLOWS — ÉVÉNEMENTS + CONCOURS (hors screen-client pour visibilité PRO/CLIENT) -->
 
 <!-- FLOW — CRÉER UN ÉVÉNEMENT (côté Prestataire) -->
-<div class="flow" id="flow-create-event" style="display:none;position:fixed;inset:0;z-index:100;background:white;">
+<div class="flow" id="flow-create-event" style="display:none;position:absolute;top:0;left:0;right:0;bottom:0;z-index:100;background:white;overflow:hidden;overscroll-behavior:none;flex-direction:column;">
   <!-- PAGE — Création (1 seule page scrollable) -->
-  <div class="enc-page on" id="ev-create-s1" style="height:100%;display:flex;flex-direction:column;">
+  <div class="enc-page on" id="ev-create-s1" style="flex:1;min-height:0;flex-direction:column;">
     <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F0F0F0;flex-shrink:0;">
       <div onclick="closeCreateEvent()" style="font-size:22px;cursor:pointer;color:#1A1A1A;">‹</div>
       <div style="font-size:16px;font-weight:800;color:#1A1A1A;flex:1;">Nouvel événement</div>
@@ -2914,7 +2970,7 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
   </div>
 
   <!-- PAGE 5 — Confirmation création -->
-  <div class="enc-page" id="ev-create-s5" style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:32px 24px;">
+  <div class="enc-page" id="ev-create-s5" style="flex:1;min-height:0;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:32px 24px;">
     <div style="width:72px;height:72px;border-radius:50%;background:#1A1A1A;display:flex;align-items:center;justify-content:center;color:white;font-size:32px;">✓</div>
     <div style="font-size:22px;font-weight:800;color:#1A1A1A;">Événement publié !</div>
     <div style="font-size:13px;color:#888;text-align:center;line-height:1.6;">Ton événement est visible.<br>Tes abonnées ont été notifiées.</div>
@@ -2941,8 +2997,8 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
 </div>
 
 <!-- FLOW — INSCRIPTION À UN ÉVÉNEMENT (côté Cliente) -->
-<div class="flow" id="flow-insc-event" style="display:none;position:fixed;inset:0;z-index:100;background:white;">
-  <div class="enc-page on" id="ev-insc-s1" style="height:100%;display:flex;flex-direction:column;">
+<div class="flow" id="flow-insc-event" style="display:none;position:absolute;top:0;left:0;right:0;bottom:0;z-index:100;background:white;overflow:hidden;overscroll-behavior:none;flex-direction:column;">
+  <div class="enc-page on" id="ev-insc-s1" style="flex:1;min-height:0;flex-direction:column;">
     <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F0F0F0;flex-shrink:0;">
       <div onclick="closeInscEvent()" style="font-size:22px;cursor:pointer;color:#1A1A1A;">‹</div>
       <div style="font-size:16px;font-weight:800;color:#1A1A1A;flex:1;" id="ev-insc-title">Événement</div>
@@ -2974,7 +3030,7 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
     </div>
   </div>
 
-  <div class="enc-page" id="ev-insc-s2" style="height:100%;display:flex;flex-direction:column;">
+  <div class="enc-page" id="ev-insc-s2" style="flex:1;min-height:0;flex-direction:column;">
     <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F0F0F0;flex-shrink:0;">
       <div onclick="encGo('ev-insc-s2','ev-insc-s1')" style="font-size:22px;cursor:pointer;color:#1A1A1A;">‹</div>
       <div style="font-size:16px;font-weight:800;color:#1A1A1A;">Conditions</div>
@@ -2992,7 +3048,7 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
     </div>
   </div>
 
-  <div class="enc-page" id="ev-insc-s3" style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:32px 24px;">
+  <div class="enc-page" id="ev-insc-s3" style="flex:1;min-height:0;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:32px 24px;">
     <div style="font-size:56px;">🎉</div>
     <div style="font-size:22px;font-weight:800;color:#1A1A1A;text-align:center;">Inscription confirmée !</div>
     <div style="font-size:13px;color:#888;text-align:center;line-height:1.6;">Tu recevras un rappel la veille de l'événement.</div>
@@ -3010,14 +3066,14 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
 </div>
 
 <!-- FLOW — CRÉER UN CONCOURS (côté Prestataire) -->
-<div class="flow" id="flow-create-concours" style="display:none;position:fixed;inset:0;z-index:100;background:white;">
-  <div class="enc-page on" id="cc-create-s1" style="height:100%;display:flex;flex-direction:column;">
+<div class="flow" id="flow-create-concours" style="display:none;position:absolute;top:0;left:0;right:0;bottom:0;z-index:100;background:white;overflow:hidden;overscroll-behavior:none;flex-direction:column;">
+  <div class="enc-page on" id="cc-create-s1" style="flex:1;min-height:0;flex-direction:column;">
     <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F0F0F0;flex-shrink:0;">
       <div onclick="closeCreateConcours()" style="font-size:22px;cursor:pointer;color:#1A1A1A;">‹</div>
       <div style="font-size:16px;font-weight:800;color:#1A1A1A;flex:1;">Nouveau concours</div>
       <div style="font-size:12px;color:#888;">1 / 1</div>
     </div>
-    <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px;padding-bottom:100px;">
+    <div style="flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:20px;padding-bottom:100px;">
       <div style="margin-bottom:16px;">
         <div style="font-size:13px;font-weight:700;color:#1A1A1A;margin-bottom:8px;">Titre du concours *</div>
         <input id="cc-title" placeholder="Ex : Giveaway Saint-Valentin" style="width:100%;border:1.5px solid #E5E5EA;border-radius:12px;padding:12px 14px;font-size:14px;font-family:inherit;color:#1A1A1A;outline:none;box-sizing:border-box;" oninput="ccSyncPreview()"/>
@@ -3087,7 +3143,7 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
     </div>
   </div>
 
-  <div class="enc-page" id="cc-create-s2" style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:32px 24px;">
+  <div class="enc-page" id="cc-create-s2" style="flex:1;min-height:0;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:32px 24px;">
     <div style="width:72px;height:72px;border-radius:50%;background:#1A1A1A;display:flex;align-items:center;justify-content:center;color:white;font-size:32px;">✓</div>
     <div style="font-size:22px;font-weight:800;color:#1A1A1A;">Concours publié !</div>
     <div style="font-size:13px;color:#888;text-align:center;line-height:1.6;">Ton concours est visible et les clientes peuvent participer.</div>
@@ -3110,13 +3166,13 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
 </div>
 
 <!-- FLOW — INSCRIPTION CONCOURS (côté Cliente) -->
-<div class="flow" id="flow-insc-concours" style="display:none;position:fixed;inset:0;z-index:100;background:white;">
-  <div class="enc-page on" id="cc-insc-s1" style="height:100%;display:flex;flex-direction:column;">
+<div class="flow" id="flow-insc-concours" style="display:none;position:absolute;top:0;left:0;right:0;bottom:0;z-index:100;background:white;overflow:hidden;overscroll-behavior:none;flex-direction:column;">
+  <div class="enc-page on" id="cc-insc-s1" style="flex:1;min-height:0;flex-direction:column;">
     <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid #F0F0F0;flex-shrink:0;">
       <div onclick="closeInscConcours()" style="font-size:22px;cursor:pointer;color:#1A1A1A;">‹</div>
       <div style="font-size:16px;font-weight:800;color:#1A1A1A;flex:1;" id="cc-insc-title">Concours</div>
     </div>
-    <div style="flex:1;overflow-y:auto;padding:20px;">
+    <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:20px;padding-bottom:80px;">
       <div style="background:#F8F8F8;border-radius:16px;padding:14px;margin-bottom:16px;">
         <div style="font-size:12px;color:#888;margin-bottom:6px;">Lot à gagner</div>
         <div style="font-size:15px;font-weight:900;color:#1A1A1A;" id="cc-insc-lot">—</div>
@@ -3140,7 +3196,7 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
     </div>
   </div>
 
-  <div class="enc-page" id="cc-insc-s2" style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:32px 24px;">
+  <div class="enc-page" id="cc-insc-s2" style="flex:1;min-height:0;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:32px 24px;">
     <div style="width:72px;height:72px;border-radius:50%;background:#1A1A1A;display:flex;align-items:center;justify-content:center;color:white;font-size:32px;">✓</div>
     <div style="font-size:22px;font-weight:800;color:#1A1A1A;">Participation enregistrée !</div>
     <div style="font-size:13px;color:#888;text-align:center;line-height:1.6;">Bonne chance. Tu peux retrouver le concours dans “Mes participations”.</div>
@@ -3183,7 +3239,7 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
 <div class="app-item" onclick="openModule('mod-forum')"><div class="app-icon" style="background:#EEF0FF;">💬</div><div class="app-name">Forum</div></div>
 <div class="app-item" onclick="openModule('mod-parrainage')"><div class="app-icon" style="background:#FFF8EE;">🤝</div><div class="app-name">Parrainage</div></div>
 <div class="app-item" onclick="openModule('mod-groupes')"><div class="app-icon" style="background:#F0F0FF;">👯</div><div class="app-name">Groupes</div></div>
-<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item" onclick="openModule('mod-previsualisation')"><div class="app-icon" style="background:#FFF0F8;">✦</div><div class="app-name">Prévisu.</div></div>
 <div class="app-item app-slot-empty" aria-hidden="true"></div>
 <div class="app-item app-slot-empty" aria-hidden="true"></div>
 <div class="app-item app-slot-empty" aria-hidden="true"></div>
@@ -3401,7 +3457,7 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
 </div>
 </div>
 <div class="tb-item" onclick="dockMsgs('cl')"><div class="tb-icon" style="position:relative;"><svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="tb-msg-badge" id="dock-msg-badge-cl">3</span></div></div>
-<div class="tb-item" id="tb-profile-cl" onclick="dockProfileClick('cl')" onpointerdown="dockProfileDown('cl')" onpointerup="dockProfileUp()" onpointerleave="dockProfileUp()"><div class="tb-icon"><div class="tb-avatar" id="tb-avatar-cl" style="background:linear-gradient(135deg,#E8638C,#A87DC8);">B</div></div></div>
+<div class="tb-item" id="tb-profile-cl"><div class="tb-icon"><div class="tb-avatar" id="tb-avatar-cl" style="background:linear-gradient(135deg,#E8638C,#A87DC8);">B</div></div></div>
 </div>
 </div>
 
@@ -3420,7 +3476,7 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
 </div>
 </div>
 <div class="tb-item" onclick="dockMsgs('pro')"><div class="tb-icon" style="position:relative;"><svg viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="tb-msg-badge" id="dock-msg-badge-pro">3</span></div></div>
-<div class="tb-item" id="tb-profile-pro" onclick="dockProfileClick('pro')" onpointerdown="dockProfileDown('pro')" onpointerup="dockProfileUp()" onpointerleave="dockProfileUp()"><div class="tb-icon"><div class="tb-avatar" id="tb-avatar-pro" style="background:linear-gradient(135deg,#E8638C,#A87DC8);">B</div></div></div>
+<div class="tb-item" id="tb-profile-pro"><div class="tb-icon"><div class="tb-avatar" id="tb-avatar-pro" style="background:linear-gradient(135deg,#E8638C,#A87DC8);">B</div></div></div>
 </div>
 </div>
 
@@ -3723,13 +3779,9 @@ MODULES PROFIL
       <span id="reg-top-first">Sassa</span>
       <span id="reg-top-last">Bloom</span>
     </div>
-    <div class="rtp-sub" id="reg-top-sub">Prothésiste ongulaire · Nice</div>
+    <div class="rtp-sub" id="reg-top-sub">Réglages profil</div>
   </div>
   <div class="rtp-chev">›</div>
-</div>
-<div class="mode-toggle">
-<button type="button" class="mode-btn mode-client active" onclick="regSetMode('client')">👤 Client</button>
-<button type="button" class="mode-btn mode-pro inactive" onclick="regSetMode('pro')">💼 Prestataire</button>
 </div>
 <div class="reg-scroll">
 <!-- Bulles profils -->
@@ -3815,7 +3867,7 @@ MODULES PROFIL
 <div class="row-text"><div class="row-label">Mon activité</div><div class="row-sub">Nom, métier, adresse, bio</div></div>
 <div class="chev">›</div>
 </div>
-<div class="row" onclick="closeModule('mod-reglages');openModule('mod-services')">
+<div class="row" onclick="openRegSub('reg-sub-edit-activite')">
 <div class="icon ic-pink">💅</div>
 <div class="row-text"><div class="row-label">Mes services</div><div class="row-sub">Prestations, tarifs & durées</div></div>
 <div class="chev">›</div>
@@ -3906,7 +3958,7 @@ MODULES PROFIL
 </div>
 </div>
 
-<div style="padding:8px 18px 2px;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;">Réglages de l'application</div>
+<div style="padding:8px 18px 2px;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;">Outils métier</div>
 <div class="section">
 <div class="section-block">
 <div class="row" onclick="closeModule('mod-reglages');openModule('mod-fichier-clients')">
@@ -3914,6 +3966,12 @@ MODULES PROFIL
 <div class="row-text"><div class="row-label">Fichier client</div><div class="row-sub">Import, export, formulaire client</div></div>
 <div class="chev">›</div>
 </div>
+</div>
+</div>
+
+<div style="padding:8px 18px 2px;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;">Réglages de l'application</div>
+<div class="section">
+<div class="section-block">
 <div class="row" style="cursor:default;">
 <div class="icon ic-grey">🌙</div>
 <div class="row-text"><div class="row-label">Mode nuit</div><div class="row-sub">Clair ou sombre</div></div>
@@ -7000,52 +7058,472 @@ MODULES PROFIL
 </div>
 
 <div class="mfo-create-overlay" id="mfo-create">
-  <div class="mod-hdr"><div class="mod-back" onclick="mfoCloseCreate()">‹</div><div class="mod-title" id="mfo-create-title">Créer</div><div style="width:32px;"></div></div>
-  <div class="mfo-stepper" aria-label="Étapes"><div class="mfo-step on" id="mfo-st-1"></div><div class="mfo-step" id="mfo-st-2"></div><div class="mfo-step" id="mfo-st-3"></div><div class="mfo-step" id="mfo-st-4"></div></div>
-  <div class="mfo-create-scroll">
-    <div id="mfo-step-1">
-      <div style="font-size:15px;font-weight:900;color:var(--black);margin-bottom:6px;">Type de contenu</div>
-      <div style="font-size:12px;color:var(--gray);margin-bottom:12px;">Choisis ce que tu veux créer.</div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <div class="mfo-pill on" id="mfo-pick-formation" onclick="mfoPickType('formation')">🎓 Formation</div>
-        <div class="mfo-pill" id="mfo-pick-ebook" onclick="mfoPickType('ebook')">📖 Ebook</div>
-      </div>
-      <div class="mfo-field"><div class="mfo-label">Titre</div><input class="mfo-input" id="mfo-title" placeholder="Ex: Gel X · Débutant" /></div>
-      <div class="mfo-row2">
-        <div class="mfo-field"><div class="mfo-label">Catégorie</div><select class="mfo-select" id="mfo-cat"><option>Ongles</option><option>Cils</option><option>Coiffure</option><option>Bien-être</option></select></div>
-        <div class="mfo-field"><div class="mfo-label">Niveau</div><select class="mfo-select" id="mfo-level"><option>Débutant</option><option>Intermédiaire</option><option>Avancé</option></select></div>
-      </div>
-      <div class="mfo-field"><div class="mfo-label">Description</div><textarea class="mfo-textarea" id="mfo-desc" placeholder="Objectifs, à qui ça s'adresse, résultats…"></textarea></div>
-    </div>
-    <div id="mfo-step-2" style="display:none;">
-      <div style="font-size:15px;font-weight:900;color:var(--black);margin-bottom:6px;">Contenu</div>
-      <div style="font-size:12px;color:var(--gray);margin-bottom:12px;">Structure et livrables.</div>
-      <div class="mfo-field"><div class="mfo-label">Programme / chapitres (1 par ligne)</div><textarea class="mfo-textarea" id="mfo-program" placeholder="Préparation…&#10;Techniques…&#10;Erreurs à éviter…"></textarea></div>
-      <div class="mfo-row2">
-        <div class="mfo-field"><div class="mfo-label">Durée</div><input class="mfo-input" id="mfo-duration" placeholder="Ex: 6h / 2 jours / 120 pages" /></div>
-        <div class="mfo-field"><div class="mfo-label">Format</div><select class="mfo-select" id="mfo-format"><option>Présentiel</option><option>En ligne</option><option>PDF</option><option>PDF + Physique</option></select></div>
-      </div>
-    </div>
-    <div id="mfo-step-3" style="display:none;">
-      <div style="font-size:15px;font-weight:900;color:var(--black);margin-bottom:6px;">Prix & publication</div>
-      <div style="font-size:12px;color:var(--gray);margin-bottom:12px;">Règles commerciales.</div>
-      <div class="mfo-row2">
-        <div class="mfo-field"><div class="mfo-label">Prix (€)</div><input class="mfo-input" id="mfo-price" placeholder="Ex: 180" /></div>
-        <div class="mfo-field"><div class="mfo-label">Places (si formation)</div><input class="mfo-input" id="mfo-places" placeholder="Ex: 10" /></div>
-      </div>
-      <div class="mfo-field"><div class="mfo-label">Lieu / ville</div><input class="mfo-input" id="mfo-city" placeholder="Ex: Nice" /></div>
-    </div>
-    <div id="mfo-step-4" style="display:none;">
-      <div style="font-size:15px;font-weight:900;color:var(--black);margin-bottom:6px;">Aperçu</div>
-      <div style="font-size:12px;color:var(--gray);margin-bottom:12px;">Vérifie avant de publier.</div>
-      <div class="card" style="margin:0;border-radius:18px;"><div class="card-body"><div class="card-top"><div class="card-av" id="mfo-prev-ic">🎓</div><div style="flex:1;"><div class="card-name" id="mfo-prev-title">—</div><div class="card-by">par <span class="card-by-link">Mon profil</span></div></div><div class="niveau niv-debutant" id="mfo-prev-level">—</div></div><div class="programme" id="mfo-prev-program" style="margin-top:10px;"></div><div style="margin-top:10px;font-size:12px;color:var(--gray);" id="mfo-prev-desc">—</div></div></div>
-    </div>
-  </div>
-  <div class="mfo-actions">
-    <button type="button" class="mfo-btn" onclick="mfoPrev()">Retour</button>
-    <button type="button" class="mfo-btn dark" id="mfo-next-btn" onclick="mfoNext()">Continuer</button>
-  </div>
+
+<!-- Header -->
+
+<div style="display:flex;align-items:center;gap:12px;
+padding:14px 16px;border-bottom:1px solid var(--border);
+flex-shrink:0;background:var(--bg);">
+<div onclick="mfoCloseCreate()"
+style="font-size:22px;cursor:pointer;color:var(--black);">‹</div>
+<div id="mfo-create-title"
+style="font-size:16px;font-weight:800;color:var(--black);flex:1;">
+Créer une formation
 </div>
+</div>
+
+<!-- Toggle Formation / Ebook -->
+
+<div style="display:flex;gap:8px;padding:12px 16px 0;flex-shrink:0;">
+<div id="mfo-pick-formation" class="mfo-pill on"
+onclick="mfoPickType('formation')"
+style="flex:1;justify-content:center;">
+🎓 Formation
+</div>
+<div id="mfo-pick-ebook" class="mfo-pill"
+onclick="mfoPickType('ebook')"
+style="flex:1;justify-content:center;">
+📖 Ebook
+</div>
+</div>
+
+<!-- Scroll unique — tout sur une page -->
+
+<div class="mfo-create-scroll" style="overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+padding:16px 16px 120px;flex:1;">
+
+<!-- ==================== SECTION FORMATION ==================== -->
+<div id="mfo-section-formation">
+
+<!-- Photo bannière -->
+<div class="mfo-field">
+<div class="mfo-label">📸 Photo / Bannière <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<div onclick="mfoPickPhoto()"
+style="border:1.5px dashed var(--border);border-radius:14px;
+height:120px;display:flex;align-items:center;
+justify-content:center;cursor:pointer;
+background:var(--light);gap:8px;">
+<span style="font-size:24px;">📷</span>
+<span style="font-size:13px;color:var(--gray);font-weight:600;">
+Ajouter une photo
+</span>
+</div>
+</div>
+
+<!-- Titre -->
+<div class="mfo-field">
+<div class="mfo-label">Titre <span style="color:#FF3B30;">*</span></div>
+<input id="mfo-f-title" class="mfo-input"
+placeholder="Ex : Formation Gel X · Débutant"
+oninput="mfoCheckRequired()"/>
+</div>
+
+<!-- Catégorie -->
+<div class="mfo-field">
+<div class="mfo-label">Catégorie <span style="color:#FF3B30;">*</span></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;" id="mfo-f-cats">
+<div class="mfo-pill on" onclick="mfoSelCat(this,'f')">💅 Ongles</div>
+<div class="mfo-pill" onclick="mfoSelCat(this,'f')">👁️ Cils</div>
+<div class="mfo-pill" onclick="mfoSelCat(this,'f')">💇 Coiffure</div>
+<div class="mfo-pill" onclick="mfoSelCat(this,'f')">💋 Maquillage</div>
+<div class="mfo-pill" onclick="mfoSelCat(this,'f')">🌿 Bien-être</div>
+<div class="mfo-pill" onclick="mfoSelCat(this,'f')">✂️ Autre</div>
+</div>
+</div>
+
+<!-- Niveau -->
+<div class="mfo-field">
+<div class="mfo-label">Niveau <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<div style="display:flex;gap:8px;" id="mfo-f-levels">
+<div class="mfo-pill on" onclick="mfoSelLevel(this,'f')" style="flex:1;justify-content:center;">Débutant</div>
+<div class="mfo-pill" onclick="mfoSelLevel(this,'f')" style="flex:1;justify-content:center;">Intermédiaire</div>
+<div class="mfo-pill" onclick="mfoSelLevel(this,'f')" style="flex:1;justify-content:center;">Avancé</div>
+</div>
+</div>
+
+<!-- Langue -->
+<div class="mfo-field">
+<div class="mfo-label">Langue <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;" id="mfo-f-langs">
+<div class="mfo-pill on" onclick="mfoTogPill(this)">🇫🇷 Français</div>
+<div class="mfo-pill" onclick="mfoTogPill(this)">🇬🇧 Anglais</div>
+<div class="mfo-pill" onclick="mfoTogPill(this)">✚ Autre</div>
+</div>
+</div>
+
+<!-- Format -->
+<div class="mfo-field">
+<div class="mfo-label">Format <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<div style="display:flex;gap:8px;" id="mfo-f-formats">
+<div class="mfo-pill on" onclick="mfoSelFormat(this)" style="flex:1;justify-content:center;">🏠 Présentiel</div>
+<div class="mfo-pill" onclick="mfoSelFormat(this)" style="flex:1;justify-content:center;">💻 Distanciel</div>
+<div class="mfo-pill" onclick="mfoSelFormat(this)" style="flex:1;justify-content:center;">🔀 Hybride</div>
+</div>
+</div>
+
+<!-- Adresse (présentiel) -->
+<div class="mfo-field" id="mfo-f-addr-wrap">
+<div class="mfo-label">📍 Adresse <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<input id="mfo-f-addr" class="mfo-input" placeholder="Ex : 12 rue de la Paix, Nice"/>
+</div>
+
+<!-- Lien visio (distanciel) -->
+<div class="mfo-field" id="mfo-f-visio-wrap" style="display:none;">
+<div class="mfo-label">🔗 Lien visio <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<input id="mfo-f-visio" class="mfo-input" placeholder="Ex : https://zoom.us/j/..."/>
+</div>
+
+<!-- Dates -->
+<div class="mfo-field">
+<div class="mfo-label">📅 Date <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<input type="date" id="mfo-f-date" class="mfo-input" style="margin-bottom:8px;"/>
+<div style="display:flex;gap:8px;">
+<div style="flex:1;">
+<div style="font-size:11px;font-weight:700;color:var(--gray);margin-bottom:4px;">Début</div>
+<input type="time" id="mfo-f-start" class="mfo-input"/>
+</div>
+<div style="flex:1;">
+<div style="font-size:11px;font-weight:700;color:var(--gray);margin-bottom:4px;">Fin</div>
+<input type="time" id="mfo-f-end" class="mfo-input"/>
+</div>
+</div>
+</div>
+
+<!-- Durée totale -->
+<div class="mfo-field">
+<div class="mfo-label">⏱️ Durée totale <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<input id="mfo-f-duration" class="mfo-input" placeholder="Ex : 8h, 2 jours..."/>
+</div>
+
+<!-- Places -->
+<div class="mfo-field">
+<div class="mfo-label">👥 Nombre de participants max <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<div style="display:flex;align-items:center;gap:16px;
+border:1.5px solid var(--border);border-radius:14px;padding:10px 14px;">
+<button type="button" onclick="mfoAdjPlaces(-1)"
+style="width:32px;height:32px;border-radius:50%;
+border:1.5px solid var(--border);background:var(--bg);
+font-size:18px;cursor:pointer;font-family:inherit;">−</button>
+<div id="mfo-f-places-val"
+style="font-size:18px;font-weight:800;color:var(--black);
+flex:1;text-align:center;">10</div>
+<button type="button" onclick="mfoAdjPlaces(1)"
+style="width:32px;height:32px;border-radius:50%;
+border:1.5px solid var(--border);background:var(--bg);
+font-size:18px;cursor:pointer;font-family:inherit;">+</button>
+</div>
+<div style="display:flex;justify-content:space-between;align-items:center;
+margin-top:10px;padding:10px 14px;
+border:1.5px solid var(--border);border-radius:14px;">
+<span style="font-size:13px;font-weight:600;color:var(--black);">⏳ Liste d'attente</span>
+<div onclick="mfoTogWaitlist(this)" id="mfo-f-waitlist"
+style="width:44px;height:26px;border-radius:13px;
+background:var(--border);position:relative;cursor:pointer;" data-on="0">
+<div style="width:22px;height:22px;border-radius:50%;
+background:white;position:absolute;top:2px;left:2px;
+box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .2s;"
+id="mfo-f-waitlist-knob"></div>
+</div>
+</div>
+</div>
+
+<!-- Description -->
+<div class="mfo-field">
+<div class="mfo-label">📝 Description <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<textarea id="mfo-f-desc" class="mfo-textarea" placeholder="Décris ta formation en quelques mots..."></textarea>
+</div>
+
+<!-- Objectifs -->
+<div class="mfo-field">
+<div class="mfo-label">🎯 Objectifs <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<textarea id="mfo-f-goals" class="mfo-textarea" placeholder="Ce que les participantes vont apprendre..."></textarea>
+</div>
+
+<!-- Programme -->
+<div class="mfo-field">
+<div class="mfo-label">📋 Programme détaillé <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<div id="mfo-f-program-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:8px;">
+<div style="display:flex;gap:8px;align-items:center;">
+<input class="mfo-input" placeholder="Ex : Préparation des ongles naturels" style="flex:1;"/>
+<div onclick="this.parentElement.remove()"
+style="width:28px;height:28px;border-radius:50%;
+background:var(--light);display:flex;align-items:center;
+justify-content:center;cursor:pointer;font-size:14px;flex-shrink:0;">✕</div>
+</div>
+</div>
+<div onclick="mfoAddProgramItem()"
+style="display:flex;align-items:center;gap:8px;
+padding:10px 14px;border:1.5px dashed var(--border);
+border-radius:14px;cursor:pointer;color:var(--gray);">
+<span style="font-size:18px;">＋</span>
+<span style="font-size:13px;font-weight:600;">Ajouter une section</span>
+</div>
+</div>
+
+<!-- Prérequis -->
+<div class="mfo-field">
+<div class="mfo-label">⚠️ Prérequis <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<textarea id="mfo-f-prereqs" class="mfo-textarea" placeholder="Ex : Avoir déjà fait une pose gel X..."></textarea>
+</div>
+
+<!-- Ce qui est fourni -->
+<div class="mfo-field">
+<div class="mfo-label">🎁 Ce qui est fourni <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;">
+<div class="mfo-pill" onclick="mfoTogPill(this)">🧰 Kit matériel</div>
+<div class="mfo-pill" onclick="mfoTogPill(this)">📄 Supports PDF</div>
+<div class="mfo-pill" onclick="mfoTogPill(this)">🏆 Attestation</div>
+<div class="mfo-pill" onclick="mfoTogPill(this)">🎬 Replay vidéo</div>
+<div class="mfo-pill" onclick="mfoTogPill(this)">💬 Groupe WhatsApp</div>
+<div class="mfo-pill" onclick="mfoTogPill(this)">✚ Autre</div>
+</div>
+</div>
+
+<!-- Prix -->
+<div class="mfo-field">
+<div class="mfo-label">💰 Prix (€) <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<input type="number" id="mfo-f-price" class="mfo-input" placeholder="Ex : 180"/>
+</div>
+
+<!-- Acompte -->
+<div class="mfo-field">
+<div style="display:flex;justify-content:space-between;align-items:center;
+padding:12px 14px;border:1.5px solid var(--border);border-radius:14px;">
+<span style="font-size:13px;font-weight:700;color:var(--black);">🔒 Acompte requis</span>
+<div onclick="mfoTogAcompte(this,'f')" id="mfo-f-acompte"
+style="width:44px;height:26px;border-radius:13px;background:var(--border);position:relative;cursor:pointer;" data-on="0">
+<div style="width:22px;height:22px;border-radius:50%;
+background:white;position:absolute;top:2px;left:2px;
+box-shadow:0 1px 3px rgba(0,0,0,.2);" id="mfo-f-acompte-knob"></div>
+</div>
+</div>
+<div id="mfo-f-acompte-input" style="display:none;margin-top:8px;">
+<input type="number" class="mfo-input" placeholder="Montant acompte (€)"/>
+</div>
+</div>
+
+<!-- Early bird -->
+<div class="mfo-field">
+<div style="display:flex;justify-content:space-between;align-items:center;
+padding:12px 14px;border:1.5px solid var(--border);border-radius:14px;">
+<span style="font-size:13px;font-weight:700;color:var(--black);">🐦 Tarif early bird</span>
+<div onclick="mfoTogEarlybird(this)" id="mfo-f-earlybird"
+style="width:44px;height:26px;border-radius:13px;background:var(--border);position:relative;cursor:pointer;" data-on="0">
+<div id="mfo-f-earlybird-knob"
+style="width:22px;height:22px;border-radius:50%;
+background:white;position:absolute;top:2px;left:2px;
+box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .2s;"></div>
+</div>
+</div>
+<div id="mfo-f-earlybird-inputs" style="display:none;margin-top:8px;flex-direction:column;gap:8px;">
+<input type="number" class="mfo-input" placeholder="Prix early bird (€)"/>
+<input type="date" class="mfo-input"/>
+</div>
+</div>
+
+</div>
+<!-- ==================== FIN SECTION FORMATION ==================== -->
+
+<!-- ==================== SECTION EBOOK ==================== -->
+<div id="mfo-section-ebook" style="display:none;">
+
+<div class="mfo-field">
+<div class="mfo-label">📸 Couverture <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<div style="display:flex;gap:12px;align-items:center;">
+<div onclick="mfoPickPhoto()"
+style="width:80px;height:100px;border:1.5px dashed var(--border);
+border-radius:12px;display:flex;align-items:center;justify-content:center;
+cursor:pointer;background:var(--light);font-size:32px;" id="mfo-e-cover-preview">📖</div>
+<div style="flex:1;">
+<div style="font-size:13px;color:var(--gray);margin-bottom:8px;">Choisis un emoji ou ajoute une photo</div>
+<div style="display:flex;gap:6px;flex-wrap:wrap;">
+<div onclick="mfoSelCover(this,'📖')" class="mfo-pill on" style="font-size:18px;padding:6px 10px;">📖</div>
+<div onclick="mfoSelCover(this,'📗')" class="mfo-pill" style="font-size:18px;padding:6px 10px;">📗</div>
+<div onclick="mfoSelCover(this,'📘')" class="mfo-pill" style="font-size:18px;padding:6px 10px;">📘</div>
+<div onclick="mfoSelCover(this,'📕')" class="mfo-pill" style="font-size:18px;padding:6px 10px;">📕</div>
+<div onclick="mfoSelCover(this,'✨')" class="mfo-pill" style="font-size:18px;padding:6px 10px;">✨</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="mfo-field">
+<div class="mfo-label">Titre <span style="color:#FF3B30;">*</span></div>
+<input id="mfo-e-title" class="mfo-input" placeholder="Ex : Maîtriser le Gel X" oninput="mfoCheckRequired()"/>
+</div>
+
+<div class="mfo-field">
+<div class="mfo-label">Catégorie <span style="color:#FF3B30;">*</span></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;" id="mfo-e-cats">
+<div class="mfo-pill on" onclick="mfoSelCat(this,'e')">💅 Ongles</div>
+<div class="mfo-pill" onclick="mfoSelCat(this,'e')">👁️ Cils</div>
+<div class="mfo-pill" onclick="mfoSelCat(this,'e')">💇 Coiffure</div>
+<div class="mfo-pill" onclick="mfoSelCat(this,'e')">💋 Maquillage</div>
+<div class="mfo-pill" onclick="mfoSelCat(this,'e')">🌿 Bien-être</div>
+<div class="mfo-pill" onclick="mfoSelCat(this,'e')">✂️ Autre</div>
+</div>
+</div>
+
+<!-- Niveau -->
+<div class="mfo-field">
+<div class="mfo-label">Niveau <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<div style="display:flex;gap:8px;" id="mfo-e-levels">
+<div class="mfo-pill on" onclick="mfoSelLevel(this,'e')" style="flex:1;justify-content:center;">Débutant</div>
+<div class="mfo-pill" onclick="mfoSelLevel(this,'e')" style="flex:1;justify-content:center;">Intermédiaire</div>
+<div class="mfo-pill" onclick="mfoSelLevel(this,'e')" style="flex:1;justify-content:center;">Avancé</div>
+</div>
+</div>
+
+<!-- Langue -->
+<div class="mfo-field">
+<div class="mfo-label">Langue <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;">
+<div class="mfo-pill on" onclick="mfoTogPill(this)">🇫🇷 Français</div>
+<div class="mfo-pill" onclick="mfoTogPill(this)">🇬🇧 Anglais</div>
+<div class="mfo-pill" onclick="mfoTogPill(this)">✚ Autre</div>
+</div>
+</div>
+
+<!-- Description -->
+<div class="mfo-field">
+<div class="mfo-label">📝 Description <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<textarea id="mfo-e-desc" class="mfo-textarea" placeholder="De quoi parle cet ebook ?"></textarea>
+</div>
+
+<!-- Aperçu / Extrait -->
+<div class="mfo-field">
+<div class="mfo-label">👁️ Aperçu / Extrait gratuit <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center;
+padding:12px 14px;border:1.5px solid var(--border);border-radius:14px;
+margin-bottom:8px;">
+<span style="font-size:13px;font-weight:600;">Proposer un extrait gratuit</span>
+<div onclick="mfoToggle(this,'mfo-e-extrait-knob')"
+style="width:44px;height:26px;border-radius:13px;
+background:var(--border);position:relative;cursor:pointer;" data-on="0">
+<div id="mfo-e-extrait-knob"
+style="width:22px;height:22px;border-radius:50%;
+background:white;position:absolute;top:2px;left:2px;
+box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .2s;"></div>
+</div>
+</div>
+<div onclick="mfoPickPhoto()"
+style="border:1.5px dashed var(--border);border-radius:14px;
+padding:14px;text-align:center;cursor:pointer;
+color:var(--gray);font-size:13px;font-weight:600;">
+📎 Ajouter des pages d'aperçu (images)
+</div>
+</div>
+
+<!-- Sommaire -->
+<div class="mfo-field">
+<div class="mfo-label">📋 Sommaire / Chapitres <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<div id="mfo-e-chapters-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:8px;">
+<div style="display:flex;gap:8px;align-items:center;">
+<input class="mfo-input" placeholder="Ex : Introduction" style="flex:1;"/>
+<div onclick="this.parentElement.remove()"
+style="width:28px;height:28px;border-radius:50%;
+background:var(--light);display:flex;align-items:center;
+justify-content:center;cursor:pointer;font-size:14px;flex-shrink:0;">✕</div>
+</div>
+</div>
+<div onclick="mfoAddChapter()"
+style="display:flex;align-items:center;gap:8px;
+padding:10px 14px;border:1.5px dashed var(--border);
+border-radius:14px;cursor:pointer;color:var(--gray);">
+<span style="font-size:18px;">＋</span>
+<span style="font-size:13px;font-weight:600;">Ajouter un chapitre</span>
+</div>
+</div>
+
+<!-- Nombre de pages -->
+<div class="mfo-field">
+<div class="mfo-label">📄 Nombre de pages <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<input type="number" id="mfo-e-pages" class="mfo-input" placeholder="Ex : 85"/>
+</div>
+
+<!-- Format disponible -->
+<div class="mfo-field">
+<div class="mfo-label">Format disponible <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<div style="display:flex;gap:8px;" id="mfo-e-formats">
+<div class="mfo-pill on" onclick="mfoTogPill(this)" style="flex:1;justify-content:center;">📄 PDF</div>
+<div class="mfo-pill" onclick="mfoTogPill(this)" style="flex:1;justify-content:center;">📦 Physique</div>
+</div>
+</div>
+
+<!-- Prix -->
+<div class="mfo-field">
+<div class="mfo-label">💰 Prix <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<div class="mfo-row2">
+<div>
+<div style="font-size:11px;font-weight:700;color:var(--gray);margin-bottom:4px;">PDF (€)</div>
+<input type="number" id="mfo-e-price-pdf" class="mfo-input" placeholder="Ex : 24,90"/>
+</div>
+<div>
+<div style="font-size:11px;font-weight:700;color:var(--gray);margin-bottom:4px;">Physique (€)</div>
+<input type="number" id="mfo-e-price-phys" class="mfo-input" placeholder="Ex : 29,90"/>
+</div>
+</div>
+</div>
+
+<!-- Ce qui est inclus -->
+<div class="mfo-field">
+<div class="mfo-label">🎁 Ce qui est inclus <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;">
+<div class="mfo-pill" onclick="mfoTogPill(this)">📝 Templates</div>
+<div class="mfo-pill" onclick="mfoTogPill(this)">📌 Fiches pratiques</div>
+<div class="mfo-pill" onclick="mfoTogPill(this)">🎬 Bonus vidéo</div>
+<div class="mfo-pill" onclick="mfoTogPill(this)">👥 Accès communauté</div>
+<div class="mfo-pill" onclick="mfoTogPill(this)">✚ Autre</div>
+</div>
+</div>
+
+</div>
+<!-- ==================== FIN SECTION EBOOK ==================== -->
+
+</div>
+
+<!-- Bouton Publier fixe en bas -->
+
+<div style="padding:12px 16px calc(env(safe-area-inset-bottom,0px)+12px);
+border-top:1px solid var(--border);background:var(--bg);flex-shrink:0;">
+<button id="mfo-publish-btn" onclick="mfoPublish()" disabled
+style="width:100%;padding:15px;background:var(--border);
+color:#AAA;font-size:15px;font-weight:800;border:none;
+border-radius:14px;cursor:not-allowed;font-family:inherit;
+transition:all .2s;">
+Publier →
+</button>
+<div style="text-align:center;color:var(--gray);font-size:11px;margin-top:6px;">
+* Titre et catégorie obligatoires
+</div>
+</div>
+
+</div>
+
+<div class="mfo-create-overlay" id="mfo-confirm"
+style="align-items:center;justify-content:center;gap:16px;padding:32px 24px;">
+<div style="width:72px;height:72px;border-radius:50%;background:var(--btn-bg);
+display:flex;align-items:center;justify-content:center;color:var(--btn-fg);font-size:32px;">✓</div>
+<div style="font-size:22px;font-weight:800;color:var(--black);text-align:center;" id="mfo-confirm-title">Formation publiée !</div>
+<div style="font-size:13px;color:var(--gray);text-align:center;line-height:1.6;" id="mfo-confirm-sub">Visible dans l'onglet Formations.</div>
+<div style="background:var(--light);border-radius:16px;padding:14px;width:100%;">
+<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);">
+<span style="font-size:13px;color:var(--gray);">Titre</span>
+<span style="font-size:13px;font-weight:700;color:var(--black);" id="mfo-confirm-name">—</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);">
+<span style="font-size:13px;color:var(--gray);">Catégorie</span>
+<span style="font-size:13px;font-weight:700;color:var(--black);" id="mfo-confirm-cat">—</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:7px 0;">
+<span style="font-size:13px;color:var(--gray);">Prix</span>
+<span style="font-size:13px;font-weight:700;color:var(--black);" id="mfo-confirm-price">—</span>
+</div>
+</div>
+<button onclick="mfoCloseConfirm()" style="width:100%;padding:15px;background:var(--btn-bg);color:var(--btn-fg);font-size:15px;font-weight:800;border:none;border-radius:14px;cursor:pointer;font-family:inherit;margin-top:8px;">Voir mes publications</button>
+</div>
+
 <!-- Sous-module formateur -->
 <div class="module" id="mod-formateur" style="z-index:70;">
 <div class="mod-hdr"><div class="mod-back" onclick="closeSubModule('mod-formateur')">‹</div><div class="mod-title">Bloom Nails · Sassa</div></div>
@@ -7060,7 +7538,7 @@ MODULES PROFIL
 <!-- MODÈLE -->
 
 <div class="module" id="mod-modele">
-<div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-modele')">‹</div><div class="mod-title">Modèle</div></div>
+<div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-modele')">‹</div><div class="mod-title">Modèle</div><div class="mod-action mfo-pro-only" onclick="openModeleTypePicker()">＋</div></div>
 <div class="mod-tabs"><div class="mod-tab on" onclick="modTab(this,'mmo-formation')">Formation</div><div class="mod-tab" onclick="modTab(this,'mmo-essai')">Essai</div><div class="mod-tab" onclick="modTab(this,'mmo-contenu')">Contenu</div></div>
 <div class="mod-filters"><div class="fchip on" onclick="togChip(this)">Tout</div><div class="fchip" onclick="togChip(this)">Ongles</div><div class="fchip" onclick="togChip(this)">Cils</div><div class="fchip" onclick="togChip(this)">Gratuit</div></div>
 <div class="mod-scroll">
@@ -7076,8 +7554,236 @@ MODULES PROFIL
 <div class="card"><div class="card-body"><div class="card-top"><div class="card-av">🎬</div><div style="flex:1;"><div class="card-name">Vidéo TikTok · Volume russe</div><div class="card-by">par <span class="card-by-link">Nina Cils</span></div></div></div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;"><span style="font-size:11px;font-weight:700;color:#C8960A;background:#FFF8E0;padding:3px 10px;border-radius:8px;">Mer. 9 avril · 14h</span><span style="font-size:11px;font-weight:700;color:#3DA874;background:#F0FAF4;padding:3px 10px;border-radius:8px;">Pose offerte</span></div><div class="desc">Tournage vidéo TikTok GRWM. Pose volume russe offerte en échange.</div><div class="prereqs"><div class="prereq"><div class="prereq-ic">👁️</div><div class="prereq-lbl">Yeux bleus ou verts</div></div><div class="prereq"><div class="prereq-ic">🎬</div><div class="prereq-lbl">Vidéo publiée</div></div></div><div class="card-btns"><button type="button" class="cbtn dark" onclick="goReserve()">Je suis partante →</button></div></div></div>
 </div>
 </div>
+<!-- Modal choix type modèle -->
+<div id="modele-type-picker" style="display:none;position:absolute;inset:0;z-index:200;background:rgba(0,0,0,.45);align-items:flex-end;justify-content:center;">
+<div style="background:var(--bg);border-radius:20px 20px 0 0;width:100%;padding:24px 20px max(24px,calc(12px + env(safe-area-inset-bottom)));animation:slideUp .25s ease;">
+<div style="font-size:17px;font-weight:800;color:var(--black);margin-bottom:6px;">Quel type de modèle ?</div>
+<div style="font-size:12px;color:var(--gray);margin-bottom:18px;">Choisis le contexte de ta recherche</div>
+<div style="display:flex;flex-direction:column;gap:10px;">
+<div onclick="pickModeleType('formation')" style="display:flex;align-items:center;gap:14px;padding:16px;border:1.5px solid var(--border);border-radius:14px;cursor:pointer;background:var(--light);">
+<div style="font-size:28px;">🎓</div>
+<div style="flex:1;"><div style="font-size:14px;font-weight:800;color:var(--black);">Formation</div><div style="font-size:12px;color:var(--gray);line-height:1.4;margin-top:2px;">J'ai besoin d'un modèle pour former ma stagiaire</div></div>
+<div style="font-size:16px;color:var(--gray);">›</div>
+</div>
+<div onclick="pickModeleType('essai')" style="display:flex;align-items:center;gap:14px;padding:16px;border:1.5px solid var(--border);border-radius:14px;cursor:pointer;background:var(--light);">
+<div style="font-size:28px;">🧪</div>
+<div style="flex:1;"><div style="font-size:14px;font-weight:800;color:var(--black);">Essai</div><div style="font-size:12px;color:var(--gray);line-height:1.4;margin-top:2px;">Je teste une nouvelle technique à prix réduit</div></div>
+<div style="font-size:16px;color:var(--gray);">›</div>
+</div>
+<div onclick="pickModeleType('contenu')" style="display:flex;align-items:center;gap:14px;padding:16px;border:1.5px solid var(--border);border-radius:14px;cursor:pointer;background:var(--light);">
+<div style="font-size:28px;">📸</div>
+<div style="flex:1;"><div style="font-size:14px;font-weight:800;color:var(--black);">Contenu</div><div style="font-size:12px;color:var(--gray);line-height:1.4;margin-top:2px;">J'ai besoin d'un modèle pour un shooting / vidéo</div></div>
+<div style="font-size:16px;color:var(--gray);">›</div>
 </div>
 </div>
+<button onclick="closeModeleTypePicker()" style="width:100%;padding:13px;background:none;border:none;color:var(--gray);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;margin-top:14px;">Annuler</button>
+</div>
+</div>
+</div>
+
+<!-- ============ MODULE PRÉVISUALISATION ============ -->
+<div class="module" id="mod-previsualisation">
+<div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-previsualisation')">‹</div><div class="mod-title">✦ Prévisualisation</div><div style="font-size:12px;font-weight:800;color:var(--gray);background:var(--light);padding:6px 12px;border-radius:20px;border:1.5px solid var(--border);cursor:pointer" onclick="prevOpenSave()">Sauvegarder</div></div>
+<div class="mod-tabs" id="prev-mode-tabs">
+<div class="mod-tab on" onclick="prevSetMode('2d',this)">🖌️ Mode 2D</div>
+<div class="mod-tab" onclick="prevSetMode('ar',this)">🎥 Mode AR / VR</div>
+</div>
+<div class="mod-tabs" id="prev-feat-tabs-2d" style="gap:8px;padding:0 16px;">
+<div class="mod-tab on prev-feat on" onclick="prevSelFeat(this,'ongles')" style="border-radius:20px;font-size:12px;padding:7px 14px;flex:0;" data-color="#E8638C">💅 Ongles</div>
+<div class="mod-tab prev-feat" onclick="prevSelFeat(this,'strass')" style="border-radius:20px;font-size:12px;padding:7px 14px;flex:0;" data-color="#FFCA28">💎 Strass</div>
+<div class="mod-tab prev-feat" onclick="prevSelFeat(this,'piercings')" style="border-radius:20px;font-size:12px;padding:7px 14px;flex:0;" data-color="#A87DC8">💍 Piercings</div>
+</div>
+<div class="mod-tabs" id="prev-feat-tabs-ar" style="display:none;gap:8px;padding:0 16px;">
+<div class="mod-tab prev-feat-ar on" onclick="prevSelFeatAR(this,'coiffure')" style="border-radius:20px;font-size:12px;padding:7px 14px;flex:0;" data-color="#A87DC8">💇 Coiffure</div>
+<div class="mod-tab prev-feat-ar" onclick="prevSelFeatAR(this,'barbe')" style="border-radius:20px;font-size:12px;padding:7px 14px;flex:0;">🧔 Barbe</div>
+<div class="mod-tab prev-feat-ar" onclick="prevSelFeatAR(this,'cils')" style="border-radius:20px;font-size:12px;padding:7px 14px;flex:0;">👁️ Cils</div>
+<div class="mod-tab prev-feat-ar" onclick="prevSelFeatAR(this,'sourcils')" style="border-radius:20px;font-size:12px;padding:7px 14px;flex:0;">🪄 Sourcils</div>
+</div>
+<div class="mod-scroll" id="prev-body" style="padding:0 0 80px;"></div>
+
+<!-- FINGER DETAIL OVERLAY -->
+<div id="prev-finger-ov" style="display:none;position:absolute;inset:0;background:rgba(0,0,0,.5);z-index:80;align-items:flex-end;" onclick="prevCloseFingerOv(event)">
+<div style="background:var(--bg);border-radius:22px 22px 0 0;width:100%;padding:16px;" onclick="event.stopPropagation()">
+<div style="width:34px;height:4px;border-radius:2px;background:var(--border);margin:0 auto 12px;"></div>
+<div style="font-size:16px;font-weight:900;color:var(--black);margin-bottom:10px;" id="prev-finger-title">Pouce</div>
+<div id="prev-nail-zoom" onclick="prevCycleNailColor()" style="width:80px;height:110px;border-radius:50% 50% 40% 40%/60% 60% 40% 40%;margin:0 auto 12px;border:3px solid var(--border);cursor:pointer;background:#F5C2CF;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:rgba(0,0,0,.35);"></div>
+<div style="font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px;">Couleur de cet ongle</div>
+<div id="prev-finger-colors" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;"></div>
+<div style="font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.4px;margin-bottom:8px;">Design</div>
+<div id="prev-finger-designs" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;"></div>
+<div style="display:flex;gap:8px;">
+<button style="flex:1;padding:11px;border-radius:12px;background:var(--light);border:none;font-size:13px;font-weight:800;color:var(--black);cursor:pointer;font-family:inherit;" onclick="prevCloseFingerOv()">Annuler</button>
+<button style="flex:1;padding:11px;border-radius:12px;background:var(--btn-bg);border:none;font-size:13px;font-weight:800;color:var(--btn-fg);cursor:pointer;font-family:inherit;" onclick="prevApplyFinger()">Appliquer</button>
+</div>
+</div>
+</div>
+
+<!-- SAVE MODAL -->
+<div id="prev-save-modal" style="display:none;position:absolute;inset:0;background:rgba(0,0,0,.5);z-index:90;align-items:center;justify-content:center;padding:20px;">
+<div style="background:var(--bg);border-radius:24px;padding:24px;width:100%;text-align:center;">
+<div style="font-size:48px;margin-bottom:12px;">✅</div>
+<div style="font-size:20px;font-weight:900;color:var(--black);margin-bottom:6px;">Design sauvegardé !</div>
+<div style="font-size:13px;color:var(--gray);font-weight:600;line-height:1.5;margin-bottom:16px;">Tu retrouves ta création dans ton historique. Tu peux aussi l'envoyer directement à ta prestataire.</div>
+<div style="display:flex;flex-direction:column;gap:8px;">
+<button onclick="prevCloseSave()" style="padding:13px;border-radius:12px;font-size:14px;font-weight:800;border:none;cursor:pointer;font-family:inherit;background:#E8638C;color:white;">📤 Envoyer à ma prestataire</button>
+<button onclick="prevCloseSave()" style="padding:13px;border-radius:12px;font-size:14px;font-weight:800;border:none;cursor:pointer;font-family:inherit;background:var(--light);color:var(--black);">📁 Voir mon historique</button>
+<button onclick="prevCloseSave()" style="padding:13px;border-radius:12px;font-size:14px;font-weight:800;border:none;cursor:pointer;font-family:inherit;background:var(--light);color:var(--black);">Continuer à créer</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ============ FLOW CRÉER MODÈLE ============ -->
+<div class="flow" id="flow-create-modele" style="display:none;position:absolute;top:0;left:0;right:0;bottom:0;z-index:100;background:var(--bg);overflow:hidden;overscroll-behavior:none;">
+
+<!-- Page 1 — Formulaire -->
+<div class="enc-page on" id="mdl-create-s1" style="height:100%;display:flex;flex-direction:column;">
+<div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--border);flex-shrink:0;">
+<div onclick="closeCreateModele()" style="font-size:22px;cursor:pointer;color:var(--black);">‹</div>
+<div style="font-size:16px;font-weight:800;color:var(--black);flex:1;">Publier une annonce modèle</div>
+</div>
+
+<div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 16px 120px;overscroll-behavior:contain;">
+
+<!-- Type badge -->
+<div style="margin-bottom:16px;">
+<div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:8px;">Type</div>
+<div id="mdl-type-badge" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:20px;background:var(--light);font-size:13px;font-weight:800;color:var(--black);">🎓 Formation</div>
+</div>
+
+<!-- Titre * -->
+<div style="margin-bottom:16px;">
+<div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:8px;">Titre <span style="color:#FF3B30;">*</span></div>
+<input id="mdl-title" class="mfo-input" placeholder="Ex : Modèle pour formation Gel X" oninput="mdlCheckRequired()"/>
+</div>
+
+<!-- Catégorie * -->
+<div style="margin-bottom:16px;">
+<div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:8px;">Catégorie <span style="color:#FF3B30;">*</span></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;" id="mdl-cats">
+<div class="mfo-pill on" onclick="mdlSelCat(this)">💅 Ongles</div>
+<div class="mfo-pill" onclick="mdlSelCat(this)">👁️ Cils</div>
+<div class="mfo-pill" onclick="mdlSelCat(this)">💇 Coiffure</div>
+<div class="mfo-pill" onclick="mdlSelCat(this)">💋 Maquillage</div>
+<div class="mfo-pill" onclick="mdlSelCat(this)">🌿 Bien-être</div>
+<div class="mfo-pill" onclick="mdlSelCat(this)">✂️ Autre</div>
+</div>
+</div>
+
+<!-- Date * -->
+<div style="margin-bottom:16px;">
+<div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:8px;">📅 Date <span style="color:#FF3B30;">*</span></div>
+<input type="date" id="mdl-date" class="mfo-input" oninput="mdlCheckRequired()"/>
+</div>
+
+<!-- Heure -->
+<div style="margin-bottom:16px;">
+<div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:8px;">🕐 Heure <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<input type="time" id="mdl-time" class="mfo-input"/>
+</div>
+
+<!-- Durée estimée -->
+<div style="margin-bottom:16px;">
+<div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:8px;">⏱️ Durée estimée <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;" id="mdl-durations">
+<div class="mfo-pill on" onclick="mdlSelDuration(this)">1h</div>
+<div class="mfo-pill" onclick="mdlSelDuration(this)">1h30</div>
+<div class="mfo-pill" onclick="mdlSelDuration(this)">2h</div>
+<div class="mfo-pill" onclick="mdlSelDuration(this)">2h30</div>
+<div class="mfo-pill" onclick="mdlSelDuration(this)">3h+</div>
+</div>
+</div>
+
+<!-- Nombre de places -->
+<div style="margin-bottom:16px;">
+<div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:8px;">👥 Nombre de places <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<div style="display:flex;align-items:center;gap:16px;border:1.5px solid var(--border);border-radius:14px;padding:10px 14px;">
+<button onclick="mdlAdjPlaces(-1)" style="width:32px;height:32px;border-radius:50%;border:1.5px solid var(--border);background:var(--bg);font-size:18px;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">−</button>
+<div id="mdl-places-val" style="font-size:18px;font-weight:800;color:var(--black);flex:1;text-align:center;">3</div>
+<button onclick="mdlAdjPlaces(1)" style="width:32px;height:32px;border-radius:50%;border:1.5px solid var(--border);background:var(--bg);font-size:18px;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;">+</button>
+</div>
+</div>
+
+<!-- Tarif -->
+<div style="margin-bottom:16px;">
+<div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:8px;">💰 Tarif <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;" id="mdl-tarifs">
+<div class="mfo-pill on" onclick="mdlSelTarif(this,'gratuit')">Gratuit</div>
+<div class="mfo-pill" onclick="mdlSelTarif(this,'reduit')">Prix réduit</div>
+<div class="mfo-pill" onclick="mdlSelTarif(this,'offerte')">Pose offerte</div>
+<div class="mfo-pill" onclick="mdlSelTarif(this,'participation')">Participation</div>
+</div>
+<div id="mdl-price-wrap" style="display:none;margin-top:10px;">
+<input type="number" id="mdl-price" class="mfo-input" placeholder="Prix en €"/>
+</div>
+</div>
+
+<!-- Description -->
+<div style="margin-bottom:16px;">
+<div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:8px;">📝 Description <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<textarea id="mdl-desc" class="mfo-textarea" placeholder="Décris ce que tu recherches..."></textarea>
+</div>
+
+<!-- Critères modèle -->
+<div style="margin-bottom:16px;">
+<div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:8px;">✅ Critères modèle <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;" id="mdl-criteres">
+<div class="mfo-pill" onclick="mfoTogPill(this)">💅 Ongles non rongés</div>
+<div class="mfo-pill" onclick="mfoTogPill(this)">💅 Ongles longs</div>
+<div class="mfo-pill" onclick="mfoTogPill(this)">👁️ Sans extensions</div>
+<div class="mfo-pill" onclick="mfoTogPill(this)">🤲 Belles mains</div>
+<div class="mfo-pill" onclick="mfoTogPill(this)">📸 Photos autorisées</div>
+<div class="mfo-pill" onclick="mfoTogPill(this)">🎬 Vidéo publiée</div>
+</div>
+</div>
+
+<!-- Message à la candidate -->
+<div style="margin-bottom:16px;">
+<div style="font-size:13px;font-weight:700;color:var(--black);margin-bottom:8px;">💬 Message à la candidate <span style="color:var(--gray);font-weight:400;">(optionnel)</span></div>
+<textarea id="mdl-message" class="mfo-textarea" placeholder="Ex : Merci de venir avec les ongles propres..."></textarea>
+</div>
+
+</div>
+
+<!-- Bouton Publier fixe en bas -->
+<div style="padding:12px 16px calc(env(safe-area-inset-bottom,0px)+12px);border-top:1px solid var(--border);background:var(--bg);flex-shrink:0;">
+<button id="mdl-publish-btn" onclick="mdlPublish()" disabled style="width:100%;padding:15px;background:var(--border);color:#AAA;font-size:15px;font-weight:800;border:none;border-radius:14px;cursor:not-allowed;font-family:inherit;transition:all .2s;">Publier →</button>
+<div style="text-align:center;color:var(--gray);font-size:11px;margin-top:6px;">* Titre, catégorie et date obligatoires</div>
+</div>
+</div>
+
+<!-- Page 2 — Confirmation -->
+<div class="enc-page" id="mdl-create-s2" style="height:100%;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:32px 24px;">
+<div style="width:72px;height:72px;border-radius:50%;background:var(--btn-bg);display:flex;align-items:center;justify-content:center;color:var(--btn-fg);font-size:32px;">✓</div>
+<div style="font-size:22px;font-weight:800;color:var(--black);">Modèle publié !</div>
+<div style="font-size:13px;color:var(--gray);text-align:center;line-height:1.6;">Ton annonce est visible et les candidates peuvent postuler.</div>
+<div style="background:var(--light);border:1.5px solid var(--border);border-radius:16px;padding:14px;width:100%;margin-top:8px;">
+<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);">
+<span style="font-size:13px;color:var(--gray);">Type</span>
+<span style="font-size:13px;font-weight:700;color:var(--black);" id="mdl-conf-type">—</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);">
+<span style="font-size:13px;color:var(--gray);">Titre</span>
+<span style="font-size:13px;font-weight:700;color:var(--black);" id="mdl-conf-title">—</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);">
+<span style="font-size:13px;color:var(--gray);">Catégorie</span>
+<span style="font-size:13px;font-weight:700;color:var(--black);" id="mdl-conf-cat">—</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--border);">
+<span style="font-size:13px;color:var(--gray);">Date</span>
+<span style="font-size:13px;font-weight:700;color:var(--black);" id="mdl-conf-date">—</span>
+</div>
+<div style="display:flex;justify-content:space-between;padding:7px 0;">
+<span style="font-size:13px;color:var(--gray);">Tarif</span>
+<span style="font-size:13px;font-weight:700;color:var(--black);" id="mdl-conf-tarif">—</span>
+</div>
+</div>
+<button onclick="closeCreateModele()" style="width:100%;padding:15px;background:var(--btn-bg);color:var(--btn-fg);font-size:15px;font-weight:800;border:none;border-radius:14px;cursor:pointer;font-family:inherit;margin-top:8px;">Voir mes modèles</button>
+</div>
+
+</div>
+<!-- ============ FIN FLOW CRÉER MODÈLE ============ -->
 
 </div><!-- /phone -->
 
@@ -7106,21 +7812,15 @@ function cycleLang(el){
 function regSetMode(m){
   const mod=document.getElementById('mod-reglages');
   if(!mod)return;
-  const cb=mod.querySelector('.mode-client');
-  const pb=mod.querySelector('.mode-pro');
   const c=mod.querySelector('#reg-c');
   const p=mod.querySelector('#reg-p');
-  if(!cb||!pb||!c||!p)return;
+  if(!c||!p)return;
   if(m==='client'){
     mod.classList.remove('is-pro');
-    cb.className='mode-btn mode-client active';
-    pb.className='mode-btn mode-pro inactive';
     c.className='client-only';
     p.className='pro-only';
   }else{
     mod.classList.add('is-pro');
-    cb.className='mode-btn mode-client inactive';
-    pb.className='mode-btn mode-pro active';
     c.className='client-only hide';
     p.className='pro-only show';
   }
@@ -7591,6 +8291,50 @@ function dockProfileClick(role){
     }
   },_dockDoubleClickDelay);
 }
+// Robust long-press via JS event listeners (touch + mouse)
+(function(){
+  function initDockLongPress(elId,role){
+    var el=document.getElementById(elId);
+    if(!el)return;
+    var timer=null,moved=false,pressed=false;
+    function startPress(e){
+      moved=false;pressed=true;_dockLongPressed=false;
+      timer=setTimeout(function(){
+        _dockLongPressed=true;pressed=false;
+        openProfileSwitch();
+      },500);
+    }
+    function endPress(e){
+      if(timer){clearTimeout(timer);timer=null;}
+      if(!_dockLongPressed&&pressed&&!moved){
+        pressed=false;
+        dockProfileClick(role);
+      }
+      pressed=false;
+    }
+    function cancelPress(){
+      if(timer){clearTimeout(timer);timer=null;}
+      pressed=false;
+    }
+    el.addEventListener('touchstart',function(e){e.preventDefault();startPress(e);},{passive:false});
+    el.addEventListener('touchmove',function(){moved=true;},{passive:true});
+    el.addEventListener('touchend',function(e){e.preventDefault();endPress(e);},{passive:false});
+    el.addEventListener('touchcancel',cancelPress);
+    el.addEventListener('mousedown',startPress);
+    el.addEventListener('mouseup',endPress);
+    el.addEventListener('mouseleave',cancelPress);
+    el.addEventListener('contextmenu',function(e){e.preventDefault();});
+  }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){
+      initDockLongPress('tb-profile-cl','cl');
+      initDockLongPress('tb-profile-pro','pro');
+    });
+  }else{
+    initDockLongPress('tb-profile-cl','cl');
+    initDockLongPress('tb-profile-pro','pro');
+  }
+})();
 function openActiveProfile(role){
   closeFan('cl');closeFan('pro');
   closeAllModules();
@@ -7604,17 +8348,8 @@ function cycleNextProfile(role){
   var next=_dockProfileAllProfiles[(idx+1)%_dockProfileAllProfiles.length];
   doSwitchProfile(next);
 }
-function dockProfileDown(role){
-  _dockLastRole=role;
-  _dockLongPressed=false;
-  _dockPressTimer=setTimeout(function(){
-    _dockLongPressed=true;
-    openProfileSwitch();
-  },500);
-}
-function dockProfileUp(){
-  if(_dockPressTimer){clearTimeout(_dockPressTimer);_dockPressTimer=null;}
-}
+function dockProfileDown(role){}
+function dockProfileUp(){}
 function openProfileSwitch(){
   document.getElementById('profile-switch-overlay')?.classList.add('on');
   renderProfileSwitchList();
@@ -7687,28 +8422,27 @@ function regRenderTopProfile(){
   if(fn) fn.textContent=p.firstName||p.name||'';
   if(ln) ln.textContent=p.lastName||'';
   const isProMode=!!document.getElementById('mod-reglages')?.classList?.contains('is-pro');
-  if(sub) sub.textContent=isProMode?'Réglages profil':(p.subInfo||p.meta||'');
+  if(sub) sub.textContent='Réglages profil';
 }
 
 function openRegTopProfile(){
-  // Toujours ouvrir le "profil" (pas les réglages app), quel que soit le statut
   closeAllRegSubs();
   closeRegProfileSettings();
   closeClientProfileIdentity();
 
-  const isProMode=!!document.getElementById('mod-reglages')?.classList?.contains('is-pro');
-  const wantType=isProMode?'pro':'client';
+  var isProMode=!!document.getElementById('mod-reglages')?.classList?.contains('is-pro');
+  if(!isProMode) isProMode=!!document.getElementById('screen-pro')?.classList?.contains('on');
+  var wantType=isProMode?'pro':'client';
 
   if(!regProfiles?.[regActiveProfile] || regProfiles[regActiveProfile]?.type!==wantType){
-    const first=Object.keys(regProfiles||{}).find(pid=>regProfiles[pid]?.type===wantType);
+    var first=Object.keys(regProfiles||{}).find(function(pid){return regProfiles[pid]?.type===wantType;});
     if(first) regActiveProfile=first;
   }
-  const p=regProfiles?.[regActiveProfile];
+  var p=regProfiles?.[regActiveProfile];
   if(!p) return;
 
-  if(isProMode){ openRegSub('reg-sub-edit-profil'); return; }
-  if(p.type==='client') openClientProfileIdentity(regActiveProfile);
-  else openRegProfileSettings(regActiveProfile);
+  if(p.type==='pro'){ openRegSub('reg-sub-edit-profil'); return; }
+  openRegSub('reg-sub-edit-profil');
 }
 function syncAppDock(){
   const cl=document.getElementById('screen-client');
@@ -8081,6 +8815,7 @@ function openFeedPost(name,meta,emoji,prof){
 // ── MODULE FORMATION (PRO: création formation / ebook) ──
 let mfoDraft=null;
 let mfoStep=1;
+var mfoPlacesVal=10;
 const mfoMyFormations=[];
 const mfoMyEbooks=[];
 function mfoIsPro(){return isProScreen();}
@@ -8088,12 +8823,15 @@ function mfoOpenCreate(forceType){
   if(!mfoIsPro()) return;
   const ov=document.getElementById('mfo-create');
   if(!ov) return;
-  mfoDraft={type:forceType==='ebook'?'ebook':'formation',title:'',cat:'Ongles',level:'Débutant',desc:'',program:'',duration:'',format:'Présentiel',price:'',places:'',city:''};
-  mfoStep=1;
-  ov.classList.add('on');
+  mfoDraft={type:forceType==='ebook'?'ebook':'formation'};
+  mfoPlacesVal=10;
+  const pv=document.getElementById('mfo-f-places-val');
+  if(pv) pv.textContent=mfoPlacesVal;
   mfoPickType(mfoDraft.type);
-  mfoSyncForm();
-  mfoSyncSteps();
+  mfoCheckRequired();
+  ov.classList.add('on');
+  const scroll=ov.querySelector('.mfo-create-scroll');
+  if(scroll) scroll.scrollTop=0;
 }
 function mfoCloseCreate(){
   document.getElementById('mfo-create')?.classList.remove('on');
@@ -8103,8 +8841,13 @@ function mfoPickType(t){
   mfoDraft.type=t==='ebook'?'ebook':'formation';
   document.getElementById('mfo-pick-formation')?.classList.toggle('on',mfoDraft.type==='formation');
   document.getElementById('mfo-pick-ebook')?.classList.toggle('on',mfoDraft.type==='ebook');
+  const sf=document.getElementById('mfo-section-formation');
+  const se=document.getElementById('mfo-section-ebook');
+  if(sf) sf.style.display=mfoDraft.type==='formation'?'':'none';
+  if(se) se.style.display=mfoDraft.type==='ebook'?'':'none';
   const ttl=document.getElementById('mfo-create-title');
   if(ttl) ttl.textContent=mfoDraft.type==='ebook'?'Créer un ebook':'Créer une formation';
+  mfoCheckRequired();
 }
 function mfoSyncForm(){
   if(!mfoDraft) return;
@@ -8135,28 +8878,13 @@ function mfoReadForm(){
   mfoDraft.city=g('mfo-city')?.value||'';
 }
 function mfoSyncSteps(){
-  for(let i=1;i<=4;i++){
-    document.getElementById('mfo-step-'+i)?.style && (document.getElementById('mfo-step-'+i).style.display=i===mfoStep?'':'none');
-    document.getElementById('mfo-st-'+i)?.classList.toggle('on',i<=mfoStep);
-  }
-  const nb=document.getElementById('mfo-next-btn');
-  if(nb) nb.textContent=mfoStep===4?'Publier':'Continuer';
-  if(mfoStep===4) mfoBuildPreview();
+  // Stepper supprimé (tout sur une page)
 }
 function mfoNext(){
-  if(!mfoDraft) return;
-  mfoReadForm();
-  if(mfoStep<4){mfoStep++;mfoSyncSteps();return;}
-  // publish
-  const item={...mfoDraft,id:'mfo_'+Math.random().toString(16).slice(2),createdAt:Date.now()};
-  if(item.type==='ebook') mfoMyEbooks.unshift(item);
-  else mfoMyFormations.unshift(item);
-  mfoCloseCreate();
-  mfoRenderMine();
+  mfoPublish();
 }
 function mfoPrev(){
-  if(mfoStep>1){mfoStep--;mfoSyncSteps();}
-  else mfoCloseCreate();
+  mfoCloseCreate();
 }
 function mfoBuildPreview(){
   if(!mfoDraft) return;
@@ -8193,6 +8921,127 @@ function mfoRenderMine(){
 }
 // initial render placeholders
 setTimeout(()=>{try{mfoRenderMine();}catch(e){}},0);
+
+function mfoCloseConfirm(){
+  document.getElementById('mfo-confirm')?.classList.remove('on');
+  mfoRenderMine();
+}
+function mfoTogPill(el){ el.classList.toggle('on'); }
+function mfoSelCat(el,prefix){
+  const container=document.getElementById('mfo-'+prefix+'-cats');
+  if(container) container.querySelectorAll('.mfo-pill').forEach(p=>p.classList.remove('on'));
+  el.classList.add('on');
+  mfoCheckRequired();
+}
+function mfoSelLevel(el,prefix){
+  const container=document.getElementById('mfo-'+prefix+'-levels');
+  if(container) container.querySelectorAll('.mfo-pill').forEach(p=>p.classList.remove('on'));
+  el.classList.add('on');
+}
+function mfoSelFormat(el){
+  document.querySelectorAll('#mfo-f-formats .mfo-pill').forEach(p=>p.classList.remove('on'));
+  el.classList.add('on');
+  const txt=(el.textContent||'').trim();
+  const addrWrap=document.getElementById('mfo-f-addr-wrap');
+  const visioWrap=document.getElementById('mfo-f-visio-wrap');
+  if(addrWrap) addrWrap.style.display=(txt.includes('Présentiel')||txt.includes('Hybride'))?'':'none';
+  if(visioWrap) visioWrap.style.display=(txt.includes('Distanciel')||txt.includes('Hybride'))?'':'none';
+}
+function mfoSelCover(el,emoji){
+  document.querySelectorAll('#mfo-section-ebook .mfo-pill').forEach(p=>{
+    if(['📖','📗','📘','📕','✨'].includes((p.textContent||'').trim())) p.classList.remove('on');
+  });
+  el.classList.add('on');
+  const prev=document.getElementById('mfo-e-cover-preview');
+  if(prev) prev.textContent=emoji;
+}
+function mfoAdjPlaces(d){
+  mfoPlacesVal=Math.max(1,mfoPlacesVal+(d||0));
+  const el=document.getElementById('mfo-f-places-val');
+  if(el) el.textContent=mfoPlacesVal;
+}
+function mfoToggle(el,knobId){
+  const on=el.dataset.on==='1';
+  el.dataset.on=on?'0':'1';
+  el.style.background=on?'var(--border)':'var(--btn-bg)';
+  const knob=document.getElementById(knobId);
+  if(knob) knob.style.transform=on?'translateX(0)':'translateX(18px)';
+}
+function mfoTogWaitlist(el){ mfoToggle(el,'mfo-f-waitlist-knob'); }
+function mfoTogAcompte(el,prefix){
+  mfoToggle(el,'mfo-f-acompte-knob');
+  const inp=document.getElementById('mfo-f-acompte-input');
+  if(inp) inp.style.display=el.dataset.on==='1'?'block':'none';
+}
+function mfoTogEarlybird(el){
+  mfoToggle(el,'mfo-f-earlybird-knob');
+  const inp=document.getElementById('mfo-f-earlybird-inputs');
+  if(inp) inp.style.display=el.dataset.on==='1'?'flex':'none';
+}
+function mfoAddProgramItem(){
+  const list=document.getElementById('mfo-f-program-list');
+  if(!list) return;
+  const div=document.createElement('div');
+  div.style.cssText='display:flex;gap:8px;align-items:center;';
+  div.innerHTML=`<input class="mfo-input" placeholder="Nouvelle section" style="flex:1;"/><div onclick="this.parentElement.remove()" style="width:28px;height:28px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;flex-shrink:0;">✕</div>`;
+  list.appendChild(div);
+}
+function mfoAddChapter(){
+  const list=document.getElementById('mfo-e-chapters-list');
+  if(!list) return;
+  const div=document.createElement('div');
+  div.style.cssText='display:flex;gap:8px;align-items:center;';
+  div.innerHTML=`<input class="mfo-input" placeholder="Nouveau chapitre" style="flex:1;"/><div onclick="this.parentElement.remove()" style="width:28px;height:28px;border-radius:50%;background:var(--light);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;flex-shrink:0;">✕</div>`;
+  list.appendChild(div);
+}
+function mfoPickPhoto(){ alert('Upload photo — démo'); }
+function mfoCheckRequired(){
+  const btn=document.getElementById('mfo-publish-btn');
+  if(!btn||!mfoDraft) return;
+  let valid=false;
+  if(mfoDraft.type==='formation'){
+    const title=document.getElementById('mfo-f-title')?.value?.trim();
+    const cat=document.querySelector('#mfo-f-cats .mfo-pill.on');
+    valid=!!(title&&cat);
+  }else{
+    const title=document.getElementById('mfo-e-title')?.value?.trim();
+    const cat=document.querySelector('#mfo-e-cats .mfo-pill.on');
+    valid=!!(title&&cat);
+  }
+  btn.disabled=!valid;
+  btn.style.background=valid?'var(--btn-bg)':'var(--border)';
+  btn.style.color=valid?'var(--btn-fg)':'#AAA';
+  btn.style.cursor=valid?'pointer':'not-allowed';
+}
+function mfoPublish(){
+  if(!mfoDraft) return;
+  let title,cat,price;
+  if(mfoDraft.type==='formation'){
+    title=document.getElementById('mfo-f-title')?.value?.trim()||'—';
+    cat=document.querySelector('#mfo-f-cats .mfo-pill.on')?.textContent?.trim()||'—';
+    const p=document.getElementById('mfo-f-price')?.value;
+    price=p?(p+'€'):'Non renseigné';
+  }else{
+    title=document.getElementById('mfo-e-title')?.value?.trim()||'—';
+    cat=document.querySelector('#mfo-e-cats .mfo-pill.on')?.textContent?.trim()||'—';
+    const pdf=document.getElementById('mfo-e-price-pdf')?.value;
+    price=pdf?(pdf+'€ (PDF)'):'Non renseigné';
+  }
+  document.getElementById('mfo-create')?.classList.remove('on');
+  const conf=document.getElementById('mfo-confirm');
+  if(conf){
+    document.getElementById('mfo-confirm-title').textContent=mfoDraft.type==='ebook'?'Ebook publié !':'Formation publiée !';
+    document.getElementById('mfo-confirm-sub').textContent=mfoDraft.type==='ebook'?"Visible dans l'onglet Ebooks.":"Visible dans l'onglet Formations.";
+    document.getElementById('mfo-confirm-name').textContent=title;
+    document.getElementById('mfo-confirm-cat').textContent=cat;
+    document.getElementById('mfo-confirm-price').textContent=price;
+    conf.classList.add('on');
+  }
+  const item={...mfoDraft,id:'mfo_'+Math.random().toString(16).slice(2),createdAt:Date.now(),title,cat,price:''};
+  if(item.type==='ebook') mfoMyEbooks.unshift(item);
+  else mfoMyFormations.unshift(item);
+  mfoRenderMine();
+}
 function closeFeedPost(){
   document.getElementById('mod-feed-post')?.classList.remove('on');
 }
@@ -8701,6 +9550,102 @@ function ccSelDraw(el,mode){
   el.classList.add('on');
   ccSyncPreview();
 }
+// ── MODÈLE — Type Picker ──
+function openModeleTypePicker(){
+  var el=document.getElementById('modele-type-picker');
+  if(el){el.style.display='flex';}
+}
+function closeModeleTypePicker(){
+  var el=document.getElementById('modele-type-picker');
+  if(el){el.style.display='none';}
+}
+function pickModeleType(type){
+  closeModeleTypePicker();
+  openCreateModele(type);
+}
+var mdlPlacesVal=3;
+var mdlSelectedType='formation';
+var mdlTypeLabels={formation:'🎓 Formation',essai:'🧪 Essai',contenu:'📸 Contenu'};
+function openCreateModele(type){
+  mdlSelectedType=type||'formation';
+  mdlPlacesVal=3;
+  var flow=document.getElementById('flow-create-modele');
+  if(!flow)return;
+  var badge=document.getElementById('mdl-type-badge');
+  if(badge) badge.textContent=mdlTypeLabels[mdlSelectedType]||mdlSelectedType;
+  var s1=document.getElementById('mdl-create-s1');
+  var s2=document.getElementById('mdl-create-s2');
+  if(s1){s1.classList.add('on');s1.style.display='flex';}
+  if(s2){s2.classList.remove('on');s2.style.display='none';}
+  var ti=document.getElementById('mdl-title');if(ti)ti.value='';
+  var da=document.getElementById('mdl-date');if(da)da.value='';
+  var tm=document.getElementById('mdl-time');if(tm)tm.value='';
+  var ds=document.getElementById('mdl-desc');if(ds)ds.value='';
+  var ms=document.getElementById('mdl-message');if(ms)ms.value='';
+  var pr=document.getElementById('mdl-price');if(pr)pr.value='';
+  document.getElementById('mdl-places-val').textContent=mdlPlacesVal;
+  document.getElementById('mdl-price-wrap').style.display='none';
+  document.querySelectorAll('#mdl-cats .mfo-pill').forEach(function(p,i){p.classList.toggle('on',i===0);});
+  document.querySelectorAll('#mdl-durations .mfo-pill').forEach(function(p,i){p.classList.toggle('on',i===0);});
+  document.querySelectorAll('#mdl-tarifs .mfo-pill').forEach(function(p,i){p.classList.toggle('on',i===0);});
+  document.querySelectorAll('#mdl-criteres .mfo-pill').forEach(function(p){p.classList.remove('on');});
+  mdlCheckRequired();
+  flow.style.display='flex';flow.style.flexDirection='column';
+}
+function closeCreateModele(){
+  var flow=document.getElementById('flow-create-modele');
+  if(flow)flow.style.display='none';
+}
+function mdlSelCat(el){
+  document.querySelectorAll('#mdl-cats .mfo-pill').forEach(function(p){p.classList.remove('on');});
+  el.classList.add('on');mdlCheckRequired();
+}
+function mdlSelDuration(el){
+  document.querySelectorAll('#mdl-durations .mfo-pill').forEach(function(p){p.classList.remove('on');});
+  el.classList.add('on');
+}
+function mdlSelTarif(el,t){
+  document.querySelectorAll('#mdl-tarifs .mfo-pill').forEach(function(p){p.classList.remove('on');});
+  el.classList.add('on');
+  var pw=document.getElementById('mdl-price-wrap');
+  if(pw) pw.style.display=(t==='reduit'||t==='participation')?'block':'none';
+}
+function mdlAdjPlaces(d){
+  mdlPlacesVal=Math.max(1,mdlPlacesVal+d);
+  var el=document.getElementById('mdl-places-val');
+  if(el) el.textContent=mdlPlacesVal;
+}
+function mdlCheckRequired(){
+  var btn=document.getElementById('mdl-publish-btn');if(!btn)return;
+  var title=document.getElementById('mdl-title')?.value?.trim();
+  var cat=document.querySelector('#mdl-cats .mfo-pill.on');
+  var date=document.getElementById('mdl-date')?.value;
+  var valid=!!(title&&cat&&date);
+  btn.disabled=!valid;
+  btn.style.background=valid?'var(--btn-bg)':'var(--border)';
+  btn.style.color=valid?'var(--btn-fg)':'#AAA';
+  btn.style.cursor=valid?'pointer':'not-allowed';
+}
+function mdlPublish(){
+  var title=document.getElementById('mdl-title')?.value?.trim()||'—';
+  var cat=document.querySelector('#mdl-cats .mfo-pill.on')?.textContent?.trim()||'—';
+  var date=document.getElementById('mdl-date')?.value||'—';
+  var activeTarif=document.querySelector('#mdl-tarifs .mfo-pill.on');
+  var tarif=activeTarif?activeTarif.textContent.trim():'—';
+  if((tarif==='Prix réduit'||tarif==='Participation')&&document.getElementById('mdl-price')?.value){
+    tarif+=' · '+document.getElementById('mdl-price').value+'€';
+  }
+  document.getElementById('mdl-conf-type').textContent=mdlTypeLabels[mdlSelectedType]||mdlSelectedType;
+  document.getElementById('mdl-conf-title').textContent=title;
+  document.getElementById('mdl-conf-cat').textContent=cat;
+  document.getElementById('mdl-conf-date').textContent=date;
+  document.getElementById('mdl-conf-tarif').textContent=tarif;
+  var s1=document.getElementById('mdl-create-s1');
+  var s2=document.getElementById('mdl-create-s2');
+  if(s1){s1.classList.remove('on');s1.style.display='none';}
+  if(s2){s2.classList.add('on');s2.style.display='flex';}
+}
+
 function openInscConcours(btn){
   const f=document.getElementById('flow-insc-concours');
   if(!f) return;
@@ -9199,14 +10144,22 @@ function adaptModuleToRole(id,isPro){
   }
   if(id==='mod-formation'){
     const m=document.getElementById('mod-formation');
-    if(!m) return;
-    m.querySelectorAll('.mfo-pro-only').forEach(el=>{el.style.display=isPro?'':'none';});
-    if(!isPro) mfoCloseCreate();
+    if(m){
+      m.querySelectorAll('.mfo-pro-only').forEach(el=>{el.style.display=isPro?'block':'none';});
+      if(!isPro) mfoCloseCreate();
+    }
   }
   if(id==='mod-evenements'){
     const m=document.getElementById('mod-evenements');
-    if(!m) return;
-    m.querySelectorAll('.ev-pro-only').forEach(el=>{el.style.display=isPro?'':'none';});
+    if(m) m.querySelectorAll('.ev-pro-only').forEach(el=>{el.style.display=isPro?'':'none';});
+  }
+  if(id==='mod-concours'){
+    const m=document.getElementById('mod-concours');
+    if(m) m.querySelectorAll('.ev-pro-only').forEach(el=>{el.style.display=isPro?'':'none';});
+  }
+  if(id==='mod-modele'){
+    const m=document.getElementById('mod-modele');
+    if(m) m.querySelectorAll('.mfo-pro-only').forEach(el=>{el.style.display=isPro?'block':'none';});
   }
 }
 function openModule(id){
@@ -9237,7 +10190,7 @@ mod.addEventListener('touchstart',e=>{if(e.touches[0].clientX<30){sx=e.touches[0
 mod.addEventListener('touchend',e=>{if(!sw)return;if(e.changedTouches[0].clientX-sx>60)closeModule(id);sw=false;});
 }
 }
-function closeModule(id){const mod=document.getElementById(id);if(mod)mod.classList.remove('on');if(id==='mod-marketplace')closeMktDetail();if(id==='mod-evenements')closeEvtDetail();}
+function closeModule(id){const mod=document.getElementById(id);if(mod)mod.classList.remove('on');if(id==='mod-marketplace')closeMktDetail();if(id==='mod-evenements')closeEvtDetail();if(id==='mod-previsualisation'){try{prevStopCamera();}catch(e){}}}
 function openSubModule(id){const m=document.getElementById(id);if(m)m.classList.add('on');}
 function closeSubModule(id){const m=document.getElementById(id);if(m)m.classList.remove('on');}
 
@@ -10262,10 +11215,418 @@ function encSelU(el){el.closest('.unit-toggle').querySelectorAll('.ut-btn').forE
     if(sc) sc._lastTY=e.touches[0].clientY;
   },{passive:true});
 })();
+
+// ═══ PRÉVISUALISATION MODULE ═══
+(function(){
+var PV={
+mode:'2d',feat:'ongles',featAR:'coiffure',
+skin:'#F5C2CF',nailColor:'#F5C2CF',shape:'amande',length:50,
+tool:null,design:'French',fingerColors:{},fingerDesigns:{},selectedFinger:null,
+strassType:'💎',strassColor:'#FFD700',activePiercings:{},placesVal:3,
+arOptions:{coiffure:{couleur:'#3D2B1F'},barbe:{},cils:{},sourcils:{}},
+SKINS:['#FDDBB4','#F5C2CF','#E8A87C','#C68642','#8D5524','#4A2912'],
+NAIL_COLORS:['#F5C2CF','#E8638C','#A87DC8','#4A90D9','#7EC8A4','#FFCA28','#FF4E50','#1A1A1A','#fff','#FFB6C1','#DDA0DD','#B0E0E6'],
+SHAPES:['Amande','Carré','Coffin','Stiletto','Ovale','Rond'],
+FINGERS:[{id:'p',lbl:'Pouce'},{id:'i',lbl:'Index'},{id:'m',lbl:'Majeur'},{id:'a',lbl:'Annul.'},{id:'au',lbl:'Auricu.'}],
+DESIGNS:['French','Baby boo.','Couleur','Nude','Dégradé','Géo.','Floral','Glitter'],
+DESIGNS_IC:['🤍','🌸','🎨','🧖','🌈','🔷','🌺','✨'],
+STRASS_TYPES:['💎','⭐','🔮','❤️','🌟','💠','🔶','🔹'],
+PIERCING_ZONES:['Lobe','Tragus','Helix','Conch','Daith','Rook'],
+AR_HAIR_COLORS:['#3D2B1F','#1A1A1A','#8B4513','#DAA520','#FF6B6B','#4A90D9','#A87DC8','#7EC8A4'],
+AR_COIF:['Lisse','Bouclé','Ondulé','Frange','Tressé'],
+AR_BARBE:['Rasé','Bouc','3 jours','Complète','Moustache'],
+AR_CILS:['Naturel','Volume','Russe','Mega-vol.','Bas'],
+AR_SOURCILS:['Naturel','Brow lift','Micro.','Épais','Fin','Arrondi']
+};
+function nc(id){return PV.fingerColors[id]||PV.nailColor;}
+/* ═══ SVG ASSETS — Nail shape path generator ═══ */
+function prevNailPath(w,h,shape){var s=(shape||'amande').toLowerCase();
+if(s==='carre'||s==='carré')return 'M'+(-w)+' 0L'+(-w)+' '+(-h*.88)+'Q'+(-w)+' '+(-h)+' '+(-w+1.5)+' '+(-h)+'L'+(w-1.5)+' '+(-h)+'Q'+w+' '+(-h)+' '+w+' '+(-h*.88)+'L'+w+' 0Z';
+if(s==='coffin')return 'M'+(-w)+' 0L'+(-w*.72)+' '+(-h*.82)+'L'+(-w*.52)+' '+(-h)+'L'+(w*.52)+' '+(-h)+'L'+(w*.72)+' '+(-h*.82)+'L'+w+' 0Z';
+if(s==='stiletto')return 'M'+(-w)+' 0C'+(-w*.78)+' '+(-h*.6)+' '+(-w*.12)+' '+(-h*.96)+' 0 '+(-h)+'C'+(w*.12)+' '+(-h*.96)+' '+(w*.78)+' '+(-h*.6)+' '+w+' 0Z';
+if(s==='ovale')return 'M'+(-w)+' 0C'+(-w)+' '+(-h*.82)+' '+(-w*.55)+' '+(-h)+' 0 '+(-h)+'C'+(w*.55)+' '+(-h)+' '+w+' '+(-h*.82)+' '+w+' 0Z';
+if(s==='rond')return 'M'+(-w)+' 0L'+(-w)+' '+(-h*.42)+'A'+w+' '+(h*.58)+' 0 1 1 '+w+' '+(-h*.42)+'L'+w+' 0Z';
+return 'M'+(-w)+' 0C'+(-w)+' '+(-h*.72)+' '+(-w*.22)+' '+(-h)+' 0 '+(-h)+'C'+(w*.22)+' '+(-h)+' '+w+' '+(-h*.72)+' '+w+' 0Z';}
+/* ═══ SVG ASSETS — Nail design overlay generator ═══ */
+function prevDesignSVG(design,col,w,h,nid){
+var x0=-w,y0=-h,W=w*2,H=h*2,o='';
+switch(design){
+case 'French':
+o='<rect x="'+x0+'" y="'+y0+'" width="'+W+'" height="'+H+'" fill="#F2E0D5"/>';
+o+='<path d="M'+x0+' '+(-h*.55)+'Q0 '+(-h*.35)+' '+w+' '+(-h*.55)+'L'+w+' '+(y0-2)+'L'+x0+' '+(y0-2)+'Z" fill="#FFF"/>';
+o+='<path d="M'+x0+' '+(-h*.55)+'Q0 '+(-h*.35)+' '+w+' '+(-h*.55)+'" fill="none" stroke="#E8D0C0" stroke-width=".7" opacity=".5"/>';
+o+='<ellipse cx="'+(-w*.35)+'" cy="'+(-h*.65)+'" rx="'+(w*.4)+'" ry="'+(h*.2)+'" fill="#FFF" opacity=".3" transform="rotate(-10 '+(-w*.35)+' '+(-h*.65)+')"/>';
+break;
+case 'Baby boo.':
+o='<rect x="'+x0+'" y="'+y0+'" width="'+W+'" height="'+H+'" fill="url(#pvBB)"/>';
+o+='<ellipse cx="'+(-w*.3)+'" cy="'+(-h*.6)+'" rx="'+(w*.38)+'" ry="'+(h*.2)+'" fill="#FFF" opacity=".25" transform="rotate(-10)"/>';
+break;
+case 'Couleur':
+o='<rect x="'+x0+'" y="'+y0+'" width="'+W+'" height="'+H+'" fill="'+col+'"/>';
+o+='<ellipse cx="'+(-w*.32)+'" cy="'+(-h*.55)+'" rx="'+(w*.42)+'" ry="'+(h*.25)+'" fill="#FFF" opacity=".45" transform="rotate(-12)"/>';
+o+='<line x1="'+(w*.08)+'" y1="'+(-h*.82)+'" x2="'+(w*.08)+'" y2="'+(h*.12)+'" stroke="#FFF" stroke-width=".4" opacity=".15"/>';
+break;
+case 'Nude':
+o='<rect x="'+x0+'" y="'+y0+'" width="'+W+'" height="'+H+'" fill="#EDD5C5"/>';
+o+='<ellipse cx="0" cy="'+(-h*.3)+'" rx="'+(w*.55)+'" ry="'+(h*.4)+'" fill="#FFF" opacity=".06"/>';
+break;
+case 'Dégradé':
+o='<rect x="'+x0+'" y="'+y0+'" width="'+W+'" height="'+H+'" fill="url(#pvDG'+nid+')"/>';
+o+='<ellipse cx="'+(-w*.28)+'" cy="'+(-h*.6)+'" rx="'+(w*.36)+'" ry="'+(h*.2)+'" fill="#FFF" opacity=".28" transform="rotate(-10)"/>';
+break;
+case 'Géo.':
+o='<rect x="'+x0+'" y="'+y0+'" width="'+W+'" height="'+H+'" fill="#F2E0D5"/>';
+o+='<path d="M'+x0+' '+(-h*.35)+'L0 '+(-h)+'L'+w+' '+(-h*.35)+'Z" fill="'+col+'" opacity=".85"/>';
+o+='<line x1="'+(-w*.8)+'" y1="0" x2="'+(w*.8)+'" y2="'+(-h*.7)+'" stroke="#2D2D2D" stroke-width=".8" opacity=".25"/>';
+break;
+case 'Floral':
+o='<rect x="'+x0+'" y="'+y0+'" width="'+W+'" height="'+H+'" fill="#FFF5F8"/>';
+var fx1=-w*.15,fy1=-h*.45;
+for(var p=0;p<5;p++){var a=p*72*Math.PI/180;o+='<ellipse cx="'+(fx1+Math.sin(a)*3).toFixed(1)+'" cy="'+(fy1-Math.cos(a)*3).toFixed(1)+'" rx="1.8" ry="2.8" fill="#FFB6C1" opacity=".75" transform="rotate('+(p*72)+' '+(fx1+Math.sin(a)*3).toFixed(1)+' '+(fy1-Math.cos(a)*3).toFixed(1)+')"/>';}
+o+='<circle cx="'+fx1+'" cy="'+fy1+'" r="1.5" fill="#FFE066"/>';
+var fx2=w*.25,fy2=-h*.7;
+for(var p2=0;p2<5;p2++){var a2=p2*72*Math.PI/180;o+='<ellipse cx="'+(fx2+Math.sin(a2)*2.2).toFixed(1)+'" cy="'+(fy2-Math.cos(a2)*2.2).toFixed(1)+'" rx="1.3" ry="2" fill="#D8B4FE" opacity=".7" transform="rotate('+(p2*72)+' '+(fx2+Math.sin(a2)*2.2).toFixed(1)+' '+(fy2-Math.cos(a2)*2.2).toFixed(1)+')"/>';}
+o+='<circle cx="'+fx2+'" cy="'+fy2+'" r="1.2" fill="#FFE066"/>';
+o+='<ellipse cx="'+(-w*.3)+'" cy="'+(-h*.55)+'" rx="'+(w*.35)+'" ry="'+(h*.18)+'" fill="#FFF" opacity=".2"/>';
+break;
+case 'Glitter':
+o='<rect x="'+x0+'" y="'+y0+'" width="'+W+'" height="'+H+'" fill="'+col+'"/>';
+var seed=nid.charCodeAt(0);
+for(var g=0;g<22;g++){var gx=Math.sin(seed+g*7.3)*w*.85,gy=-(Math.abs(Math.cos(seed+g*4.7))*h*.95),gr=0.5+Math.abs(Math.sin(seed+g*3.1))*1.2,go=0.3+Math.abs(Math.cos(seed+g*5.9))*0.55;
+o+=(g%3===1)?'<rect x="'+(gx-gr).toFixed(1)+'" y="'+(gy-gr).toFixed(1)+'" width="'+(gr*2).toFixed(1)+'" height="'+(gr*2).toFixed(1)+'" fill="#FFC107" opacity="'+go.toFixed(2)+'" transform="rotate(45 '+gx.toFixed(1)+' '+gy.toFixed(1)+')"/>':'<circle cx="'+gx.toFixed(1)+'" cy="'+gy.toFixed(1)+'" r="'+gr.toFixed(1)+'" fill="'+(g%3===2?'#FFE566':'#FFD700')+'" opacity="'+go.toFixed(2)+'"/>';}
+o+='<ellipse cx="'+(-w*.28)+'" cy="'+(-h*.55)+'" rx="'+(w*.38)+'" ry="'+(h*.2)+'" fill="#FFF" opacity=".35" transform="rotate(-10)"/>';
+break;
+default:
+o='<rect x="'+x0+'" y="'+y0+'" width="'+W+'" height="'+H+'" fill="'+col+'"/>';
+o+='<ellipse cx="'+(-w*.32)+'" cy="'+(-h*.55)+'" rx="'+(w*.42)+'" ry="'+(h*.25)+'" fill="#FFF" opacity=".45" transform="rotate(-12)"/>';
+}return o;}
+/* ═══ SVG ASSETS — MAIN — viewBox 0 0 240 220 — nail-thumb/index/middle/ring/pinky ═══ */
+var PVNAILS=[
+{id:'p',lbl:'Pouce',cx:47,cy:103,rx:11,ry:14},
+{id:'i',lbl:'Index',cx:84,cy:59,rx:10,ry:13},
+{id:'m',lbl:'Majeur',cx:115,cy:51,rx:10,ry:13},
+{id:'a',lbl:'Annul.',cx:147,cy:61,rx:10,ry:13},
+{id:'au',lbl:'Auricu.',cx:176,cy:80,rx:8.5,ry:11}
+];
+function buildHandSVG(){
+var sk=PV.skin;
+var svg='<svg class="prev-hand-svg" viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg">';
+var defs='<defs>';
+defs+='<linearGradient id="pvBB" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#EDD5C5"/><stop offset=".55" stop-color="#F5E8DF"/><stop offset="1" stop-color="#FFF"/></linearGradient>';
+PVNAILS.forEach(function(n){
+defs+='<clipPath id="pvC'+n.id+'"><ellipse cx="'+n.cx+'" cy="'+n.cy+'" rx="'+n.rx+'" ry="'+n.ry+'"/></clipPath>';
+defs+='<linearGradient id="pvDG'+n.id+'" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="'+nc(n.id)+'"/><stop offset="1" stop-color="#FFF"/></linearGradient>';
+});
+defs+='</defs>';
+svg+=defs;
+
+svg+='<ellipse cx="120" cy="170" rx="75" ry="50" fill="'+sk+'" opacity=".95"/>';
+
+svg+='<ellipse cx="87"  cy="152" rx="13" ry="5" fill="rgba(0,0,0,.06)"/>';
+svg+='<ellipse cx="123" cy="148" rx="13" ry="5" fill="rgba(0,0,0,.06)"/>';
+svg+='<ellipse cx="157" cy="150" rx="12" ry="5" fill="rgba(0,0,0,.06)"/>';
+svg+='<ellipse cx="189" cy="155" rx="10" ry="4" fill="rgba(0,0,0,.06)"/>';
+
+svg+='<path d="M58,155 Q38,148 32,132 Q26,116 34,106 Q42,96 54,100 Q66,104 68,118 Q70,132 66,145 Z" fill="'+sk+'" stroke="#2D2D2D" stroke-width="2" stroke-linejoin="round"/>';
+svg+='<path d="M38,128 Q48,124 58,126" fill="none" stroke="rgba(0,0,0,.08)" stroke-width="1"/>';
+
+svg+='<path d="M72,148 Q69,100 72,72 Q75,56 84,55 Q93,54 96,70 Q99,86 97,148 Z" fill="'+sk+'" stroke="#2D2D2D" stroke-width="2" stroke-linejoin="round"/>';
+svg+='<path d="M71,118 Q84,115 97,118" fill="none" stroke="rgba(0,0,0,.07)" stroke-width="1"/>';
+svg+='<path d="M72,95  Q84,92  96,95"  fill="none" stroke="rgba(0,0,0,.07)" stroke-width="1"/>';
+
+svg+='<path d="M101,148 Q99,96 102,65 Q105,48 115,47 Q125,46 128,63 Q131,80 130,148 Z" fill="'+sk+'" stroke="#2D2D2D" stroke-width="2" stroke-linejoin="round"/>';
+svg+='<path d="M100,116 Q115,113 130,116" fill="none" stroke="rgba(0,0,0,.07)" stroke-width="1"/>';
+svg+='<path d="M101,90  Q115,87  129,90"  fill="none" stroke="rgba(0,0,0,.07)" stroke-width="1"/>';
+
+svg+='<path d="M134,148 Q132,100 135,72 Q138,57 147,57 Q156,57 159,72 Q162,87 161,148 Z" fill="'+sk+'" stroke="#2D2D2D" stroke-width="2" stroke-linejoin="round"/>';
+svg+='<path d="M134,118 Q147,115 161,118" fill="none" stroke="rgba(0,0,0,.07)" stroke-width="1"/>';
+svg+='<path d="M135,94  Q147,91  160,94"  fill="none" stroke="rgba(0,0,0,.07)" stroke-width="1"/>';
+
+svg+='<path d="M165,150 Q163,110 166,88 Q169,76 177,76 Q185,76 187,88 Q189,100 188,150 Z" fill="'+sk+'" stroke="#2D2D2D" stroke-width="2" stroke-linejoin="round"/>';
+svg+='<path d="M165,120 Q176,117 188,120" fill="none" stroke="rgba(0,0,0,.07)" stroke-width="1"/>';
+
+svg+='<path d="M58,155 Q75,165 120,168 Q160,170 190,158 Q200,175 185,190 Q160,205 120,208 Q80,210 55,195 Q40,185 45,168 Z" fill="'+sk+'" stroke="#2D2D2D" stroke-width="2"/>';
+
+PVNAILS.forEach(function(n){
+var col=nc(n.id);
+var design=PV.fingerDesigns[n.id]||PV.design;
+svg+='<g style="cursor:pointer" onclick="prevOpenFinger(\''+n.id+'\',\''+n.lbl+'\')">';
+svg+='<ellipse cx="'+n.cx+'" cy="'+n.cy+'" rx="'+n.rx+'" ry="'+n.ry+'" fill="'+col+'" stroke="#2D2D2D" stroke-width="1.5"/>';
+svg+='<ellipse cx="'+n.cx+'" cy="'+(n.cy+n.ry-3)+'" rx="'+(n.rx*.82)+'" ry="'+(n.ry*.28)+'" fill="rgba(255,255,255,.25)" clip-path="url(#pvC'+n.id+')"/>';
+svg+='<ellipse cx="'+(n.cx-n.rx*.3)+'" cy="'+(n.cy-n.ry*.3)+'" rx="'+(n.rx*.38)+'" ry="'+(n.ry*.35)+'" fill="rgba(255,255,255,.45)" clip-path="url(#pvC'+n.id+')"/>';
+if(design==='French'){
+svg+='<path d="M'+(n.cx-n.rx)+' '+(n.cy-n.ry*.35)+' Q'+n.cx+' '+(n.cy-n.ry*.1)+' '+(n.cx+n.rx)+' '+(n.cy-n.ry*.35)+' L'+(n.cx+n.rx)+' '+(n.cy-n.ry-2)+' L'+(n.cx-n.rx)+' '+(n.cy-n.ry-2)+' Z" fill="#FFF" clip-path="url(#pvC'+n.id+')"/>';
+svg+='<path d="M'+(n.cx-n.rx)+' '+(n.cy-n.ry*.35)+' Q'+n.cx+' '+(n.cy-n.ry*.1)+' '+(n.cx+n.rx)+' '+(n.cy-n.ry*.35)+'" fill="none" stroke="#E8D0C0" stroke-width=".7" opacity=".5" clip-path="url(#pvC'+n.id+')"/>';
+}
+if(design==='Baby boo.'){
+svg+='<rect x="'+(n.cx-n.rx)+'" y="'+(n.cy-n.ry)+'" width="'+(n.rx*2)+'" height="'+(n.ry*2)+'" fill="url(#pvBB)" clip-path="url(#pvC'+n.id+')"/>';
+}
+if(design==='Dégradé'){
+svg+='<rect x="'+(n.cx-n.rx)+'" y="'+(n.cy-n.ry)+'" width="'+(n.rx*2)+'" height="'+(n.ry*2)+'" fill="url(#pvDG'+n.id+')" clip-path="url(#pvC'+n.id+')"/>';
+}
+if(design==='Géo.'){
+svg+='<path d="M'+(n.cx-n.rx)+' '+(n.cy)+' L'+n.cx+' '+(n.cy-n.ry)+' L'+(n.cx+n.rx)+' '+n.cy+' Z" fill="'+col+'" opacity=".7" clip-path="url(#pvC'+n.id+')"/>';
+}
+if(design==='Glitter'){
+var seed=n.id.charCodeAt(0);
+for(var g=0;g<15;g++){var gx=n.cx+(Math.sin(seed+g*7.3)*n.rx*.7),gy=n.cy-(Math.abs(Math.cos(seed+g*4.7))*n.ry*.8),gr=0.6+Math.abs(Math.sin(seed+g*3.1)),go=0.35+Math.abs(Math.cos(seed+g*5.9))*.5;
+svg+='<circle cx="'+gx.toFixed(1)+'" cy="'+gy.toFixed(1)+'" r="'+gr.toFixed(1)+'" fill="#FFD700" opacity="'+go.toFixed(2)+'" clip-path="url(#pvC'+n.id+')"/>';}
+}
+if(design==='Floral'){
+var fx=n.cx-n.rx*.15,fy=n.cy-n.ry*.3;
+for(var fp=0;fp<5;fp++){var fa=fp*72*Math.PI/180;svg+='<ellipse cx="'+(fx+Math.sin(fa)*2.5).toFixed(1)+'" cy="'+(fy-Math.cos(fa)*2.5).toFixed(1)+'" rx="1.5" ry="2.5" fill="#FFB6C1" opacity=".7" transform="rotate('+(fp*72)+' '+(fx+Math.sin(fa)*2.5).toFixed(1)+' '+(fy-Math.cos(fa)*2.5).toFixed(1)+')" clip-path="url(#pvC'+n.id+')"/>';}
+svg+='<circle cx="'+fx+'" cy="'+fy+'" r="1.3" fill="#FFE066" clip-path="url(#pvC'+n.id+')"/>';
+}
+svg+='</g>';
+});
+
+svg+='</svg>';
+return svg;
+}
+function renderOngles(){
+var b=document.getElementById('prev-body');if(!b)return;
+var skinHTML=PV.SKINS.map(function(s){return '<div class="prev-skin '+(PV.skin===s?'on':'')+'" style="background:'+s+'" onclick="prevSetSkin(\''+s+'\')"></div>';}).join('');
+var thumbsHTML=PV.FINGERS.map(function(f){var c=nc(f.id);return '<div class="prev-thumb '+(PV.selectedFinger===f.id?'on':'')+'" onclick="prevOpenFinger(\''+f.id+'\',\''+f.lbl+'\')"><div class="prev-thumb-nail" style="background:'+c+'"></div><div class="prev-thumb-lbl">'+f.lbl+'</div></div>';}).join('');
+var colorsHTML=PV.NAIL_COLORS.map(function(c){return '<div class="prev-col-dot '+(PV.nailColor===c?'on':'')+'" style="background:'+c+'" onclick="prevSetNailColor(\''+c+'\')"></div>';}).join('')+'<div class="prev-col-dot custom" onclick="">+</div>';
+var shapesHTML=PV.SHAPES.map(function(s){return '<div class="prev-shape-btn '+(PV.shape.toLowerCase()===s.toLowerCase()?'on':'')+'" onclick="prevSetShape(\''+s+'\')">'+s+'</div>';}).join('');
+var designsHTML=PV.DESIGNS.map(function(d,i){return '<div class="prev-design-item '+(PV.design===d?'on':'')+'" onclick="prevSetDesign(\''+d+'\')"><div class="prev-design-ic">'+PV.DESIGNS_IC[i]+'</div>'+d+'</div>';}).join('');
+var toolExtra='';
+if(PV.tool==='strass')toolExtra='<div class="prev-sec-lbl">Type de strass</div><div class="prev-panel"><div class="prev-strass-grid">'+PV.STRASS_TYPES.map(function(s){return '<div class="prev-strass-item">'+s+'</div>';}).join('')+'</div></div>';
+if(PV.tool==='brush')toolExtra='<div class="prev-sec-lbl">Pinceau</div><div class="prev-panel"><div class="prev-slider-row"><div class="prev-slider-lbl">Épaisseur</div><input type="range" min="1" max="10" value="3" style="accent-color:#E8638C"><div class="prev-slider-val">3</div></div></div>';
+b.innerHTML='<div class="prev-hand-canvas"><div class="prev-skin-picker"><span class="prev-skin-lbl">Peau</span>'+skinHTML+'</div><div class="prev-hand-wrap">'+buildHandSVG()+'</div></div>'
++'<div class="prev-thumb-sel">'+thumbsHTML+'</div>'
++'<div class="prev-toolbar"><div class="prev-tool '+(PV.tool==='brush'?'active-rose':'')+'" onclick="prevSetTool(\'brush\')"><div class="prev-tool-ic">🖌️</div>Dessin</div><div class="prev-tool '+(PV.tool==='text'?'active-violet':'')+'" onclick="prevSetTool(\'text\')"><div class="prev-tool-ic">🔤</div>Texte</div><div class="prev-tool '+(PV.tool==='shape3d'?'active-bleu':'')+'" onclick="prevSetTool(\'shape3d\')"><div class="prev-tool-ic">⭐</div>Forme 3D</div><div class="prev-tool '+(PV.tool==='strass'?'active-vert':'')+'" onclick="prevSetTool(\'strass\')"><div class="prev-tool-ic">💎</div>Strass</div><div class="prev-tool '+(PV.tool==='import'?'on':'')+'" onclick="prevSetTool(\'import\')"><div class="prev-tool-ic">🖼️</div>Import</div></div>'
++'<div class="prev-sec-lbl">Couleur de l\'ongle</div><div class="prev-panel"><div class="prev-color-grid">'+colorsHTML+'</div></div>'
++'<div class="prev-sec-lbl">Forme & Longueur</div><div class="prev-panel"><div class="prev-shape-row" style="margin-bottom:10px">'+shapesHTML+'</div><div class="prev-slider-row"><div class="prev-slider-lbl">Longueur</div><input type="range" min="10" max="100" value="'+PV.length+'" oninput="prevSetLength(this.value)" style="accent-color:var(--black)"><div class="prev-slider-val" id="prev-len-val">'+PV.length+'</div></div></div>'
++'<div class="prev-sec-lbl">Designs préfaits</div><div class="prev-panel" style="padding:10px"><div class="prev-design-grid">'+designsHTML+'</div></div>'
++toolExtra
++'<div style="height:10px"></div><div class="prev-bottom-bar"><button class="prev-btn-save" onclick="prevOpenSave()">💾 Sauvegarder le design</button><button class="prev-btn-share" onclick="prevShareDesign()">📤</button></div>';
+}
+/* SVG CARTOON ASSETS — BOUCHE — viewBox 0 0 280 130 — elements: tooth-top-1..8, tooth-bot-1..6 */
+function renderStrass(){
+var b=document.getElementById('prev-body');if(!b)return;
+var toothColors=['#FFD700','#C0C0C0','#E8638C','#4A90D9','#A87DC8','#7EC8A4','#fff','#1A1A1A'];
+var topTeeth=[{x:46,w:22},{x:70,w:24},{x:96,w:22},{x:120,w:20},{x:142,w:20},{x:164,w:22},{x:188,w:24},{x:214,w:22}];
+var botTeeth=[{x:62,w:22},{x:86,w:24},{x:112,w:22},{x:136,w:22},{x:160,w:24},{x:186,w:22}];
+var topSvg=topTeeth.map(function(t,i){
+var cx=t.x+t.w/2;
+return '<rect id="tooth-top-'+(i+1)+'" x="'+t.x+'" y="42" width="'+t.w+'" height="26" rx="4" fill="#FFFDF5" stroke="#E8D8C8" stroke-width="1.2" style="cursor:pointer" onclick="prevPlaceStrass('+t.x+',48,\'top'+i+'\')"/>'
++'<line x1="'+(t.x+t.w)+'" y1="44" x2="'+(t.x+t.w)+'" y2="66" stroke="#E8D8C8" stroke-width=".6" opacity=".5"/>';
+}).join('');
+var botSvg=botTeeth.map(function(t,i){
+return '<rect id="tooth-bot-'+(i+1)+'" x="'+t.x+'" y="72" width="'+t.w+'" height="22" rx="4" fill="#FFFDF5" stroke="#E8D8C8" stroke-width="1.2" style="cursor:pointer" onclick="prevPlaceStrass('+t.x+',78,\'bot'+i+'\')"/>'
++'<line x1="'+(t.x+t.w)+'" y1="74" x2="'+(t.x+t.w)+'" y2="92" stroke="#E8D8C8" stroke-width=".6" opacity=".5"/>';
+}).join('');
+b.innerHTML='<div style="margin:0 16px;border-radius:20px;background:linear-gradient(160deg,#FFF9F0,#FFF5E8);padding:20px;display:flex;flex-direction:column;align-items:center;min-height:200px;">'
++'<div style="font-size:11px;font-weight:700;color:var(--gray);text-align:center;margin-bottom:10px;text-transform:uppercase;letter-spacing:.4px">Clique sur une dent pour placer un strass</div>'
++'<svg viewBox="0 0 280 130" width="280" height="130" xmlns="http://www.w3.org/2000/svg">'
++'<path d="M20 55 Q40 15 140 10 Q240 15 260 55 Q250 95 140 105 Q30 95 20 55Z" fill="#E8638C" stroke="#2D2D2D" stroke-width="2.5" stroke-linejoin="round"/>'
++'<path d="M28 54 Q45 22 140 17 Q235 22 252 54 Q242 88 140 97 Q38 88 28 54Z" fill="#C85070"/>'
++'<path d="M35 55 Q50 30 140 25 Q230 30 245 55 Q238 78 140 85 Q42 78 35 55Z" fill="#2D1520" opacity=".6"/>'
++'<rect x="42" y="40" width="196" height="30" rx="3" fill="#F28B9B"/>'
++'<rect x="58" y="70" width="164" height="26" rx="3" fill="#F28B9B"/>'
++topSvg+botSvg
++'<path d="M25 40 Q42 16 140 10 Q238 16 255 40" fill="none" stroke="#2D2D2D" stroke-width="2"/>'
++'<path d="M30 68 Q42 98 140 105 Q238 98 250 68" fill="none" stroke="#2D2D2D" stroke-width="2"/>'
++'<ellipse cx="80" cy="32" rx="28" ry="6" fill="white" opacity=".18" transform="rotate(-8 80 32)"/>'
++'<ellipse cx="200" cy="32" rx="28" ry="6" fill="white" opacity=".12" transform="rotate(8 200 32)"/>'
++'<g id="prev-placed-strass"></g>'
++'</svg></div>'
++'<div class="prev-sec-lbl">Type de strass</div><div class="prev-panel"><div class="prev-strass-grid">'+PV.STRASS_TYPES.map(function(s,i){return '<div class="prev-strass-item '+(i===0?'on':'')+'" onclick="prevSelStrassType(this)">'+s+'</div>';}).join('')+'</div></div>'
++'<div class="prev-sec-lbl">Couleur</div><div class="prev-panel"><div class="prev-color-grid">'+toothColors.map(function(c){return '<div class="prev-col-dot '+(c==='#FFD700'?'on':'')+'" style="background:'+c+';'+(c==='#fff'?'border:1.5px solid #E5E5EA':'')+'" onclick="prevSetStrassColor(this)"></div>';}).join('')+'</div></div>'
++'<div class="prev-sec-lbl">Taille</div><div class="prev-panel"><div class="prev-slider-row"><div class="prev-slider-lbl">Taille</div><input type="range" min="4" max="14" value="8" oninput="this.nextElementSibling.textContent=this.value" style="accent-color:#FFCA28"><div class="prev-slider-val">8</div></div></div>'
++'<div style="height:10px"></div><div class="prev-bottom-bar"><button class="prev-btn-save" style="background:var(--light);color:var(--black);" onclick="prevClearStrass()">🗑️ Effacer tout</button><button class="prev-btn-save" style="margin-left:8px" onclick="prevOpenSave()">💾 Sauvegarder</button></div>';
+}
+/* SVG CARTOON ASSETS — OREILLES — viewBox 0 0 280 180 — elements: zone-lobe-L/R, zone-tragus-L/R, zone-helix-L/R, zone-antihelix-L/R, zone-conch-L/R */
+function renderPiercings(){
+var b=document.getElementById('prev-body');if(!b)return;
+var bjColors=['#FFD700','#C0C0C0','#FFB6C1','#B87333','#fff','#1A1A1A'];
+function earSVG(side,mx){
+var d=side==='L'?1:-1;
+var ox=side==='L'?70:210;
+var earOuter=side==='L'
+?'M65 25 Q28 28 22 70 Q16 112 32 140 Q48 165 72 158 Q90 152 94 135 Q97 118 86 112'
+:'M215 25 Q252 28 258 70 Q264 112 248 140 Q232 165 208 158 Q190 152 186 135 Q183 118 194 112';
+var innerSpiral=side==='L'
+?'M86 112 Q98 106 94 88 Q91 70 78 58'
+:'M194 112 Q182 106 186 88 Q189 70 202 58';
+var innerFill=side==='L'
+?'M78 58 Q65 48 55 60 Q48 72 50 90 Q52 105 62 110 Q72 114 82 108 Q90 100 88 85 Q86 72 78 62Z'
+:'M202 58 Q215 48 225 60 Q232 72 230 90 Q228 105 218 110 Q208 114 198 108 Q190 100 192 85 Q194 72 202 62Z';
+var lobeCx=side==='L'?74:206;
+var tragusCx=side==='L'?62:218;
+var helixCx=side==='L'?42:238;
+var antihelixCx=side==='L'?55:225;
+var conchCx=side==='L'?68:212;
+return '<path d="'+earOuter+'" fill="#F5C2CF" stroke="#2D2D2D" stroke-width="2.5" stroke-linejoin="round"/>'
++'<path d="'+innerFill+'" fill="#F0D5C8" opacity=".7"/>'
++'<path d="'+innerSpiral+'" fill="none" stroke="#2D2D2D" stroke-width="2" stroke-linecap="round" opacity=".4"/>'
++'<path d="'+earOuter.split(' ').slice(0,6).join(' ')+'" fill="none" stroke="white" stroke-width="3" opacity=".15" stroke-linecap="round"/>'
++'<circle id="zone-lobe-'+side+'" cx="'+lobeCx+'" cy="152" r="7" fill="none" stroke="#FFD700" stroke-width="2.5" stroke-dasharray="3 2" style="cursor:pointer" onclick="prevTogglePiercing(\'lobe-'+side.toLowerCase()+'\')"/>'
++'<circle id="zone-tragus-'+side+'" cx="'+tragusCx+'" cy="108" r="5.5" fill="none" stroke="rgba(45,45,45,.2)" stroke-width="1.5" stroke-dasharray="2 2" style="cursor:pointer" onclick="prevTogglePiercing(\'tragus-'+side.toLowerCase()+'\')"/>'
++'<circle id="zone-helix-'+side+'" cx="'+helixCx+'" cy="60" r="5.5" fill="none" stroke="rgba(45,45,45,.2)" stroke-width="1.5" stroke-dasharray="2 2" style="cursor:pointer" onclick="prevTogglePiercing(\'helix-'+side.toLowerCase()+'\')"/>'
++'<circle id="zone-antihelix-'+side+'" cx="'+antihelixCx+'" cy="80" r="5" fill="none" stroke="rgba(45,45,45,.15)" stroke-width="1.5" stroke-dasharray="2 2" style="cursor:pointer" onclick="prevTogglePiercing(\'antihelix-'+side.toLowerCase()+'\')"/>'
++'<circle id="zone-conch-'+side+'" cx="'+conchCx+'" cy="95" r="5" fill="none" stroke="rgba(45,45,45,.15)" stroke-width="1.5" stroke-dasharray="2 2" style="cursor:pointer" onclick="prevTogglePiercing(\'conch-'+side.toLowerCase()+'\')"/>'
++'<text x="'+ox+'" y="178" font-size="10" font-weight="700" fill="#8E8E93" text-anchor="middle" font-family="Manrope,sans-serif">'+(side==='L'?'Gauche':'Droite')+'</text>';
+}
+b.innerHTML='<div class="prev-ear-canvas"><svg viewBox="0 0 280 180" width="280" height="180" xmlns="http://www.w3.org/2000/svg">'
++earSVG('L')+earSVG('R')
++'<g id="prev-placed-piercings"></g></svg></div>'
++'<div class="prev-sec-lbl">Zone piercing</div><div class="prev-panel"><div class="prev-shape-row">'+PV.PIERCING_ZONES.map(function(z){return '<div class="prev-shape-btn '+(z==='Lobe'?'on':'')+'" onclick="prevSelPZone(this)">'+z+'</div>';}).join('')+'</div></div>'
++'<div class="prev-sec-lbl">Type de bijou</div><div class="prev-panel"><div class="prev-strass-grid"><div class="prev-strass-item on" onclick="prevSelBijou(this)">○</div><div class="prev-strass-item" onclick="prevSelBijou(this)">◉</div><div class="prev-strass-item" onclick="prevSelBijou(this)">💎</div><div class="prev-strass-item" onclick="prevSelBijou(this)">⭐</div><div class="prev-strass-item" onclick="prevSelBijou(this)">❤️</div><div class="prev-strass-item" onclick="prevSelBijou(this)">🔮</div></div></div>'
++'<div class="prev-sec-lbl">Couleur du bijou</div><div class="prev-panel"><div class="prev-color-grid">'+bjColors.map(function(c){return '<div class="prev-col-dot '+(c==='#FFD700'?'on':'')+'" style="background:'+c+';'+(c==='#fff'?'border:1.5px solid #E5E5EA':'')+'" onclick="prevSetPColor(this)"></div>';}).join('')+'</div></div>'
++'<div class="prev-sec-lbl">Taille</div><div class="prev-panel"><div class="prev-slider-row"><div class="prev-slider-lbl">Taille</div><input type="range" min="4" max="16" value="8" oninput="this.nextElementSibling.textContent=this.value" style="accent-color:#A87DC8"><div class="prev-slider-val">8</div></div></div>'
++'<div style="height:10px"></div><div class="prev-bottom-bar"><button class="prev-btn-save" onclick="prevOpenSave()">💾 Sauvegarder</button><button class="prev-btn-share" onclick="prevShareDesign()">📤</button></div>';
+}
+var _prevARFacing='user';
+var _prevARStream=null;
+function prevStopCamera(){
+var v=document.getElementById('prev-ar-video');
+if(v&&v.srcObject){v.srcObject.getTracks().forEach(function(t){t.stop();});v.srcObject=null;}
+_prevARStream=null;
+}
+function prevStartCamera(){
+prevStopCamera();
+navigator.mediaDevices.getUserMedia({video:{facingMode:_prevARFacing},audio:false}).then(function(stream){
+_prevARStream=stream;
+var v=document.getElementById('prev-ar-video');
+if(v){v.srcObject=stream;v.play();}
+}).catch(function(){
+var cam=document.getElementById('prev-ar-cam-box');
+if(cam)cam.innerHTML='<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:12px;padding:20px;text-align:center;"><div style="font-size:40px;">📷</div><div style="font-size:13px;font-weight:700;color:var(--gray);line-height:1.5;">Autorise l\'accès à la caméra<br>pour utiliser ce mode</div></div>';
+});
+}
+window.prevSwitchCamera=function(){
+_prevARFacing=_prevARFacing==='user'?'environment':'user';
+prevStartCamera();
+};
+window.prevCaptureARPhoto=function(){
+var v=document.getElementById('prev-ar-video');
+if(!v||!v.srcObject)return;
+var c=document.createElement('canvas');
+c.width=v.videoWidth||640;c.height=v.videoHeight||480;
+c.getContext('2d').drawImage(v,0,0);
+alert('📸 Photo capturée !');
+};
+function renderAR(feat){
+var b=document.getElementById('prev-body');if(!b)return;
+var titles={coiffure:'💇 Coiffure',barbe:'🧔 Barbe',cils:'👁️ Cils',sourcils:'🪄 Sourcils'};
+var styles={coiffure:PV.AR_COIF,barbe:PV.AR_BARBE,cils:PV.AR_CILS,sourcils:PV.AR_SOURCILS};
+var hasColor=(feat==='coiffure'||feat==='barbe');
+var st=styles[feat]||[];
+var colorsHTML='';
+if(hasColor){
+colorsHTML='<div class="prev-sec-lbl">'+(feat==='barbe'?'Couleur barbe':'Couleur cheveux')+'</div><div class="prev-panel"><div class="prev-color-grid">'+PV.AR_HAIR_COLORS.map(function(c){return '<div class="prev-col-dot '+(c==='#3D2B1F'?'on':'')+'" style="background:'+c+'" onclick="prevSetARColor(\''+feat+'\',\''+c+'\')"></div>';}).join('')+'</div></div>';
+}
+var extraHTML='';
+if(feat==='coiffure')extraHTML='<div class="prev-sec-lbl">Longueur</div><div class="prev-panel"><div class="prev-slider-row"><div class="prev-slider-lbl">Longueur</div><input type="range" min="10" max="100" value="50" oninput="this.nextElementSibling.textContent=this.value+\'%\'" style="accent-color:#A87DC8"><div class="prev-slider-val">50%</div></div></div>';
+if(feat==='cils')extraHTML='<div class="prev-sec-lbl">Intensité</div><div class="prev-panel"><div class="prev-slider-row"><div class="prev-slider-lbl">Volume</div><input type="range" min="1" max="5" value="3" oninput="this.nextElementSibling.textContent=this.value" style="accent-color:#E8638C"><div class="prev-slider-val">3</div></div></div>';
+b.innerHTML='<div class="prev-ar-cam" id="prev-ar-cam-box" style="position:relative;overflow:hidden;border-radius:20px;margin:0 16px;height:320px;background:#0F0F12;">'
++'<video id="prev-ar-video" autoplay playsinline muted style="width:100%;height:100%;object-fit:cover;border-radius:20px;"></video>'
++'<div style="position:absolute;bottom:12px;left:0;right:0;display:flex;justify-content:center;pointer-events:none;"><div class="prev-ar-badge" style="pointer-events:auto;"><div class="prev-ar-dot"></div>Caméra active · '+titles[feat]+'</div></div>'
++'<div style="position:absolute;top:14px;right:14px;display:flex;flex-direction:column;gap:8px;">'
++'<div onclick="prevCaptureARPhoto()" style="background:rgba(0,0,0,.5);backdrop-filter:blur(8px);border-radius:10px;padding:8px 12px;font-size:14px;font-weight:700;color:white;cursor:pointer;text-align:center;">📸</div>'
++'<div onclick="prevSwitchCamera()" style="background:rgba(0,0,0,.5);backdrop-filter:blur(8px);border-radius:10px;padding:8px 12px;font-size:14px;font-weight:700;color:white;cursor:pointer;text-align:center;">🔄</div>'
++'</div></div>'
++'<div class="prev-sec-lbl">Style · '+titles[feat]+'</div><div class="prev-panel"><div class="prev-shape-row">'+st.map(function(s,i){return '<div class="prev-shape-btn '+(i===0?'on':'')+'" onclick="prevSelARStyle(this)">'+s+'</div>';}).join('')+'</div></div>'
++colorsHTML+extraHTML
++'<div class="prev-sec-lbl">Comparaison</div><div style="margin:0 16px;display:grid;grid-template-columns:1fr 1fr;gap:8px"><div style="background:var(--bg);border-radius:14px;padding:12px;text-align:center;cursor:pointer"><div style="font-size:28px;margin-bottom:4px">😊</div><div style="font-size:11px;font-weight:700;color:var(--gray)">Avant</div></div><div style="background:linear-gradient(135deg,#F5F0FF,#EEF4FF);border-radius:14px;padding:12px;text-align:center;cursor:pointer;border:2px solid #A87DC8"><div style="font-size:28px;margin-bottom:4px">🤩</div><div style="font-size:11px;font-weight:700;color:#A87DC8">Après</div></div></div>'
++'<div style="height:10px"></div><div class="prev-bottom-bar"><button class="prev-btn-save" style="background:#A87DC8" onclick="prevCaptureARPhoto()">📸 Capturer avant/après</button><button class="prev-btn-share" onclick="prevOpenSave()">💾</button></div>';
+setTimeout(function(){prevStartCamera();},100);
+}
+
+window.prevSetMode=function(m,el){
+PV.mode=m;
+document.querySelectorAll('#prev-mode-tabs .mod-tab').forEach(function(t){t.classList.remove('on');});
+if(el)el.classList.add('on');
+document.getElementById('prev-feat-tabs-2d').style.display=m==='2d'?'flex':'none';
+document.getElementById('prev-feat-tabs-ar').style.display=m==='ar'?'flex':'none';
+if(m==='2d'){prevStopCamera();renderOngles();}else renderAR(PV.featAR);
+};
+window.prevSelFeat=function(el,feat){
+document.querySelectorAll('.prev-feat').forEach(function(t){t.classList.remove('on');t.style.background='';t.style.borderColor='';t.style.color='';});
+el.classList.add('on');
+var colors={ongles:'#E8638C',strass:'#FFCA28',piercings:'#A87DC8'};
+el.style.background=colors[feat]||'';el.style.borderColor=colors[feat]||'';el.style.color='#fff';
+PV.feat=feat;
+if(feat==='ongles')renderOngles();else if(feat==='strass')renderStrass();else if(feat==='piercings')renderPiercings();
+};
+window.prevSelFeatAR=function(el,feat){
+document.querySelectorAll('.prev-feat-ar').forEach(function(t){t.classList.remove('on');t.style.background='';t.style.borderColor='';t.style.color='';});
+el.classList.add('on');el.style.background='#A87DC8';el.style.borderColor='#A87DC8';el.style.color='#fff';
+PV.featAR=feat;renderAR(feat);
+};
+window.prevSetSkin=function(c){PV.skin=c;renderOngles();};
+window.prevSetNailColor=function(c){PV.nailColor=c;renderOngles();};
+window.prevSetShape=function(s){PV.shape=s.toLowerCase();renderOngles();};
+window.prevSetLength=function(v){PV.length=parseInt(v);var el=document.getElementById('prev-len-val');if(el)el.textContent=v;};
+window.prevSetTool=function(t){PV.tool=PV.tool===t?null:t;renderOngles();};
+window.prevSetDesign=function(d){PV.design=d;renderOngles();};
+window.prevOpenFinger=function(id,lbl){
+PV.selectedFinger=id;
+document.getElementById('prev-finger-title').textContent=lbl;
+var nz=document.getElementById('prev-nail-zoom');if(nz)nz.style.background=nc(id);
+var fc=document.getElementById('prev-finger-colors');
+if(fc)fc.innerHTML=PV.NAIL_COLORS.map(function(c){return '<div class="prev-col-dot '+((PV.fingerColors[id]||PV.nailColor)===c?'on':'')+'" style="background:'+c+'" onclick="prevPreviewFinger(\''+c+'\')"></div>';}).join('');
+var fd=document.getElementById('prev-finger-designs');
+if(fd)fd.innerHTML=PV.DESIGNS.map(function(d){return '<div class="prev-shape-btn '+((PV.fingerDesigns[id]||PV.design)===d?'on':'')+'" onclick="prevPreviewFingerDesign(\''+d+'\')">'+d+'</div>';}).join('');
+var ov=document.getElementById('prev-finger-ov');if(ov){ov.style.display='flex';}
+};
+window.prevPreviewFinger=function(c){
+var nz=document.getElementById('prev-nail-zoom');if(nz)nz.style.background=c;
+document.querySelectorAll('#prev-finger-colors .prev-col-dot').forEach(function(d){d.classList.toggle('on',d.style.background===c);});
+PV.fingerColors[PV.selectedFinger]=c;
+};
+window.prevPreviewFingerDesign=function(d){
+document.querySelectorAll('#prev-finger-designs .prev-shape-btn').forEach(function(b){b.classList.toggle('on',b.textContent===d);});
+PV.fingerDesigns[PV.selectedFinger]=d;
+};
+window.prevCycleNailColor=function(){
+var cur=PV.fingerColors[PV.selectedFinger]||PV.nailColor;
+var idx=PV.NAIL_COLORS.indexOf(cur);
+var next=PV.NAIL_COLORS[(idx+1)%PV.NAIL_COLORS.length];
+prevPreviewFinger(next);
+};
+window.prevApplyFinger=function(){prevCloseFingerOv();renderOngles();};
+window.prevCloseFingerOv=function(e){
+if(e&&e.target!==document.getElementById('prev-finger-ov'))return;
+var ov=document.getElementById('prev-finger-ov');if(ov)ov.style.display='none';
+};
+window.prevPlaceStrass=function(x,y,id){
+var g=document.getElementById('prev-placed-strass');if(!g)return;
+var existing=document.getElementById('prev-str-'+id);if(existing){existing.remove();return;}
+var t=document.createElementNS('http://www.w3.org/2000/svg','text');
+t.setAttribute('id','prev-str-'+id);t.setAttribute('x',x+10);t.setAttribute('y',y+12);
+t.setAttribute('text-anchor','middle');t.setAttribute('font-size','12');
+t.textContent=PV.strassType;g.appendChild(t);
+};
+window.prevClearStrass=function(){var g=document.getElementById('prev-placed-strass');if(g)g.innerHTML='';};
+window.prevSelStrassType=function(el){document.querySelectorAll('#mod-previsualisation .prev-strass-item').forEach(function(s){s.classList.remove('on');});el.classList.add('on');PV.strassType=el.textContent;};
+window.prevSetStrassColor=function(el){document.querySelectorAll('#mod-previsualisation .prev-col-dot').forEach(function(d){d.classList.remove('on');});el.classList.add('on');};
+window.prevTogglePiercing=function(id){PV.activePiercings[id]=!PV.activePiercings[id];};
+window.prevSelPZone=function(el){document.querySelectorAll('#mod-previsualisation .prev-shape-btn').forEach(function(b){b.classList.remove('on');});el.classList.add('on');};
+window.prevSelBijou=function(el){document.querySelectorAll('#mod-previsualisation .prev-strass-item').forEach(function(s){s.classList.remove('on');});el.classList.add('on');};
+window.prevSetPColor=function(el){document.querySelectorAll('#mod-previsualisation .prev-col-dot').forEach(function(d){d.classList.remove('on');});el.classList.add('on');};
+window.prevSetARColor=function(feat,c){PV.arOptions[feat]={couleur:c};renderAR(feat);};
+window.prevSelARStyle=function(el){document.querySelectorAll('#mod-previsualisation .prev-shape-btn').forEach(function(b){b.classList.remove('on');});el.classList.add('on');};
+window.prevARCapture=function(){alert('📸 Capture avant/après sauvegardée !');};
+window.prevShareDesign=function(){alert('📤 Design envoyé à ta prestataire !');};
+window.prevOpenSave=function(){var m=document.getElementById('prev-save-modal');if(m)m.style.display='flex';};
+window.prevCloseSave=function(){var m=document.getElementById('prev-save-modal');if(m)m.style.display='none';};
+
+var origOpen=window.openModule;
+var _prevOrigOpen=origOpen;
+window.openModule=function(id){
+_prevOrigOpen(id);
+if(id==='mod-previsualisation'){
+setTimeout(function(){renderOngles();},50);
+}
+};
+})();
 </script>
 
 <!-- FLOW — STORY (bulle "Vous") -->
-<div class="flow" id="flow-story" style="display:none; position:fixed; inset:0; z-index:100; background:#000;">
+<div class="flow" id="flow-story" style="display:none; position:fixed; inset:0; z-index:100; background:#000; overflow:hidden; overscroll-behavior:none;">
   <div class="enc-page on" id="st-s1" data-cam="photo" style="height:100%; display:flex; flex-direction:column;">
     <div style="position:absolute; top:0; left:0; right:0; z-index:10; display:flex; justify-content:space-between; align-items:center; padding:14px 16px;">
       <div style="color:white; font-size:22px; font-weight:300; cursor:pointer;" onclick="closeStory()">✕</div>
@@ -10338,7 +11699,7 @@ function encSelU(el){el.closest('.unit-toggle').querySelectorAll('.ut-btn').forE
 </div>
 
 <!-- FLOW — PUBLICATION PHOTO (fan 📷) -->
-<div class="flow" id="flow-pub-photo" style="display:none; position:fixed; inset:0; z-index:100; background:#000;">
+<div class="flow" id="flow-pub-photo" style="display:none; position:fixed; inset:0; z-index:100; background:#000; overflow:hidden; overscroll-behavior:none;">
   <!-- PAGE 1 — CAMÉRA -->
   <div class="enc-page on" id="pubph-s1" data-cam="photo" style="height:100%; display:flex; flex-direction:column; background:#000;">
     <div style="position:absolute; top:0; left:0; right:0; z-index:10; display:flex; justify-content:space-between; align-items:center; padding:14px 16px;">
@@ -10456,7 +11817,7 @@ function encSelU(el){el.closest('.unit-toggle').querySelectorAll('.ut-btn').forE
 </div>
 
 <!-- FLOW — PUBLICATION VIDÉO (fan 🎬) -->
-<div class="flow" id="flow-pub-video" style="display:none; position:fixed; inset:0; z-index:100; background:#000;">
+<div class="flow" id="flow-pub-video" style="display:none; position:fixed; inset:0; z-index:100; background:#000; overflow:hidden; overscroll-behavior:none;">
   <div class="enc-page on" id="pubvi-s1" data-cam="video" style="height:100%;display:flex;flex-direction:column;background:#000;">
     <div style="position:absolute;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 16px;">
       <div onclick="closePubVideo()" style="color:white;font-size:22px;font-weight:300;cursor:pointer;">✕</div>
