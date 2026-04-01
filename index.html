@@ -1471,7 +1471,7 @@ body.dark-mode #mod-reglages{background:var(--bg)!important;}
 .cam-controls-row{display:flex;align-items:center;justify-content:space-between;padding:10px 20px 8px;}
 .cam-shutter-only{display:flex;align-items:center;justify-content:center;padding:8px 0 6px;}
 
-.snap-filters-bar{display:flex;align-items:center;justify-content:center;gap:14px;overflow-x:auto;padding:8px 20px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;position:absolute;bottom:78px;left:0;right:0;}
+.snap-filters-bar{display:flex;align-items:center;justify-content:center;gap:14px;overflow-x:auto;padding:8px 20px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;}
 .snap-filters-bar::-webkit-scrollbar{display:none;}
 .snap-filters-bar .live-filter{scroll-snap-align:center;}
 .snap-filters-bar .live-filter-dot{width:44px;height:44px;border-radius:50%;border:2.5px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);box-shadow:0 8px 18px rgba(0,0,0,.26);position:relative;overflow:hidden;}
@@ -1483,7 +1483,7 @@ body.dark-mode #mod-reglages{background:var(--bg)!important;}
 .snap-capture .shutter-inner.snap-preview{background:transparent;position:relative;overflow:hidden;}
 .snap-capture .shutter-inner.snap-preview::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--snap-bg, linear-gradient(135deg,#d0e8f0,#f0e0d0));opacity:.95;transition:background .25s ease;}
 .capture-zone{position:absolute;left:0;right:0;bottom:0;z-index:6;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 6px);background:linear-gradient(transparent, rgba(0,0,0,.22) 20%, rgba(0,0,0,.38));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);flex-shrink:0;}
-.capture-zone .live-filters-bar{border-top:none;background:transparent;padding:10px 14px 8px;position:absolute;bottom:100px;left:0;right:0;}
+.capture-zone .live-filters-bar{border-top:none;background:transparent;padding:10px 14px 8px;}
 .capture-zone .shutter-row{border-top:none;background:transparent;padding:10px 0 10px;}
 .capture-zone .gallery-btn,.capture-zone .flip-btn{background:rgba(255,255,255,.82);border-color:rgba(0,0,0,.08);}
 .capture-zone .shutter{border-color:rgba(255,255,255,.92);}
@@ -9727,7 +9727,8 @@ function selLiveFilter(el){
       const lbl=page?.querySelector?.('.filter-name-label');
       if(lbl && nm) lbl.textContent=nm;
       page?.style?.setProperty('--snap-filter', camComposeFilter(flowId));
-      const dotBg=el.style.getPropertyValue('--dot-bg');
+      let dotBg=el.style.getPropertyValue('--dot-bg');
+      if(!dotBg){const raw=(el.getAttribute('style')||'');const m=raw.match(/--dot-bg\s*:\s*([^;]+)/);if(m) dotBg=m[1].trim();}
       if(dotBg) page?.style?.setProperty('--snap-bg', dotBg);
     }catch(e){}
   }else{
@@ -9832,7 +9833,8 @@ function camApplyFilter(flowId,page){
         if(typeof active.scrollIntoView==='function'){
           active.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
         }
-        const dotBg=active.style.getPropertyValue('--dot-bg');
+        let dotBg=active.style.getPropertyValue('--dot-bg');
+        if(!dotBg){const raw=(active.getAttribute('style')||'');const m=raw.match(/--dot-bg\s*:\s*([^;]+)/);if(m) dotBg=m[1].trim();}
         if(dotBg) page?.style?.setProperty('--snap-bg', dotBg);
       }
     }
