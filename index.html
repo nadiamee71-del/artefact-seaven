@@ -7684,9 +7684,21 @@ function regRenderTopProfile(){
 }
 
 function openRegTopProfile(){
-  const p=regProfiles[regActiveProfile];
-  if(!p)return;
+  // Toujours ouvrir le "profil" (pas les réglages app), quel que soit le statut
+  closeAllRegSubs();
+  closeRegProfileSettings();
+  closeClientProfileIdentity();
+
   const isProMode=!!document.getElementById('mod-reglages')?.classList?.contains('is-pro');
+  const wantType=isProMode?'pro':'client';
+
+  if(!regProfiles?.[regActiveProfile] || regProfiles[regActiveProfile]?.type!==wantType){
+    const first=Object.keys(regProfiles||{}).find(pid=>regProfiles[pid]?.type===wantType);
+    if(first) regActiveProfile=first;
+  }
+  const p=regProfiles?.[regActiveProfile];
+  if(!p) return;
+
   if(isProMode){ openRegSub('reg-sub-edit-profil'); return; }
   if(p.type==='client') openClientProfileIdentity(regActiveProfile);
   else openRegProfileSettings(regActiveProfile);
