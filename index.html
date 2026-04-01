@@ -2319,7 +2319,6 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
 #mod-previsualisation input[type=range]{flex:1;height:4px;border-radius:2px;-webkit-appearance:none;background:var(--border);cursor:pointer;}
 #mod-previsualisation input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--black);border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,.2);}
 </style>
-<script src="https://cdn.jsdelivr.net/npm/deepar/js/deepar.js"></script>
 </head>
 <body>
 <div class="phone">
@@ -11479,53 +11478,40 @@ b.innerHTML='<div class="prev-ear-canvas"><svg viewBox="0 0 280 180" width="280"
 +'<div class="prev-sec-lbl">Taille</div><div class="prev-panel"><div class="prev-slider-row"><div class="prev-slider-lbl">Taille</div><input type="range" min="4" max="16" value="8" oninput="this.nextElementSibling.textContent=this.value" style="accent-color:#A87DC8"><div class="prev-slider-val">8</div></div></div>'
 +'<div style="height:10px"></div><div class="prev-bottom-bar"><button class="prev-btn-save" onclick="prevOpenSave()">💾 Sauvegarder</button><button class="prev-btn-share" onclick="prevShareDesign()">📤</button></div>';
 }
-var _prevDeepAR=null;
+var _prevARStream=null;
 var _prevARFacing='user';
-var DEEPAR_KEY='047ebbb7a3e5b7712e82c112a9ffcc55b4eac3418677c3414a1e138a0e11aa56eafe1ba13656fd73';
-var DEEPAR_EFFECTS={
-coiffure:{'Lisse':'https://cdn.jsdelivr.net/npm/deepar/effects/Hair/hair_color','Bouclé':'https://cdn.jsdelivr.net/npm/deepar/effects/Hair/hair_color','Ondulé':'https://cdn.jsdelivr.net/npm/deepar/effects/Hair/hair_color','Frange':'https://cdn.jsdelivr.net/npm/deepar/effects/Hair/hair_color','Tressé':'https://cdn.jsdelivr.net/npm/deepar/effects/Hair/hair_color'},
-cils:{'Naturel':'https://cdn.jsdelivr.net/npm/deepar/effects/Lashes/lashes_01','Volume':'https://cdn.jsdelivr.net/npm/deepar/effects/Lashes/lashes_02','Russe':'https://cdn.jsdelivr.net/npm/deepar/effects/Lashes/lashes_03','Mega-vol.':'https://cdn.jsdelivr.net/npm/deepar/effects/Lashes/lashes_04','Bas':'https://cdn.jsdelivr.net/npm/deepar/effects/Lashes/lashes_01'},
-sourcils:{'Naturel':'https://cdn.jsdelivr.net/npm/deepar/effects/Eyebrow/eyebrow_01','Brow lift':'https://cdn.jsdelivr.net/npm/deepar/effects/Eyebrow/eyebrow_02','Micro.':'https://cdn.jsdelivr.net/npm/deepar/effects/Eyebrow/eyebrow_03','Épais':'https://cdn.jsdelivr.net/npm/deepar/effects/Eyebrow/eyebrow_04','Fin':'https://cdn.jsdelivr.net/npm/deepar/effects/Eyebrow/eyebrow_05','Arrondi':'https://cdn.jsdelivr.net/npm/deepar/effects/Eyebrow/eyebrow_01'},
-barbe:{'Rasé':'https://cdn.jsdelivr.net/npm/deepar/effects/Beard/beard_01','Bouc':'https://cdn.jsdelivr.net/npm/deepar/effects/Beard/beard_02','3 jours':'https://cdn.jsdelivr.net/npm/deepar/effects/Beard/beard_03','Complète':'https://cdn.jsdelivr.net/npm/deepar/effects/Beard/beard_04','Moustache':'https://cdn.jsdelivr.net/npm/deepar/effects/Beard/beard_05'}
-};
 function prevStopCamera(){
-if(_prevDeepAR){try{_prevDeepAR.shutdown();}catch(e){}_prevDeepAR=null;}
+var v=document.getElementById('prev-ar-video');
+if(v&&v.srcObject){v.srcObject.getTracks().forEach(function(t){t.stop();});v.srcObject=null;}
+_prevARStream=null;
 }
-function prevInitDeepAR(feat){
+function prevStartCamera(){
 prevStopCamera();
-var canvas=document.getElementById('prev-deepar-canvas');
-if(!canvas)return;
-if(typeof DeepAR==='undefined'){
+if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
 var errDiv=document.getElementById('prev-cam-error');
-if(errDiv){errDiv.style.display='flex';}
+if(errDiv)errDiv.style.display='flex';
 return;
 }
-var p=DeepAR({licenseKey:DEEPAR_KEY,canvas:canvas,numberOfFaces:1});
-p.then(function(instance){
-_prevDeepAR=instance;
-return instance.startCamera({facingMode:'user'});
-}).then(function(){
-var effectMap=DEEPAR_EFFECTS[feat];
-if(effectMap){
-var keys=Object.keys(effectMap);
-if(keys.length>0&&_prevDeepAR){
-_prevDeepAR.switchEffect(effectMap[keys[0]]).catch(function(e){console.log('Effect load:',e);});
-}
-}
-}).catch(function(err){
-console.error('DeepAR init error:',err);
+navigator.mediaDevices.getUserMedia({video:{facingMode:_prevARFacing},audio:false}).then(function(stream){
+_prevARStream=stream;
+var v=document.getElementById('prev-ar-video');
+if(v){v.srcObject=stream;v.play().catch(function(){});}
+}).catch(function(){
 var errDiv=document.getElementById('prev-cam-error');
-if(errDiv){errDiv.style.display='flex';}
+if(errDiv)errDiv.style.display='flex';
 });
 }
 window.prevSwitchCamera=function(){
-if(!_prevDeepAR)return;
 _prevARFacing=_prevARFacing==='user'?'environment':'user';
-_prevDeepAR.startCamera({facingMode:_prevARFacing}).catch(function(e){console.log('Switch cam:',e);});
+prevStartCamera();
 };
 window.prevCaptureARPhoto=function(type){
-if(!_prevDeepAR)return;
-_prevDeepAR.takeScreenshot().then(function(dataUrl){
+var v=document.getElementById('prev-ar-video');
+if(!v||!v.srcObject)return;
+var c=document.createElement('canvas');
+c.width=v.videoWidth||640;c.height=v.videoHeight||480;
+c.getContext('2d').drawImage(v,0,0);
+var dataUrl=c.toDataURL('image/png');
 if(type==='before'){
 var d=document.getElementById('prev-before-photo');
 if(d)d.innerHTML='<img src="'+dataUrl+'" style="width:100%;border-radius:10px;">';
@@ -11534,14 +11520,6 @@ var d2=document.getElementById('prev-after-photo');
 if(d2)d2.innerHTML='<img src="'+dataUrl+'" style="width:100%;border-radius:10px;">';
 }else{
 prevShowNotif('📸 Photo capturée !');
-}
-}).catch(function(e){console.log('Capture:',e);});
-};
-window.prevApplyAREffect=function(feat,style,el){
-document.querySelectorAll('#mod-previsualisation .prev-shape-btn').forEach(function(b){b.classList.remove('on');});
-el.classList.add('on');
-if(_prevDeepAR&&DEEPAR_EFFECTS[feat]&&DEEPAR_EFFECTS[feat][style]){
-_prevDeepAR.switchEffect(DEEPAR_EFFECTS[feat][style]).catch(function(e){console.log('Effect:',e);});
 }
 };
 function prevShowNotif(msg){
@@ -11564,9 +11542,9 @@ colorsHTML='<div class="prev-sec-lbl">'+(feat==='barbe'?'Couleur barbe':'Couleur
 var extraHTML='';
 if(feat==='coiffure')extraHTML='<div class="prev-sec-lbl">Longueur</div><div class="prev-panel"><div class="prev-slider-row"><div class="prev-slider-lbl">Longueur</div><input type="range" min="10" max="100" value="50" oninput="this.nextElementSibling.textContent=this.value+\'%\'" style="accent-color:#A87DC8"><div class="prev-slider-val">50%</div></div></div>';
 if(feat==='cils')extraHTML='<div class="prev-sec-lbl">Intensité</div><div class="prev-panel"><div class="prev-slider-row"><div class="prev-slider-lbl">Volume</div><input type="range" min="1" max="5" value="3" oninput="this.nextElementSibling.textContent=this.value" style="accent-color:#E8638C"><div class="prev-slider-val">3</div></div></div>';
-var stylesBtns=st.map(function(s,i){return '<div class="prev-shape-btn '+(i===0?'on':'')+'" onclick="prevApplyAREffect(\''+feat+'\',\''+s+'\',this)">'+s+'</div>';}).join('');
+var stylesBtns=st.map(function(s,i){return '<div class="prev-shape-btn '+(i===0?'on':'')+'" onclick="prevSelARStyle(this)">'+s+'</div>';}).join('');
 b.innerHTML='<div class="prev-ar-cam" style="position:relative;overflow:hidden;border-radius:20px;margin:0 16px;height:320px;background:#000;">'
-+'<canvas id="prev-deepar-canvas" style="width:100%;height:100%;object-fit:cover;border-radius:20px;"></canvas>'
++'<video id="prev-ar-video" autoplay playsinline muted webkit-playsinline style="width:100%;height:100%;object-fit:cover;border-radius:20px;transform:scaleX(-1);"></video>'
 +'<div id="prev-cam-error" style="display:none;position:absolute;inset:0;flex-direction:column;align-items:center;justify-content:center;background:#1A1A2E;color:#fff;text-align:center;padding:20px;border-radius:20px;"><div style="font-size:40px;margin-bottom:12px;">📷</div><div style="font-size:14px;font-weight:700;margin-bottom:8px;">Caméra non autorisée</div><div style="font-size:12px;color:#8E8E93;">Autorise l\'accès à la caméra dans les réglages de ton navigateur</div></div>'
 +'<div style="position:absolute;bottom:12px;left:0;right:0;display:flex;justify-content:center;pointer-events:none;"><div class="prev-ar-badge" style="pointer-events:auto;"><div class="prev-ar-dot"></div>Caméra active · '+titles[feat]+'</div></div>'
 +'<div style="position:absolute;top:14px;right:14px;display:flex;flex-direction:column;gap:8px;">'
@@ -11577,7 +11555,7 @@ b.innerHTML='<div class="prev-ar-cam" style="position:relative;overflow:hidden;b
 +colorsHTML+extraHTML
 +'<div class="prev-sec-lbl">Comparaison</div><div style="margin:0 16px;display:grid;grid-template-columns:1fr 1fr;gap:8px"><div id="prev-before-photo" style="background:var(--bg);border-radius:14px;padding:12px;text-align:center;cursor:pointer;border:2px solid var(--border)" onclick="prevCaptureARPhoto(\'before\')"><div style="font-size:28px;margin-bottom:4px">📷</div><div style="font-size:11px;font-weight:700;color:var(--gray)">Avant</div></div><div id="prev-after-photo" style="background:linear-gradient(135deg,#F5F0FF,#EEF4FF);border-radius:14px;padding:12px;text-align:center;cursor:pointer;border:2px solid #A87DC8" onclick="prevCaptureARPhoto(\'after\')"><div style="font-size:28px;margin-bottom:4px">🤩</div><div style="font-size:11px;font-weight:700;color:#A87DC8">Après</div></div></div>'
 +'<div style="height:10px"></div><div class="prev-bottom-bar"><button class="prev-btn-save" style="background:#A87DC8" onclick="prevCaptureARPhoto()">📸 Capturer avant/après</button><button class="prev-btn-share" onclick="prevOpenSave()">💾</button></div>';
-setTimeout(function(){prevInitDeepAR(feat);},100);
+setTimeout(function(){prevStartCamera();},100);
 }
 
 window.prevSetMode=function(m,el){
