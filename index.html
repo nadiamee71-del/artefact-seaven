@@ -7193,7 +7193,7 @@ function openRegSub(id){
   if(id==='reg-sub-edit-profil') regEditProfilSync();
 }
 function closeRegSub(id){var el=document.getElementById(id);if(el){el.classList.remove('on'); el.style.display='';}}
-function closeAllRegSubs(){document.querySelectorAll('#mod-reglages .reg-sub').forEach(function(s){s.classList.remove('on');});}
+function closeAllRegSubs(){document.querySelectorAll('#mod-reglages .reg-sub').forEach(function(s){s.classList.remove('on');s.style.display='';});}
 function openRegFromProfile(mode){
   closeAllRegSubs();
   closeRegProfileSettings();
