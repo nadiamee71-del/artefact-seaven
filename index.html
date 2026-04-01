@@ -1441,7 +1441,7 @@ body.dark-mode #mod-reglages{background:var(--bg)!important;}
 .enc-page[data-cam]{display:flex;flex-direction:column;height:100%;background:#000;overflow:hidden;}
 .enc-page[data-cam] .camera-area{flex:1;position:relative;overflow:hidden;background:#000;min-height:0;}
 .enc-page[data-cam] .camera-area .capture-zone{position:absolute;left:0;right:0;bottom:0;z-index:6;background:linear-gradient(transparent, rgba(0,0,0,.25) 30%, rgba(0,0,0,.5));backdrop-filter:blur(0px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 8px);}
-.filter-name-label{position:absolute;bottom:108px;left:50%;transform:translateX(-50%);color:white;font-size:13px;font-weight:700;text-shadow:0 1px 6px rgba(0,0,0,.6);pointer-events:none;z-index:8;letter-spacing:0.5px;transition:opacity .2s;}
+.filter-name-label{position:absolute;bottom:180px;left:50%;transform:translateX(-50%);color:white;font-size:13px;font-weight:700;text-shadow:0 1px 6px rgba(0,0,0,.6);pointer-events:none;z-index:8;letter-spacing:0.5px;transition:opacity .2s;}
 .brightness-slider-wrap{position:absolute;right:14px;top:50%;transform:translateY(-50%);z-index:9;display:flex;flex-direction:column;align-items:center;gap:6px;}
 .brightness-slider-v{-webkit-appearance:slider-vertical;appearance:auto;writing-mode:vertical-lr;direction:rtl;width:28px;height:110px;cursor:pointer;accent-color:white;opacity:0.85;}
 .bright-icon{font-size:13px;opacity:0.75;}
@@ -1462,7 +1462,7 @@ body.dark-mode #mod-reglages{background:var(--bg)!important;}
 .story-cam-mode.on{color:white;border-bottom-color:white;}
 
 /* Snapchat-style capture UI (enabled per-flow by .snap-capture) */
-.snap-capture .filter-name-label{bottom:156px;}
+.snap-capture .filter-name-label{bottom:228px;}
 .snap-tools{position:absolute;right:14px;top:50%;transform:translateY(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:10px;}
 .snap-tools .brightness-slider-wrap{position:static;top:auto;right:auto;transform:none;}
 .snap-tools .tag-tool{position:static;top:auto;left:auto;display:flex;flex-direction:column;align-items:center;gap:8px;}
@@ -1471,7 +1471,7 @@ body.dark-mode #mod-reglages{background:var(--bg)!important;}
 .cam-controls-row{display:flex;align-items:center;justify-content:space-between;padding:10px 20px 8px;}
 .cam-shutter-only{display:flex;align-items:center;justify-content:center;padding:8px 0 6px;}
 
-.snap-filters-bar{display:flex;align-items:center;gap:14px;overflow-x:auto;padding:8px calc(50vw - 22px) 10px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;}
+.snap-filters-bar{display:flex;align-items:center;gap:14px;overflow-x:auto;padding:8px calc(50vw - 22px) 10px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;position:absolute;bottom:100px;left:0;right:0;}
 .snap-filters-bar::-webkit-scrollbar{display:none;}
 .snap-filters-bar .live-filter{scroll-snap-align:center;}
 .snap-filters-bar .live-filter-dot{width:44px;height:44px;border-radius:50%;border:2.5px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);box-shadow:0 8px 18px rgba(0,0,0,.26);position:relative;overflow:hidden;}
@@ -1483,7 +1483,7 @@ body.dark-mode #mod-reglages{background:var(--bg)!important;}
 .snap-capture .shutter-inner.snap-preview{background:transparent;position:relative;overflow:hidden;}
 .snap-capture .shutter-inner.snap-preview::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--snap-bg, linear-gradient(135deg,#d0e8f0,#f0e0d0));opacity:.95;transition:background .25s ease;}
 .capture-zone{position:absolute;left:0;right:0;bottom:0;z-index:6;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 6px);background:linear-gradient(transparent, rgba(0,0,0,.22) 20%, rgba(0,0,0,.38));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);flex-shrink:0;}
-.capture-zone .live-filters-bar{border-top:none;background:transparent;padding:10px 14px 8px;}
+.capture-zone .live-filters-bar{border-top:none;background:transparent;padding:10px 14px 8px;position:absolute;bottom:100px;left:0;right:0;}
 .capture-zone .shutter-row{border-top:none;background:transparent;padding:10px 0 10px;}
 .capture-zone .gallery-btn,.capture-zone .flip-btn{background:rgba(255,255,255,.82);border-color:rgba(0,0,0,.08);}
 .capture-zone .shutter{border-color:rgba(255,255,255,.92);}
