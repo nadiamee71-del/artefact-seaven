@@ -11484,11 +11484,12 @@ var _prevARFacing='user';
 var _prevARFallback=false;
 var DEEPAR_KEY='047ebbb7a3e5b7712e82c112a9ffcc55b4eac3418677c3414a1e138a0e11aa56eafe1ba13656fd73';
 var _DEEPAR_CDN='https://cdn.jsdelivr.net/npm/deepar@5.6.21/effects/';
+var _DEEPAR_LOCAL=window.location.origin+'/';
 var DEEPAR_FX={
-coiffure:{'🕶️ Lunettes':_DEEPAR_CDN+'aviators','🐾 Dalmatien':_DEEPAR_CDN+'dalmatian','🦁 Lion':_DEEPAR_CDN+'lion','🐨 Koala':_DEEPAR_CDN+'koala','🌌 Galaxy':_DEEPAR_CDN+'galaxy_background','🔍 Flou':_DEEPAR_CDN+'background_blur.deepar'},
-cils:{'🕶️ Lunettes':_DEEPAR_CDN+'aviators','🐾 Dalmatien':_DEEPAR_CDN+'dalmatian','🦁 Lion':_DEEPAR_CDN+'lion','🐨 Koala':_DEEPAR_CDN+'koala'},
-sourcils:{'🕶️ Lunettes':_DEEPAR_CDN+'aviators','🐾 Dalmatien':_DEEPAR_CDN+'dalmatian','🦁 Lion':_DEEPAR_CDN+'lion'},
-barbe:{'🕶️ Lunettes':_DEEPAR_CDN+'aviators','🦁 Lion':_DEEPAR_CDN+'lion','🐾 Dalmatien':_DEEPAR_CDN+'dalmatian'}
+coiffure:{'🌸 Fleurs':_DEEPAR_LOCAL+'Flower%20Face/flower_face.deepar','💄 Maquillage':_DEEPAR_LOCAL+'Makeup%20Look%20Simple/MakeupLook.deepar','✨ Glamour':_DEEPAR_LOCAL+'Makeup%20Look%20w_%20Slipt%20Screen%20Effect/Split_View_Look.deepar','🕶️ Lunettes':_DEEPAR_CDN+'aviators','🦁 Lion':_DEEPAR_CDN+'lion'},
+cils:{'🌸 Fleurs':_DEEPAR_LOCAL+'Flower%20Face/flower_face.deepar','💄 Maquillage':_DEEPAR_LOCAL+'Makeup%20Look%20Simple/MakeupLook.deepar','🕶️ Lunettes':_DEEPAR_CDN+'aviators','🐨 Koala':_DEEPAR_CDN+'koala'},
+sourcils:{'🌸 Fleurs':_DEEPAR_LOCAL+'Flower%20Face/flower_face.deepar','💄 Maquillage':_DEEPAR_LOCAL+'Makeup%20Look%20Simple/MakeupLook.deepar','🕶️ Lunettes':_DEEPAR_CDN+'aviators'},
+barbe:{'🌸 Fleurs':_DEEPAR_LOCAL+'Flower%20Face/flower_face.deepar','🕶️ Lunettes':_DEEPAR_CDN+'aviators','🦁 Lion':_DEEPAR_CDN+'lion'}
 };
 function prevStopCamera(){
 if(_prevDeepAR){try{_prevDeepAR.shutdown();}catch(e){}_prevDeepAR=null;}
