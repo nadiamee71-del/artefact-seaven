@@ -4492,45 +4492,49 @@ MODULES PROFIL
 </div>
 </div>
 
-<!-- SUB: Édition Profil Nina Cils (PRO 2) -->
+<!-- SUB: Édition du profil actif (CLIENT / PRO) -->
 <div class="reg-sub" id="reg-sub-edit-profil">
 <div class="reg-sub-nav"><div class="reg-sub-back" onclick="closeRegSub('reg-sub-edit-profil')">‹</div><div class="reg-sub-title">Modifier mon profil</div></div>
 <div class="reg-sub-scroll">
-<div style="display:flex;flex-direction:column;align-items:center;padding:24px 0 12px;">
-<div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#6BB8E8,#3A6EA8);display:flex;align-items:center;justify-content:center;font-size:32px;color:#fff;font-weight:700;">N</div>
-<div style="margin-top:8px;font-size:13px;color:var(--blue);cursor:pointer;">Changer le logo</div>
-</div>
-<div class="rss-slbl">Informations de l'activité</div>
-<div class="rss-card">
-<div class="rss-row"><div class="rss-ic">✂️</div><div class="rss-label">Nom de l'activité</div><div class="rss-val" contenteditable="true">Nina Cils</div></div>
-<div class="rss-row"><div class="rss-ic">💼</div><div class="rss-label">Métier</div><div class="rss-val" contenteditable="true">Spécialiste cils</div></div>
-<div class="rss-row"><div class="rss-ic">📍</div><div class="rss-label">Adresse</div><div class="rss-val" contenteditable="true">8 avenue Jean Médecin, Nice</div></div>
-<div class="rss-row"><div class="rss-ic">📱</div><div class="rss-label">Téléphone pro</div><div class="rss-val" contenteditable="true">06 11 22 33 44</div></div>
-<div class="rss-row"><div class="rss-ic">📧</div><div class="rss-label">Email pro</div><div class="rss-val" contenteditable="true">nina@cils.com</div></div>
-</div>
-<div class="rss-slbl">Réglages profil</div>
-<div class="rss-card">
-<div class="rss-row"><div class="rss-ic">🟣</div><div class="rss-label">Photo / avatar</div><div class="rss-val">Via “Changer le logo”</div></div>
-<div class="rss-row"><div class="rss-ic">👤</div><div class="rss-label">Prénom</div><div class="rss-val" contenteditable="true">Nina</div></div>
-<div class="rss-row"><div class="rss-ic">👤</div><div class="rss-label">Nom</div><div class="rss-val" contenteditable="true">Cils</div></div>
-<div class="rss-row"><div class="rss-ic">🔗</div><div class="rss-label">@username</div><div class="rss-val" contenteditable="true">@nina.cils</div></div>
-<div class="rss-row"><div class="rss-ic">📧</div><div class="rss-label">Email</div><div class="rss-val" contenteditable="true">nina@cils.com</div></div>
-<div class="rss-row"><div class="rss-ic">📱</div><div class="rss-label">Téléphone</div><div class="rss-val" contenteditable="true">06 11 22 33 44</div></div>
-<div class="rss-row"><div class="rss-ic">✍️</div><div class="rss-label">Bio</div><div class="rss-val" contenteditable="true">Spécialiste extensions de cils ✨ Volume russe & classique · Nice</div></div>
-<div class="rss-row"><div class="rss-ic">🧷</div><div class="rss-label">Pronoms</div><div class="rss-val" contenteditable="true">Elle</div></div>
-</div>
-<div class="rss-slbl">Spécialités</div>
-<div class="rss-card">
-<div class="rss-row"><div class="rss-ic">👁️</div><div class="rss-label">Volume russe</div><div class="rss-toggle on" onclick="this.classList.toggle('on')"></div></div>
-<div class="rss-row"><div class="rss-ic">👁️</div><div class="rss-label">Classique</div><div class="rss-toggle on" onclick="this.classList.toggle('on')"></div></div>
-<div class="rss-row"><div class="rss-ic">👁️</div><div class="rss-label">Mixte</div><div class="rss-toggle on" onclick="this.classList.toggle('on')"></div></div>
-<div class="rss-row"><div class="rss-ic">👁️</div><div class="rss-label">Méga Volume</div><div class="rss-toggle" onclick="this.classList.toggle('on')"></div></div>
-</div>
-<div class="rss-slbl">Bio professionnelle</div>
-<div class="rss-card">
-<div style="padding:12px;"><textarea style="width:100%;border:none;background:transparent;font-size:14px;color:var(--text);resize:none;min-height:60px;font-family:inherit;" placeholder="Décrivez votre activité...">Spécialiste extensions de cils ✨ Volume russe & classique · Nice</textarea></div>
-</div>
-<div style="padding:16px;"><button style="width:100%;padding:14px;border-radius:14px;border:none;background:var(--btn-bg);color:var(--btn-fg);font-size:15px;font-weight:700;cursor:pointer;" onclick="closeRegSub('reg-sub-edit-profil')">Enregistrer</button></div>
+  <div style="display:flex;flex-direction:column;align-items:center;padding:24px 0 12px;">
+    <div id="ep-avatar" style="width:80px;height:80px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:32px;color:#fff;font-weight:800;">—</div>
+    <div style="margin-top:8px;font-size:13px;color:var(--blue);cursor:pointer;" onclick="openRegSub('reg-sub-photo')">Changer la photo / avatar</div>
+  </div>
+
+  <!-- VERSION CLIENT -->
+  <div id="ep-client">
+    <div class="rss-slbl">Réglages profil</div>
+    <div class="rss-card">
+      <div class="rss-row"><div class="rss-ic">🟣</div><div class="rss-label">Photo / avatar</div><div class="rss-val">Via “Changer la photo / avatar”</div></div>
+      <div class="rss-row"><div class="rss-ic">👤</div><div class="rss-label">Prénom</div><div class="rss-val" id="ep-c-first" contenteditable="true"></div></div>
+      <div class="rss-row"><div class="rss-ic">👤</div><div class="rss-label">Nom</div><div class="rss-val" id="ep-c-last" contenteditable="true"></div></div>
+      <div class="rss-row"><div class="rss-ic">🔗</div><div class="rss-label">@username</div><div class="rss-val" id="ep-c-username" contenteditable="true"></div></div>
+      <div class="rss-row"><div class="rss-ic">📧</div><div class="rss-label">Email</div><div class="rss-val" id="ep-c-email" contenteditable="true"></div></div>
+      <div class="rss-row"><div class="rss-ic">📱</div><div class="rss-label">Téléphone</div><div class="rss-val" id="ep-c-phone" contenteditable="true"></div></div>
+      <div class="rss-row"><div class="rss-ic">🎂</div><div class="rss-label">Date de naissance</div><div class="rss-val" id="ep-c-dob" contenteditable="true"></div></div>
+      <div class="rss-row"><div class="rss-ic">✍️</div><div class="rss-label">Bio</div><div class="rss-val" id="ep-c-bio" contenteditable="true"></div></div>
+      <div class="rss-row"><div class="rss-ic">🧷</div><div class="rss-label">Pronoms</div><div class="rss-val" id="ep-c-pronouns" contenteditable="true"></div></div>
+    </div>
+  </div>
+
+  <!-- VERSION PRESTATAIRE -->
+  <div id="ep-pro" style="display:none;">
+    <div class="rss-slbl">Réglages profil</div>
+    <div class="rss-card">
+      <div class="rss-row"><div class="rss-ic">🟣</div><div class="rss-label">Photo / avatar</div><div class="rss-val">Via “Changer la photo / avatar”</div></div>
+      <div class="rss-row"><div class="rss-ic">👤</div><div class="rss-label">Prénom</div><div class="rss-val" id="ep-p-first" contenteditable="true"></div></div>
+      <div class="rss-row"><div class="rss-ic">👤</div><div class="rss-label">Nom</div><div class="rss-val" id="ep-p-last" contenteditable="true"></div></div>
+      <div class="rss-row"><div class="rss-ic">🔗</div><div class="rss-label">@username</div><div class="rss-val" id="ep-p-username" contenteditable="true"></div></div>
+      <div class="rss-row"><div class="rss-ic">📧</div><div class="rss-label">Email</div><div class="rss-val" id="ep-p-email" contenteditable="true"></div></div>
+      <div class="rss-row"><div class="rss-ic">📱</div><div class="rss-label">Téléphone</div><div class="rss-val" id="ep-p-phone" contenteditable="true"></div></div>
+      <div class="rss-row"><div class="rss-ic">✍️</div><div class="rss-label">Bio</div><div class="rss-val" id="ep-p-bio" contenteditable="true"></div></div>
+      <div class="rss-row"><div class="rss-ic">🧷</div><div class="rss-label">Pronoms</div><div class="rss-val" id="ep-p-pronouns" contenteditable="true"></div></div>
+      <div class="rss-row"><div class="rss-ic">💼</div><div class="rss-label">Métier / titre pro</div><div class="rss-val" id="ep-p-job" contenteditable="true"></div></div>
+      <div class="rss-row"><div class="rss-ic">✂️</div><div class="rss-label">Nom de l'activité</div><div class="rss-val" id="ep-p-activity" contenteditable="true"></div></div>
+    </div>
+  </div>
+
+  <div style="padding:16px;"><button style="width:100%;padding:14px;border-radius:14px;border:none;background:var(--btn-bg);color:var(--btn-fg);font-size:15px;font-weight:700;cursor:pointer;" onclick="closeRegSub('reg-sub-edit-profil')">Enregistrer</button></div>
 </div>
 </div>
 
@@ -7186,7 +7190,47 @@ const regProfiles={
   sarah:{name:'Sarah B.',firstName:'Sarah',lastName:'B.',subInfo:'sarah@gmail.com · +33 6 12 34 56 78',letter:'S',type:'client',grad:'linear-gradient(135deg,#E8638C,#A87DC8)',email:'sarah@gmail.com',phone:'+33 6 12 34 56 78',bio:'Passionnée de beauté 💅',city:'Nice'}
 };
 let regActiveProfile='bloom';
-function openRegSub(id){var el=document.getElementById(id);if(el)el.classList.add('on');}
+function regEditProfilSync(){
+  const p=regProfiles?.[regActiveProfile]||null;
+  if(!p) return;
+  const isProMode=!!document.getElementById('mod-reglages')?.classList?.contains('is-pro');
+  const c=document.getElementById('ep-client');
+  const pr=document.getElementById('ep-pro');
+  if(c) c.style.display=isProMode?'none':'';
+  if(pr) pr.style.display=isProMode?'':'none';
+
+  const av=document.getElementById('ep-avatar');
+  if(av){ av.textContent=(p.letter||'').trim()||'—'; av.style.background=p.grad||'var(--grad)'; }
+
+  // Client
+  if(!isProMode){
+    document.getElementById('ep-c-first') && (document.getElementById('ep-c-first').textContent=(p.firstName||'').trim());
+    document.getElementById('ep-c-last') && (document.getElementById('ep-c-last').textContent=(p.lastName||'').trim());
+    document.getElementById('ep-c-username') && (document.getElementById('ep-c-username').textContent=(p.username||'').trim());
+    document.getElementById('ep-c-email') && (document.getElementById('ep-c-email').textContent=(p.email||'').trim());
+    document.getElementById('ep-c-phone') && (document.getElementById('ep-c-phone').textContent=(p.phone||'').trim());
+    document.getElementById('ep-c-dob') && (document.getElementById('ep-c-dob').textContent=(p.dob||'').trim());
+    document.getElementById('ep-c-bio') && (document.getElementById('ep-c-bio').textContent=(p.bio||'').trim());
+    document.getElementById('ep-c-pronouns') && (document.getElementById('ep-c-pronouns').textContent=(p.pronouns||'').trim());
+    return;
+  }
+
+  // Prestataire
+  document.getElementById('ep-p-first') && (document.getElementById('ep-p-first').textContent=(p.firstName||'').trim());
+  document.getElementById('ep-p-last') && (document.getElementById('ep-p-last').textContent=(p.lastName||'').trim());
+  document.getElementById('ep-p-username') && (document.getElementById('ep-p-username').textContent=(p.username||'').trim());
+  document.getElementById('ep-p-email') && (document.getElementById('ep-p-email').textContent=(p.email||'').trim());
+  document.getElementById('ep-p-phone') && (document.getElementById('ep-p-phone').textContent=(p.phone||'').trim());
+  document.getElementById('ep-p-bio') && (document.getElementById('ep-p-bio').textContent=(p.bio||'').trim());
+  document.getElementById('ep-p-pronouns') && (document.getElementById('ep-p-pronouns').textContent=(p.pronouns||'').trim());
+  document.getElementById('ep-p-job') && (document.getElementById('ep-p-job').textContent=(p.meta||p.job||'').trim());
+  document.getElementById('ep-p-activity') && (document.getElementById('ep-p-activity').textContent=(p.name||'').trim());
+}
+function openRegSub(id){
+  var el=document.getElementById(id);
+  if(el) el.classList.add('on');
+  if(id==='reg-sub-edit-profil') regEditProfilSync();
+}
 function closeRegSub(id){var el=document.getElementById(id);if(el)el.classList.remove('on');}
 function closeAllRegSubs(){document.querySelectorAll('#mod-reglages .reg-sub').forEach(function(s){s.classList.remove('on');});}
 function openRegFromProfile(mode){
@@ -7669,6 +7713,7 @@ function updateRegBubbles(){
     if(av) av.classList.toggle('active-ring',isActive);
   });
   regRenderTopProfile();
+  if(document.getElementById('reg-sub-edit-profil')?.classList?.contains('on')) regEditProfilSync();
 }
 
 function regRenderTopProfile(){
