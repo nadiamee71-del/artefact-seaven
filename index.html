@@ -11312,6 +11312,7 @@ var PVNAILS=[
 function buildHandSVG(){
 var sk=PV.skin;
 var svg='<svg class="prev-hand-svg" viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg">';
+
 var defs='<defs>';
 defs+='<linearGradient id="pvBB" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#EDD5C5"/><stop offset=".55" stop-color="#F5E8DF"/><stop offset="1" stop-color="#FFF"/></linearGradient>';
 PVNAILS.forEach(function(n){
@@ -11321,32 +11322,29 @@ defs+='<linearGradient id="pvDG'+n.id+'" x1="0" y1="1" x2="0" y2="0"><stop offse
 defs+='</defs>';
 svg+=defs;
 
-svg+='<ellipse cx="120" cy="162" rx="72" ry="38" fill="'+sk+'"/>';
-svg+='<ellipse cx="69" cy="150" rx="5" ry="3" fill="rgba(0,0,0,.06)"/>';
-svg+='<ellipse cx="99" cy="149" rx="5" ry="3" fill="rgba(0,0,0,.06)"/>';
-svg+='<ellipse cx="132" cy="149" rx="5" ry="3" fill="rgba(0,0,0,.06)"/>';
-svg+='<ellipse cx="163" cy="150" rx="5" ry="3" fill="rgba(0,0,0,.06)"/>';
-svg+='<path d="M62,155 C56,144 44,130 38,118 C33,108 30,100 31,93 C32,86 38,82 47,82 C56,82 62,86 63,93 C64,100 64,115 65,128 C66,140 67,150 67,155 Z" fill="'+sk+'" stroke="rgba(0,0,0,.18)" stroke-width="1.2" stroke-linejoin="round"/>';
-svg+='<path d="M37,116 C44,113 58,114 64,117" fill="none" stroke="rgba(0,0,0,.05)" stroke-width=".8"/>';
-svg+='<path d="M72,148 C70,118 70,88 72,68 C73,56 78,46 84,44 C90,46 95,56 96,68 C98,88 98,118 96,148 Z" fill="'+sk+'" stroke="rgba(0,0,0,.18)" stroke-width="1.2" stroke-linejoin="round"/>';
-svg+='<path d="M73,112 C80,110 88,110 95,112" fill="none" stroke="rgba(0,0,0,.05)" stroke-width=".8"/>';
-svg+='<path d="M74,86 C80,84 88,84 94,86" fill="none" stroke="rgba(0,0,0,.05)" stroke-width=".8"/>';
-svg+='<path d="M101,148 C99,115 99,82 102,62 C103,50 108,38 115,36 C122,38 127,50 128,62 C131,82 131,115 129,148 Z" fill="'+sk+'" stroke="rgba(0,0,0,.18)" stroke-width="1.2" stroke-linejoin="round"/>';
-svg+='<path d="M103,110 C110,108 120,108 127,110" fill="none" stroke="rgba(0,0,0,.05)" stroke-width=".8"/>';
-svg+='<path d="M104,82 C110,80 120,80 126,82" fill="none" stroke="rgba(0,0,0,.05)" stroke-width=".8"/>';
-svg+='<path d="M134,148 C132,118 132,92 135,72 C136,58 140,50 147,47 C154,50 158,58 159,72 C162,92 162,118 160,148 Z" fill="'+sk+'" stroke="rgba(0,0,0,.18)" stroke-width="1.2" stroke-linejoin="round"/>';
-svg+='<path d="M136,112 C143,110 151,110 158,112" fill="none" stroke="rgba(0,0,0,.05)" stroke-width=".8"/>';
-svg+='<path d="M137,88 C143,86 151,86 157,88" fill="none" stroke="rgba(0,0,0,.05)" stroke-width=".8"/>';
-svg+='<path d="M166,150 C164,128 164,108 167,92 C168,82 172,72 177,67 C182,72 186,82 187,92 C190,108 190,128 188,150 Z" fill="'+sk+'" stroke="rgba(0,0,0,.18)" stroke-width="1.2" stroke-linejoin="round"/>';
-svg+='<path d="M168,116 C174,114 180,114 186,116" fill="none" stroke="rgba(0,0,0,.05)" stroke-width=".8"/>';
-svg+='<path d="M60,154 Q80,166 120,168 Q160,166 180,154 C183,168 180,188 170,200 Q148,214 120,216 Q92,214 70,200 C60,188 57,168 60,154 Z" fill="'+sk+'"/>';
-svg+='<path d="M62,172 C60,184 63,198 74,208 Q96,220 120,221 Q144,220 166,208 C177,198 180,184 178,172" fill="none" stroke="rgba(0,0,0,.12)" stroke-width="1" stroke-linecap="round"/>';
+svg+='<path d="M60,165 C70,150 95,145 120,145 C145,145 170,150 180,165 C185,185 170,205 120,210 C70,205 55,185 60,165 Z" fill="'+sk+'" stroke="rgba(0,0,0,.18)" stroke-width="1.2"/>';
+
+svg+='<path d="M65,155 C50,140 40,120 42,100 C44,85 55,80 65,85 C75,90 78,105 78,125 C78,140 75,150 72,155 Z" fill="'+sk+'" stroke="rgba(0,0,0,.18)" stroke-width="1.2"/>';
+
+svg+='<path d="M85,150 C82,120 82,85 85,65 C87,50 92,42 100,42 C108,42 113,50 115,65 C118,85 118,120 115,150 Z" fill="'+sk+'" stroke="rgba(0,0,0,.18)" stroke-width="1.2"/>';
+
+svg+='<path d="M115,150 C112,115 112,75 115,55 C118,40 123,32 130,32 C137,32 142,40 145,55 C148,75 148,115 145,150 Z" fill="'+sk+'" stroke="rgba(0,0,0,.18)" stroke-width="1.2"/>';
+
+svg+='<path d="M145,150 C142,120 142,90 145,70 C148,55 153,48 160,48 C167,48 172,55 175,70 C178,90 178,120 175,150 Z" fill="'+sk+'" stroke="rgba(0,0,0,.18)" stroke-width="1.2"/>';
+
+svg+='<path d="M175,152 C172,130 172,105 175,90 C178,80 182,75 187,75 C192,75 196,80 198,90 C201,105 201,130 198,152 Z" fill="'+sk+'" stroke="rgba(0,0,0,.18)" stroke-width="1.2"/>';
+
+svg+='<path d="M90,110 C95,108 105,108 110,110" stroke="rgba(0,0,0,.05)" stroke-width=".8" fill="none"/>';
+svg+='<path d="M120,95 C125,93 135,93 140,95" stroke="rgba(0,0,0,.05)" stroke-width=".8" fill="none"/>';
+svg+='<path d="M150,110 C155,108 165,108 170,110" stroke="rgba(0,0,0,.05)" stroke-width=".8" fill="none"/>';
+
+svg+='<ellipse cx="120" cy="175" rx="65" ry="15" fill="rgba(0,0,0,.05)"/>';
 
 PVNAILS.forEach(function(n){
 var col=nc(n.id);
 var design=PV.fingerDesigns[n.id]||PV.design;
 svg+='<g style="cursor:pointer" onclick="prevOpenFinger(\''+n.id+'\',\''+n.lbl+'\')">';
-svg+='<ellipse cx="'+n.cx+'" cy="'+n.cy+'" rx="'+n.rx+'" ry="'+n.ry+'" fill="'+col+'" stroke="#2D2D2D" stroke-width="1.5"/>';
+svg+='<ellipse cx="'+n.cx+'" cy="'+n.cy+'" rx="'+n.rx+'" ry="'+n.ry+'" fill="'+col+'" stroke="rgba(0,0,0,.15)" stroke-width="1"/>';
 svg+='<ellipse cx="'+n.cx+'" cy="'+(n.cy+n.ry-3)+'" rx="'+(n.rx*.82)+'" ry="'+(n.ry*.28)+'" fill="rgba(255,255,255,.25)" clip-path="url(#pvC'+n.id+')"/>';
 svg+='<ellipse cx="'+(n.cx-n.rx*.3)+'" cy="'+(n.cy-n.ry*.3)+'" rx="'+(n.rx*.38)+'" ry="'+(n.ry*.35)+'" fill="rgba(255,255,255,.45)" clip-path="url(#pvC'+n.id+')"/>';
 if(design==='French'){
