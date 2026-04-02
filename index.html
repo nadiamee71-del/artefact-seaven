@@ -11409,102 +11409,30 @@ var PVNAILS=[
 {id:'a',lbl:'Annul.',cx:147,cy:61,rx:10,ry:13},
 {id:'au',lbl:'Auricu.',cx:176,cy:80,rx:8.5,ry:11}
 ];
-function buildHandSVG(){
-var sk=PV.skin;
-var svg='<svg class="prev-hand-svg" viewBox="15 15 210 200" xmlns="http://www.w3.org/2000/svg">';
+function buildHandSVG() {
+  const sk = currentSkin;
 
-var defs='<defs>';
-defs+='<linearGradient id="pvBB" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#EDD5C5"/><stop offset=".55" stop-color="#F5E8DF"/><stop offset="1" stop-color="#FFF"/></linearGradient>';
-PVNAILS.forEach(function(n){
-defs+='<clipPath id="pvC'+n.id+'"><ellipse cx="'+n.cx+'" cy="'+n.cy+'" rx="'+n.rx+'" ry="'+n.ry+'"/></clipPath>';
-defs+='<linearGradient id="pvDG'+n.id+'" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="'+nc(n.id)+'"/><stop offset="1" stop-color="#FFF"/></linearGradient>';
-});
-defs+='</defs>';
-svg+=defs;
+  return `
+    <svg class="hand-svg" viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg">
 
-/* ombre douce */
-svg+='<ellipse cx="121" cy="184" rx="56" ry="13" fill="rgba(0,0,0,.04)"/>';
+      <!-- PAUME -->
+      <ellipse cx="120" cy="170" rx="75" ry="50" fill="${sk}" opacity=".95"/>
 
-/* paume / base */
-svg+='<path d="M66,162 C72,152 86,146 101,145 C111,145 117,148 121,151 C124,153 127,153 131,151 C137,148 145,145 155,145 C169,146 180,152 184,161 C187,168 186,177 182,186 C177,196 168,204 157,209 C146,214 133,216 121,216 C108,216 96,214 85,209 C74,204 65,196 60,186 C56,178 55,169 58,163 C60,162 63,162 66,162 Z" fill="'+sk+'" stroke="rgba(0,0,0,.14)" stroke-width="1.05" stroke-linejoin="round"/>';
+      <!-- DOIGTS -->
+      <rect x="32" y="110" width="34" height="70" rx="17" fill="${sk}"/>
+      <rect x="72" y="60" width="30" height="90" rx="15" fill="${sk}"/>
+      <rect x="108" y="45" width="30" height="100" rx="15" fill="${sk}"/>
+      <rect x="144" y="58" width="30" height="88" rx="15" fill="${sk}"/>
+      <rect x="178" y="80" width="26" height="72" rx="13" fill="${sk}"/>
 
-/* creux sous les doigts */
-svg+='<path d="M82,152 C90,149 98,148 105,149 C111,150 116,152 121,152 C126,152 131,150 137,149 C145,148 153,149 162,152" fill="none" stroke="rgba(0,0,0,.045)" stroke-width=".8" stroke-linecap="round"/>';
+      <!-- JOINTURES -->
+      <circle cx="87" cy="148" r="4" fill="rgba(0,0,0,.05)"/>
+      <circle cx="123" cy="148" r="4" fill="rgba(0,0,0,.05)"/>
+      <circle cx="159" cy="146" r="4" fill="rgba(0,0,0,.05)"/>
+      <circle cx="191" cy="150" r="3.5" fill="rgba(0,0,0,.05)"/>
 
-/* pouce plus intégré */
-svg+='<path d="M71,154 C62,147 55,137 51,125 C48,115 48,104 52,96 C56,89 62,86 68,88 C74,90 78,96 80,104 C82,113 82,121 81,129 C80,137 81,145 84,151 C85,154 84,156 80,157 C76,158 73,157 71,154 Z" fill="'+sk+'" stroke="rgba(0,0,0,.14)" stroke-width="1.05" stroke-linejoin="round"/>';
-svg+='<path d="M56,122 C63,119 71,120 77,124" fill="none" stroke="rgba(0,0,0,.045)" stroke-width=".75" stroke-linecap="round"/>';
-
-/* index */
-svg+='<path d="M86,150 C84,136 84,113 85,90 C86,73 88,60 91,52 C94,46 98,43 103,44 C107,45 110,49 112,57 C114,67 114,82 114,100 C114,118 113,136 112,149 C104,150 94,150 86,150 Z" fill="'+sk+'" stroke="rgba(0,0,0,.14)" stroke-width="1.05" stroke-linejoin="round"/>';
-svg+='<path d="M91,111 C96,109 102,109 107,111" fill="none" stroke="rgba(0,0,0,.045)" stroke-width=".75" stroke-linecap="round"/>';
-svg+='<path d="M92,88 C96,86 102,86 106,88" fill="none" stroke="rgba(0,0,0,.045)" stroke-width=".75" stroke-linecap="round"/>';
-
-/* majeur */
-svg+='<path d="M113,150 C111,134 111,106 112,79 C113,60 115,46 118,38 C121,32 125,29 129,30 C134,31 137,35 139,43 C141,54 141,70 141,91 C141,113 140,135 139,149 C131,150 121,150 113,150 Z" fill="'+sk+'" stroke="rgba(0,0,0,.14)" stroke-width="1.05" stroke-linejoin="round"/>';
-svg+='<path d="M118,100 C123,98 129,98 134,100" fill="none" stroke="rgba(0,0,0,.045)" stroke-width=".75" stroke-linecap="round"/>';
-svg+='<path d="M119,74 C123,72 129,72 133,74" fill="none" stroke="rgba(0,0,0,.045)" stroke-width=".75" stroke-linecap="round"/>';
-
-/* annulaire */
-svg+='<path d="M140,150 C138,136 138,113 139,92 C140,75 142,62 145,54 C148,48 152,45 157,45 C161,46 164,50 166,58 C168,68 168,84 168,103 C168,120 167,136 166,149 C158,150 148,150 140,150 Z" fill="'+sk+'" stroke="rgba(0,0,0,.14)" stroke-width="1.05" stroke-linejoin="round"/>';
-svg+='<path d="M145,111 C150,109 156,109 161,111" fill="none" stroke="rgba(0,0,0,.045)" stroke-width=".75" stroke-linecap="round"/>';
-svg+='<path d="M146,89 C150,87 156,87 160,89" fill="none" stroke="rgba(0,0,0,.045)" stroke-width=".75" stroke-linecap="round"/>';
-
-/* auriculaire plus élégant */
-svg+='<path d="M166,151 C165,140 165,123 166,108 C167,95 169,85 172,79 C175,74 179,72 183,72 C187,73 190,76 192,83 C194,91 194,102 194,116 C194,129 193,142 192,152 C185,153 174,153 166,151 Z" fill="'+sk+'" stroke="rgba(0,0,0,.14)" stroke-width="1.05" stroke-linejoin="round"/>';
-svg+='<path d="M171,118 C175,116 181,116 185,118" fill="none" stroke="rgba(0,0,0,.045)" stroke-width=".75" stroke-linecap="round"/>';
-
-/* ombres entre doigts */
-svg+='<ellipse cx="91" cy="151" rx="5.2" ry="2.4" fill="rgba(0,0,0,.038)"/>';
-svg+='<ellipse cx="119" cy="150" rx="5.4" ry="2.5" fill="rgba(0,0,0,.038)"/>';
-svg+='<ellipse cx="146" cy="151" rx="5.2" ry="2.4" fill="rgba(0,0,0,.038)"/>';
-svg+='<ellipse cx="173" cy="153" rx="4.4" ry="2.2" fill="rgba(0,0,0,.032)"/>';
-
-/* ongles : inchangés */
-PVNAILS.forEach(function(n){
-var col=nc(n.id);
-var design=PV.fingerDesigns[n.id]||PV.design;
-svg+='<g style="cursor:pointer" onclick="prevOpenFinger(\''+n.id+'\',\''+n.lbl+'\')">';
-svg+='<ellipse cx="'+n.cx+'" cy="'+n.cy+'" rx="'+n.rx+'" ry="'+n.ry+'" fill="'+col+'" stroke="rgba(0,0,0,.15)" stroke-width="1"/>';
-svg+='<ellipse cx="'+n.cx+'" cy="'+(n.cy+n.ry-3)+'" rx="'+(n.rx*.82)+'" ry="'+(n.ry*.28)+'" fill="rgba(255,255,255,.25)" clip-path="url(#pvC'+n.id+')"/>';
-svg+='<ellipse cx="'+(n.cx-n.rx*.3)+'" cy="'+(n.cy-n.ry*.3)+'" rx="'+(n.rx*.38)+'" ry="'+(n.ry*.35)+'" fill="rgba(255,255,255,.45)" clip-path="url(#pvC'+n.id+')"/>';
-
-if(design==='French'){
-svg+='<path d="M'+(n.cx-n.rx)+' '+(n.cy-n.ry*.35)+' Q'+n.cx+' '+(n.cy-n.ry*.1)+' '+(n.cx+n.rx)+' '+(n.cy-n.ry*.35)+' L'+(n.cx+n.rx)+' '+(n.cy-n.ry-2)+' L'+(n.cx-n.rx)+' '+(n.cy-n.ry-2)+' Z" fill="#FFF" clip-path="url(#pvC'+n.id+')"/>';
-svg+='<path d="M'+(n.cx-n.rx)+' '+(n.cy-n.ry*.35)+' Q'+n.cx+' '+(n.cy-n.ry*.1)+' '+(n.cx+n.rx)+' '+(n.cy-n.ry*.35)+'" fill="none" stroke="#E8D0C0" stroke-width=".7" opacity=".5" clip-path="url(#pvC'+n.id+')"/>';
-}
-if(design==='Baby boo.'){
-svg+='<rect x="'+(n.cx-n.rx)+'" y="'+(n.cy-n.ry)+'" width="'+(n.rx*2)+'" height="'+(n.ry*2)+'" fill="url(#pvBB)" clip-path="url(#pvC'+n.id+')"/>';
-}
-if(design==='Dégradé'){
-svg+='<rect x="'+(n.cx-n.rx)+'" y="'+(n.cy-n.ry)+'" width="'+(n.rx*2)+'" height="'+(n.ry*2)+'" fill="url(#pvDG'+n.id+')" clip-path="url(#pvC'+n.id+')"/>';
-}
-if(design==='Géo.'){
-svg+='<path d="M'+(n.cx-n.rx)+' '+(n.cy)+' L'+n.cx+' '+(n.cy-n.ry)+' L'+(n.cx+n.rx)+' '+n.cy+' Z" fill="'+col+'" opacity=".7" clip-path="url(#pvC'+n.id+')"/>';
-}
-if(design==='Glitter'){
-var seed=n.id.charCodeAt(0);
-for(var g=0;g<15;g++){
-  var gx=n.cx+(Math.sin(seed+g*7.3)*n.rx*.7),
-      gy=n.cy-(Math.abs(Math.cos(seed+g*4.7))*n.ry*.8),
-      gr=0.6+Math.abs(Math.sin(seed+g*3.1)),
-      go=0.35+Math.abs(Math.cos(seed+g*5.9))*.5;
-  svg+='<circle cx="'+gx.toFixed(1)+'" cy="'+gy.toFixed(1)+'" r="'+gr.toFixed(1)+'" fill="#FFD700" opacity="'+go.toFixed(2)+'" clip-path="url(#pvC'+n.id+')"/>';
-}
-}
-if(design==='Floral'){
-var fx=n.cx-n.rx*.15,fy=n.cy-n.ry*.3;
-for(var fp=0;fp<5;fp++){
-  var fa=fp*72*Math.PI/180;
-  svg+='<ellipse cx="'+(fx+Math.sin(fa)*2.5).toFixed(1)+'" cy="'+(fy-Math.cos(fa)*2.5).toFixed(1)+'" rx="1.5" ry="2.5" fill="#FFB6C1" opacity=".7" transform="rotate('+(fp*72)+' '+(fx+Math.sin(fa)*2.5).toFixed(1)+' '+(fy-Math.cos(fa)*2.5).toFixed(1)+')" clip-path="url(#pvC'+n.id+')"/>';
-}
-svg+='<circle cx="'+fx+'" cy="'+fy+'" r="1.3" fill="#FFE066" clip-path="url(#pvC'+n.id+')"/>';
-}
-svg+='</g>';
-});
-
-svg+='</svg>';
-return svg;
+    </svg>
+  `;
 }
 function renderOngles(){
 var b=document.getElementById('prev-body');if(!b)return;
