@@ -2342,7 +2342,8 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
 .fid-card-nina{background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 50%,#2d1b33 100%);}
 .fid-card-karima{background:linear-gradient(135deg,#1a2a1a 0%,#1e3a2e 50%,#2d4a3a 100%);}
 .fid-card-leila{background:linear-gradient(135deg,#2d1b0e 0%,#4a2c1a 50%,#6b3f2a 100%);}
-.fid-customize-btn{position:absolute;bottom:12px;right:12px;width:28px;height:28px;border-radius:14px;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;font-size:14px;cursor:pointer;z-index:10;border:none;padding:0;}
+@keyframes fid-palette-pulse{0%{transform:scale(1);box-shadow:0 2px 8px rgba(0,0,0,0.25);}50%{transform:scale(1.12);box-shadow:0 4px 14px rgba(0,0,0,0.35);}100%{transform:scale(1);box-shadow:0 2px 8px rgba(0,0,0,0.25);}}
+.fid-customize-btn{position:absolute;bottom:12px;right:12px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.25);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;font-size:22px;cursor:pointer;z-index:10;border:1.5px solid rgba(255,255,255,0.4);padding:0;box-shadow:0 2px 8px rgba(0,0,0,0.25);animation:fid-palette-pulse 2s ease-in-out infinite;}
 .fid-card.fid-expanded .fid-customize-btn{display:flex;}
 .fid-text-dark .fid-brand,.fid-text-dark .fid-points{color:#1A1A1A!important;}
 .fid-text-dark .fid-type,.fid-text-dark .fid-pts-label,.fid-text-dark .fid-num{color:rgba(0,0,0,.5)!important;}
@@ -12033,7 +12034,7 @@ var FID_CUSTOM_COLORS={};var fidColorPickerIdx=null;
 function fidSaveColors(){try{localStorage.setItem('seaven-fid-colors',JSON.stringify(FID_CUSTOM_COLORS));}catch(e){}}
 function fidLoadColors(){try{var s=localStorage.getItem('seaven-fid-colors');if(s)FID_CUSTOM_COLORS=JSON.parse(s);}catch(e){}for(var i=0;i<FID_CARDS;i++)fidApplyColor(i);}
 function fidApplyColor(idx){var card=document.getElementById('fid-card-'+idx);if(!card)return;var cc=FID_CUSTOM_COLORS[idx];if(!cc){card.style.background='';card.classList.remove('fid-text-dark');return;}if(cc.gradient)card.style.background=cc.gradient;else card.style.background='';if(cc.textColor==='dark')card.classList.add('fid-text-dark');else card.classList.remove('fid-text-dark');}
-window.fidOpenColorPicker=function(idx){fidColorPickerIdx=idx;var panel=document.getElementById('fid-color-panel');if(!panel)return;var cc=FID_CUSTOM_COLORS[idx]||{};var dir=cc.direction||'135deg';var tc=cc.textColor||'light';var name=FID_NAMES[idx]||'Carte';
+window.fidOpenColorPicker=function(idx){fidColorPickerIdx=idx;document.querySelectorAll('.fid-customize-btn').forEach(function(b){b.style.animationPlayState='paused';});var panel=document.getElementById('fid-color-panel');if(!panel)return;var cc=FID_CUSTOM_COLORS[idx]||{};var dir=cc.direction||'135deg';var tc=cc.textColor||'light';var name=FID_NAMES[idx]||'Carte';
 var html='<div class="fid-color-panel-title">\ud83c\udfa8 Personnaliser \u00b7 '+name+'</div>';
 html+='<div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:8px;">Palettes</div><div class="fid-cp-grid">';
 for(var i=0;i<FID_GRADIENTS.length;i++){var g=FID_GRADIENTS[i];html+='<div class="fid-cp-swatch" style="background:linear-gradient(135deg,'+g.c.join(',')+')" onclick="fidSetGradient('+idx+','+i+')" title="'+g.name+'"></div>';}
@@ -12047,7 +12048,7 @@ html+='<div class="fid-cp-text-btn '+(tc==='light'?'on':'')+'" style="color:whit
 html+='<div class="fid-cp-text-btn '+(tc==='dark'?'on':'')+'" style="color:#333;" onclick="fidSetTextColor('+idx+',\'dark\')">\u2b1b Sombre</div></div>';
 html+='<div class="fid-cp-sticky-close"><div class="fid-cp-actions"><div class="fid-cp-btn" style="background:rgba(255,255,255,.15);color:white;" onclick="fidResetColor('+idx+')">R\u00e9initialiser</div><div class="fid-cp-btn" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);" onclick="fidCloseColorPicker()">\u2715 Fermer la palette</div></div></div>';
 panel.innerHTML=html;panel.classList.add('on');};
-window.fidCloseColorPicker=function(){fidColorPickerIdx=null;var p=document.getElementById('fid-color-panel');if(p){p.classList.remove('on');p.innerHTML='';}};
+window.fidCloseColorPicker=function(){fidColorPickerIdx=null;var p=document.getElementById('fid-color-panel');if(p){p.classList.remove('on');p.innerHTML='';}document.querySelectorAll('.fid-customize-btn').forEach(function(b){b.style.animationPlayState='';});};
 window.fidSetGradient=function(idx,gIdx){var g=FID_GRADIENTS[gIdx];if(!g)return;if(!FID_CUSTOM_COLORS[idx])FID_CUSTOM_COLORS[idx]={};var dir=FID_CUSTOM_COLORS[idx].direction||'135deg';FID_CUSTOM_COLORS[idx].gradient='linear-gradient('+dir+','+g.c.join(',')+')';FID_CUSTOM_COLORS[idx].colors=g.c;delete FID_CUSTOM_COLORS[idx].solidColor;fidApplyColor(idx);fidSaveColors();};
 window.fidSetSolidColor=function(idx,color){if(!FID_CUSTOM_COLORS[idx])FID_CUSTOM_COLORS[idx]={};FID_CUSTOM_COLORS[idx].gradient=color;FID_CUSTOM_COLORS[idx].solidColor=color;delete FID_CUSTOM_COLORS[idx].colors;fidApplyColor(idx);fidSaveColors();};
 window.fidSetDirection=function(idx,deg){if(!FID_CUSTOM_COLORS[idx])FID_CUSTOM_COLORS[idx]={};FID_CUSTOM_COLORS[idx].direction=deg;var cc=FID_CUSTOM_COLORS[idx];if(cc.colors){cc.gradient='linear-gradient('+deg+','+cc.colors.join(',')+')';fidApplyColor(idx);}fidSaveColors();if(fidColorPickerIdx===idx)fidOpenColorPicker(idx);};
