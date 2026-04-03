@@ -11409,30 +11409,75 @@ var PVNAILS=[
 {id:'a',lbl:'Annul.',cx:147,cy:61,rx:10,ry:13},
 {id:'au',lbl:'Auricu.',cx:176,cy:80,rx:8.5,ry:11}
 ];
-function buildHandSVG() {
-  var sk = PV.skin;
+function buildHandSVG(){
+var sk=PV.skin;
+var svg='<svg class="prev-hand-svg" viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg">';
 
-  return `
-    <svg class="hand-svg" viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg">
+var defs='<defs>';
+defs+='<linearGradient id="pvBB" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#EDD5C5"/><stop offset=".55" stop-color="#F5E8DF"/><stop offset="1" stop-color="#FFF"/></linearGradient>';
+PVNAILS.forEach(function(n){
+defs+='<clipPath id="pvC'+n.id+'"><ellipse cx="'+n.cx+'" cy="'+n.cy+'" rx="'+n.rx+'" ry="'+n.ry+'"/></clipPath>';
+defs+='<linearGradient id="pvDG'+n.id+'" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="'+nc(n.id)+'"/><stop offset="1" stop-color="#FFF"/></linearGradient>';
+});
+defs+='</defs>';
+svg+=defs;
 
-      <!-- PAUME -->
-      <ellipse cx="120" cy="170" rx="75" ry="50" fill="${sk}" opacity=".95"/>
+svg+='<ellipse cx="120" cy="170" rx="75" ry="50" fill="'+sk+'" opacity=".95"/>';
 
-      <!-- DOIGTS -->
-      <rect x="32" y="110" width="34" height="70" rx="17" fill="${sk}"/>
-      <rect x="72" y="60" width="30" height="90" rx="15" fill="${sk}"/>
-      <rect x="108" y="45" width="30" height="100" rx="15" fill="${sk}"/>
-      <rect x="144" y="58" width="30" height="88" rx="15" fill="${sk}"/>
-      <rect x="178" y="80" width="26" height="72" rx="13" fill="${sk}"/>
+svg+='<rect x="32" y="110" width="34" height="70" rx="17" fill="'+sk+'"/>';
+svg+='<rect x="72" y="60" width="30" height="90" rx="15" fill="'+sk+'"/>';
+svg+='<rect x="108" y="45" width="30" height="100" rx="15" fill="'+sk+'"/>';
+svg+='<rect x="144" y="58" width="30" height="88" rx="15" fill="'+sk+'"/>';
+svg+='<rect x="178" y="80" width="26" height="72" rx="13" fill="'+sk+'"/>';
 
-      <!-- JOINTURES -->
-      <circle cx="87" cy="148" r="4" fill="rgba(0,0,0,.05)"/>
-      <circle cx="123" cy="148" r="4" fill="rgba(0,0,0,.05)"/>
-      <circle cx="159" cy="146" r="4" fill="rgba(0,0,0,.05)"/>
-      <circle cx="191" cy="150" r="3.5" fill="rgba(0,0,0,.05)"/>
+svg+='<circle cx="87" cy="148" r="4" fill="rgba(0,0,0,.05)"/>';
+svg+='<circle cx="123" cy="148" r="4" fill="rgba(0,0,0,.05)"/>';
+svg+='<circle cx="159" cy="146" r="4" fill="rgba(0,0,0,.05)"/>';
+svg+='<circle cx="191" cy="150" r="3.5" fill="rgba(0,0,0,.05)"/>';
 
-    </svg>
-  `;
+PVNAILS.forEach(function(n){
+var col=nc(n.id);
+var design=PV.fingerDesigns[n.id]||PV.design;
+svg+='<g style="cursor:pointer" onclick="prevOpenFinger(\''+n.id+'\',\''+n.lbl+'\')">';
+svg+='<ellipse cx="'+n.cx+'" cy="'+n.cy+'" rx="'+n.rx+'" ry="'+n.ry+'" fill="'+col+'" stroke="rgba(0,0,0,.15)" stroke-width="1"/>';
+svg+='<ellipse cx="'+n.cx+'" cy="'+(n.cy+n.ry-3)+'" rx="'+(n.rx*.82)+'" ry="'+(n.ry*.28)+'" fill="rgba(255,255,255,.25)" clip-path="url(#pvC'+n.id+')"/>';
+svg+='<ellipse cx="'+(n.cx-n.rx*.3)+'" cy="'+(n.cy-n.ry*.3)+'" rx="'+(n.rx*.38)+'" ry="'+(n.ry*.35)+'" fill="rgba(255,255,255,.45)" clip-path="url(#pvC'+n.id+')"/>';
+if(design==='French'){
+svg+='<path d="M'+(n.cx-n.rx)+' '+(n.cy-n.ry*.35)+' Q'+n.cx+' '+(n.cy-n.ry*.1)+' '+(n.cx+n.rx)+' '+(n.cy-n.ry*.35)+' L'+(n.cx+n.rx)+' '+(n.cy-n.ry-2)+' L'+(n.cx-n.rx)+' '+(n.cy-n.ry-2)+' Z" fill="#FFF" clip-path="url(#pvC'+n.id+')"/>';
+svg+='<path d="M'+(n.cx-n.rx)+' '+(n.cy-n.ry*.35)+' Q'+n.cx+' '+(n.cy-n.ry*.1)+' '+(n.cx+n.rx)+' '+(n.cy-n.ry*.35)+'" fill="none" stroke="#E8D0C0" stroke-width=".7" opacity=".5" clip-path="url(#pvC'+n.id+')"/>';
+}
+if(design==='Baby boo.'){
+svg+='<rect x="'+(n.cx-n.rx)+'" y="'+(n.cy-n.ry)+'" width="'+(n.rx*2)+'" height="'+(n.ry*2)+'" fill="url(#pvBB)" clip-path="url(#pvC'+n.id+')"/>';
+}
+if(design==='Dégradé'){
+svg+='<rect x="'+(n.cx-n.rx)+'" y="'+(n.cy-n.ry)+'" width="'+(n.rx*2)+'" height="'+(n.ry*2)+'" fill="url(#pvDG'+n.id+')" clip-path="url(#pvC'+n.id+')"/>';
+}
+if(design==='Géo.'){
+svg+='<path d="M'+(n.cx-n.rx)+' '+(n.cy)+' L'+n.cx+' '+(n.cy-n.ry)+' L'+(n.cx+n.rx)+' '+n.cy+' Z" fill="'+col+'" opacity=".7" clip-path="url(#pvC'+n.id+')"/>';
+}
+if(design==='Glitter'){
+var seed=n.id.charCodeAt(0);
+for(var g=0;g<15;g++){
+  var gx=n.cx+(Math.sin(seed+g*7.3)*n.rx*.7),
+      gy=n.cy-(Math.abs(Math.cos(seed+g*4.7))*n.ry*.8),
+      gr=0.6+Math.abs(Math.sin(seed+g*3.1)),
+      go=0.35+Math.abs(Math.cos(seed+g*5.9))*.5;
+  svg+='<circle cx="'+gx.toFixed(1)+'" cy="'+gy.toFixed(1)+'" r="'+gr.toFixed(1)+'" fill="#FFD700" opacity="'+go.toFixed(2)+'" clip-path="url(#pvC'+n.id+')"/>';
+}
+}
+if(design==='Floral'){
+var fx=n.cx-n.rx*.15,fy=n.cy-n.ry*.3;
+for(var fp=0;fp<5;fp++){
+  var fa=fp*72*Math.PI/180;
+  svg+='<ellipse cx="'+(fx+Math.sin(fa)*2.5).toFixed(1)+'" cy="'+(fy-Math.cos(fa)*2.5).toFixed(1)+'" rx="1.5" ry="2.5" fill="#FFB6C1" opacity=".7" transform="rotate('+(fp*72)+' '+(fx+Math.sin(fa)*2.5).toFixed(1)+' '+(fy-Math.cos(fa)*2.5).toFixed(1)+')" clip-path="url(#pvC'+n.id+')"/>';
+}
+svg+='<circle cx="'+fx+'" cy="'+fy+'" r="1.3" fill="#FFE066" clip-path="url(#pvC'+n.id+')"/>';
+}
+svg+='</g>';
+});
+
+svg+='</svg>';
+return svg;
 }
 function renderOngles(){
 var b=document.getElementById('prev-body');if(!b)return;
