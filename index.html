@@ -11559,13 +11559,13 @@ prevFallbackCamera();return;
 }
 var initFn=typeof deepar!=='undefined'?deepar.initialize:(typeof DeepAR!=='undefined'?DeepAR:null);
 if(!initFn){prevFallbackCamera();return;}
+console.log('DEEPAR_KEY =', DEEPAR_KEY);
 try{
 var p=initFn({
 licenseKey:DEEPAR_KEY,
 canvas:canvas,
 numberOfFaces:1,
-libPath:'https://cdn.jsdelivr.net/npm/deepar@5.6.21/wasm/',
-segmentationInfoZip:'https://cdn.jsdelivr.net/npm/deepar@5.6.21/wasm/segmentation.zip'
+rootPath:'https://cdn.jsdelivr.net/npm/deepar@5.6.21/'
 });
 if(p&&typeof p.then==='function'){
 p.then(function(instance){
