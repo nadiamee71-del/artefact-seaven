@@ -11621,7 +11621,8 @@ svgHTML='<div class="prev-ear-canvas"><svg viewBox="0 0 280 200" width="280" hei
 }else{
 svgHTML='<div class="prev-ear-canvas"><svg viewBox="0 0 280 180" width="280" height="180" xmlns="http://www.w3.org/2000/svg">'+earSVG('L')+earSVG('R')+'<g id="placed-piercings"></g></svg></div>';
 }
-b.innerHTML=viewTabs+svgHTML
+var skinHTML=PV.SKINS.map(function(s){return '<div class="prev-skin '+(PV.skin===s?'on':'')+'" style="background:'+s+'" onclick="prevSetSkin(\''+s+'\')"></div>';}).join('');
+b.innerHTML='<div class="prev-skin-picker" style="padding:10px 16px 0"><span class="prev-skin-lbl">Peau</span>'+skinHTML+'</div>'+viewTabs+svgHTML
 +'<div class="prev-sec-lbl">Type de bijou</div><div class="prev-panel"><div class="prev-strass-grid"><div class="prev-strass-item '+(PV.bijouType==='○'?'on':'')+'" onclick="prevSelBijou(this)">○</div><div class="prev-strass-item '+(PV.bijouType==='◉'?'on':'')+'" onclick="prevSelBijou(this)">◉</div><div class="prev-strass-item '+(PV.bijouType==='💎'?'on':'')+'" onclick="prevSelBijou(this)">💎</div><div class="prev-strass-item '+(PV.bijouType==='⭐'?'on':'')+'" onclick="prevSelBijou(this)">⭐</div><div class="prev-strass-item '+(PV.bijouType==='❤️'?'on':'')+'" onclick="prevSelBijou(this)">❤️</div><div class="prev-strass-item '+(PV.bijouType==='🔮'?'on':'')+'" onclick="prevSelBijou(this)">🔮</div></div></div>'
 +'<div class="prev-sec-lbl">Couleur du bijou</div><div class="prev-panel"><div class="prev-color-grid">'+bjColors.map(function(c){return '<div class="prev-col-dot '+(PV.bijouColor===c?'on':'')+'" style="background:'+c+';'+(c==='#fff'?'border:1.5px solid #E5E5EA':'')+'" onclick="prevSetPColor(\''+c+'\')"></div>';}).join('')+'</div></div>'
 +'<div class="prev-sec-lbl">Taille</div><div class="prev-panel"><div class="prev-slider-row"><div class="prev-slider-lbl">Taille</div><input type="range" min="4" max="16" value="'+PV.bijouSize+'" oninput="this.nextElementSibling.textContent=this.value;prevSetBijouSize(this.value)" style="accent-color:#A87DC8"><div class="prev-slider-val">'+PV.bijouSize+'</div></div></div>'
@@ -11667,7 +11668,7 @@ function prevUpdateAllPiercings(){
 var isNose=(PV.piercingView==='nose');
 for(var id in PV.activePiercings){if(!PV.activePiercings[id])continue;
 var isNoseId=(id.indexOf('nose-')===0);
-if((isNose&&isNoseId)||(!isNose&&!isNoseId)){prevDrawPiercing(id);}}
+if((isNose&&isNoseId)||(!isNose&&!isNoseId)){prevRemovePiercing(id);prevDrawPiercing(id);}}
 }
 var _prevDeepAR=null;
 var _prevARFacing='user';
@@ -11855,7 +11856,7 @@ document.querySelectorAll('.prev-feat-ar').forEach(function(t){t.classList.remov
 el.classList.add('on');el.style.background='#A87DC8';el.style.borderColor='#A87DC8';el.style.color='#fff';
 PV.featAR=feat;renderAR(feat);
 };
-window.prevSetSkin=function(c){PV.skin=c;renderOngles();};
+window.prevSetSkin=function(c){PV.skin=c;if(PV.feat==='piercings'){renderPiercings();}else{renderOngles();}};
 window.prevSetNailColor=function(c){PV.nailColor=c;renderOngles();};
 window.prevSetShape=function(s){PV.shape=s.toLowerCase();renderOngles();};
 window.prevSetLength=function(v){PV.length=parseInt(v);var el=document.getElementById('prev-len-val');if(el)el.textContent=['S','M','L','XL'][PV.length-1]||v;renderOngles();};
