@@ -2346,7 +2346,8 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
 .fid-card.fid-expanded .fid-customize-btn{display:flex;}
 .fid-text-dark .fid-brand,.fid-text-dark .fid-points{color:#1A1A1A!important;}
 .fid-text-dark .fid-type,.fid-text-dark .fid-pts-label,.fid-text-dark .fid-num{color:rgba(0,0,0,.5)!important;}
-.fid-color-panel{margin:10px 16px 0;padding:16px;background:rgba(28,28,30,.95);border-radius:16px;display:none;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);max-height:60vh;overflow-y:auto;}
+.fid-color-panel{margin:10px 16px 0;padding:16px;background:rgba(28,28,30,.95);border-radius:16px;display:none;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);max-height:60vh;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.fid-cp-sticky-close{position:sticky;bottom:0;background:rgba(28,28,30,.95);padding:10px 0 2px;margin-top:8px;}
 .fid-color-panel.on{display:block;}
 .fid-color-panel-title{font-size:14px;font-weight:800;color:white;margin-bottom:14px;}
 .fid-cp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;}
@@ -10324,6 +10325,7 @@ const parent=document.getElementById(contentId)?.parentElement;
 if(parent)parent.querySelectorAll(':scope > div[id]').forEach(d=>d.style.display='none');
 const target=document.getElementById(contentId);
 if(target)target.style.display='block';
+var mod=el.closest('.module');if(mod&&mod.id==='mod-promos'){var f=mod.querySelector('.mod-filters');if(f)f.style.display=(contentId==='mf-fidelite')?'none':'';}
 }
 function togChip(el){el.classList.toggle('on');}
 let blCurrentFilter='toutes';
@@ -11998,7 +12000,7 @@ var dirs=[{l:'\u2198',d:'135deg'},{l:'\u2193',d:'180deg'},{l:'\u2192',d:'90deg'}
 html+='<div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:8px;">Couleur du texte</div><div class="fid-cp-text-row">';
 html+='<div class="fid-cp-text-btn '+(tc==='light'?'on':'')+'" style="color:white;" onclick="fidSetTextColor('+idx+',\'light\')">\u2b1c Clair</div>';
 html+='<div class="fid-cp-text-btn '+(tc==='dark'?'on':'')+'" style="color:#333;" onclick="fidSetTextColor('+idx+',\'dark\')">\u2b1b Sombre</div></div>';
-html+='<div class="fid-cp-actions"><div class="fid-cp-btn" style="background:rgba(255,255,255,.15);color:white;" onclick="fidResetColor('+idx+')">R\u00e9initialiser</div><div class="fid-cp-btn" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);" onclick="fidCloseColorPicker()">Fermer</div></div>';
+html+='<div class="fid-cp-sticky-close"><div class="fid-cp-actions"><div class="fid-cp-btn" style="background:rgba(255,255,255,.15);color:white;" onclick="fidResetColor('+idx+')">R\u00e9initialiser</div><div class="fid-cp-btn" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);" onclick="fidCloseColorPicker()">\u2715 Fermer la palette</div></div></div>';
 panel.innerHTML=html;panel.classList.add('on');};
 window.fidCloseColorPicker=function(){fidColorPickerIdx=null;var p=document.getElementById('fid-color-panel');if(p){p.classList.remove('on');p.innerHTML='';}};
 window.fidSetGradient=function(idx,gIdx){var g=FID_GRADIENTS[gIdx];if(!g)return;if(!FID_CUSTOM_COLORS[idx])FID_CUSTOM_COLORS[idx]={};var dir=FID_CUSTOM_COLORS[idx].direction||'135deg';FID_CUSTOM_COLORS[idx].gradient='linear-gradient('+dir+','+g.c.join(',')+')';FID_CUSTOM_COLORS[idx].colors=g.c;delete FID_CUSTOM_COLORS[idx].solidColor;fidApplyColor(idx);fidSaveColors();};
