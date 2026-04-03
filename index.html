@@ -2342,6 +2342,21 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
 .fid-card-nina{background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 50%,#2d1b33 100%);}
 .fid-card-karima{background:linear-gradient(135deg,#1a2a1a 0%,#1e3a2e 50%,#2d4a3a 100%);}
 .fid-card-leila{background:linear-gradient(135deg,#2d1b0e 0%,#4a2c1a 50%,#6b3f2a 100%);}
+.fid-customize-btn{position:absolute;bottom:12px;right:12px;width:28px;height:28px;border-radius:14px;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;font-size:14px;cursor:pointer;z-index:10;border:none;padding:0;}
+.fid-card.fid-expanded .fid-customize-btn{display:flex;}
+.fid-text-dark .fid-brand,.fid-text-dark .fid-points{color:#1A1A1A!important;}
+.fid-text-dark .fid-type,.fid-text-dark .fid-pts-label,.fid-text-dark .fid-num{color:rgba(0,0,0,.5)!important;}
+.fid-color-panel{margin:10px 16px 0;padding:16px;background:rgba(28,28,30,.95);border-radius:16px;display:none;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);max-height:60vh;overflow-y:auto;}
+.fid-color-panel.on{display:block;}
+.fid-color-panel-title{font-size:14px;font-weight:800;color:white;margin-bottom:14px;}
+.fid-cp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;}
+.fid-cp-swatch{height:32px;border-radius:8px;cursor:pointer;border:2px solid transparent;transition:border-color .15s,transform .15s;}.fid-cp-swatch:active{transform:scale(.92);}.fid-cp-swatch.on{border-color:#fff;}
+.fid-cp-dir-row{display:flex;gap:8px;margin-bottom:16px;}
+.fid-cp-dir-btn{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.1);border:2px solid transparent;color:white;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Manrope',sans-serif;}.fid-cp-dir-btn.on{border-color:#fff;background:rgba(255,255,255,.2);}
+.fid-cp-text-row{display:flex;gap:8px;margin-bottom:16px;}
+.fid-cp-text-btn{padding:8px 14px;border-radius:10px;background:rgba(255,255,255,.1);border:2px solid transparent;font-size:12px;font-weight:700;cursor:pointer;font-family:'Manrope',sans-serif;}.fid-cp-text-btn.on{border-color:#fff;}
+.fid-cp-actions{display:flex;gap:8px;margin-top:4px;}
+.fid-cp-btn{padding:10px 18px;border-radius:12px;border:none;font-size:12px;font-weight:800;cursor:pointer;font-family:'Manrope',sans-serif;}
 /* ── PAYMENT OVERLAY ── */
 .fid-pay-overlay{position:absolute;inset:0;z-index:300;background:#000;display:flex;flex-direction:column;align-items:center;opacity:0;pointer-events:none;transition:opacity .35s;}
 .fid-pay-overlay.on{opacity:1;pointer-events:all;}
@@ -6662,6 +6677,7 @@ MODULES PROFIL
 <div class="fid-card-top"><div><div class="fid-brand">SEAVEN</div><div class="fid-type">Carte privilège</div></div><div class="fid-logo">🪶</div></div>
 <div class="fid-card-mid"><div class="fid-barcode" id="fid-bc-0"><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:28px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:22px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:33px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:28px"></div><div class="fid-bar" style="height:38px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:22px"></div><div class="fid-bar" style="height:36px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:27px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:32px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:24px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:29px"></div></div></div>
 <div class="fid-card-bottom"><div><div class="fid-pts-label">Points accumulés</div><div class="fid-points">1 250 pts</div></div><div class="fid-num">•••• 4201</div></div>
+<button class="fid-customize-btn" onclick="event.stopPropagation();fidOpenColorPicker(0)">🎨</button>
 </div>
 </div>
 <div class="fid-card fid-card-bloom" id="fid-card-1" onclick="fidTap(1)" ondblclick="fidOpenPay(1)">
@@ -6669,6 +6685,7 @@ MODULES PROFIL
 <div class="fid-card-top"><div><div class="fid-brand">Bloom Nails</div><div class="fid-type">Fidélité</div></div><div class="fid-logo">💅</div></div>
 <div class="fid-card-mid"><div class="fid-barcode" id="fid-bc-1"><div class="fid-bar" style="height:38px"></div><div class="fid-bar" style="height:24px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:30px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:20px"></div><div class="fid-bar" style="height:36px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:28px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:22px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:34px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:26px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:31px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:23px"></div><div class="fid-bar" style="height:40px"></div></div></div>
 <div class="fid-card-bottom"><div><div class="fid-pts-label">Poses effectuées</div><div class="fid-points">★★★★☆ 8/10</div></div><div class="fid-num">•••• 8872</div></div>
+<button class="fid-customize-btn" onclick="event.stopPropagation();fidOpenColorPicker(1)">🎨</button>
 </div>
 </div>
 <div class="fid-card fid-card-nina" id="fid-card-2" onclick="fidTap(2)" ondblclick="fidOpenPay(2)">
@@ -6676,6 +6693,7 @@ MODULES PROFIL
 <div class="fid-card-top"><div><div class="fid-brand">Nina Cils</div><div class="fid-type">Fidélité</div></div><div class="fid-logo">👁️</div></div>
 <div class="fid-card-mid"><div class="fid-barcode" id="fid-bc-2"><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:26px"></div><div class="fid-bar" style="height:38px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:22px"></div><div class="fid-bar" style="height:35px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:28px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:21px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:30px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:24px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:36px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:27px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:32px"></div></div></div>
 <div class="fid-card-bottom"><div><div class="fid-pts-label">Séances</div><div class="fid-points">★★★☆☆ 3/5</div></div><div class="fid-num">•••• 3341</div></div>
+<button class="fid-customize-btn" onclick="event.stopPropagation();fidOpenColorPicker(2)">🎨</button>
 </div>
 </div>
 <div class="fid-card fid-card-karima" id="fid-card-3" onclick="fidTap(3)" ondblclick="fidOpenPay(3)">
@@ -6683,6 +6701,7 @@ MODULES PROFIL
 <div class="fid-card-top"><div><div class="fid-brand">Karima Hair</div><div class="fid-type">Fidélité</div></div><div class="fid-logo">💇</div></div>
 <div class="fid-card-mid"><div class="fid-barcode" id="fid-bc-3"><div class="fid-bar" style="height:36px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:24px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:29px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:20px"></div><div class="fid-bar" style="height:38px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:26px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:33px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:22px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:28px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:35px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:25px"></div></div></div>
 <div class="fid-card-bottom"><div><div class="fid-pts-label">Passages</div><div class="fid-points">★★☆☆☆ 2/6</div></div><div class="fid-num">•••• 6610</div></div>
+<button class="fid-customize-btn" onclick="event.stopPropagation();fidOpenColorPicker(3)">🎨</button>
 </div>
 </div>
 <div class="fid-card fid-card-leila" id="fid-card-4" onclick="fidTap(4)" ondblclick="fidOpenPay(4)">
@@ -6690,10 +6709,12 @@ MODULES PROFIL
 <div class="fid-card-top"><div><div class="fid-brand">Leila Bien-être</div><div class="fid-type">Fidélité</div></div><div class="fid-logo">🌿</div></div>
 <div class="fid-card-mid"><div class="fid-barcode" id="fid-bc-4"><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:22px"></div><div class="fid-bar" style="height:38px"></div><div class="fid-bar" style="height:30px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:26px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:34px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:20px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:28px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:36px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:24px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:32px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:27px"></div></div></div>
 <div class="fid-card-bottom"><div><div class="fid-pts-label">Massages</div><div class="fid-points">★★★★★ 5/5</div></div><div class="fid-num">•••• 9902</div></div>
+<button class="fid-customize-btn" onclick="event.stopPropagation();fidOpenColorPicker(4)">🎨</button>
 </div>
 </div>
 </div>
 <div class="fid-tip" id="fid-tip">Appuie pour voir · Double-tape pour utiliser</div>
+<div class="fid-color-panel" id="fid-color-panel"></div>
 </div>
 </div>
 </div>
@@ -11908,7 +11929,7 @@ stack.style.height=(FID_CARDS*FID_COLLAPSED+FID_HEIGHT-FID_COLLAPSED+30)+'px';
 if(tip) tip.textContent='Appuie pour voir \u00b7 Double-tape pour utiliser';
 }
 }
-window.fidTap=function(idx){fidExpanded=(fidExpanded===idx)?null:idx;fidLayout(true);};
+window.fidTap=function(idx){fidExpanded=(fidExpanded===idx)?null:idx;fidCloseColorPicker();fidLayout(true);};
 window.fidOpenPay=function(idx){
 fidCurrentPay=idx;
 var src=document.getElementById('fid-card-'+idx);
@@ -11931,8 +11952,33 @@ if(fs) fs.classList.add('on');
 setTimeout(function(){window.fidClosePay();},2200);
 };
 window.fidClosePay=function(){document.getElementById('fid-pay-overlay').classList.remove('on');};
-fidLayout(false);
-document.addEventListener('DOMContentLoaded',function(){fidLayout(false);});
+var FID_GRADIENTS=[{name:'Nuit',c:['#1a1a2e','#16213e','#0f3460']},{name:'Rose gold',c:['#f7c5d0','#e8a0b0','#c96b8a']},{name:'Teal SEAVEN',c:['#2BA8C8','#7BC67E','#D4C45A']},{name:'Violet',c:['#a87dc8','#6b3fa0','#3d1f6b']},{name:'Doré',c:['#f5d020','#f5a623','#c97b10']},{name:'Émeraude',c:['#0f4c3a','#1a7a5e','#2bac85']},{name:'Corail',c:['#ff6b6b','#ee5a24','#c0392b']},{name:'Acier',c:['#485563','#29323c','#1a1a2e']},{name:'Blush',c:['#ffecd2','#fcb69f','#e8638c']},{name:'Minuit',c:['#0f0c29','#302b63','#24243e']},{name:'Sakura',c:['#f9c5d1','#ffeef8','#c5a3d1']},{name:'Océan',c:['#1a6b8a','#2196f3','#4fc3f7']},{name:'Forêt',c:['#1a2a1a','#2d4a1e','#4a7c3f']},{name:'Feu',c:['#f7971e','#ffd200','#ff4e50']},{name:'Noir mat',c:['#1a1a1a','#2d2d2d','#3d3d3d']},{name:'Blanc ivoire',c:['#f5f0e8','#ede8dc','#d4cfc4']}];
+var FID_CUSTOM_COLORS={};var fidColorPickerIdx=null;
+function fidSaveColors(){try{localStorage.setItem('seaven-fid-colors',JSON.stringify(FID_CUSTOM_COLORS));}catch(e){}}
+function fidLoadColors(){try{var s=localStorage.getItem('seaven-fid-colors');if(s)FID_CUSTOM_COLORS=JSON.parse(s);}catch(e){}for(var i=0;i<FID_CARDS;i++)fidApplyColor(i);}
+function fidApplyColor(idx){var card=document.getElementById('fid-card-'+idx);if(!card)return;var cc=FID_CUSTOM_COLORS[idx];if(!cc){card.style.background='';card.classList.remove('fid-text-dark');return;}if(cc.gradient)card.style.background=cc.gradient;else card.style.background='';if(cc.textColor==='dark')card.classList.add('fid-text-dark');else card.classList.remove('fid-text-dark');}
+window.fidOpenColorPicker=function(idx){fidColorPickerIdx=idx;var panel=document.getElementById('fid-color-panel');if(!panel)return;var cc=FID_CUSTOM_COLORS[idx]||{};var dir=cc.direction||'135deg';var tc=cc.textColor||'light';var name=FID_NAMES[idx]||'Carte';
+var html='<div class="fid-color-panel-title">\ud83c\udfa8 Personnaliser \u00b7 '+name+'</div>';
+html+='<div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:8px;">Palettes</div><div class="fid-cp-grid">';
+for(var i=0;i<FID_GRADIENTS.length;i++){var g=FID_GRADIENTS[i];html+='<div class="fid-cp-swatch" style="background:linear-gradient(135deg,'+g.c.join(',')+')" onclick="fidSetGradient('+idx+','+i+')" title="'+g.name+'"></div>';}
+html+='</div>';
+html+='<div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:8px;">Couleur personnalis\u00e9e</div>';
+html+='<div style="margin-bottom:16px;"><label style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:10px;background:rgba(255,255,255,.1);cursor:pointer;font-size:12px;font-weight:700;color:white;"><span>+ Couleur unie</span><input type="color" value="'+(cc.solidColor||'#ff69b4')+'" onchange="fidSetSolidColor('+idx+',this.value)" style="width:24px;height:24px;border:none;padding:0;cursor:pointer;border-radius:4px;"></label></div>';
+html+='<div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:8px;">Direction du gradient</div><div class="fid-cp-dir-row">';
+var dirs=[{l:'\u2198',d:'135deg'},{l:'\u2193',d:'180deg'},{l:'\u2192',d:'90deg'},{l:'\u2197',d:'45deg'}];for(var d=0;d<dirs.length;d++){html+='<div class="fid-cp-dir-btn '+(dir===dirs[d].d?'on':'')+'" onclick="fidSetDirection('+idx+',\''+dirs[d].d+'\')">'+dirs[d].l+'</div>';}html+='</div>';
+html+='<div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:8px;">Couleur du texte</div><div class="fid-cp-text-row">';
+html+='<div class="fid-cp-text-btn '+(tc==='light'?'on':'')+'" style="color:white;" onclick="fidSetTextColor('+idx+',\'light\')">\u2b1c Clair</div>';
+html+='<div class="fid-cp-text-btn '+(tc==='dark'?'on':'')+'" style="color:#333;" onclick="fidSetTextColor('+idx+',\'dark\')">\u2b1b Sombre</div></div>';
+html+='<div class="fid-cp-actions"><div class="fid-cp-btn" style="background:rgba(255,255,255,.15);color:white;" onclick="fidResetColor('+idx+')">R\u00e9initialiser</div><div class="fid-cp-btn" style="background:rgba(255,255,255,.1);color:rgba(255,255,255,.6);" onclick="fidCloseColorPicker()">Fermer</div></div>';
+panel.innerHTML=html;panel.classList.add('on');};
+window.fidCloseColorPicker=function(){fidColorPickerIdx=null;var p=document.getElementById('fid-color-panel');if(p){p.classList.remove('on');p.innerHTML='';}};
+window.fidSetGradient=function(idx,gIdx){var g=FID_GRADIENTS[gIdx];if(!g)return;if(!FID_CUSTOM_COLORS[idx])FID_CUSTOM_COLORS[idx]={};var dir=FID_CUSTOM_COLORS[idx].direction||'135deg';FID_CUSTOM_COLORS[idx].gradient='linear-gradient('+dir+','+g.c.join(',')+')';FID_CUSTOM_COLORS[idx].colors=g.c;delete FID_CUSTOM_COLORS[idx].solidColor;fidApplyColor(idx);fidSaveColors();};
+window.fidSetSolidColor=function(idx,color){if(!FID_CUSTOM_COLORS[idx])FID_CUSTOM_COLORS[idx]={};FID_CUSTOM_COLORS[idx].gradient=color;FID_CUSTOM_COLORS[idx].solidColor=color;delete FID_CUSTOM_COLORS[idx].colors;fidApplyColor(idx);fidSaveColors();};
+window.fidSetDirection=function(idx,deg){if(!FID_CUSTOM_COLORS[idx])FID_CUSTOM_COLORS[idx]={};FID_CUSTOM_COLORS[idx].direction=deg;var cc=FID_CUSTOM_COLORS[idx];if(cc.colors){cc.gradient='linear-gradient('+deg+','+cc.colors.join(',')+')';fidApplyColor(idx);}fidSaveColors();if(fidColorPickerIdx===idx)fidOpenColorPicker(idx);};
+window.fidSetTextColor=function(idx,mode){if(!FID_CUSTOM_COLORS[idx])FID_CUSTOM_COLORS[idx]={};FID_CUSTOM_COLORS[idx].textColor=mode;fidApplyColor(idx);fidSaveColors();if(fidColorPickerIdx===idx)fidOpenColorPicker(idx);};
+window.fidResetColor=function(idx){delete FID_CUSTOM_COLORS[idx];fidApplyColor(idx);fidSaveColors();if(fidColorPickerIdx===idx)fidOpenColorPicker(idx);};
+fidLoadColors();fidLayout(false);
+document.addEventListener('DOMContentLoaded',function(){fidLoadColors();fidLayout(false);});
 })();
 </script>
 
