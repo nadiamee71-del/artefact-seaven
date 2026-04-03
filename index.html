@@ -2298,7 +2298,7 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
 .prev-strass-grid{display:flex;gap:8px;flex-wrap:wrap;}
 .prev-strass-item{width:36px;height:36px;border-radius:10px;background:var(--light);border:1.5px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;transition:all .15s;}
 .prev-strass-item.on{border-color:var(--black);background:var(--bg);}
-.prev-thumb-sel{display:flex;gap:8px;padding:8px 16px 0;overflow-x:auto;flex-shrink:0;}
+.prev-thumb-sel{display:flex;gap:8px;padding:8px 16px 0;flex-shrink:0;}
 .prev-thumb-sel::-webkit-scrollbar{display:none;}
 .prev-thumb{width:36px;height:48px;border-radius:10px;background:var(--light);border:2px solid var(--border);cursor:pointer;flex-shrink:0;transition:all .15s;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:4px;gap:2px;}
 .prev-thumb.on{border-color:var(--black);}
@@ -11321,7 +11321,7 @@ function encSelU(el){el.closest('.unit-toggle').querySelectorAll('.ut-btn').forE
 (function(){
 var PV={
 mode:'2d',feat:'ongles',featAR:'coiffure',
-skin:'#F5C2CF',nailColor:'#F5C2CF',shape:'amande',length:50,
+skin:'#F5C2CF',nailColor:'#F5C2CF',shape:'amande',length:2,
 tool:null,design:'French',fingerColors:{},fingerDesigns:{},selectedFinger:null,
 strassType:'💎',strassColor:'#FFD700',activePiercings:{},placesVal:3,
 arOptions:{coiffure:{couleur:'#3D2B1F'},barbe:{},cils:{},sourcils:{}},
@@ -11411,12 +11411,14 @@ var PVNAILS=[
 ];
 function buildHandSVG(){
 var sk=PV.skin;
+var lScale=[0.75,1,1.25,1.5][PV.length-1]||1;
 var svg='<svg class="prev-hand-svg" viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg">';
 
 var defs='<defs>';
 defs+='<linearGradient id="pvBB" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#EDD5C5"/><stop offset=".55" stop-color="#F5E8DF"/><stop offset="1" stop-color="#FFF"/></linearGradient>';
 PVNAILS.forEach(function(n){
-defs+='<clipPath id="pvC'+n.id+'"><ellipse cx="'+n.cx+'" cy="'+n.cy+'" rx="'+n.rx+'" ry="'+n.ry+'"/></clipPath>';
+var sry=n.ry*lScale,scy=n.cy-(sry-n.ry);
+defs+='<clipPath id="pvC'+n.id+'"><ellipse cx="'+n.cx+'" cy="'+scy+'" rx="'+n.rx+'" ry="'+sry+'"/></clipPath>';
 defs+='<linearGradient id="pvDG'+n.id+'" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="'+nc(n.id)+'"/><stop offset="1" stop-color="#FFF"/></linearGradient>';
 });
 defs+='</defs>';
@@ -11438,35 +11440,36 @@ svg+='<circle cx="191" cy="150" r="3.5" fill="rgba(0,0,0,.05)"/>';
 PVNAILS.forEach(function(n){
 var col=nc(n.id);
 var design=PV.fingerDesigns[n.id]||PV.design;
-svg+='<g style="cursor:pointer" onclick="prevOpenFinger(\''+n.id+'\',\''+n.lbl+'\')">';
-svg+='<ellipse cx="'+n.cx+'" cy="'+n.cy+'" rx="'+n.rx+'" ry="'+n.ry+'" fill="'+col+'" stroke="rgba(0,0,0,.15)" stroke-width="1"/>';
-svg+='<ellipse cx="'+n.cx+'" cy="'+(n.cy+n.ry-3)+'" rx="'+(n.rx*.82)+'" ry="'+(n.ry*.28)+'" fill="rgba(255,255,255,.25)" clip-path="url(#pvC'+n.id+')"/>';
-svg+='<ellipse cx="'+(n.cx-n.rx*.3)+'" cy="'+(n.cy-n.ry*.3)+'" rx="'+(n.rx*.38)+'" ry="'+(n.ry*.35)+'" fill="rgba(255,255,255,.45)" clip-path="url(#pvC'+n.id+')"/>';
+var sry=n.ry*lScale,scy=n.cy-(sry-n.ry);
+svg+='<g class="prev-nail-g" style="cursor:pointer" onclick="prevOpenFinger(\''+n.id+'\',\''+n.lbl+'\')">';
+svg+='<ellipse cx="'+n.cx+'" cy="'+scy+'" rx="'+n.rx+'" ry="'+sry+'" fill="'+col+'" stroke="rgba(0,0,0,.15)" stroke-width="1"/>';
+svg+='<ellipse cx="'+n.cx+'" cy="'+(scy+sry-3)+'" rx="'+(n.rx*.82)+'" ry="'+(sry*.28)+'" fill="rgba(255,255,255,.25)" clip-path="url(#pvC'+n.id+')"/>';
+svg+='<ellipse cx="'+(n.cx-n.rx*.3)+'" cy="'+(scy-sry*.3)+'" rx="'+(n.rx*.38)+'" ry="'+(sry*.35)+'" fill="rgba(255,255,255,.45)" clip-path="url(#pvC'+n.id+')"/>';
 if(design==='French'){
-svg+='<path d="M'+(n.cx-n.rx)+' '+(n.cy-n.ry*.35)+' Q'+n.cx+' '+(n.cy-n.ry*.1)+' '+(n.cx+n.rx)+' '+(n.cy-n.ry*.35)+' L'+(n.cx+n.rx)+' '+(n.cy-n.ry-2)+' L'+(n.cx-n.rx)+' '+(n.cy-n.ry-2)+' Z" fill="#FFF" clip-path="url(#pvC'+n.id+')"/>';
-svg+='<path d="M'+(n.cx-n.rx)+' '+(n.cy-n.ry*.35)+' Q'+n.cx+' '+(n.cy-n.ry*.1)+' '+(n.cx+n.rx)+' '+(n.cy-n.ry*.35)+'" fill="none" stroke="#E8D0C0" stroke-width=".7" opacity=".5" clip-path="url(#pvC'+n.id+')"/>';
+svg+='<path d="M'+(n.cx-n.rx)+' '+(scy-sry*.35)+' Q'+n.cx+' '+(scy-sry*.1)+' '+(n.cx+n.rx)+' '+(scy-sry*.35)+' L'+(n.cx+n.rx)+' '+(scy-sry-2)+' L'+(n.cx-n.rx)+' '+(scy-sry-2)+' Z" fill="#FFF" clip-path="url(#pvC'+n.id+')"/>';
+svg+='<path d="M'+(n.cx-n.rx)+' '+(scy-sry*.35)+' Q'+n.cx+' '+(scy-sry*.1)+' '+(n.cx+n.rx)+' '+(scy-sry*.35)+'" fill="none" stroke="#E8D0C0" stroke-width=".7" opacity=".5" clip-path="url(#pvC'+n.id+')"/>';
 }
 if(design==='Baby boo.'){
-svg+='<rect x="'+(n.cx-n.rx)+'" y="'+(n.cy-n.ry)+'" width="'+(n.rx*2)+'" height="'+(n.ry*2)+'" fill="url(#pvBB)" clip-path="url(#pvC'+n.id+')"/>';
+svg+='<rect x="'+(n.cx-n.rx)+'" y="'+(scy-sry)+'" width="'+(n.rx*2)+'" height="'+(sry*2)+'" fill="url(#pvBB)" clip-path="url(#pvC'+n.id+')"/>';
 }
 if(design==='Dégradé'){
-svg+='<rect x="'+(n.cx-n.rx)+'" y="'+(n.cy-n.ry)+'" width="'+(n.rx*2)+'" height="'+(n.ry*2)+'" fill="url(#pvDG'+n.id+')" clip-path="url(#pvC'+n.id+')"/>';
+svg+='<rect x="'+(n.cx-n.rx)+'" y="'+(scy-sry)+'" width="'+(n.rx*2)+'" height="'+(sry*2)+'" fill="url(#pvDG'+n.id+')" clip-path="url(#pvC'+n.id+')"/>';
 }
 if(design==='Géo.'){
-svg+='<path d="M'+(n.cx-n.rx)+' '+(n.cy)+' L'+n.cx+' '+(n.cy-n.ry)+' L'+(n.cx+n.rx)+' '+n.cy+' Z" fill="'+col+'" opacity=".7" clip-path="url(#pvC'+n.id+')"/>';
+svg+='<path d="M'+(n.cx-n.rx)+' '+(scy)+' L'+n.cx+' '+(scy-sry)+' L'+(n.cx+n.rx)+' '+scy+' Z" fill="'+col+'" opacity=".7" clip-path="url(#pvC'+n.id+')"/>';
 }
 if(design==='Glitter'){
 var seed=n.id.charCodeAt(0);
 for(var g=0;g<15;g++){
   var gx=n.cx+(Math.sin(seed+g*7.3)*n.rx*.7),
-      gy=n.cy-(Math.abs(Math.cos(seed+g*4.7))*n.ry*.8),
+      gy=scy-(Math.abs(Math.cos(seed+g*4.7))*sry*.8),
       gr=0.6+Math.abs(Math.sin(seed+g*3.1)),
       go=0.35+Math.abs(Math.cos(seed+g*5.9))*.5;
   svg+='<circle cx="'+gx.toFixed(1)+'" cy="'+gy.toFixed(1)+'" r="'+gr.toFixed(1)+'" fill="#FFD700" opacity="'+go.toFixed(2)+'" clip-path="url(#pvC'+n.id+')"/>';
 }
 }
 if(design==='Floral'){
-var fx=n.cx-n.rx*.15,fy=n.cy-n.ry*.3;
+var fx=n.cx-n.rx*.15,fy=scy-sry*.3;
 for(var fp=0;fp<5;fp++){
   var fa=fp*72*Math.PI/180;
   svg+='<ellipse cx="'+(fx+Math.sin(fa)*2.5).toFixed(1)+'" cy="'+(fy-Math.cos(fa)*2.5).toFixed(1)+'" rx="1.5" ry="2.5" fill="#FFB6C1" opacity=".7" transform="rotate('+(fp*72)+' '+(fx+Math.sin(fa)*2.5).toFixed(1)+' '+(fy-Math.cos(fa)*2.5).toFixed(1)+')" clip-path="url(#pvC'+n.id+')"/>';
@@ -11493,10 +11496,15 @@ b.innerHTML='<div class="prev-hand-canvas"><div class="prev-skin-picker"><span c
 +'<div class="prev-thumb-sel">'+thumbsHTML+'</div>'
 +'<div class="prev-toolbar"><div class="prev-tool '+(PV.tool==='brush'?'active-rose':'')+'" onclick="prevSetTool(\'brush\')"><div class="prev-tool-ic">🖌️</div>Dessin</div><div class="prev-tool '+(PV.tool==='text'?'active-violet':'')+'" onclick="prevSetTool(\'text\')"><div class="prev-tool-ic">🔤</div>Texte</div><div class="prev-tool '+(PV.tool==='shape3d'?'active-bleu':'')+'" onclick="prevSetTool(\'shape3d\')"><div class="prev-tool-ic">⭐</div>Forme 3D</div><div class="prev-tool '+(PV.tool==='strass'?'active-vert':'')+'" onclick="prevSetTool(\'strass\')"><div class="prev-tool-ic">💎</div>Strass</div><div class="prev-tool '+(PV.tool==='import'?'on':'')+'" onclick="prevSetTool(\'import\')"><div class="prev-tool-ic">🖼️</div>Import</div></div>'
 +'<div class="prev-sec-lbl">Couleur de l\'ongle</div><div class="prev-panel"><div class="prev-color-grid">'+colorsHTML+'</div></div>'
-+'<div class="prev-sec-lbl">Forme & Longueur</div><div class="prev-panel"><div class="prev-shape-row" style="margin-bottom:10px">'+shapesHTML+'</div><div class="prev-slider-row"><div class="prev-slider-lbl">Longueur</div><input type="range" min="10" max="100" value="'+PV.length+'" oninput="prevSetLength(this.value)" style="accent-color:var(--black)"><div class="prev-slider-val" id="prev-len-val">'+PV.length+'</div></div></div>'
++'<div class="prev-sec-lbl">Forme & Longueur</div><div class="prev-panel"><div class="prev-shape-row" style="margin-bottom:10px">'+shapesHTML+'</div><div class="prev-slider-row"><div class="prev-slider-lbl">Longueur</div><input type="range" min="1" max="4" step="1" value="'+PV.length+'" onchange="prevSetLength(this.value)" oninput="document.getElementById(\'prev-len-val\').textContent=[\'S\',\'M\',\'L\',\'XL\'][this.value-1]" style="accent-color:var(--black)"><div class="prev-slider-val" id="prev-len-val">'+(['S','M','L','XL'][PV.length-1])+'</div></div><div style="display:flex;justify-content:space-between;padding:0 52px 0 62px;margin-top:-2px;"><span style="font-size:9px;color:var(--gray);font-weight:700;">S</span><span style="font-size:9px;color:var(--gray);font-weight:700;">M</span><span style="font-size:9px;color:var(--gray);font-weight:700;">L</span><span style="font-size:9px;color:var(--gray);font-weight:700;">XL</span></div></div>'
 +'<div class="prev-sec-lbl">Designs préfaits</div><div class="prev-panel" style="padding:10px"><div class="prev-design-grid">'+designsHTML+'</div></div>'
 +toolExtra
 +'<div style="height:10px"></div><div class="prev-bottom-bar"><button class="prev-btn-save" onclick="prevOpenSave()">💾 Sauvegarder le design</button><button class="prev-btn-share" onclick="prevShareDesign()">📤</button></div>';
+b.querySelectorAll('.prev-nail-g').forEach(function(g,i){g.addEventListener('click',function(){prevOpenFinger(PVNAILS[i].id,PVNAILS[i].lbl);});});
+b.querySelectorAll('.prev-thumb').forEach(function(t,i){t.addEventListener('click',function(){prevOpenFinger(PV.FINGERS[i].id,PV.FINGERS[i].lbl);});});
+b.querySelectorAll('.prev-design-item').forEach(function(d,i){d.addEventListener('click',function(){prevSetDesign(PV.DESIGNS[i]);});});
+b.querySelectorAll('.prev-col-dot:not(.custom)').forEach(function(d,i){if(i<PV.NAIL_COLORS.length)d.addEventListener('click',function(){prevSetNailColor(PV.NAIL_COLORS[i]);});});
+b.querySelectorAll('.prev-shape-row .prev-shape-btn').forEach(function(s,i){s.addEventListener('click',function(){prevSetShape(PV.SHAPES[i]);});});
 }
 /* SVG CARTOON ASSETS — BOUCHE — viewBox 0 0 280 130 — elements: tooth-top-1..8, tooth-bot-1..6 */
 function renderStrass(){
@@ -11763,7 +11771,7 @@ PV.featAR=feat;renderAR(feat);
 window.prevSetSkin=function(c){PV.skin=c;renderOngles();};
 window.prevSetNailColor=function(c){PV.nailColor=c;renderOngles();};
 window.prevSetShape=function(s){PV.shape=s.toLowerCase();renderOngles();};
-window.prevSetLength=function(v){PV.length=parseInt(v);var el=document.getElementById('prev-len-val');if(el)el.textContent=v;};
+window.prevSetLength=function(v){PV.length=parseInt(v);var el=document.getElementById('prev-len-val');if(el)el.textContent=['S','M','L','XL'][PV.length-1]||v;renderOngles();};
 window.prevSetTool=function(t){PV.tool=PV.tool===t?null:t;renderOngles();};
 window.prevSetDesign=function(d){PV.design=d;renderOngles();};
 window.prevOpenFinger=function(id,lbl){
