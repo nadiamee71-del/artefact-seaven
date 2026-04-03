@@ -11570,8 +11570,8 @@ var b=document.getElementById('prev-body');if(!b)return;
 if(!PV.bijouColor)PV.bijouColor='#FFD700';
 if(!PV.bijouSize)PV.bijouSize=8;
 if(!PV.bijouType)PV.bijouType='○';
-if(!PV.activePiercings)PV.activePiercings={};
-var bjColors=['#FFD700','#C0C0C0','#FFB6C1','#B87333','#fff','#1A1A1A'];
+if(!PV.activePiercings)PV.activePiercings={};if(PV.selectedPiercing===undefined)PV.selectedPiercing=null;
+var bjColors=['#FFD700','#C0C0C0','#FFB6C1','#B87333','#fff','#1A1A1A','#2ECC71','#FF8C00','#8B4513','#800020','#FF6B6B','#DDA0DD','#00CED1','#8B8B00'];
 var sk=PV.skin;
 function zoneCircle(id,cx,cy,r,isGold){
 var stroke=isGold?'#FFD700':'rgba(45,45,45,.2)';var sw=isGold?'2.5':'1.5';
@@ -11626,16 +11626,17 @@ b.innerHTML='<div class="prev-skin-picker" style="padding:10px 16px 0"><span cla
 +'<div class="prev-sec-lbl">Type de bijou</div><div class="prev-panel"><div class="prev-strass-grid"><div class="prev-strass-item '+(PV.bijouType==='○'?'on':'')+'" onclick="prevSelBijou(this)">○</div><div class="prev-strass-item '+(PV.bijouType==='◉'?'on':'')+'" onclick="prevSelBijou(this)">◉</div><div class="prev-strass-item '+(PV.bijouType==='💎'?'on':'')+'" onclick="prevSelBijou(this)">💎</div><div class="prev-strass-item '+(PV.bijouType==='⭐'?'on':'')+'" onclick="prevSelBijou(this)">⭐</div><div class="prev-strass-item '+(PV.bijouType==='❤️'?'on':'')+'" onclick="prevSelBijou(this)">❤️</div><div class="prev-strass-item '+(PV.bijouType==='🔮'?'on':'')+'" onclick="prevSelBijou(this)">🔮</div></div></div>'
 +'<div class="prev-sec-lbl">Couleur du bijou</div><div class="prev-panel"><div class="prev-color-grid">'+bjColors.map(function(c){return '<div class="prev-col-dot '+(PV.bijouColor===c?'on':'')+'" style="background:'+c+';'+(c==='#fff'?'border:1.5px solid #E5E5EA':'')+'" onclick="prevSetPColor(\''+c+'\')"></div>';}).join('')+'</div></div>'
 +'<div class="prev-sec-lbl">Taille</div><div class="prev-panel"><div class="prev-slider-row"><div class="prev-slider-lbl">Taille</div><input type="range" min="4" max="16" value="'+PV.bijouSize+'" oninput="this.nextElementSibling.textContent=this.value;prevSetBijouSize(this.value)" style="accent-color:#A87DC8"><div class="prev-slider-val">'+PV.bijouSize+'</div></div></div>'
++'<div id="prev-piercing-hint" style="text-align:center;font-size:11px;color:#8E8E93;font-weight:600;padding:8px 16px;display:none;">Sélectionne une zone pour appliquer ce style</div>'
 +'<div style="height:10px"></div><div class="prev-bottom-bar"><button class="prev-btn-save" onclick="prevOpenSave()">💾 Sauvegarder</button><button class="prev-btn-share" onclick="prevShareDesign()">📤</button></div>';
 b.querySelectorAll('[onclick*="prevSetPView"]').forEach(function(el){var m=el.getAttribute('onclick').match(/prevSetPView\('([^']+)'\)/);if(m){var v=m[1];el.addEventListener('click',function(){prevSetPView(v);});}});
-prevUpdateAllPiercings();
+prevUpdateAllPiercings();if(PV.selectedPiercing)prevShowSelIndicator(PV.selectedPiercing);
 }
 var PIERCING_POS={'lobe-l':{cx:74,cy:152},'lobe-r':{cx:206,cy:152},'tragus-l':{cx:62,cy:108},'tragus-r':{cx:218,cy:108},'helix-l':{cx:42,cy:60},'helix-r':{cx:238,cy:60},'antihelix-l':{cx:55,cy:80},'antihelix-r':{cx:225,cy:80},'conch-l':{cx:68,cy:95},'conch-r':{cx:212,cy:95},'nose-left':{cx:75,cy:145},'nose-right':{cx:205,cy:145},'nose-septum':{cx:140,cy:158},'nose-bridge':{cx:140,cy:50}};
 function prevDrawPiercing(id){
 var pos=PIERCING_POS[id];if(!pos)return;
 var g=document.getElementById('placed-piercings');if(!g)return;
 var existing=document.getElementById('piercing-'+id);if(existing)existing.remove();
-var ns='http://www.w3.org/2000/svg';var bc=PV.bijouColor;var sz=PV.bijouSize;
+var ns='http://www.w3.org/2000/svg';var zd=PV.activePiercings[id];var bc=(zd&&zd.color)?zd.color:PV.bijouColor;var sz=(zd&&zd.size)?zd.size:PV.bijouSize;
 var grp=document.createElementNS(ns,'g');grp.setAttribute('id','piercing-'+id);grp.setAttribute('style','cursor:pointer');
 grp.addEventListener('click',function(e){e.stopPropagation();prevTogglePiercing(id);});
 if(id==='nose-septum'){
@@ -11653,7 +11654,7 @@ var br2=document.createElementNS(ns,'circle');br2.setAttribute('cx',cx2+hw);br2.
 var rl2=document.createElementNS(ns,'circle');rl2.setAttribute('cx',cx2-hw-1);rl2.setAttribute('cy',cy2-1);rl2.setAttribute('r',sz*0.17);rl2.setAttribute('fill','white');rl2.setAttribute('opacity','0.6');grp.appendChild(rl2);
 var rr2=document.createElementNS(ns,'circle');rr2.setAttribute('cx',cx2+hw-1);rr2.setAttribute('cy',cy2-1);rr2.setAttribute('r',sz*0.17);rr2.setAttribute('fill','white');rr2.setAttribute('opacity','0.6');grp.appendChild(rr2);
 }else{
-var bt=PV.bijouType;var px=pos.cx;var py=pos.cy;
+var bt=(zd&&zd.type)?zd.type:PV.bijouType;var px=pos.cx;var py=pos.cy;
 var sh=document.createElementNS(ns,'circle');sh.setAttribute('cx',px+1);sh.setAttribute('cy',py+1);sh.setAttribute('r',sz+0.5);sh.setAttribute('fill','rgba(0,0,0,0.15)');grp.appendChild(sh);
 if(bt==='◉'){
 var o=document.createElementNS(ns,'circle');o.setAttribute('cx',px);o.setAttribute('cy',py);o.setAttribute('r',sz);o.setAttribute('fill',bc);grp.appendChild(o);
@@ -11694,6 +11695,19 @@ for(var id in PV.activePiercings){if(!PV.activePiercings[id])continue;
 var isNoseId=(id.indexOf('nose-')===0);
 if((isNose&&isNoseId)||(!isNose&&!isNoseId)){prevRemovePiercing(id);prevDrawPiercing(id);}}
 }
+function prevApplyToSelected(){
+if(PV.selectedPiercing&&PV.activePiercings[PV.selectedPiercing]){
+PV.activePiercings[PV.selectedPiercing]={type:PV.bijouType,color:PV.bijouColor,size:PV.bijouSize};
+prevRemovePiercing(PV.selectedPiercing);prevDrawPiercing(PV.selectedPiercing);prevShowSelIndicator(PV.selectedPiercing);
+}else{var h=document.getElementById('prev-piercing-hint');if(h)h.style.display='block';}
+}
+function prevShowSelIndicator(id){prevHideSelIndicator();var pos=PIERCING_POS[id];if(!pos)return;
+var g=document.getElementById('placed-piercings');if(!g)return;
+var ns='http://www.w3.org/2000/svg';var zd=PV.activePiercings[id];var sz=(zd&&zd.size)?zd.size:PV.bijouSize;
+var ring=document.createElementNS(ns,'circle');ring.setAttribute('id','piercing-sel-ring');ring.setAttribute('cx',pos.cx);ring.setAttribute('cy',pos.cy);ring.setAttribute('r',sz+3);ring.setAttribute('fill','none');ring.setAttribute('stroke','#FFD700');ring.setAttribute('stroke-width','2');ring.setAttribute('opacity','0.85');ring.setAttribute('stroke-dasharray','4 2');
+g.appendChild(ring);
+}
+function prevHideSelIndicator(){var r=document.getElementById('piercing-sel-ring');if(r)r.remove();}
 var _prevDeepAR=null;
 var _prevARFacing='user';
 var _prevARFallback=false;
@@ -11928,14 +11942,20 @@ window.prevClearStrass=function(){var g=document.getElementById('prev-placed-str
 window.prevSelStrassType=function(el){document.querySelectorAll('#mod-previsualisation .prev-strass-item').forEach(function(s){s.classList.remove('on');});el.classList.add('on');PV.strassType=el.textContent;};
 window.prevSetStrassColor=function(el){document.querySelectorAll('#mod-previsualisation .prev-col-dot').forEach(function(d){d.classList.remove('on');});el.classList.add('on');};
 window.prevTogglePiercing=function(id){
-if(PV.activePiercings[id]){PV.activePiercings[id]=false;prevRemovePiercing(id);}
-else{PV.activePiercings[id]=true;prevDrawPiercing(id);}
+var ap=PV.activePiercings[id];
+if(ap&&typeof ap==='object'){
+if(PV.selectedPiercing===id){delete PV.activePiercings[id];PV.selectedPiercing=null;prevRemovePiercing(id);prevHideSelIndicator();}
+else{prevHideSelIndicator();PV.selectedPiercing=id;PV.activePiercings[id]={type:PV.bijouType,color:PV.bijouColor,size:PV.bijouSize};prevRemovePiercing(id);prevDrawPiercing(id);prevShowSelIndicator(id);}
+}else{
+prevHideSelIndicator();PV.activePiercings[id]={type:PV.bijouType,color:PV.bijouColor,size:PV.bijouSize};PV.selectedPiercing=id;prevDrawPiercing(id);prevShowSelIndicator(id);
+}
+var h=document.getElementById('prev-piercing-hint');if(h)h.style.display='none';
 };
 window.prevSelPZone=function(el){document.querySelectorAll('#mod-previsualisation .prev-shape-btn').forEach(function(b){b.classList.remove('on');});el.classList.add('on');};
-window.prevSelBijou=function(el){document.querySelectorAll('#mod-previsualisation .prev-strass-item').forEach(function(s){s.classList.remove('on');});el.classList.add('on');PV.bijouType=el.textContent;prevUpdateAllPiercings();};
-window.prevSetPColor=function(c){PV.bijouColor=c;var body=document.getElementById('prev-body');if(body){body.querySelectorAll('.prev-col-dot').forEach(function(d){d.classList.remove('on');});var m=body.querySelector('.prev-col-dot[onclick*="\''+c+'\'"]');if(m)m.classList.add('on');}prevUpdateAllPiercings();};
+window.prevSelBijou=function(el){document.querySelectorAll('#mod-previsualisation .prev-strass-item').forEach(function(s){s.classList.remove('on');});el.classList.add('on');PV.bijouType=el.textContent;prevApplyToSelected();};
+window.prevSetPColor=function(c){PV.bijouColor=c;var body=document.getElementById('prev-body');if(body){body.querySelectorAll('.prev-col-dot').forEach(function(d){d.classList.remove('on');});var m=body.querySelector('.prev-col-dot[onclick*="\''+c+'\'"]');if(m)m.classList.add('on');}prevApplyToSelected();};
 window.prevSetPView=function(v){PV.piercingView=v;renderPiercings();};
-window.prevSetBijouSize=function(v){PV.bijouSize=parseInt(v);prevUpdateAllPiercings();};
+window.prevSetBijouSize=function(v){PV.bijouSize=parseInt(v);prevApplyToSelected();};
 window.prevSetARColor=function(feat,c){PV.arOptions[feat]={couleur:c};renderAR(feat);};
 window.prevSelARStyle=function(el){document.querySelectorAll('#mod-previsualisation .prev-shape-btn').forEach(function(b){b.classList.remove('on');});el.classList.add('on');};
 window.prevARCapture=function(){alert('📸 Capture avant/après sauvegardée !');};
