@@ -181,7 +181,7 @@ function fidUpdateWcardFrontDots(el,c){
 }
 function fidPatchStampVisuals(cid){
   const c=cartes.find(x=>x.id===cid);if(!c)return;
-  if(expanded===cid){
+  if(expanded!==null&&expanded!==undefined&&Number(expanded)===Number(cid)){
     const el=document.getElementById('wc'+cid);
     if(el){
       const th=THEMES.find(t=>t.id===c.theme), acc=th.acc;
