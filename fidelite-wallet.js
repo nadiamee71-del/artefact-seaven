@@ -177,15 +177,7 @@ function fidClearStampColor(cid){
 }
 function fidUpdateWcardFrontDots(el,c){
   const dots=el.querySelector('.w-dots');if(!dots)return;
-  const filled=userMode==='cliente'?c.stC:Math.max(...c.clientes.map(cl=>cl.stamps),0);
-  const dotsTotal=userMode==='cliente'?c.total:Math.min(c.total,8);
-  const dotsFilled=userMode==='cliente'?filled:c.clientes.filter(cl=>cl.stamps>=c.total).length;
-  let h='';
-  for(let d=0;d<dotsTotal;d++){
-    const fill=d<dotsFilled;
-    h+=`<div class="wdot${fill?'':' e'}"${fill&&c.stampColor?` style="background:${c.stampColor};border:1px solid rgba(255,255,255,.25)"`:''}></div>`;
-  }
-  dots.innerHTML=h;
+  dots.innerHTML=fidWalletDotsHtml(c);
 }
 function fidPatchStampVisuals(cid){
   const c=cartes.find(x=>x.id===cid);if(!c)return;
@@ -263,6 +255,24 @@ function fidClose(){
 const PEEK=80, CH=110, MARGIN=12;
 let expanded=null;
 
+/** Mini-points recto carte : cliente = stC ; pro = max tampons parmi les clientes (aperçu parité cliente) + contour stampColor sur vides si défini. */
+function fidWalletDotsHtml(c){
+  const filledCliente=c.stC;
+  const filledPro=!c.clientes||!c.clientes.length?0:Math.max(...c.clientes.map(cl=>cl.stamps));
+  const filled=userMode==='cliente'?filledCliente:filledPro;
+  const dotsTotal=userMode==='cliente'?c.total:Math.min(c.total,8);
+  const dotsFilled=userMode==='cliente'?filled:Math.min(filled,dotsTotal);
+  let h='';
+  for(let d=0;d<dotsTotal;d++){
+    const isFill=d<dotsFilled;
+    let extra='';
+    if(isFill&&c.stampColor) extra=` style="background:${c.stampColor};border:1px solid rgba(255,255,255,.25)"`;
+    else if(!isFill&&userMode==='pro'&&c.stampColor) extra=` style="background:transparent;border:1.5px dashed ${c.stampColor}"`;
+    h+=`<div class="wdot${isFill?'':' e'}"${extra}></div>`;
+  }
+  return h;
+}
+
 function buildWallet(){
   const vp=document.getElementById('walletVP');
   vp.innerHTML='';
@@ -272,16 +282,10 @@ function buildWallet(){
     const rgb=hexRgb(acc);
     const ava=`rgba(${rgb},.18)`, avb=`rgba(${rgb},.35)`;
 
-    const filled   = userMode==='cliente' ? c.stC : Math.max(...c.clientes.map(cl=>cl.stamps),0);
+    const filled   = userMode==='cliente' ? c.stC : (!c.clientes||!c.clientes.length?0:Math.max(...c.clientes.map(cl=>cl.stamps)));
     const complete = userMode==='cliente' ? filled>=c.total : false;
 
-    let dots='';
-    const dotsTotal = userMode==='cliente' ? c.total : Math.min(c.total,8);
-    const dotsFilled= userMode==='cliente' ? filled  : c.clientes.filter(cl=>cl.stamps>=c.total).length;
-    for(let d=0;d<dotsTotal;d++){
-      const fill=d<dotsFilled;
-      dots+=`<div class="wdot${fill?'':' e'}"${fill&&c.stampColor?` style="background:${c.stampColor};border:1px solid rgba(255,255,255,.25)"`:''}></div>`;
-    }
+    const dots=fidWalletDotsHtml(c);
 
     const statTxt = userMode==='cliente'
       ? (complete?'🎉 Carte complète !':filled+' / '+c.total+' · Plus que '+(c.total-filled)+' !')
