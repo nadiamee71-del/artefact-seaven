@@ -376,6 +376,16 @@ function buildBackCliente(c, th, acc, ava, avb){
   </div>`;
 }
 
+function fidProSgridEmptyHtml(c){
+  let h='';
+  for(let i=0;i<c.total;i++){
+    const st=c.stampColor
+      ?`width:36px;height:36px;border:2px dashed ${c.stampColor};background:rgba(255,255,255,.04)`
+      :'width:36px;height:36px;border-color:rgba(255,255,255,.15)';
+    h+=`<div class="st" style="${st}"></div>`;
+  }
+  return h;
+}
 function buildBackPro(c, th, acc, ava, avb){
   const rp=c.rewardPct!=null?c.rewardPct:fidParsePct(c.pct);
   const rewardBlk=`<div class="cfg-row col" style="padding-top:2px">
@@ -388,7 +398,7 @@ function buildBackPro(c, th, acc, ava, avb){
       <span style="color:#fff;font-weight:700">%</span>
     </div>
   </div>`;
-  let sg=''; for(let i=0;i<c.total;i++) sg+='<div class="st" style="width:36px;height:36px;border-color:rgba(255,255,255,.15)"></div>';
+  const sg=fidProSgridEmptyHtml(c);
   let lignes='';
   c.clientes.forEach(cl=>{
     const comp=cl.stamps>=c.total, pp=Math.round(cl.stamps/c.total*100);
@@ -500,7 +510,7 @@ function proTampons(cid,d){
   c.total=Math.max(3,Math.min(20,c.total+d));
   const sc=document.getElementById('sc'+cid);if(sc)sc.textContent=c.total;
   const sg=document.getElementById('sg'+cid);
-  if(sg){let h='';for(let i=0;i<c.total;i++)h+='<div class="st" style="width:36px;height:36px;border-color:rgba(255,255,255,.15)"></div>';sg.innerHTML=h;}
+  if(sg) sg.innerHTML=fidProSgridEmptyHtml(c);
   showToast('✅ '+c.total+' tampons'); renderDots();
 }
 let fIds={cid:null,clid:null};
