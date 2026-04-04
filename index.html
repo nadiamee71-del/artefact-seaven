@@ -966,6 +966,7 @@ label.config-title{display:block;cursor:default;}
 /* ══ PROFILS ══ */
 .prof-module{position:absolute;top:0;left:0;right:0;bottom:var(--dock-h);width:100%;display:flex;flex-direction:column;background:var(--bg);overflow:hidden;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:65;box-sizing:border-box;will-change:transform;-webkit-backface-visibility:hidden;backface-visibility:hidden;}
 .prof-module.on{transform:translateX(0);pointer-events:all;}
+#mod-reglages.prof-module.on{z-index:410;}
 .pnav{display:flex;align-items:center;justify-content:space-between;padding:10px 20px 6px;flex-shrink:0;}
 .pnav-back{font-size:15px;color:var(--black);font-weight:600;cursor:pointer;display:flex;align-items:center;gap:4px;}
 .pnav-title{font-size:18px;font-weight:800;color:var(--black);}
@@ -1057,6 +1058,8 @@ body.dark-mode #mod-reglages{background:var(--bg)!important;}
 #mod-reglages .reg-wallpaper-color-input{width:40px;height:32px;padding:0;border:none;border-radius:8px;cursor:pointer;background:transparent;flex-shrink:0;-webkit-appearance:none;appearance:none;}
 #mod-reglages .reg-wallpaper-color-input::-webkit-color-swatch-wrapper{padding:2px;}
 #mod-reglages .reg-wallpaper-color-input::-webkit-color-swatch{border:1px solid var(--border);border-radius:6px;}
+#mod-reglages .reg-wallpaper-file-input{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;opacity:0;}
+#mod-reglages label.row{cursor:pointer;}
 #mod-reglages .ic-purple{background:#F5EDFF;}#mod-reglages .ic-pink{background:#FFF0F4;}#mod-reglages .ic-blue{background:#EDF5FF;}
 #mod-reglages .ic-orange{background:#FFF3E0;}#mod-reglages .ic-green{background:#F0FAF4;}#mod-reglages .ic-red{background:#FFF0F0;}
 #mod-reglages .ic-teal{background:#F0FAFA;}#mod-reglages .ic-grey{background:#EBEBF0;}#mod-reglages .ic-yellow{background:#FFFBE0;}#mod-reglages .ic-dark{background:#F0F0F5;}
@@ -3887,17 +3890,17 @@ MODULES PROFIL
 <div style="padding:8px 18px 2px;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;">Fond d'écran</div>
 <div class="section">
 <div class="section-block">
-<div class="row" style="cursor:default;" onclick="event.stopPropagation();">
+<div class="row" style="cursor:pointer;" onclick="event.stopPropagation();wallpaperOpenColorPicker(this);">
 <div class="icon ic-blue">🎨</div>
 <div class="row-text"><div class="row-label">Couleur unie</div><div class="row-sub">Arrière-plan du cadre téléphone</div></div>
 <input type="color" class="reg-wallpaper-color-input" value="#F2F2F7" title="Couleur unie" aria-label="Couleur du fond d'écran" oninput="wallpaperSetSolidColor(this.value)"/>
 </div>
-<div class="row" onclick="event.stopPropagation();document.getElementById('reg-wallpaper-file').click();">
+<label class="row" for="reg-wallpaper-file" onclick="event.stopPropagation();">
 <div class="icon ic-purple">🖼️</div>
 <div class="row-text"><div class="row-label">Photo</div><div class="row-sub">Importer depuis l'appareil</div></div>
 <div class="chev">›</div>
-</div>
-<input type="file" id="reg-wallpaper-file" accept="image/*" style="display:none!important;" onchange="wallpaperOnFileSelect(this)"/>
+</label>
+<input type="file" id="reg-wallpaper-file" class="reg-wallpaper-file-input" accept="image/*" onchange="wallpaperOnFileSelect(this)"/>
 <div class="row" onclick="event.stopPropagation();wallpaperReset();">
 <div class="icon ic-grey">↩️</div>
 <div class="row-text"><div class="row-label">Réinitialiser le fond</div><div class="row-sub">Couleur et photo par défaut</div></div>
@@ -4074,16 +4077,16 @@ MODULES PROFIL
 <div style="padding:8px 18px 2px;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;">Fond d'écran</div>
 <div class="section">
 <div class="section-block">
-<div class="row" style="cursor:default;" onclick="event.stopPropagation();">
+<div class="row" style="cursor:pointer;" onclick="event.stopPropagation();wallpaperOpenColorPicker(this);">
 <div class="icon ic-blue">🎨</div>
 <div class="row-text"><div class="row-label">Couleur unie</div><div class="row-sub">Arrière-plan du cadre téléphone</div></div>
 <input type="color" class="reg-wallpaper-color-input" value="#F2F2F7" title="Couleur unie" aria-label="Couleur du fond d'écran" oninput="wallpaperSetSolidColor(this.value)"/>
 </div>
-<div class="row" onclick="event.stopPropagation();document.getElementById('reg-wallpaper-file').click();">
+<label class="row" for="reg-wallpaper-file" onclick="event.stopPropagation();">
 <div class="icon ic-purple">🖼️</div>
 <div class="row-text"><div class="row-label">Photo</div><div class="row-sub">Importer depuis l'appareil</div></div>
 <div class="chev">›</div>
-</div>
+</label>
 <div class="row" onclick="event.stopPropagation();wallpaperReset();">
 <div class="icon ic-grey">↩️</div>
 <div class="row-text"><div class="row-label">Réinitialiser le fond</div><div class="row-sub">Couleur et photo par défaut</div></div>
@@ -7977,6 +7980,14 @@ function applyPhoneWallpaper(){
   p.style.backgroundPosition='';
   p.style.backgroundRepeat='';
   p.style.backgroundColor='';
+}
+function wallpaperOpenColorPicker(row){
+  var i=row&&row.querySelector&&row.querySelector('input.reg-wallpaper-color-input');
+  if(!i)return;
+  if(typeof i.showPicker==='function'){
+    try{ i.showPicker(); return; }catch(e){}
+  }
+  i.click();
 }
 function wallpaperSyncColorInput(){
   var col=localStorage.getItem('seaven-wallpaper-color');
