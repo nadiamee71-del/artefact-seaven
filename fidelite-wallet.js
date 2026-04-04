@@ -325,7 +325,7 @@ function buildWallet(){
 
   if(userMode==='pro'){
     const btn=document.createElement('button');
-    btn.style.cssText=`position:absolute;left:12px;right:12px;bottom:${MARGIN+(cartes.length)*PEEK-30}px;padding:13px;border-radius:14px;border:1.5px solid rgba(255,255,255,.2);background:rgba(255,255,255,.07);color:rgba(255,255,255,.8);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;z-index:1;transition:opacity .2s;`;
+    btn.style.cssText=`position:absolute;left:12px;right:12px;bottom:${MARGIN+(cartes.length)*PEEK-30}px;padding:13px;border-radius:14px;border:1.5px solid rgba(255,255,255,.2);background:rgba(255,255,255,.07);color:rgba(255,255,255,.8);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;z-index:500;transition:opacity .2s;`;
     btn.textContent='➕  Créer une nouvelle carte fidélité';
     btn.onclick=()=>openCreate();
     vp.appendChild(btn);
@@ -443,6 +443,7 @@ function buildBackPro(c, th, acc, ava, avb){
         ${lignes}
         <button class="add-cli-btn" onclick="event.stopPropagation();openStampModal(${c.id})">➕ Valider un tampon / ajouter une cliente</button>
       </div>
+      <button type="button" class="fid-del-card" onclick="event.stopPropagation();fidDeleteCard(${c.id})">Supprimer cette carte</button>
     </div>
   </div>`;
 }
@@ -508,6 +509,23 @@ function utiliserCliente(cid){
   closeCard(cid); setTimeout(()=>buildWallet(),500);
 }
 
+function fidDeleteCard(cid){
+  if(userMode!=='pro')return;
+  if(!confirm('Supprimer cette carte fidélité ? Cette action est définitive.'))return;
+  const idx=cartes.findIndex(x=>Number(x.id)===Number(cid));
+  if(idx<0)return;
+  if(fIds.cid!=null&&Number(fIds.cid)===Number(cid)){closeFiche();fIds={cid:null,clid:null};}
+  if(mCid!=null&&Number(mCid)===Number(cid)){closeOverlay('mStamp');mCid=null;mSelId=null;mAddOpen=false;}
+  if(expanded!=null&&Number(expanded)===Number(cid)){
+    expanded=null;
+    const h=document.getElementById('fidHsub');if(h)h.textContent='Touche une carte pour la déployer';
+  }
+  cartes.splice(idx,1);
+  fidSaveCardBgs();
+  buildWallet();
+  renderDots();
+  showToast('Carte supprimée');
+}
 function proTampons(cid,d){
   if(userMode!=='pro') return;
   const c=cartes.find(x=>x.id===cid);
