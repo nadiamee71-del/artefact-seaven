@@ -1054,6 +1054,9 @@ body.dark-mode #mod-reglages{background:var(--bg)!important;}
 #mod-reglages .disconnect{margin:0 16px 10px;background:var(--bg);border-radius:16px;overflow:hidden;border:1px solid var(--border);}
 #mod-reglages .disconnect .row{justify-content:center;}
 #mod-reglages .disconnect .row-label{color:#FF3B30;text-align:center;font-weight:700;}
+#mod-reglages .reg-wallpaper-color-input{width:40px;height:32px;padding:0;border:none;border-radius:8px;cursor:pointer;background:transparent;flex-shrink:0;-webkit-appearance:none;appearance:none;}
+#mod-reglages .reg-wallpaper-color-input::-webkit-color-swatch-wrapper{padding:2px;}
+#mod-reglages .reg-wallpaper-color-input::-webkit-color-swatch{border:1px solid var(--border);border-radius:6px;}
 #mod-reglages .ic-purple{background:#F5EDFF;}#mod-reglages .ic-pink{background:#FFF0F4;}#mod-reglages .ic-blue{background:#EDF5FF;}
 #mod-reglages .ic-orange{background:#FFF3E0;}#mod-reglages .ic-green{background:#F0FAF4;}#mod-reglages .ic-red{background:#FFF0F0;}
 #mod-reglages .ic-teal{background:#F0FAFA;}#mod-reglages .ic-grey{background:#EBEBF0;}#mod-reglages .ic-yellow{background:#FFFBE0;}#mod-reglages .ic-dark{background:#F0F0F5;}
@@ -3878,6 +3881,26 @@ MODULES PROFIL
 </div>
 <div class="reg-profile-bubble" data-profile="add" onclick="alert('Créer un nouveau profil →')">
 <div class="rpb-add">＋</div>
+</div>
+</div>
+</div>
+<div style="padding:8px 18px 2px;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;">Fond d'écran</div>
+<div class="section">
+<div class="section-block">
+<div class="row" style="cursor:default;" onclick="event.stopPropagation();">
+<div class="icon ic-blue">🎨</div>
+<div class="row-text"><div class="row-label">Couleur unie</div><div class="row-sub">Arrière-plan du cadre téléphone</div></div>
+<input type="color" id="reg-wallpaper-color" class="reg-wallpaper-color-input" value="#F2F2F7" title="Couleur unie" aria-label="Couleur du fond d'écran" oninput="wallpaperSetSolidColor(this.value)"/>
+</div>
+<div class="row" onclick="event.stopPropagation();document.getElementById('reg-wallpaper-file').click();">
+<div class="icon ic-purple">🖼️</div>
+<div class="row-text"><div class="row-label">Photo</div><div class="row-sub">Importer depuis l'appareil</div></div>
+<div class="chev">›</div>
+</div>
+<input type="file" id="reg-wallpaper-file" accept="image/*" style="display:none!important;" onchange="wallpaperOnFileSelect(this)"/>
+<div class="row" onclick="event.stopPropagation();wallpaperReset();">
+<div class="icon ic-grey">↩️</div>
+<div class="row-text"><div class="row-label">Réinitialiser le fond</div><div class="row-sub">Couleur et photo par défaut</div></div>
 </div>
 </div>
 </div>
@@ -7907,6 +7930,70 @@ function toggleTheme(el){
   localStorage.setItem('seaven-theme',dark?'dark':'light');
 }
 applyTheme(localStorage.getItem('seaven-theme')||'light');
+
+function applyPhoneWallpaper(){
+  var p=document.querySelector('.phone');
+  if(!p)return;
+  var img=localStorage.getItem('seaven-wallpaper-image');
+  var col=localStorage.getItem('seaven-wallpaper-color');
+  if(img&&img.length>32){
+    p.style.backgroundImage='url('+JSON.stringify(img)+')';
+    p.style.backgroundSize='cover';
+    p.style.backgroundPosition='center';
+    p.style.backgroundRepeat='no-repeat';
+    p.style.backgroundColor='';
+    return;
+  }
+  if(col&&/^#[0-9A-Fa-f]{6}$/.test(col)){
+    p.style.backgroundImage='';
+    p.style.backgroundSize='';
+    p.style.backgroundPosition='';
+    p.style.backgroundRepeat='';
+    p.style.backgroundColor=col;
+    return;
+  }
+  p.style.backgroundImage='';
+  p.style.backgroundSize='';
+  p.style.backgroundPosition='';
+  p.style.backgroundRepeat='';
+  p.style.backgroundColor='';
+}
+function wallpaperSyncColorInput(){
+  var inp=document.getElementById('reg-wallpaper-color');
+  if(!inp)return;
+  var col=localStorage.getItem('seaven-wallpaper-color');
+  if(col&&/^#[0-9A-Fa-f]{6}$/.test(col)) inp.value=col;
+}
+function wallpaperSetSolidColor(hex){
+  if(!hex||!/^#[0-9A-Fa-f]{6}$/.test(hex)) return;
+  localStorage.removeItem('seaven-wallpaper-image');
+  localStorage.setItem('seaven-wallpaper-color',hex);
+  applyPhoneWallpaper();
+}
+function wallpaperOnFileSelect(input){
+  var f=input&&input.files&&input.files[0];
+  if(!f||!f.type||f.type.indexOf('image/')!==0){ if(input) input.value=''; return; }
+  var r=new FileReader();
+  r.onload=function(){
+    try{
+      localStorage.removeItem('seaven-wallpaper-color');
+      localStorage.setItem('seaven-wallpaper-image',r.result);
+      applyPhoneWallpaper();
+    }catch(e){ console.warn('wallpaper storage',e); }
+    if(input) input.value='';
+  };
+  r.onerror=function(){ if(input) input.value=''; };
+  r.readAsDataURL(f);
+}
+function wallpaperReset(){
+  localStorage.removeItem('seaven-wallpaper-image');
+  localStorage.removeItem('seaven-wallpaper-color');
+  applyPhoneWallpaper();
+  var inp=document.getElementById('reg-wallpaper-color');
+  if(inp) inp.value='#F2F2F7';
+}
+applyPhoneWallpaper();
+wallpaperSyncColorInput();
 
 var _langs=['Français','English','Español','العربية','Deutsch','Italiano','Português'];
 var _langIdx=0;
