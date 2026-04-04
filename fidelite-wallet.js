@@ -44,8 +44,21 @@ function setMode(m){
   document.getElementById('ftSub').textContent=
     m==='pro'?'Gérer mes cartes fidélité':'Mes cartes tampons';
   renderDots();
+  const pal=document.getElementById('fidPalette');
+  if(pal) pal.style.display=m==='pro'?'flex':'none';
+  if(m!=='pro'){
+    try{closeCreate();}catch(e){}
+    const fc=document.getElementById('fidCreate');
+    if(fc) fc.classList.remove('open');
+    const st=document.getElementById('mStamp');
+    if(st) st.classList.remove('show');
+    const fi=document.getElementById('fidFiche');
+    if(fi) fi.classList.remove('open');
+    if(expanded!==null&&expanded!==undefined){ try{closeCard(expanded,false);}catch(e){} }
+  }
 }
 function setColor(el){
+  if(userMode!=='pro') return;
   document.documentElement.style.setProperty('--fid',el.dataset.c);
   document.querySelectorAll('.psw').forEach(s=>s.classList.remove('on'));
   el.classList.add('on');
@@ -290,6 +303,7 @@ function utiliserCliente(cid){
 }
 
 function proTampons(cid,d){
+  if(userMode!=='pro') return;
   const c=cartes.find(x=>x.id===cid);
   c.total=Math.max(3,Math.min(20,c.total+d));
   const sc=document.getElementById('sc'+cid);if(sc)sc.textContent=c.total;
@@ -298,6 +312,7 @@ function proTampons(cid,d){
   showToast('✅ '+c.total+' tampons'); renderDots();
 }
 function proSetPct(cid,pct,btn){
+  if(userMode!=='pro') return;
   const c=cartes.find(x=>x.id===cid);c.pct=pct;
   document.querySelectorAll('#pp'+cid+' .pp').forEach(p=>p.classList.remove('on'));
   btn.classList.add('on'); showToast('✅ Récompense : '+pct);
@@ -305,6 +320,7 @@ function proSetPct(cid,pct,btn){
 
 let fIds={cid:null,clid:null};
 function openFiche(cid,clid){
+  if(userMode!=='pro') return;
   fIds={cid,clid};
   const c=cartes.find(x=>x.id===cid), cl=c.clientes.find(x=>x.id===clid);
   document.getElementById('ficheNom').textContent=cl.prenom+' '+cl.nom;
@@ -382,6 +398,7 @@ function onRdvEncaisse(clienteId){
 
 let mCid=null,mSelId=null,mAddOpen=false;
 function openStampModal(cid){
+  if(userMode!=='pro') return;
   mCid=cid;mSelId=null;mAddOpen=false;
   document.getElementById('mSearch').value='';
   document.getElementById('mAddForm').style.display='none';
@@ -428,7 +445,10 @@ function mConfirm(){
 
 let crStep=1,crD={nom:'',desc:'',tampons:8,pct:'−10%',theme:'th-dark',clientes:[]};
 const CR_LABELS=['Nom de la carte','Tampons & récompense','Thème de la carte','Vos clientes','Récapitulatif'];
-function openCreate(){crReset();document.getElementById('fidCreate').classList.add('open');crShow(1);}
+function openCreate(){
+  if(userMode!=='pro') return;
+  crReset();document.getElementById('fidCreate').classList.add('open');crShow(1);
+}
 function closeCreate(){document.getElementById('fidCreate').classList.remove('open');}
 function crReset(){
   crStep=1;crD={nom:'',desc:'',tampons:8,pct:'−10%',theme:'th-dark',clientes:[]};
@@ -439,6 +459,7 @@ function crReset(){
 function crGoBack(){if(crStep>1)crShow(crStep-1);else closeCreate();}
 function crGoNext(){if(crStep<5)crShow(crStep+1);else crPublish();}
 function crShow(n){
+  if(userMode!=='pro') return;
   crStep=n;
   document.getElementById('crH1').textContent=CR_LABELS[n-1];
   document.getElementById('crCnt').textContent=n+' / 5';
@@ -553,6 +574,7 @@ function crRecap(){
     <div class="cr-rrow"><span class="cr-rl">Validation</span><span class="cr-rv">Automatique à chaque RDV encaissé ✓</span></div>`;
 }
 function crPublish(){
+  if(userMode!=='pro') return;
   const th=THEMES.find(t=>t.id===crD.theme);
   const inits=crD.nom.split(' ').filter(w=>w).map(w=>w[0]).join('').toUpperCase().slice(0,2);
   const sel=POOL.filter(c=>crD.clientes.includes(c.id));

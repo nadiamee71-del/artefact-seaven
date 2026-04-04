@@ -6663,7 +6663,7 @@ MODULES PROFIL
 
 <div class="module" id="mod-promos">
 <div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-promos')">‹</div><div class="mod-title">Promotions</div><div class="mod-action" onclick="openSearchPageAuto()">🔍</div></div>
-<div class="mod-tabs"><div class="mod-tab on" onclick="modTab(this,'mp-prest')">Prestations</div><div class="mod-tab" onclick="modTab(this,'mp-bout')">Boutiques</div><div class="mod-tab" onclick="modTab(this,'mf-fidelite')">Fidélité 🪶</div></div>
+<div class="mod-tabs"><div class="mod-tab on" onclick="modTab(this,'mp-prest')">Prestations</div><div class="mod-tab" onclick="modTab(this,'mp-bout')">Boutiques</div></div>
 <div class="mod-filters"><div class="fchip on" onclick="togChip(this)">Tout</div><div class="fchip" onclick="togChip(this)">Ongles</div><div class="fchip" onclick="togChip(this)">Cils</div><div class="fchip" onclick="togChip(this)">Coiffure</div><div class="fchip" onclick="togChip(this)">Aujourd'hui</div><div class="fchip" onclick="togChip(this)">Cette semaine</div></div>
 <div class="mod-scroll">
 <div id="mp-prest">
@@ -6675,52 +6675,6 @@ MODULES PROFIL
 <div id="mp-bout" style="display:none">
 <div class="promo-card"><div class="promo-avatar">💅</div><div style="flex:1;min-width:0;"><div class="promo-name">Bloom Nails</div><div class="promo-meta">Sassa · Nice</div><div><span class="promo-badge">−20% sur tout</span></div><div class="promo-dates">Du 25 au 30 mars 2026</div><div class="promo-actions"><button type="button" class="promo-res" onclick="goReserve()">Réserver →</button></div></div></div>
 <div class="promo-card"><div class="promo-avatar">🌿</div><div style="flex:1;min-width:0;"><div class="promo-name">Leila Bien-être</div><div class="promo-meta">Leila · Masseuse · Nice</div><div><span class="promo-badge">−10% sur tout</span></div><div class="promo-dates">Tout le mois d'avril</div><div class="promo-actions"><button type="button" class="promo-res" onclick="goReserve()">Réserver →</button></div></div></div>
-</div>
-<div id="mf-fidelite" style="display:none;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:100px;">
-<div class="fid-stack-container" id="fid-stack">
-<div class="fid-card fid-card-seaven" id="fid-card-0" onclick="fidTap(0)" ondblclick="fidOpenPay(0)">
-<div class="fid-card-inner">
-<div class="fid-card-top"><div><div class="fid-brand">SEAVEN</div><div class="fid-type">Carte privilège</div></div><div class="fid-logo">🪶</div></div>
-<div class="fid-card-mid"><div class="fid-barcode" id="fid-bc-0"><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:28px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:22px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:33px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:28px"></div><div class="fid-bar" style="height:38px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:22px"></div><div class="fid-bar" style="height:36px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:27px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:32px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:24px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:29px"></div></div></div>
-<div class="fid-card-bottom"><div><div class="fid-pts-label">Points accumulés</div><div class="fid-points">1 250 pts</div></div><div class="fid-num">•••• 4201</div></div>
-<button class="fid-customize-btn" onclick="event.stopPropagation();fidOpenColorPicker(0)">🎨</button>
-</div>
-</div>
-<div class="fid-card fid-card-bloom" id="fid-card-1" onclick="fidTap(1)" ondblclick="fidOpenPay(1)">
-<div class="fid-card-inner">
-<div class="fid-card-top"><div><div class="fid-brand">Bloom Nails</div><div class="fid-type">Fidélité</div></div><div class="fid-logo">💅</div></div>
-<div class="fid-card-mid"><div class="fid-barcode" id="fid-bc-1"><div class="fid-bar" style="height:38px"></div><div class="fid-bar" style="height:24px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:30px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:20px"></div><div class="fid-bar" style="height:36px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:28px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:22px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:34px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:26px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:31px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:23px"></div><div class="fid-bar" style="height:40px"></div></div></div>
-<div class="fid-card-bottom"><div><div class="fid-pts-label">Poses effectuées</div><div class="fid-points">★★★★☆ 8/10</div></div><div class="fid-num">•••• 8872</div></div>
-<button class="fid-customize-btn" onclick="event.stopPropagation();fidOpenColorPicker(1)">🎨</button>
-</div>
-</div>
-<div class="fid-card fid-card-nina" id="fid-card-2" onclick="fidTap(2)" ondblclick="fidOpenPay(2)">
-<div class="fid-card-inner">
-<div class="fid-card-top"><div><div class="fid-brand">Nina Cils</div><div class="fid-type">Fidélité</div></div><div class="fid-logo">👁️</div></div>
-<div class="fid-card-mid"><div class="fid-barcode" id="fid-bc-2"><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:26px"></div><div class="fid-bar" style="height:38px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:22px"></div><div class="fid-bar" style="height:35px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:28px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:21px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:30px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:24px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:36px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:27px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:32px"></div></div></div>
-<div class="fid-card-bottom"><div><div class="fid-pts-label">Séances</div><div class="fid-points">★★★☆☆ 3/5</div></div><div class="fid-num">•••• 3341</div></div>
-<button class="fid-customize-btn" onclick="event.stopPropagation();fidOpenColorPicker(2)">🎨</button>
-</div>
-</div>
-<div class="fid-card fid-card-karima" id="fid-card-3" onclick="fidTap(3)" ondblclick="fidOpenPay(3)">
-<div class="fid-card-inner">
-<div class="fid-card-top"><div><div class="fid-brand">Karima Hair</div><div class="fid-type">Fidélité</div></div><div class="fid-logo">💇</div></div>
-<div class="fid-card-mid"><div class="fid-barcode" id="fid-bc-3"><div class="fid-bar" style="height:36px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:24px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:29px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:20px"></div><div class="fid-bar" style="height:38px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:26px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:33px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:22px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:28px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:35px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:25px"></div></div></div>
-<div class="fid-card-bottom"><div><div class="fid-pts-label">Passages</div><div class="fid-points">★★☆☆☆ 2/6</div></div><div class="fid-num">•••• 6610</div></div>
-<button class="fid-customize-btn" onclick="event.stopPropagation();fidOpenColorPicker(3)">🎨</button>
-</div>
-</div>
-<div class="fid-card fid-card-leila" id="fid-card-4" onclick="fidTap(4)" ondblclick="fidOpenPay(4)">
-<div class="fid-card-inner">
-<div class="fid-card-top"><div><div class="fid-brand">Leila Bien-être</div><div class="fid-type">Fidélité</div></div><div class="fid-logo">🌿</div></div>
-<div class="fid-card-mid"><div class="fid-barcode" id="fid-bc-4"><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:22px"></div><div class="fid-bar" style="height:38px"></div><div class="fid-bar" style="height:30px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:26px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:34px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:20px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:28px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:36px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:24px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:32px"></div><div class="fid-bar" style="height:40px"></div><div class="fid-bar" style="height:27px"></div></div></div>
-<div class="fid-card-bottom"><div><div class="fid-pts-label">Massages</div><div class="fid-points">★★★★★ 5/5</div></div><div class="fid-num">•••• 9902</div></div>
-<button class="fid-customize-btn" onclick="event.stopPropagation();fidOpenColorPicker(4)">🎨</button>
-</div>
-</div>
-</div>
-<div class="fid-tip" id="fid-tip">Appuie pour voir · Double-tape pour utiliser</div>
-<div class="fid-color-panel" id="fid-color-panel"></div>
 </div>
 </div>
 </div>
@@ -10349,7 +10303,6 @@ const parent=document.getElementById(contentId)?.parentElement;
 if(parent)parent.querySelectorAll(':scope > div[id]').forEach(d=>d.style.display='none');
 const target=document.getElementById(contentId);
 if(target)target.style.display='block';
-var mod=el.closest('.module');if(mod&&mod.id==='mod-promos'){var f=mod.querySelector('.mod-filters');if(f)f.style.display=(contentId==='mf-fidelite')?'none':'';}
 }
 function togChip(el){el.classList.toggle('on');}
 let blCurrentFilter='toutes';
