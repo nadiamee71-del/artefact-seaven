@@ -49,19 +49,56 @@ const FID_CARD_PALETTE=[
   'linear-gradient(145deg,#E05280,#9a3060)',
   'linear-gradient(145deg,#1C1C1E,#3a3a3c)',
 ];
+const FID_STAMP_COLORS=['#7BC67E','#2BA8C8','#E05280','#D4C45A','#9B7EC8','#FF9800','#FFFFFF'];
+
+function fidParsePct(p){
+  if(p==null)return 10;
+  const m=String(p).match(/(\d+)/);
+  return m?Math.max(1,Math.min(100,parseInt(m[1],10))):10;
+}
+function fidRewardLabel(c){
+  const n=(typeof c.rewardPct==='number'&&!isNaN(c.rewardPct))?c.rewardPct:fidParsePct(c.pct);
+  return '−'+n+'%';
+}
+function fidEnsureRewardPct(c){
+  if(typeof c.rewardPct!=='number'||isNaN(c.rewardPct)) c.rewardPct=fidParsePct(c.pct);
+  c.pct=fidRewardLabel(c);
+}
+function fidStampStyleAttr(c,kind){
+  if(!c||!c.stampColor)return '';
+  const col=c.stampColor,rgb=hexRgb(col);
+  if(kind==='ok')return ` style="--stc:${col};--stb:${col};--stbg:rgba(${rgb},.22);--stglow:rgba(${rgb},.35)"`;
+  if(kind==='nxt')return ` style="--stc:${col};--stb:${col};--stnbg:rgba(${rgb},.12)"`;
+  return '';
+}
 
 function fidLoadCardBgs(){
   try{
     const s=localStorage.getItem(FID_STORE_KEY);
     if(!s)return;
     const o=JSON.parse(s);
-    cartes.forEach(c=>{ const v=o[String(c.id)]; if(typeof v==='string'&&v) c.cardBg=v; });
+    cartes.forEach(c=>{
+      const v=o[String(c.id)];
+      if(v==null)return;
+      if(typeof v==='string'){ if(v) c.cardBg=v; }
+      else if(typeof v==='object'&&v){
+        if(v.bg) c.cardBg=v.bg;
+        if(typeof v.stamp==='string'&&/^#([0-9A-Fa-f]{6})$/.test(v.stamp)) c.stampColor=v.stamp;
+      }
+    });
   }catch(e){}
 }
 function fidSaveCardBgs(){
   try{
     const o={};
-    cartes.forEach(c=>{ if(c.cardBg) o[String(c.id)]=c.cardBg; });
+    cartes.forEach(c=>{
+      const id=String(c.id);
+      const hasBg=!!c.cardBg, hasSt=!!c.stampColor;
+      if(!hasBg&&!hasSt)return;
+      if(hasBg&&hasSt) o[id]={bg:c.cardBg,stamp:c.stampColor};
+      else if(hasBg) o[id]=c.cardBg;
+      else o[id]={stamp:c.stampColor};
+    });
     localStorage.setItem(FID_STORE_KEY,JSON.stringify(o));
   }catch(e){}
 }
@@ -102,6 +139,86 @@ function fidClearCardColor(cid){
   document.querySelectorAll('#wc'+cid+' .fpal-sw').forEach(sw=>sw.classList.remove('on'));
 }
 
+function buildStampPaletteHtml(c){
+  const btns=FID_STAMP_COLORS.map(hex=>{
+    const on=c.stampColor===hex?' on':'';
+    const esc=(hex+'').replace(/"/g,'&quot;');
+    const bord=hex==='#FFFFFF'?'border:1px solid rgba(255,255,255,.35);':'';
+    return `<button type="button" class="fpal-sw fid-stamp-sw${on}" data-st="${esc}" onclick="event.stopPropagation();fidPickStampColor(${c.id},this)" style="background:${hex};${bord}" aria-label="Couleur tampon"></button>`;
+  }).join('');
+  return `<div class="cfg-row col" style="padding-top:6px">
+    <span class="cfg-lbl">Couleur des tampons</span>
+    <div class="fid-pal-row">${btns}</div>
+    <button type="button" class="fid-theme-def" onclick="event.stopPropagation();fidClearStampColor(${c.id})">Couleur tampon par défaut</button>
+  </div>`;
+}
+function fidPickStampColor(cid,btn){
+  const h=btn&&btn.getAttribute('data-st');
+  if(h) fidSetStampColor(cid,h);
+}
+function fidSetStampColor(cid,hex){
+  if(userMode!=='pro'||!/^#([0-9A-Fa-f]{6})$/.test(hex))return;
+  const c=cartes.find(x=>x.id===cid);if(!c)return;
+  c.stampColor=hex;
+  fidSaveCardBgs();
+  document.querySelectorAll('#wc'+cid+' .fid-stamp-sw').forEach(sw=>{
+    sw.classList.toggle('on', sw.getAttribute('data-st')===hex);
+  });
+  fidPatchStampVisuals(cid);
+  showToast('✅ Couleur des tampons mise à jour');
+}
+function fidClearStampColor(cid){
+  if(userMode!=='pro')return;
+  const c=cartes.find(x=>x.id===cid);if(!c)return;
+  delete c.stampColor;
+  fidSaveCardBgs();
+  document.querySelectorAll('#wc'+cid+' .fid-stamp-sw').forEach(sw=>sw.classList.remove('on'));
+  fidPatchStampVisuals(cid);
+}
+function fidUpdateWcardFrontDots(el,c){
+  const dots=el.querySelector('.w-dots');if(!dots)return;
+  const filled=userMode==='cliente'?c.stC:Math.max(...c.clientes.map(cl=>cl.stamps),0);
+  const dotsTotal=userMode==='cliente'?c.total:Math.min(c.total,8);
+  const dotsFilled=userMode==='cliente'?filled:c.clientes.filter(cl=>cl.stamps>=c.total).length;
+  let h='';
+  for(let d=0;d<dotsTotal;d++){
+    const fill=d<dotsFilled;
+    h+=`<div class="wdot${fill?'':' e'}"${fill&&c.stampColor?` style="background:${c.stampColor};border:1px solid rgba(255,255,255,.25)"`:''}></div>`;
+  }
+  dots.innerHTML=h;
+}
+function fidPatchStampVisuals(cid){
+  const c=cartes.find(x=>x.id===cid);if(!c)return;
+  if(expanded===cid){
+    const el=document.getElementById('wc'+cid);
+    if(el){
+      const th=THEMES.find(t=>t.id===c.theme), acc=th.acc;
+      const rgb=hexRgb(acc);
+      const ava=`rgba(${rgb},.18)`, avb=`rgba(${rgb},.35)`;
+      const back=userMode==='cliente'?buildBackCliente(c,th,acc,ava,avb):buildBackPro(c,th,acc,ava,avb);
+      const wb=el.querySelector('.wf-back');
+      if(wb) wb.innerHTML=back;
+      fidUpdateWcardFrontDots(el,c);
+    }
+  }
+  if(fIds.cid===cid && document.getElementById('fidFiche').classList.contains('open')){
+    try{ openFiche(fIds.cid,fIds.clid); }catch(e){}
+  }
+  renderDots();
+}
+function fidProRewardPct(cid,v){
+  if(userMode!=='pro')return;
+  const n=Math.max(1,Math.min(100,Math.round(Number(v)||10)));
+  const c=cartes.find(x=>x.id===cid);if(!c)return;
+  c.rewardPct=n;
+  c.pct=fidRewardLabel(c);
+  const r=document.getElementById('fidRng'+cid), nm=document.getElementById('fidNum'+cid);
+  if(r) r.value=n;
+  if(nm) nm.value=n;
+  const el=document.getElementById('wc'+cid);
+  if(el){ const bp=el.querySelector('.wf-front .bp'); if(bp) bp.textContent=c.pct; }
+}
+
 function setMode(m){
   userMode=m;
   const fts=document.getElementById('ftSub');
@@ -124,7 +241,11 @@ function renderDots(){
   const el=document.getElementById('ftDots');if(!el)return;
   if(userMode==='pro'){el.innerHTML='';return;}
   const c=cartes[0];if(!c)return;
-  let h='';for(let i=0;i<c.total;i++)h+=`<div class="fdt${i<c.stC?'':' e'}"></div>`;
+  let h='';
+  for(let i=0;i<c.total;i++){
+    const fill=i<c.stC;
+    h+=`<div class="fdt${fill?'':' e'}"${fill&&c.stampColor?` style="background:${c.stampColor}"`:''}></div>`;
+  }
   el.innerHTML=h;
 }
 
@@ -157,7 +278,10 @@ function buildWallet(){
     let dots='';
     const dotsTotal = userMode==='cliente' ? c.total : Math.min(c.total,8);
     const dotsFilled= userMode==='cliente' ? filled  : c.clientes.filter(cl=>cl.stamps>=c.total).length;
-    for(let d=0;d<dotsTotal;d++) dots+=`<div class="wdot${d<dotsFilled?'':' e'}"></div>`;
+    for(let d=0;d<dotsTotal;d++){
+      const fill=d<dotsFilled;
+      dots+=`<div class="wdot${fill?'':' e'}"${fill&&c.stampColor?` style="background:${c.stampColor};border:1px solid rgba(255,255,255,.25)"`:''}></div>`;
+    }
 
     const statTxt = userMode==='cliente'
       ? (complete?'🎉 Carte complète !':filled+' / '+c.total+' · Plus que '+(c.total-filled)+' !')
@@ -183,7 +307,7 @@ function buildWallet(){
           <div class="w-stat" style="color:${complete?acc:'rgba(255,255,255,.5)'}">${statTxt}</div>
         </div>
         <div class="w-badge" style="background:${ava}">
-          <div class="bp" style="color:${acc}">${c.pct}</div>
+          <div class="bp" style="color:${acc}">${fidRewardLabel(c)}</div>
           <div class="bl">${complete?'à utiliser !':'récompense'}</div>
         </div>
       </div>
@@ -208,8 +332,8 @@ function buildBackCliente(c, th, acc, ava, avb){
   const filled=c.stC, complete=filled>=c.total;
   let sg='';
   for(let s=0;s<c.total;s++){
-    if(s<filled)sg+='<div class="st ok"></div>';
-    else if(s===filled&&!complete)sg+='<div class="st nxt"></div>';
+    if(s<filled) sg+=`<div class="st ok"${fidStampStyleAttr(c,'ok')}></div>`;
+    else if(s===filled&&!complete) sg+=`<div class="st nxt"${fidStampStyleAttr(c,'nxt')}></div>`;
     else sg+='<div class="st"></div>';
   }
   const pct=Math.round(filled/c.total*100);
@@ -217,7 +341,7 @@ function buildBackCliente(c, th, acc, ava, avb){
     ?`<div class="rstrip" style="background:${acc}22;border:1px solid ${acc}44">
         <span style="font-size:22px">🎉</span>
         <div style="flex:1">
-          <div style="color:${acc};font-weight:700;font-size:14px">${c.pct} sur ton prochain RDV</div>
+          <div style="color:${acc};font-weight:700;font-size:14px">${fidRewardLabel(c)} sur ton prochain RDV</div>
           <div style="color:rgba(255,255,255,.4);font-size:12px">Chez ${c.nom}</div>
         </div>
         <button class="use-btn" style="background:${acc};color:${c.theme==='th-gold'?'#1C1C1E':'#fff'}"
@@ -226,7 +350,7 @@ function buildBackCliente(c, th, acc, ava, avb){
     :`<div class="rstrip" style="background:rgba(255,255,255,.07)">
         <span style="font-size:18px">🎁</span>
         <div>
-          <div style="color:${acc};font-weight:600;font-size:13px">Récompense : ${c.pct}</div>
+          <div style="color:${acc};font-weight:600;font-size:13px">Récompense : ${fidRewardLabel(c)}</div>
           <div style="color:rgba(255,255,255,.35);font-size:11px">Après ${c.total} tampons</div>
         </div>
       </div>`;
@@ -253,8 +377,17 @@ function buildBackCliente(c, th, acc, ava, avb){
 }
 
 function buildBackPro(c, th, acc, ava, avb){
-  const pcts=['−5%','−10%','−15%','−20%','🎁 Offert'];
-  const pills=pcts.map(p=>`<button class="pp${p===c.pct?' on':''}" onclick="event.stopPropagation();proSetPct(${c.id},'${p}',this)">${p}</button>`).join('');
+  const rp=c.rewardPct!=null?c.rewardPct:fidParsePct(c.pct);
+  const rewardBlk=`<div class="cfg-row col" style="padding-top:2px">
+    <span class="cfg-lbl">Récompense (réduction %)</span>
+    <input type="range" class="fid-pct-range" min="1" max="100" value="${rp}" id="fidRng${c.id}"
+      oninput="event.stopPropagation();fidProRewardPct(${c.id},this.value)"/>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:6px">
+      <input type="number" class="fid-pct-num" min="1" max="100" value="${rp}" id="fidNum${c.id}"
+        onchange="event.stopPropagation();fidProRewardPct(${c.id},this.value)"/>
+      <span style="color:#fff;font-weight:700">%</span>
+    </div>
+  </div>`;
   let sg=''; for(let i=0;i<c.total;i++) sg+='<div class="st" style="width:36px;height:36px;border-color:rgba(255,255,255,.15)"></div>';
   let lignes='';
   c.clientes.forEach(cl=>{
@@ -287,11 +420,9 @@ function buildBackPro(c, th, acc, ava, avb){
           <button class="smb" onclick="event.stopPropagation();proTampons(${c.id},1)">+</button>
         </div>
       </div>
-      <div class="cfg-row col">
-        <span class="cfg-lbl">Récompense</span>
-        <div class="pro-pills" id="pp${c.id}">${pills}</div>
-      </div>
+      ${rewardBlk}
       ${buildProPaletteHtml(c)}
+      ${buildStampPaletteHtml(c)}
       <div class="sgrid" id="sg${c.id}" style="padding:0">${sg}</div>
       <div class="cli-box">
         <div class="cli-sec-lbl">👥 Clientes</div>
@@ -372,13 +503,6 @@ function proTampons(cid,d){
   if(sg){let h='';for(let i=0;i<c.total;i++)h+='<div class="st" style="width:36px;height:36px;border-color:rgba(255,255,255,.15)"></div>';sg.innerHTML=h;}
   showToast('✅ '+c.total+' tampons'); renderDots();
 }
-function proSetPct(cid,pct,btn){
-  if(userMode!=='pro') return;
-  const c=cartes.find(x=>x.id===cid);c.pct=pct;
-  document.querySelectorAll('#pp'+cid+' .pp').forEach(p=>p.classList.remove('on'));
-  btn.classList.add('on'); showToast('✅ Récompense : '+pct);
-}
-
 let fIds={cid:null,clid:null};
 function openFiche(cid,clid){
   if(userMode!=='pro') return;
@@ -390,8 +514,8 @@ function openFiche(cid,clid){
   const filled=cl.stamps,total=c.total,complete=filled>=total;
   let sg='';
   for(let s=0;s<total;s++){
-    if(s<filled)sg+='<div class="st ok"></div>';
-    else if(s===filled&&!complete)sg+='<div class="st nxt"></div>';
+    if(s<filled) sg+=`<div class="st ok"${fidStampStyleAttr(c,'ok')}></div>`;
+    else if(s===filled&&!complete) sg+=`<div class="st nxt"${fidStampStyleAttr(c,'nxt')}></div>`;
     else sg+='<div class="st"></div>';
   }
   const ficheCardBloc=c.cardBg?('background:'+c.cardBg+';box-shadow:0 -8px 40px rgba(0,0,0,.35)'):th.css;
@@ -421,7 +545,7 @@ function openFiche(cid,clid){
       <div class="prow" style="margin-top:12px">
         <span class="ptxt">${filled} / ${total}</span>
         <div class="pbar"><div class="pfill" style="width:${Math.round(filled/total*100)}%"></div></div>
-        <span class="ptxt" style="${complete?'color:'+acc+';font-weight:600':''}">${complete?'Complète !':c.pct+' bientôt'}</span>
+        <span class="ptxt" style="${complete?'color:'+acc+';font-weight:600':''}">${complete?'Complète !':fidRewardLabel(c)+' bientôt'}</span>
       </div>
     </div>
     <button class="act act-p" onclick="addStamp(${cid},${clid})">✅ Ajouter un tampon · RDV effectué</button>
@@ -505,7 +629,7 @@ function mConfirm(){
   closeCard(expanded,false); expanded=null; buildWallet(); renderDots();
 }
 
-let crStep=1,crD={nom:'',desc:'',tampons:8,pct:'−10%',theme:'th-dark',clientes:[]};
+let crStep=1,crD={nom:'',desc:'',tampons:8,rewardPct:10,pct:'−10%',stampColor:'',theme:'th-dark',clientes:[]};
 const CR_LABELS=['Nom de la carte','Tampons & récompense','Thème de la carte','Vos clientes','Récapitulatif'];
 function openCreate(){
   if(userMode!=='pro') return;
@@ -513,7 +637,7 @@ function openCreate(){
 }
 function closeCreate(){document.getElementById('fidCreate').classList.remove('open');}
 function crReset(){
-  crStep=1;crD={nom:'',desc:'',tampons:8,pct:'−10%',theme:'th-dark',clientes:[]};
+  crStep=1;crD={nom:'',desc:'',tampons:8,rewardPct:10,pct:'−10%',stampColor:'',theme:'th-dark',clientes:[]};
   document.getElementById('crOk').classList.remove('show');
   ['crNav','crFoot'].forEach(id=>document.getElementById(id).style.display='');
   document.getElementById('crWrap').style.display='flex';
@@ -542,7 +666,13 @@ function crShow(n){
       <textarea class="cr-in cr-ta" placeholder="Ex : 1 tampon par visite, valable sur toutes les prestations.">${crD.desc}</textarea>
     </div>
     <div class="cr-note"><span>💡</span><span>Ce nom apparaît sur la carte dans le wallet SEAVEN de vos clientes.</span></div>`;
-  else if(n===2)body.innerHTML=`
+  else if(n===2){
+    const stampBtns=FID_STAMP_COLORS.map(hex=>{
+      const sel=crD.stampColor===hex;
+      const b=hex==='#FFFFFF'?'border:1px solid #ccc;':'';
+      return `<button type="button" class="fpal-sw fid-cr-stamp${sel?' on':''}" data-st="${hex}" onclick="crPickStamp(this)" style="background:${hex};${b}width:30px;height:30px"></button>`;
+    }).join('');
+    body.innerHTML=`
     <div class="cr-sec">Nombre de tampons</div>
     <div class="cr-stepper">
       <div class="cr-stl"><div class="n">Tampons pour compléter</div><div class="s">Entre 3 et 20 passages</div></div>
@@ -552,10 +682,19 @@ function crShow(n){
         <button class="cr-sb" onclick="crChgT(1)">+</button>
       </div>
     </div>
-    <div class="cr-sec" style="margin-top:24px">Récompense</div>
-    <div class="cr-pills">${['−5%','−10%','−15%','−20%','−25%','🎁 Soin offert','🎁 Produit offert'].map(p=>`<div class="cr-pill${p===crD.pct?' on':''}" onclick="crSelP(this,'${p}')">${p}</div>`).join('')}</div>
+    <div class="cr-sec" style="margin-top:24px">Récompense (%)</div>
+    <input type="range" class="fid-pct-range" min="1" max="100" value="${crD.rewardPct}" id="crRng" oninput="crSetRewardPct(this.value)"/>
+    <div class="cr-reward-val" id="crRV">−${crD.rewardPct}%</div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <input type="number" class="cr-in" style="max-width:100px;text-align:center" min="1" max="100" value="${crD.rewardPct}" id="crNum" onchange="crSetRewardPct(this.value)"/>
+      <span style="font-size:13px;color:var(--mid)">Réduction sur le prochain RDV</span>
+    </div>
+    <div class="cr-sec" style="margin-top:20px">Couleur des tampons</div>
+    <div class="fid-pal-row" style="justify-content:flex-start">${stampBtns}</div>
+    <div style="font-size:12px;color:var(--mid);margin-top:6px">Indépendant de la couleur de la carte · même rendu côté cliente</div>
     <div class="cr-sec" style="margin-top:24px">Aperçu en direct</div>
     <div id="crPv"></div>`;
+  }
   else if(n===3)body.innerHTML=`
     <div style="font-size:14px;color:var(--mid);margin-bottom:16px;line-height:1.5">Choisissez le thème visuel. Modifiable dans <b>Réglages</b>.</div>
     <div class="cr-themes" id="crTG"></div>
@@ -576,14 +715,32 @@ function crShow(n){
   if(n===5){crRecap();btn.disabled=false;}
 }
 function crChgT(d){crD.tampons=Math.max(3,Math.min(20,crD.tampons+d));const e=document.getElementById('crTV');if(e)e.textContent=crD.tampons;crPrev('crPv');}
-function crSelP(btn,val){crD.pct=val;document.querySelectorAll('.cr-pill').forEach(p=>p.classList.remove('on'));btn.classList.add('on');crPrev('crPv');}
+function crSetRewardPct(v){
+  const n=Math.max(1,Math.min(100,Math.round(Number(v)||10)));
+  crD.rewardPct=n;
+  crD.pct='−'+n+'%';
+  const rv=document.getElementById('crRV'), rng=document.getElementById('crRng'), num=document.getElementById('crNum');
+  if(rv) rv.textContent='−'+n+'%';
+  if(rng) rng.value=n;
+  if(num) num.value=n;
+  crPrev('crPv');
+}
+function crPickStamp(btn){
+  const hex=btn&&btn.getAttribute('data-st');
+  if(!hex)return;
+  crD.stampColor=crD.stampColor===hex?'':hex;
+  document.querySelectorAll('.fid-cr-stamp').forEach(b=>{
+    b.classList.toggle('on',!!crD.stampColor&&b.getAttribute('data-st')===crD.stampColor);
+  });
+  crPrev('crPv');
+}
 function crThemes(){
   const g=document.getElementById('crTG');if(!g)return;g.innerHTML='';
   THEMES.forEach(t=>{
     const d=document.createElement('div');d.className='cr-th'+(t.id===crD.theme?' on':'');d.style.cssText=t.css;
     d.innerHTML=`<div class="cr-th-chk">✓</div><div class="cr-th-name">${t.label}</div>
       <div class="cr-th-dots"><div class="cr-td f"></div><div class="cr-td f"></div><div class="cr-td f"></div><div class="cr-td"></div><div class="cr-td"></div></div>
-      <div style="font-size:11px;font-weight:700;color:${t.acc};margin-top:2px">${crD.pct}</div>`;
+      <div style="font-size:11px;font-weight:700;color:${t.acc};margin-top:2px">−${crD.rewardPct}%</div>`;
     d.onclick=()=>{crD.theme=t.id;document.querySelectorAll('.cr-th').forEach(e=>e.classList.toggle('on',e===d));crPrev('crPv');};
     g.appendChild(d);
   });
@@ -604,13 +761,22 @@ function crPrev(elId){
   const el=document.getElementById(elId);if(!el)return;
   const th=THEMES.find(t=>t.id===crD.theme),acc=th.acc;
   const nom=crD.nom||'Nom de votre carte',total=crD.tampons,ex=Math.min(3,total);
-  let stamps='';for(let i=0;i<total;i++)stamps+=`<div class="cpst${i<ex?' f':''}"></div>`;
+  let stamps='';
+  for(let i=0;i<total;i++){
+    const f=i<ex;
+    let ext='';
+    if(f&&crD.stampColor){
+      const rgb=hexRgb(crD.stampColor);
+      ext=` style="--stb:${crD.stampColor};--stbg:rgba(${rgb},.2);--stca:${crD.stampColor}"`;
+    }
+    stamps+=`<div class="cpst${f?' f':''}"${ext}></div>`;
+  }
   el.className='cr-prev';el.style.cssText=th.css;
   el.innerHTML=`
     <div style="display:flex;justify-content:space-between;align-items:flex-start">
       <div><div class="cpn">${nom}</div><div class="cpsb">Carte fidélité SEAVEN</div></div>
       <div style="background:${acc}22;border-radius:10px;padding:5px 10px;text-align:center">
-        <div style="color:${acc};font-weight:700;font-size:14px">${crD.pct}</div>
+        <div style="color:${acc};font-weight:700;font-size:14px">−${crD.rewardPct}%</div>
         <div style="font-size:9px;color:rgba(255,255,255,.4)">récompense</div>
       </div>
     </div>
@@ -630,7 +796,8 @@ function crRecap(){
   el.innerHTML=`
     <div class="cr-rrow"><span class="cr-rl">Nom</span><span class="cr-rv">${crD.nom}</span></div>
     <div class="cr-rrow"><span class="cr-rl">Tampons</span><span class="cr-rv">${crD.tampons} passages</span></div>
-    <div class="cr-rrow"><span class="cr-rl">Récompense</span><span class="cr-rv">${crD.pct}</span></div>
+    <div class="cr-rrow"><span class="cr-rl">Récompense</span><span class="cr-rv">−${crD.rewardPct}%</span></div>
+    <div class="cr-rrow"><span class="cr-rl">Couleur tampons</span><span class="cr-rv">${crD.stampColor||'Défaut wallet'}</span></div>
     <div class="cr-rrow"><span class="cr-rl">Thème</span><span class="cr-rv">${th.label}</span></div>
     <div class="cr-rrow"><span class="cr-rl">Clientes liées</span><span class="cr-rv">${sel.length?sel.map(c=>c.prenom+' '+c.nom).join(', '):'Aucune · à lier plus tard'}</span></div>
     <div class="cr-rrow"><span class="cr-rl">Validation</span><span class="cr-rv">Automatique à chaque RDV encaissé ✓</span></div>`;
@@ -640,9 +807,12 @@ function crPublish(){
   const th=THEMES.find(t=>t.id===crD.theme);
   const inits=crD.nom.split(' ').filter(w=>w).map(w=>w[0]).join('').toUpperCase().slice(0,2);
   const sel=POOL.filter(c=>crD.clientes.includes(c.id));
-  cartes.push({id:Date.now(),nom:crD.nom,theme:crD.theme,init:inits,
-    total:crD.tampons,pct:crD.pct,num:String(Math.floor(1000+Math.random()*9000)),
-    stC:0,clientes:sel.map(c=>({...c,stamps:0}))});
+  const newC={id:Date.now(),nom:crD.nom,theme:crD.theme,init:inits,
+    total:crD.tampons,rewardPct:crD.rewardPct,pct:'−'+crD.rewardPct+'%',
+    num:String(Math.floor(1000+Math.random()*9000)),
+    stC:0,clientes:sel.map(c=>({...c,stamps:0}))};
+  if(crD.stampColor) newC.stampColor=crD.stampColor;
+  cartes.push(newC);
   ['crNav','crFoot'].forEach(id=>document.getElementById(id).style.display='none');
   document.getElementById('crWrap').style.display='none';
   document.getElementById('crOkP').textContent=sel.length
@@ -661,6 +831,7 @@ function hexRgb(hex){const r=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(he
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2800);}
 
 fidLoadCardBgs();
+cartes.forEach(fidEnsureRewardPct);
 renderDots();
 document.addEventListener('DOMContentLoaded',function(){
   const fs=document.getElementById('fidScreen');
