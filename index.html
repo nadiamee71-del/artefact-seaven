@@ -87,6 +87,8 @@ body.dark-mode .section-block{border-color:var(--border);}
 /* Les écrans principaux au-dessus des pages d’onboarding pour éviter un écran vide si deux vues restent actives un instant */
 .phone>.page.on{z-index:2;}
 .phone>.screen.on{z-index:3;}
+/* Écran principal actif : les .page (intro / onboarding) ne doivent plus occuper le calque ni rester visibles en transparence (fond personnalisé). */
+.phone:has(> .screen.on) > .page{display:none!important;}
 :root{--dock-h:calc(86px + env(safe-area-inset-bottom));}
 /* modules — slide depuis droite, laissent la place au dock (barre + fan) */
 .module{position:absolute;top:0;left:0;right:0;bottom:var(--dock-h);width:100%;display:flex;flex-direction:column;background:var(--bg);overflow:hidden;transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:60;box-sizing:border-box;will-change:transform;-webkit-backface-visibility:hidden;backface-visibility:hidden;overscroll-behavior:contain;}
@@ -8100,6 +8102,7 @@ function demoSyncRoleBarFromDom(){
 }
 function demoApplyRole(kind){
   var role=(kind==='pro')?'pro':'client';
+  document.querySelectorAll('.phone > .page').forEach(function(p){p.classList.remove('on');});
   var scrCl=document.getElementById('screen-client');
   var scrPr=document.getElementById('screen-pro');
   if(scrCl){scrCl.classList.toggle('on',role==='client');}
@@ -8825,6 +8828,7 @@ function openMapReserve(){
   goReserve();
 }
 function forceOpenBookingFlow(){
+  document.querySelectorAll('.phone > .page').forEach(function(p){p.classList.remove('on');});
   var sc=document.getElementById('screen-client');
   var sp=document.getElementById('screen-pro');
   if(sc&&!sc.classList.contains('on')){
@@ -10936,12 +10940,12 @@ planSetView('today',first);
 }
 
 // ── FLOWS CLIENT ──
-function openFlow(id){closeFan('cl');if(!document.getElementById('screen-client')?.classList?.contains('on')){document.getElementById('screen-client')?.classList?.add('on');document.getElementById('screen-pro')?.classList?.remove('on');}const f=document.getElementById(id);if(!f)return;f.classList.add('on');if(id==='flow-rdv'){rdvApplyContext();rdvResetWizard();}if(id==='flow-photo'||id==='flow-video'){camStart(id);}}
+function openFlow(id){closeFan('cl');document.querySelectorAll('.phone > .page').forEach(function(p){p.classList.remove('on');});if(!document.getElementById('screen-client')?.classList?.contains('on')){document.getElementById('screen-client')?.classList?.add('on');document.getElementById('screen-pro')?.classList?.remove('on');}const f=document.getElementById(id);if(!f)return;f.classList.add('on');if(id==='flow-rdv'){rdvApplyContext();rdvResetWizard();}if(id==='flow-photo'||id==='flow-video'){camStart(id);}}
 function closeFlow(id){const f=document.getElementById(id);if(!f)return;f.classList.remove('on');document.querySelectorAll(`#${id} .enc-page`).forEach((p,i)=>p.classList.toggle('on',i===0));closeClienteSheet('rdv');closeClienteSheet('vente');if(id==='flow-rdv') rdvResetWizard();if(id==='flow-photo'||id==='flow-video'){camStop(id);}}
 function closeAllFlows(){document.querySelectorAll('#screen-client .flow').forEach(f=>{f.classList.remove('on');f.querySelectorAll('.enc-page').forEach((p,i)=>p.classList.toggle('on',i===0));if(f.id==='flow-rdv') rdvResetWizard();if(f.id==='flow-photo'||f.id==='flow-video') camStop(f.id);});closeClienteSheet('rdv');closeClienteSheet('vente');}
 
 // ── FLOWS PRO ──
-function openFlowPro(id){closeFan('pro');if(!document.getElementById('screen-pro')?.classList?.contains('on')){document.getElementById('screen-pro')?.classList?.add('on');document.getElementById('screen-client')?.classList?.remove('on');}const f=document.getElementById(id);if(!f)return;f.classList.add('on');if(id==='flow-pro-rdv') prdvApplyContext();if(id==='flow-pro-photo'||id==='flow-pro-video'){camStart(id);}}
+function openFlowPro(id){closeFan('pro');document.querySelectorAll('.phone > .page').forEach(function(p){p.classList.remove('on');});if(!document.getElementById('screen-pro')?.classList?.contains('on')){document.getElementById('screen-pro')?.classList?.add('on');document.getElementById('screen-client')?.classList?.remove('on');}const f=document.getElementById(id);if(!f)return;f.classList.add('on');if(id==='flow-pro-rdv') prdvApplyContext();if(id==='flow-pro-photo'||id==='flow-pro-video'){camStart(id);}}
 function closeFlowPro(id){const f=document.getElementById(id);if(!f)return;f.classList.remove('on');document.querySelectorAll(`#${id} .enc-page`).forEach((p,i)=>p.classList.toggle('on',i===0));closeClienteSheet('prdv');closeClienteSheet('pvente');if(id==='flow-pro-photo'||id==='flow-pro-video'){camStop(id);}}
 function closeAllFlowsPro(){document.querySelectorAll('#screen-pro .flow').forEach(f=>{f.classList.remove('on');f.querySelectorAll('.enc-page').forEach((p,i)=>p.classList.toggle('on',i===0));if(f.id==='flow-pro-photo'||f.id==='flow-pro-video') camStop(f.id);});closeClienteSheet('prdv');closeClienteSheet('pvente');}
 function encGo(from,to){const a=document.getElementById(from),b=document.getElementById(to);if(a)a.classList.remove('on');if(b)b.classList.add('on');}
