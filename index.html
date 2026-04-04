@@ -3890,7 +3890,7 @@ MODULES PROFIL
 <div class="row" style="cursor:default;" onclick="event.stopPropagation();">
 <div class="icon ic-blue">🎨</div>
 <div class="row-text"><div class="row-label">Couleur unie</div><div class="row-sub">Arrière-plan du cadre téléphone</div></div>
-<input type="color" id="reg-wallpaper-color" class="reg-wallpaper-color-input" value="#F2F2F7" title="Couleur unie" aria-label="Couleur du fond d'écran" oninput="wallpaperSetSolidColor(this.value)"/>
+<input type="color" class="reg-wallpaper-color-input" value="#F2F2F7" title="Couleur unie" aria-label="Couleur du fond d'écran" oninput="wallpaperSetSolidColor(this.value)"/>
 </div>
 <div class="row" onclick="event.stopPropagation();document.getElementById('reg-wallpaper-file').click();">
 <div class="icon ic-purple">🖼️</div>
@@ -4067,6 +4067,26 @@ MODULES PROFIL
 <div class="icon ic-orange">👥</div>
 <div class="row-text"><div class="row-label">Fichier client</div><div class="row-sub">Import, export, formulaire client</div></div>
 <div class="chev">›</div>
+</div>
+</div>
+</div>
+
+<div style="padding:8px 18px 2px;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;">Fond d'écran</div>
+<div class="section">
+<div class="section-block">
+<div class="row" style="cursor:default;" onclick="event.stopPropagation();">
+<div class="icon ic-blue">🎨</div>
+<div class="row-text"><div class="row-label">Couleur unie</div><div class="row-sub">Arrière-plan du cadre téléphone</div></div>
+<input type="color" class="reg-wallpaper-color-input" value="#F2F2F7" title="Couleur unie" aria-label="Couleur du fond d'écran" oninput="wallpaperSetSolidColor(this.value)"/>
+</div>
+<div class="row" onclick="event.stopPropagation();document.getElementById('reg-wallpaper-file').click();">
+<div class="icon ic-purple">🖼️</div>
+<div class="row-text"><div class="row-label">Photo</div><div class="row-sub">Importer depuis l'appareil</div></div>
+<div class="chev">›</div>
+</div>
+<div class="row" onclick="event.stopPropagation();wallpaperReset();">
+<div class="icon ic-grey">↩️</div>
+<div class="row-text"><div class="row-label">Réinitialiser le fond</div><div class="row-sub">Couleur et photo par défaut</div></div>
 </div>
 </div>
 </div>
@@ -7959,13 +7979,14 @@ function applyPhoneWallpaper(){
   p.style.backgroundColor='';
 }
 function wallpaperSyncColorInput(){
-  var inp=document.getElementById('reg-wallpaper-color');
-  if(!inp)return;
   var col=localStorage.getItem('seaven-wallpaper-color');
-  if(col&&/^#[0-9A-Fa-f]{6}$/.test(col)) inp.value=col;
+  document.querySelectorAll('.reg-wallpaper-color-input').forEach(function(inp){
+    if(col&&/^#[0-9A-Fa-f]{6}$/.test(col)) inp.value=col;
+  });
 }
 function wallpaperSetSolidColor(hex){
   if(!hex||!/^#[0-9A-Fa-f]{6}$/.test(hex)) return;
+  document.querySelectorAll('.reg-wallpaper-color-input').forEach(function(inp){ inp.value=hex; });
   localStorage.removeItem('seaven-wallpaper-image');
   localStorage.setItem('seaven-wallpaper-color',hex);
   applyPhoneWallpaper();
@@ -7989,8 +8010,7 @@ function wallpaperReset(){
   localStorage.removeItem('seaven-wallpaper-image');
   localStorage.removeItem('seaven-wallpaper-color');
   applyPhoneWallpaper();
-  var inp=document.getElementById('reg-wallpaper-color');
-  if(inp) inp.value='#F2F2F7';
+  document.querySelectorAll('.reg-wallpaper-color-input').forEach(function(inp){ inp.value='#F2F2F7'; });
 }
 applyPhoneWallpaper();
 wallpaperSyncColorInput();
