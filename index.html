@@ -1066,7 +1066,9 @@ body.dark-mode #mod-reglages{background:var(--bg)!important;}
 #mod-reglages label.row{cursor:pointer;}
 #mod-reglages .reg-wallpaper-swatches{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:2px 16px 14px;border-bottom:1px solid var(--border);}
 #mod-reglages .reg-wp-swatch{width:30px;height:30px;border-radius:50%;border:2px solid var(--border);cursor:pointer;padding:0;flex-shrink:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-#mod-reglages .reg-wp-swatch:active{transform:scale(.92);}
+#mod-reglages .reg-wp-swatch:not(.on):active{transform:scale(.92);}
+#mod-reglages .reg-wp-swatch.on{transform:scale(1.06);box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--btn-bg);position:relative;z-index:1;}
+#mod-reglages .reg-wp-swatch.on:active{transform:scale(1.02);}
 #mod-reglages .reg-wp-custom{margin-left:auto;font-size:12px;font-weight:700;color:var(--blue);cursor:pointer;font-family:'Manrope',sans-serif;}
 #mod-reglages input.reg-wallpaper-color-native-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);opacity:0;border:0;}
 #mod-reglages .ic-purple{background:#F5EDFF;}#mod-reglages .ic-pink{background:#FFF0F4;}#mod-reglages .ic-blue{background:#EDF5FF;}
@@ -3906,14 +3908,14 @@ MODULES PROFIL
 <div class="row-text"><div class="row-label">Couleur unie</div><div class="row-sub">Arrière-plan du cadre téléphone</div></div>
 </div>
 <div class="reg-wallpaper-swatches">
-<button type="button" class="reg-wp-swatch" style="background:#FFFFFF;" title="Blanc" aria-label="Blanc" onclick="event.stopPropagation();wallpaperSetSolidColor('#FFFFFF')"></button>
-<button type="button" class="reg-wp-swatch" style="background:#F2F2F7;" title="Gris clair" aria-label="Gris clair" onclick="event.stopPropagation();wallpaperSetSolidColor('#F2F2F7')"></button>
-<button type="button" class="reg-wp-swatch" style="background:#E3F2FD;" title="Bleu très clair" aria-label="Bleu très clair" onclick="event.stopPropagation();wallpaperSetSolidColor('#E3F2FD')"></button>
-<button type="button" class="reg-wp-swatch" style="background:#F3E5F5;" title="Lavande" aria-label="Lavande" onclick="event.stopPropagation();wallpaperSetSolidColor('#F3E5F5')"></button>
-<button type="button" class="reg-wp-swatch" style="background:#E8F5E9;" title="Vert menthe" aria-label="Vert menthe" onclick="event.stopPropagation();wallpaperSetSolidColor('#E8F5E9')"></button>
-<button type="button" class="reg-wp-swatch" style="background:#FFF3E0;" title="Pêche" aria-label="Pêche" onclick="event.stopPropagation();wallpaperSetSolidColor('#FFF3E0')"></button>
-<button type="button" class="reg-wp-swatch" style="background:#FBE9E7;" title="Rose poudré" aria-label="Rose poudré" onclick="event.stopPropagation();wallpaperSetSolidColor('#FBE9E7')"></button>
-<button type="button" class="reg-wp-swatch" style="background:#37474F;" title="Gris ardoise" aria-label="Gris ardoise" onclick="event.stopPropagation();wallpaperSetSolidColor('#37474F')"></button>
+<button type="button" class="reg-wp-swatch" data-wallpaper-color="#FFFFFF" style="background:#FFFFFF;" title="Blanc" aria-label="Blanc" aria-pressed="false" onclick="event.stopPropagation();wallpaperSetSolidColor('#FFFFFF')"></button>
+<button type="button" class="reg-wp-swatch" data-wallpaper-color="#F2F2F7" style="background:#F2F2F7;" title="Gris clair" aria-label="Gris clair" aria-pressed="false" onclick="event.stopPropagation();wallpaperSetSolidColor('#F2F2F7')"></button>
+<button type="button" class="reg-wp-swatch" data-wallpaper-color="#E3F2FD" style="background:#E3F2FD;" title="Bleu très clair" aria-label="Bleu très clair" aria-pressed="false" onclick="event.stopPropagation();wallpaperSetSolidColor('#E3F2FD')"></button>
+<button type="button" class="reg-wp-swatch" data-wallpaper-color="#F3E5F5" style="background:#F3E5F5;" title="Lavande" aria-label="Lavande" aria-pressed="false" onclick="event.stopPropagation();wallpaperSetSolidColor('#F3E5F5')"></button>
+<button type="button" class="reg-wp-swatch" data-wallpaper-color="#E8F5E9" style="background:#E8F5E9;" title="Vert menthe" aria-label="Vert menthe" aria-pressed="false" onclick="event.stopPropagation();wallpaperSetSolidColor('#E8F5E9')"></button>
+<button type="button" class="reg-wp-swatch" data-wallpaper-color="#FFF3E0" style="background:#FFF3E0;" title="Pêche" aria-label="Pêche" aria-pressed="false" onclick="event.stopPropagation();wallpaperSetSolidColor('#FFF3E0')"></button>
+<button type="button" class="reg-wp-swatch" data-wallpaper-color="#FBE9E7" style="background:#FBE9E7;" title="Rose poudré" aria-label="Rose poudré" aria-pressed="false" onclick="event.stopPropagation();wallpaperSetSolidColor('#FBE9E7')"></button>
+<button type="button" class="reg-wp-swatch" data-wallpaper-color="#37474F" style="background:#37474F;" title="Gris ardoise" aria-label="Gris ardoise" aria-pressed="false" onclick="event.stopPropagation();wallpaperSetSolidColor('#37474F')"></button>
 <label class="reg-wp-custom" for="reg-wallpaper-color-native">Personnaliser…</label>
 </div>
 <input type="color" id="reg-wallpaper-color-native" class="reg-wallpaper-color-input reg-wallpaper-color-native-hidden" value="#F2F2F7" title="Couleur personnalisée" aria-label="Couleur personnalisée" oninput="wallpaperSetSolidColor(this.value)" onchange="wallpaperSetSolidColor(this.value)"/>
@@ -4092,36 +4094,6 @@ MODULES PROFIL
 <div class="icon ic-orange">👥</div>
 <div class="row-text"><div class="row-label">Fichier client</div><div class="row-sub">Import, export, formulaire client</div></div>
 <div class="chev">›</div>
-</div>
-</div>
-</div>
-
-<div style="padding:8px 18px 2px;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;">Fond d'écran</div>
-<div class="section">
-<div class="section-block">
-<div class="row" style="cursor:default;padding-bottom:6px;border-bottom:none;" onclick="event.stopPropagation();">
-<div class="icon ic-blue">🎨</div>
-<div class="row-text"><div class="row-label">Couleur unie</div><div class="row-sub">Arrière-plan du cadre téléphone</div></div>
-</div>
-<div class="reg-wallpaper-swatches">
-<button type="button" class="reg-wp-swatch" style="background:#FFFFFF;" title="Blanc" aria-label="Blanc" onclick="event.stopPropagation();wallpaperSetSolidColor('#FFFFFF')"></button>
-<button type="button" class="reg-wp-swatch" style="background:#F2F2F7;" title="Gris clair" aria-label="Gris clair" onclick="event.stopPropagation();wallpaperSetSolidColor('#F2F2F7')"></button>
-<button type="button" class="reg-wp-swatch" style="background:#E3F2FD;" title="Bleu très clair" aria-label="Bleu très clair" onclick="event.stopPropagation();wallpaperSetSolidColor('#E3F2FD')"></button>
-<button type="button" class="reg-wp-swatch" style="background:#F3E5F5;" title="Lavande" aria-label="Lavande" onclick="event.stopPropagation();wallpaperSetSolidColor('#F3E5F5')"></button>
-<button type="button" class="reg-wp-swatch" style="background:#E8F5E9;" title="Vert menthe" aria-label="Vert menthe" onclick="event.stopPropagation();wallpaperSetSolidColor('#E8F5E9')"></button>
-<button type="button" class="reg-wp-swatch" style="background:#FFF3E0;" title="Pêche" aria-label="Pêche" onclick="event.stopPropagation();wallpaperSetSolidColor('#FFF3E0')"></button>
-<button type="button" class="reg-wp-swatch" style="background:#FBE9E7;" title="Rose poudré" aria-label="Rose poudré" onclick="event.stopPropagation();wallpaperSetSolidColor('#FBE9E7')"></button>
-<button type="button" class="reg-wp-swatch" style="background:#37474F;" title="Gris ardoise" aria-label="Gris ardoise" onclick="event.stopPropagation();wallpaperSetSolidColor('#37474F')"></button>
-<label class="reg-wp-custom" for="reg-wallpaper-color-native">Personnaliser…</label>
-</div>
-<label class="row" for="reg-wallpaper-file" onclick="event.stopPropagation();">
-<div class="icon ic-purple">🖼️</div>
-<div class="row-text"><div class="row-label">Photo</div><div class="row-sub">Importer depuis l'appareil</div></div>
-<div class="chev">›</div>
-</label>
-<div class="row" onclick="event.stopPropagation();wallpaperReset();">
-<div class="icon ic-grey">↩️</div>
-<div class="row-text"><div class="row-label">Réinitialiser le fond</div><div class="row-sub">Couleur et photo par défaut</div></div>
 </div>
 </div>
 </div>
@@ -8021,12 +7993,38 @@ function wallpaperSyncColorInput(){
     if(col&&/^#[0-9A-Fa-f]{6}$/.test(col)) inp.value=col;
   });
 }
+function wallpaperNormalizeWallpaperHex(hex){
+  if(!hex||typeof hex!=='string') return '';
+  var t=hex.trim();
+  if(!/^#[0-9A-Fa-f]{6}$/.test(t)) return '';
+  return '#'+t.slice(1).toUpperCase();
+}
+function wallpaperSyncSwatchSelection(){
+  var mod=document.getElementById('mod-reglages');
+  if(!mod) return;
+  var img=localStorage.getItem('seaven-wallpaper-image');
+  var hasImg=!!(img&&img.length>32);
+  var colNorm=wallpaperNormalizeWallpaperHex(localStorage.getItem('seaven-wallpaper-color')||'');
+  mod.querySelectorAll('.reg-wp-swatch').forEach(function(btn){
+    btn.classList.remove('on');
+    btn.setAttribute('aria-pressed','false');
+  });
+  if(hasImg||!colNorm) return;
+  mod.querySelectorAll('.reg-wp-swatch[data-wallpaper-color]').forEach(function(btn){
+    var dn=wallpaperNormalizeWallpaperHex(btn.getAttribute('data-wallpaper-color')||'');
+    if(dn&&dn===colNorm){
+      btn.classList.add('on');
+      btn.setAttribute('aria-pressed','true');
+    }
+  });
+}
 function wallpaperSetSolidColor(hex){
   if(!hex||!/^#[0-9A-Fa-f]{6}$/.test(hex)) return;
   document.querySelectorAll('.reg-wallpaper-color-input').forEach(function(inp){ inp.value=hex; });
   localStorage.removeItem('seaven-wallpaper-image');
   localStorage.setItem('seaven-wallpaper-color',hex);
   applyPhoneWallpaper();
+  wallpaperSyncSwatchSelection();
 }
 function wallpaperOnFileSelect(input){
   var f=input&&input.files&&input.files[0];
@@ -8037,6 +8035,7 @@ function wallpaperOnFileSelect(input){
       localStorage.removeItem('seaven-wallpaper-color');
       localStorage.setItem('seaven-wallpaper-image',r.result);
       applyPhoneWallpaper();
+      wallpaperSyncSwatchSelection();
     }catch(e){ console.warn('wallpaper storage',e); }
     if(input) input.value='';
   };
@@ -8048,9 +8047,11 @@ function wallpaperReset(){
   localStorage.removeItem('seaven-wallpaper-color');
   applyPhoneWallpaper();
   document.querySelectorAll('.reg-wallpaper-color-input').forEach(function(inp){ inp.value='#F2F2F7'; });
+  wallpaperSyncSwatchSelection();
 }
 applyPhoneWallpaper();
 wallpaperSyncColorInput();
+wallpaperSyncSwatchSelection();
 
 var _langs=['Français','English','Español','العربية','Deutsch','Italiano','Português'];
 var _langIdx=0;
@@ -10464,6 +10465,7 @@ adaptModuleToRole(id,isPro);
 if(id==='mod-reglages'){
   regSetMode(isPro?'pro':'client');
   regRenderTopProfile();
+  wallpaperSyncSwatchSelection();
 }
 if(id==='mod-fidelite-wallet'){
   var ff=document.getElementById('fidw-iframe');
