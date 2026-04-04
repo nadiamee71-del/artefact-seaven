@@ -39,13 +39,74 @@ let cartes = [
    ]},
 ];
 
+const FID_STORE_KEY='seaven-fid-cardbg';
+const FID_CARD_PALETTE=[
+  'linear-gradient(145deg,#2BA8C8,#156b85)',
+  'linear-gradient(145deg,#7BC67E,#3d8f45)',
+  'linear-gradient(145deg,#D4C45A,#8a7020)',
+  'linear-gradient(145deg,#E07B5A,#a84a32)',
+  'linear-gradient(145deg,#9B7EC8,#5c3d8c)',
+  'linear-gradient(145deg,#E05280,#9a3060)',
+  'linear-gradient(145deg,#1C1C1E,#3a3a3c)',
+];
+
+function fidLoadCardBgs(){
+  try{
+    const s=localStorage.getItem(FID_STORE_KEY);
+    if(!s)return;
+    const o=JSON.parse(s);
+    cartes.forEach(c=>{ const v=o[String(c.id)]; if(typeof v==='string'&&v) c.cardBg=v; });
+  }catch(e){}
+}
+function fidSaveCardBgs(){
+  try{
+    const o={};
+    cartes.forEach(c=>{ if(c.cardBg) o[String(c.id)]=c.cardBg; });
+    localStorage.setItem(FID_STORE_KEY,JSON.stringify(o));
+  }catch(e){}
+}
+function buildProPaletteHtml(c){
+  const btns=FID_CARD_PALETTE.map(bg=>{
+    const esc=(bg+'').replace(/"/g,'&quot;');
+    const on=c.cardBg===bg?' on':'';
+    return `<button type="button" class="fpal-sw${on}" data-bg="${esc}" onclick="event.stopPropagation();fidPickCardColor(${c.id},this)" style="background:${bg}" aria-label="Couleur"></button>`;
+  }).join('');
+  return `<div class="cfg-row col" style="padding-top:2px">
+    <span class="cfg-lbl">Couleur de la carte</span>
+    <div class="fid-pal-row">${btns}</div>
+    <button type="button" class="fid-theme-def" onclick="event.stopPropagation();fidClearCardColor(${c.id})">Reprendre le thème par défaut</button>
+  </div>`;
+}
+function fidPickCardColor(cid,btn){
+  const bg=btn&&btn.getAttribute('data-bg');
+  if(bg) fidSetCardColor(cid,bg);
+}
+function fidSetCardColor(cid,bg){
+  if(userMode!=='pro'||bg==null||bg==='')return;
+  const c=cartes.find(x=>x.id===cid);if(!c)return;
+  c.cardBg=bg;
+  fidSaveCardBgs();
+  const el=document.getElementById('wc'+cid);
+  if(el) el.style.background=bg;
+  document.querySelectorAll('#wc'+cid+' .fpal-sw').forEach(sw=>{
+    sw.classList.toggle('on', sw.getAttribute('data-bg')===bg);
+  });
+}
+function fidClearCardColor(cid){
+  if(userMode!=='pro')return;
+  const c=cartes.find(x=>x.id===cid);if(!c)return;
+  delete c.cardBg;
+  fidSaveCardBgs();
+  const el=document.getElementById('wc'+cid);
+  if(el) el.style.background='';
+  document.querySelectorAll('#wc'+cid+' .fpal-sw').forEach(sw=>sw.classList.remove('on'));
+}
+
 function setMode(m){
   userMode=m;
-  document.getElementById('ftSub').textContent=
-    m==='pro'?'Gérer mes cartes fidélité':'Mes cartes tampons';
+  const fts=document.getElementById('ftSub');
+  if(fts) fts.textContent=m==='pro'?'Gérer mes cartes fidélité':'Mes cartes tampons';
   renderDots();
-  const pal=document.getElementById('fidPalette');
-  if(pal) pal.style.display=m==='pro'?'flex':'none';
   if(m!=='pro'){
     try{closeCreate();}catch(e){}
     const fc=document.getElementById('fidCreate');
@@ -56,12 +117,8 @@ function setMode(m){
     if(fi) fi.classList.remove('open');
     if(expanded!==null&&expanded!==undefined){ try{closeCard(expanded,false);}catch(e){} }
   }
-}
-function setColor(el){
-  if(userMode!=='pro') return;
-  document.documentElement.style.setProperty('--fid',el.dataset.c);
-  document.querySelectorAll('.psw').forEach(s=>s.classList.remove('on'));
-  el.classList.add('on');
+  const fs=document.getElementById('fidScreen');
+  if(fs&&fs.classList.contains('open')) buildWallet();
 }
 function renderDots(){
   const el=document.getElementById('ftDots');if(!el)return;
@@ -77,8 +134,9 @@ function fidOpen(){
   buildWallet();
 }
 function fidClose(){
-  document.getElementById('fidScreen').classList.remove('open');
-  expanded=null;
+  if(expanded!==null&&expanded!==undefined){
+    try{closeCard(expanded,true);}catch(e){}
+  }
 }
 
 const PEEK=80, CH=110, MARGIN=12;
@@ -132,6 +190,8 @@ function buildWallet(){
       <div class="wf-back">${backContent}</div>`;
 
     el.addEventListener('click',()=>{ if(expanded!==c.id) openCard(c.id); });
+    if(c.cardBg) el.style.background=c.cardBg;
+    else el.style.background='';
     vp.appendChild(el);
   });
 
@@ -231,6 +291,7 @@ function buildBackPro(c, th, acc, ava, avb){
         <span class="cfg-lbl">Récompense</span>
         <div class="pro-pills" id="pp${c.id}">${pills}</div>
       </div>
+      ${buildProPaletteHtml(c)}
       <div class="sgrid" id="sg${c.id}" style="padding:0">${sg}</div>
       <div class="cli-box">
         <div class="cli-sec-lbl">👥 Clientes</div>
@@ -333,6 +394,7 @@ function openFiche(cid,clid){
     else if(s===filled&&!complete)sg+='<div class="st nxt"></div>';
     else sg+='<div class="st"></div>';
   }
+  const ficheCardBloc=c.cardBg?('background:'+c.cardBg+';box-shadow:0 -8px 40px rgba(0,0,0,.35)'):th.css;
   document.getElementById('ficheBody').innerHTML=`
     <div style="background:#fff;border-radius:14px;padding:16px;box-shadow:var(--sh);margin-bottom:12px">
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
@@ -353,7 +415,7 @@ function openFiche(cid,clid){
         </div>
       </div>
     </div>
-    <div style="border-radius:18px;padding:18px;${th.css};margin-bottom:14px">
+    <div style="border-radius:18px;padding:18px;${ficheCardBloc};margin-bottom:14px">
       <div style="font-size:12px;color:rgba(255,255,255,.3);margin-bottom:12px">Carte · ${c.nom}</div>
       <div class="sgrid">${sg}</div>
       <div class="prow" style="margin-top:12px">
@@ -598,6 +660,12 @@ function crDone(){
 function hexRgb(hex){const r=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);return r?`${parseInt(r[1],16)},${parseInt(r[2],16)},${parseInt(r[3],16)}`:'43,168,200';}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2800);}
 
+fidLoadCardBgs();
 renderDots();
+document.addEventListener('DOMContentLoaded',function(){
+  const fs=document.getElementById('fidScreen');
+  if(fs) fs.classList.add('open');
+  buildWallet();
+});
 window.fidwOnRdvEncaisse=onRdvEncaisse;
 window.fidwSetMode=setMode;

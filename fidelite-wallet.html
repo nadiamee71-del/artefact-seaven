@@ -13,7 +13,7 @@
   --fid:#2BA8C8;
 }
 body{background:#dedad3;display:flex;flex-direction:column;align-items:center;padding:40px 16px;min-height:100vh;gap:12px;}
-#fidRoot{width:100%;max-width:390px;}
+#fidRoot{display:none!important;width:100%;max-width:390px;}
 .fid-tile{width:100%;background:var(--dark);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.18);transition:transform .15s;}
 .fid-tile:active{transform:scale(.97);}
 .fid-tile::before{content:'';position:absolute;top:-22px;right:-22px;width:96px;height:96px;border-radius:50%;background:var(--fid);opacity:.13;pointer-events:none;}
@@ -25,11 +25,10 @@ body{background:#dedad3;display:flex;flex-direction:column;align-items:center;pa
 .fdt{width:7px;height:7px;border-radius:50%;background:var(--fid);}
 .fdt.e{background:transparent;border:1.5px solid rgba(255,255,255,.22);}
 .ft-arrow{color:rgba(255,255,255,.25);font-size:18px;flex-shrink:0;}
-#fidPalette{display:none;align-items:center;gap:10px;padding:10px 14px;background:#fff;border-radius:12px;box-shadow:var(--sh);margin-top:6px;}
-.pal-lbl{font-size:11px;font-weight:600;color:var(--mid);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;}
-.pal-sw{display:flex;gap:7px;}
-.psw{width:22px;height:22px;border-radius:50%;cursor:pointer;border:2.5px solid transparent;transition:transform .15s,border-color .15s;}
-.psw.on{border-color:#1C1C1E;transform:scale(1.2);}
+.fid-pal-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.fpal-sw{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid transparent;flex-shrink:0;padding:0;-webkit-appearance:none;appearance:none;}
+.fpal-sw.on{border-color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,.35);}
+.fid-theme-def{margin-top:4px;font-size:11px;font-weight:600;color:rgba(255,255,255,.45);background:none;border:none;cursor:pointer;text-decoration:underline;padding:4px 0;font-family:inherit;text-align:left;}
 .fid-screen{
   position:fixed;inset:0;
   background:#000;
@@ -237,18 +236,6 @@ body{background:#dedad3;display:flex;flex-direction:column;align-items:center;pa
       <div class="ft-dots" id="ftDots"></div>
     </div>
     <div class="ft-arrow">›</div>
-  </div>
-  <div id="fidPalette">
-    <div class="pal-lbl">Couleur</div>
-    <div class="pal-sw">
-      <div class="psw on" style="background:#2BA8C8" data-c="#2BA8C8" onclick="setColor(this)"></div>
-      <div class="psw" style="background:#7BC67E" data-c="#7BC67E" onclick="setColor(this)"></div>
-      <div class="psw" style="background:#D4C45A" data-c="#D4C45A" onclick="setColor(this)"></div>
-      <div class="psw" style="background:#E07B5A" data-c="#E07B5A" onclick="setColor(this)"></div>
-      <div class="psw" style="background:#9B7EC8" data-c="#9B7EC8" onclick="setColor(this)"></div>
-      <div class="psw" style="background:#E05280" data-c="#E05280" onclick="setColor(this)"></div>
-      <div class="psw" style="background:#1C1C1E" data-c="#1C1C1E" onclick="setColor(this)"></div>
-    </div>
   </div>
 </div>
 <div class="fid-screen" id="fidScreen">
