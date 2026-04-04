@@ -2380,6 +2380,9 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
 @keyframes fidSuccessPop{from{transform:scale(0);}to{transform:scale(1);}}
 .fid-success-text{font-size:18px;font-weight:900;color:white;}
 .fid-success-sub{font-size:13px;color:rgba(255,255,255,.45);}
+/* ── Module Fidélité (wallet démo iframe) ── */
+#mod-fidelite-wallet .mod-scroll.fidw-iframe-scroll{padding:0;overflow:hidden;display:flex;flex-direction:column;background:#1a1a1a;}
+#mod-fidelite-wallet .fidw-iframe{flex:1;width:100%;min-height:0;border:0;background:#dedad3;}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/deepar@5.6.21/js/deepar.js"></script>
 </head>
@@ -2457,7 +2460,7 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
 <div class="grid-page">
 <div class="app-item" onclick="openModule('mod-groupes')"><div class="app-icon" style="background:#F0F0FF;">👯</div><div class="app-name">Groupes</div></div>
 <div class="app-item" onclick="openModule('mod-previsualisation')"><div class="app-icon" style="background:#FFF0F8;">✦</div><div class="app-name">Prévisu.</div></div>
-<div class="app-item app-slot-empty" aria-hidden="true"></div>
+<div class="app-item" onclick="openModule('mod-fidelite-wallet')"><div class="app-icon" style="background:#E8F7FA;">🪶</div><div class="app-name">Fidélité</div></div>
 <div class="app-item app-slot-empty" aria-hidden="true"></div>
 <div class="app-item app-slot-empty" aria-hidden="true"></div>
 <div class="app-item app-slot-empty" aria-hidden="true"></div>
@@ -3303,6 +3306,7 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
 <div class="app-item" onclick="openModule('mod-parrainage')"><div class="app-icon" style="background:#FFF8EE;">🤝</div><div class="app-name">Parrainage</div></div>
 <div class="app-item" onclick="openModule('mod-groupes')"><div class="app-icon" style="background:#F0F0FF;">👯</div><div class="app-name">Groupes</div></div>
 <div class="app-item" onclick="openModule('mod-previsualisation')"><div class="app-icon" style="background:#FFF0F8;">✦</div><div class="app-name">Prévisu.</div></div>
+<div class="app-item" onclick="openModule('mod-fidelite-wallet')"><div class="app-icon" style="background:#E8F7FA;">🪶</div><div class="app-name">Fidélité</div></div>
 <div class="app-item app-slot-empty" aria-hidden="true"></div>
 <div class="app-item app-slot-empty" aria-hidden="true"></div>
 <div class="app-item app-slot-empty" aria-hidden="true"></div>
@@ -6719,6 +6723,11 @@ MODULES PROFIL
 <div class="fid-color-panel" id="fid-color-panel"></div>
 </div>
 </div>
+</div>
+
+<div class="module" id="mod-fidelite-wallet">
+<div class="mod-hdr"><div class="mod-back" onclick="closeModule('mod-fidelite-wallet')">‹</div><div class="mod-title">Fidélité 🪶</div><div class="mod-action"></div></div>
+<div class="mod-scroll fidw-iframe-scroll"><iframe id="fidw-iframe" class="fidw-iframe" title="SEAVEN Fidélité" src="fidelite-wallet.html"></iframe></div>
 </div>
 
 <!-- URGENCE -->
