@@ -898,6 +898,11 @@ label.config-title{display:block;cursor:default;}
 .card-body{padding:14px;}
 .mfo-pro-only{display:none;}
 #screen-pro.on #mod-formation .mfo-pro-only{display:block;}
+/* Les overlays (inset:0) sont ancés sur tout le module : ils passent au-dessus des onglets. Empiler hdr / tabs / filtres au-dessus du bloc scroll (flex + z-index) pour que les onglets restent cliquables. */
+#mod-formation > .mod-hdr,
+#mod-formation > .mod-tabs,
+#mod-formation > .mod-filters{position:relative;z-index:10;}
+#mod-formation > .mod-scroll{z-index:1;}
 .mfo-create-overlay{position:absolute;inset:0;background:var(--bg);z-index:90;display:none;flex-direction:column;overflow:hidden;overscroll-behavior:contain;}
 .mfo-create-overlay.on{display:flex;}
 .mfo-create-scroll{flex:1;overflow-y:auto;padding:14px 16px 22px;}
