@@ -40,7 +40,11 @@ body{background:#dedad3;display:flex;flex-direction:column;align-items:center;pa
 .fid-screen.open{transform:translateY(0);}
 .fid-nav{padding:54px 20px 12px;flex-shrink:0;}
 .fid-back{font-size:17px;color:var(--teal);cursor:pointer;margin-bottom:4px;}
-.fid-h1{font-size:34px;font-weight:700;color:#fff;letter-spacing:-.5px;}
+.fid-head-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:2px;}
+.fid-h1{font-size:34px;font-weight:700;color:#fff;letter-spacing:-.5px;flex:1;min-width:0;}
+.fid-add-card{flex-shrink:0;width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);color:rgba(255,255,255,.92);font-size:22px;font-weight:300;line-height:1;padding:0;cursor:pointer;font-family:inherit;display:none;align-items:center;justify-content:center;transition:opacity .15s,background .15s;}
+.fid-add-card:hover{background:rgba(255,255,255,.14);}
+.fid-add-card:active{opacity:.85;}
 .fid-hsub{font-size:13px;color:rgba(255,255,255,.45);margin-top:2px;}
 .wallet-vp{
   flex:1;position:relative;overflow:hidden;
@@ -251,7 +255,10 @@ input[type=range].fid-pct-range{width:100%;height:6px;accent-color:#2BA8C8;}
 <div class="fid-screen" id="fidScreen">
   <div class="fid-nav">
     <div class="fid-back" onclick="fidClose()">‹ Accueil</div>
-    <div class="fid-h1">🪶 Fidélité</div>
+    <div class="fid-head-row">
+      <div class="fid-h1">🪶 Fidélité</div>
+      <button type="button" class="fid-add-card" id="fidAddCardBtn" onclick="openCreate()" aria-label="Créer une nouvelle carte fidélité" title="Nouvelle carte">+</button>
+    </div>
     <div class="fid-hsub" id="fidHsub">Touche une carte pour la déployer</div>
   </div>
   <div class="wallet-vp" id="walletVP"></div>

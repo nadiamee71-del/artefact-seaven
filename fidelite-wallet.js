@@ -323,13 +323,8 @@ function buildWallet(){
     vp.appendChild(el);
   });
 
-  if(userMode==='pro'){
-    const btn=document.createElement('button');
-    btn.style.cssText=`position:absolute;left:12px;right:12px;bottom:${MARGIN+(cartes.length)*PEEK-30}px;padding:13px;border-radius:14px;border:1.5px solid rgba(255,255,255,.2);background:rgba(255,255,255,.07);color:rgba(255,255,255,.8);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;z-index:500;transition:opacity .2s;`;
-    btn.textContent='➕  Créer une nouvelle carte fidélité';
-    btn.onclick=()=>openCreate();
-    vp.appendChild(btn);
-  }
+  const fidAdd=document.getElementById('fidAddCardBtn');
+  if(fidAdd) fidAdd.style.display=userMode==='pro'?'flex':'none';
 }
 
 function buildBackCliente(c, th, acc, ava, avb){
