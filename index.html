@@ -8916,6 +8916,7 @@ function mfoOpenCreate(forceType){
   if(pv) pv.textContent=mfoPlacesVal;
   mfoPickType(mfoDraft.type);
   mfoCheckRequired();
+  ov.style.removeProperty('display');
   ov.classList.add('on');
   const scroll=ov.querySelector('.mfo-create-scroll');
   if(scroll) scroll.scrollTop=0;
@@ -8926,7 +8927,10 @@ function mfoOpenCreateFromHeader(){
   mfoOpenCreate(ebooksVisible?'ebook':'formation');
 }
 function mfoCloseCreate(){
-  document.getElementById('mfo-create')?.classList.remove('on');
+  const ov=document.getElementById('mfo-create');
+  if(!ov) return;
+  ov.classList.remove('on');
+  ov.style.removeProperty('display');
 }
 function mfoPickType(t){
   if(!mfoDraft) mfoDraft={};
@@ -9015,7 +9019,11 @@ function mfoRenderMine(){
 setTimeout(()=>{try{mfoRenderMine();}catch(e){}},0);
 
 function mfoCloseConfirm(){
-  document.getElementById('mfo-confirm')?.classList.remove('on');
+  const c=document.getElementById('mfo-confirm');
+  if(c){
+    c.classList.remove('on');
+    c.style.removeProperty('display');
+  }
   mfoRenderMine();
 }
 function mfoTogPill(el){ el.classList.toggle('on'); }
@@ -9119,7 +9127,8 @@ function mfoPublish(){
     const pdf=document.getElementById('mfo-e-price-pdf')?.value;
     price=pdf?(pdf+'€ (PDF)'):'Non renseigné';
   }
-  document.getElementById('mfo-create')?.classList.remove('on');
+  const cr=document.getElementById('mfo-create');
+  if(cr){ cr.classList.remove('on'); cr.style.removeProperty('display'); }
   const conf=document.getElementById('mfo-confirm');
   if(conf){
     document.getElementById('mfo-confirm-title').textContent=mfoDraft.type==='ebook'?'Ebook publié !':'Formation publiée !';
@@ -9127,6 +9136,7 @@ function mfoPublish(){
     document.getElementById('mfo-confirm-name').textContent=title;
     document.getElementById('mfo-confirm-cat').textContent=cat;
     document.getElementById('mfo-confirm-price').textContent=price;
+    conf.style.removeProperty('display');
     conf.classList.add('on');
   }
   const item={...mfoDraft,id:'mfo_'+Math.random().toString(16).slice(2),createdAt:Date.now(),title,cat,price:''};
