@@ -77,7 +77,7 @@ body.dark-mode .section-block{border-color:var(--border);}
 .phone{width:100%;max-width:100vw;height:100vh;height:100svh;height:100dvh;background:var(--bg);border-radius:0;box-shadow:none;overflow:hidden;position:relative;overscroll-behavior:none;touch-action:manipulation;}
 .mod-scroll,.enc-scroll,.reg-scroll,.rps-scroll,.mfo-create-scroll,.rdv-wiz-scroll,.det-scroll,.conv-body,.mkt-d-body,.evt-d-scroll,.fin-body,.ob-scroll,.reveil-scroll,.svc-scroll,.reg-sub-scroll,.fc-scroll,.grp-scroll,.plan-mo-sheet,.archive-grid,.svc-sh-body,[style*="overflow-y:auto"],[style*="overflow-y: auto"]{overscroll-behavior:contain;}
 /* Tout ce qui est enfant direct de .phone et pas une vue/module reste invisible */
-.phone>*:not(.page):not(.screen):not(.module):not(.prof-module):not(.app-dock):not(.fan-backdrop):not(.flow){display:none!important;}
+.phone>*:not(.page):not(.screen):not(.module):not(.prof-module):not(.app-dock):not(.fan-backdrop):not(.flow):not(.demo-role-bar){display:none!important;}
 
 /* vues */
 .page,.screen{position:absolute;inset:0;display:none;flex-direction:column;background:var(--bg);overflow:hidden;min-height:0;overscroll-behavior:none;}
@@ -2388,6 +2388,13 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
 /* ── Module Fidélité (wallet démo iframe) ── */
 #mod-fidelite-wallet .mod-scroll.fidw-iframe-scroll{padding:0;overflow:hidden;display:flex;flex-direction:column;background:#1a1a1a;}
 #mod-fidelite-wallet .fidw-iframe{flex:1;width:100%;min-height:0;border:0;background:#dedad3;}
+/* DEMO ONLY — onglets globaux Cliente / Prestataire */
+.demo-role-bar{position:absolute;left:0;right:0;bottom:var(--dock-h);z-index:400;display:flex;align-items:center;justify-content:center;gap:8px;padding:5px 10px;background:rgba(255,255,255,.93);border-top:1px solid var(--border);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);pointer-events:auto;box-sizing:border-box;}
+body.dark-mode .demo-role-bar{background:rgba(15,17,22,.93);border-top-color:var(--border);}
+.demo-role-lbl{font-size:9px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.06em;flex-shrink:0;}
+.demo-role-bar-inner{display:flex;flex:1;max-width:300px;border-radius:10px;overflow:hidden;border:1px solid var(--border);background:var(--light);}
+.demo-role-tab{flex:1;border:none;margin:0;padding:7px 8px;font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;color:var(--gray);background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.demo-role-tab.on{background:var(--btn-bg);color:var(--btn-fg);}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/deepar@5.6.21/js/deepar.js"></script>
 </head>
@@ -7877,6 +7884,14 @@ display:flex;align-items:center;justify-content:center;color:var(--btn-fg);font-
 <div class="fid-success-sub" id="fid-success-sub">Points mis à jour</div>
 </div>
 </div>
+<!-- DEMO ONLY — raccourci rôle toujours visible -->
+<div id="demo-role-bar" class="demo-role-bar" aria-label="Raccourci démonstration rôle">
+<span class="demo-role-lbl">Démo</span>
+<div class="demo-role-bar-inner">
+<button type="button" class="demo-role-tab" data-demo-role="client" onclick="demoApplyRole('client')">Cliente</button>
+<button type="button" class="demo-role-tab" data-demo-role="pro" onclick="demoApplyRole('pro')">Prestataire</button>
+</div>
+</div>
 </div><!-- /phone -->
 
 <script>
@@ -7930,6 +7945,28 @@ function regSetMode(m){
     b.style.display=(t===wantType)?'':'none';
   });
   updateRegBubbles();
+}
+function demoSyncRoleBarFromDom(){
+  var cl=document.getElementById('screen-client')?.classList?.contains('on');
+  var pr=document.getElementById('screen-pro')?.classList?.contains('on');
+  var bar=document.getElementById('demo-role-bar');
+  if(!bar)return;
+  bar.querySelectorAll('.demo-role-tab').forEach(function(t){
+    var k=t.getAttribute('data-demo-role');
+    t.classList.toggle('on',(k==='client'&&cl)||(k==='pro'&&pr));
+  });
+}
+function demoApplyRole(kind){
+  var role=(kind==='pro')?'pro':'client';
+  var scrCl=document.getElementById('screen-client');
+  var scrPr=document.getElementById('screen-pro');
+  if(scrCl){scrCl.classList.toggle('on',role==='client');}
+  if(scrPr){scrPr.classList.toggle('on',role==='pro');}
+  try{regSetMode(role==='client'?'client':'pro');}catch(e){console.warn('demoApplyRole regSetMode',e);}
+  try{syncAppDock();}catch(e){console.warn('demoApplyRole syncAppDock',e);}
+  try{syncFlowsToActiveScreen();}catch(e){console.warn('demoApplyRole syncFlowsToActiveScreen',e);}
+  document.title='Seven.demo2 — '+role;
+  demoSyncRoleBarFromDom();
 }
 function openProfilFromReg(){
   const openPro=document.getElementById('reg-p')?.classList?.contains('show');
@@ -8193,6 +8230,7 @@ function finishOnboarding(type){
 
   console.log('[SEAVEN] finishOnboarding END role='+role);
   document.title='Seven.demo2 — '+role;
+  try{demoSyncRoleBarFromDom();}catch(e){console.warn('demoSyncRoleBarFromDom',e);}
 }
 function togCl(el){el.classList.toggle('on');document.getElementById('cl-count').textContent=document.querySelectorAll('#cl-metier-wrap .metier-chip.on').length;}
 function selStatut(el){el.closest('.statut-cards').querySelectorAll('.statut-card').forEach(c=>{c.classList.remove('sel');c.querySelectorAll('.statut-expand').forEach(e=>e.classList.remove('on'));});el.classList.add('sel');const ex=el.querySelector('.statut-expand');if(ex)ex.classList.add('on');}
@@ -8562,6 +8600,7 @@ function ensureVisibleBoot(){
 }
 syncAppDock();
 syncFlowsToActiveScreen();
+try{demoSyncRoleBarFromDom();}catch(e){console.warn('demoSyncRoleBarFromDom boot',e);}
 ensureVisibleBoot();
 
 function msgTab(el,id){
