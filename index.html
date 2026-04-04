@@ -10306,6 +10306,20 @@ if(id==='mod-reglages'){
   regSetMode(isPro?'pro':'client');
   regRenderTopProfile();
 }
+if(id==='mod-fidelite-wallet'){
+  var ff=document.getElementById('fidw-iframe');
+  if(ff){
+    var syncFidw=function(){
+      try{
+        var w=ff.contentWindow;
+        if(w&&typeof w.fidwSetMode==='function')w.fidwSetMode(isPro?'pro':'cliente');
+      }catch(e){}
+    };
+    syncFidw();
+    var fd=ff.contentDocument;
+    if(!fd||fd.readyState!=='complete')ff.addEventListener('load',syncFidw,{once:true});
+  }
+}
 if(id==='mod-profil-client-int')cliIntSetTab('pub');
 if(id==='mod-messages')closeConversation();
 if(id==='mod-carte')closeMapSheet();
