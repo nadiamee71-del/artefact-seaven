@@ -4,11 +4,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>SEAVEN</title>
+<title>Seven.demo2</title>
 <meta name="theme-color" content="#1A1A1A">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="SEAVEN">
+<meta name="apple-mobile-web-app-title" content="Seven.demo2">
 <meta name="description" content="SEAVEN - One App. One Place. All in One.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="SEAVEN">
@@ -2404,13 +2404,13 @@ body{background:var(--bg);padding:0;gap:0;min-height:100vh;min-height:100dvh;ove
 <div class="splash-logo-ring"><div class="splash-logo-core"><div class="splash-logo-mark"><img src="./assets/logo-seaven-main.png" alt="SEAVEN logo"></div></div></div>
 </div>
 </div>
-<div class="seaven-text"><div class="seaven-name">SEAVEN</div><div class="seaven-tag">One App. One Place. All in One.</div><div class="splash-progress"><span></span></div></div>
+<div class="seaven-text"><div class="seaven-name">Seven.demo2</div><div class="seaven-tag">One App. One Place. All in One.</div><div class="splash-progress"><span></span></div></div>
 </div></div>
 <div class="splash-bottom"><button class="splash-main-btn" onclick="goPage('choose')">Créer un compte</button><div class="splash-links">Déjà un compte ? <span onclick="goPage('choose')">Se connecter</span></div></div>
 </div>
 
 <div class="page" id="choose">
-<div class="ob-header" style="padding-top:52px;"><div class="ob-title">Bienvenue sur SEAVEN 🪶</div><div class="ob-sub">Tu es ici pour réserver des soins, ou pour les proposer ?</div></div>
+<div class="ob-header" style="padding-top:52px;"><div class="ob-title">Bienvenue sur Seven.demo2 🪶</div><div class="ob-sub">Tu es ici pour réserver des soins, ou pour les proposer ?</div></div>
 <div class="ob-scroll"><div class="choice-cards">
 <div class="choice-card" id="cc-client" onclick="selectChoice('client')"><div class="cc-check">✓</div><div class="cc-icon">💅</div><div class="cc-title">Je suis cliente</div><div class="cc-sub">Je cherche des prestataires beauté et bien-être.</div></div>
 <div class="choice-card" id="cc-pro" onclick="selectChoice('pro')"><div class="cc-check">✓</div><div class="cc-icon">💼</div><div class="cc-title">Je suis prestataire</div><div class="cc-sub">Je gère mon activité et veux automatiser mes réservations.</div></div>
@@ -8192,7 +8192,7 @@ function finishOnboarding(type){
     'dock-pro visible:',d2?d2.classList.contains('visible'):'N/A');
 
   console.log('[SEAVEN] finishOnboarding END role='+role);
-  document.title='SEAVEN — '+role;
+  document.title='Seven.demo2 — '+role;
 }
 function togCl(el){el.classList.toggle('on');document.getElementById('cl-count').textContent=document.querySelectorAll('#cl-metier-wrap .metier-chip.on').length;}
 function selStatut(el){el.closest('.statut-cards').querySelectorAll('.statut-card').forEach(c=>{c.classList.remove('sel');c.querySelectorAll('.statut-expand').forEach(e=>e.classList.remove('on'));});el.classList.add('sel');const ex=el.querySelector('.statut-expand');if(ex)ex.classList.add('on');}
