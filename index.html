@@ -75,6 +75,7 @@ body.dark-mode .pnav-icon{color:var(--text);}
 body.dark-mode .section-block .row{border-color:var(--border);}
 body.dark-mode .section-block{border-color:var(--border);}
 .phone{width:100%;max-width:100vw;height:100vh;height:100svh;height:100dvh;background:var(--bg);border-radius:0;box-shadow:none;overflow:hidden;position:relative;overscroll-behavior:none;touch-action:manipulation;}
+.phone.has-wallpaper-custom > .page.on,.phone.has-wallpaper-custom > .screen.on{background:transparent!important;}
 .mod-scroll,.enc-scroll,.reg-scroll,.rps-scroll,.mfo-create-scroll,.rdv-wiz-scroll,.det-scroll,.conv-body,.mkt-d-body,.evt-d-scroll,.fin-body,.ob-scroll,.reveil-scroll,.svc-scroll,.reg-sub-scroll,.fc-scroll,.grp-scroll,.plan-mo-sheet,.archive-grid,.svc-sh-body,[style*="overflow-y:auto"],[style*="overflow-y: auto"]{overscroll-behavior:contain;}
 /* Tout ce qui est enfant direct de .phone et pas une vue/module reste invisible */
 .phone>*:not(.page):not(.screen):not(.module):not(.prof-module):not(.app-dock):not(.fan-backdrop):not(.flow):not(.demo-role-bar){display:none!important;}
@@ -1060,6 +1061,11 @@ body.dark-mode #mod-reglages{background:var(--bg)!important;}
 #mod-reglages .reg-wallpaper-color-input::-webkit-color-swatch{border:1px solid var(--border);border-radius:6px;}
 #mod-reglages .reg-wallpaper-file-input{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;opacity:0;}
 #mod-reglages label.row{cursor:pointer;}
+#mod-reglages .reg-wallpaper-swatches{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:2px 16px 14px;border-bottom:1px solid var(--border);}
+#mod-reglages .reg-wp-swatch{width:30px;height:30px;border-radius:50%;border:2px solid var(--border);cursor:pointer;padding:0;flex-shrink:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+#mod-reglages .reg-wp-swatch:active{transform:scale(.92);}
+#mod-reglages .reg-wp-custom{margin-left:auto;font-size:12px;font-weight:700;color:var(--blue);cursor:pointer;font-family:'Manrope',sans-serif;}
+#mod-reglages input.reg-wallpaper-color-native-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);opacity:0;border:0;}
 #mod-reglages .ic-purple{background:#F5EDFF;}#mod-reglages .ic-pink{background:#FFF0F4;}#mod-reglages .ic-blue{background:#EDF5FF;}
 #mod-reglages .ic-orange{background:#FFF3E0;}#mod-reglages .ic-green{background:#F0FAF4;}#mod-reglages .ic-red{background:#FFF0F0;}
 #mod-reglages .ic-teal{background:#F0FAFA;}#mod-reglages .ic-grey{background:#EBEBF0;}#mod-reglages .ic-yellow{background:#FFFBE0;}#mod-reglages .ic-dark{background:#F0F0F5;}
@@ -3890,11 +3896,22 @@ MODULES PROFIL
 <div style="padding:8px 18px 2px;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;">Fond d'écran</div>
 <div class="section">
 <div class="section-block">
-<div class="row" style="cursor:pointer;" onclick="event.stopPropagation();wallpaperOpenColorPicker(this);">
+<div class="row" style="cursor:default;padding-bottom:6px;border-bottom:none;" onclick="event.stopPropagation();">
 <div class="icon ic-blue">🎨</div>
 <div class="row-text"><div class="row-label">Couleur unie</div><div class="row-sub">Arrière-plan du cadre téléphone</div></div>
-<input type="color" class="reg-wallpaper-color-input" value="#F2F2F7" title="Couleur unie" aria-label="Couleur du fond d'écran" oninput="wallpaperSetSolidColor(this.value)"/>
 </div>
+<div class="reg-wallpaper-swatches">
+<button type="button" class="reg-wp-swatch" style="background:#FFFFFF;" title="Blanc" aria-label="Blanc" onclick="event.stopPropagation();wallpaperSetSolidColor('#FFFFFF')"></button>
+<button type="button" class="reg-wp-swatch" style="background:#F2F2F7;" title="Gris clair" aria-label="Gris clair" onclick="event.stopPropagation();wallpaperSetSolidColor('#F2F2F7')"></button>
+<button type="button" class="reg-wp-swatch" style="background:#E3F2FD;" title="Bleu très clair" aria-label="Bleu très clair" onclick="event.stopPropagation();wallpaperSetSolidColor('#E3F2FD')"></button>
+<button type="button" class="reg-wp-swatch" style="background:#F3E5F5;" title="Lavande" aria-label="Lavande" onclick="event.stopPropagation();wallpaperSetSolidColor('#F3E5F5')"></button>
+<button type="button" class="reg-wp-swatch" style="background:#E8F5E9;" title="Vert menthe" aria-label="Vert menthe" onclick="event.stopPropagation();wallpaperSetSolidColor('#E8F5E9')"></button>
+<button type="button" class="reg-wp-swatch" style="background:#FFF3E0;" title="Pêche" aria-label="Pêche" onclick="event.stopPropagation();wallpaperSetSolidColor('#FFF3E0')"></button>
+<button type="button" class="reg-wp-swatch" style="background:#FBE9E7;" title="Rose poudré" aria-label="Rose poudré" onclick="event.stopPropagation();wallpaperSetSolidColor('#FBE9E7')"></button>
+<button type="button" class="reg-wp-swatch" style="background:#37474F;" title="Gris ardoise" aria-label="Gris ardoise" onclick="event.stopPropagation();wallpaperSetSolidColor('#37474F')"></button>
+<label class="reg-wp-custom" for="reg-wallpaper-color-native">Personnaliser…</label>
+</div>
+<input type="color" id="reg-wallpaper-color-native" class="reg-wallpaper-color-input reg-wallpaper-color-native-hidden" value="#F2F2F7" title="Couleur personnalisée" aria-label="Couleur personnalisée" oninput="wallpaperSetSolidColor(this.value)" onchange="wallpaperSetSolidColor(this.value)"/>
 <label class="row" for="reg-wallpaper-file" onclick="event.stopPropagation();">
 <div class="icon ic-purple">🖼️</div>
 <div class="row-text"><div class="row-label">Photo</div><div class="row-sub">Importer depuis l'appareil</div></div>
@@ -4077,10 +4094,20 @@ MODULES PROFIL
 <div style="padding:8px 18px 2px;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;">Fond d'écran</div>
 <div class="section">
 <div class="section-block">
-<div class="row" style="cursor:pointer;" onclick="event.stopPropagation();wallpaperOpenColorPicker(this);">
+<div class="row" style="cursor:default;padding-bottom:6px;border-bottom:none;" onclick="event.stopPropagation();">
 <div class="icon ic-blue">🎨</div>
 <div class="row-text"><div class="row-label">Couleur unie</div><div class="row-sub">Arrière-plan du cadre téléphone</div></div>
-<input type="color" class="reg-wallpaper-color-input" value="#F2F2F7" title="Couleur unie" aria-label="Couleur du fond d'écran" oninput="wallpaperSetSolidColor(this.value)"/>
+</div>
+<div class="reg-wallpaper-swatches">
+<button type="button" class="reg-wp-swatch" style="background:#FFFFFF;" title="Blanc" aria-label="Blanc" onclick="event.stopPropagation();wallpaperSetSolidColor('#FFFFFF')"></button>
+<button type="button" class="reg-wp-swatch" style="background:#F2F2F7;" title="Gris clair" aria-label="Gris clair" onclick="event.stopPropagation();wallpaperSetSolidColor('#F2F2F7')"></button>
+<button type="button" class="reg-wp-swatch" style="background:#E3F2FD;" title="Bleu très clair" aria-label="Bleu très clair" onclick="event.stopPropagation();wallpaperSetSolidColor('#E3F2FD')"></button>
+<button type="button" class="reg-wp-swatch" style="background:#F3E5F5;" title="Lavande" aria-label="Lavande" onclick="event.stopPropagation();wallpaperSetSolidColor('#F3E5F5')"></button>
+<button type="button" class="reg-wp-swatch" style="background:#E8F5E9;" title="Vert menthe" aria-label="Vert menthe" onclick="event.stopPropagation();wallpaperSetSolidColor('#E8F5E9')"></button>
+<button type="button" class="reg-wp-swatch" style="background:#FFF3E0;" title="Pêche" aria-label="Pêche" onclick="event.stopPropagation();wallpaperSetSolidColor('#FFF3E0')"></button>
+<button type="button" class="reg-wp-swatch" style="background:#FBE9E7;" title="Rose poudré" aria-label="Rose poudré" onclick="event.stopPropagation();wallpaperSetSolidColor('#FBE9E7')"></button>
+<button type="button" class="reg-wp-swatch" style="background:#37474F;" title="Gris ardoise" aria-label="Gris ardoise" onclick="event.stopPropagation();wallpaperSetSolidColor('#37474F')"></button>
+<label class="reg-wp-custom" for="reg-wallpaper-color-native">Personnaliser…</label>
 </div>
 <label class="row" for="reg-wallpaper-file" onclick="event.stopPropagation();">
 <div class="icon ic-purple">🖼️</div>
@@ -7959,6 +7986,8 @@ function applyPhoneWallpaper(){
   if(!p)return;
   var img=localStorage.getItem('seaven-wallpaper-image');
   var col=localStorage.getItem('seaven-wallpaper-color');
+  var active=(img&&img.length>32)||(col&&/^#[0-9A-Fa-f]{6}$/.test(col));
+  p.classList.toggle('has-wallpaper-custom',!!active);
   if(img&&img.length>32){
     p.style.backgroundImage='url('+JSON.stringify(img)+')';
     p.style.backgroundSize='cover';
@@ -7980,14 +8009,6 @@ function applyPhoneWallpaper(){
   p.style.backgroundPosition='';
   p.style.backgroundRepeat='';
   p.style.backgroundColor='';
-}
-function wallpaperOpenColorPicker(row){
-  var i=row&&row.querySelector&&row.querySelector('input.reg-wallpaper-color-input');
-  if(!i)return;
-  if(typeof i.showPicker==='function'){
-    try{ i.showPicker(); return; }catch(e){}
-  }
-  i.click();
 }
 function wallpaperSyncColorInput(){
   var col=localStorage.getItem('seaven-wallpaper-color');
